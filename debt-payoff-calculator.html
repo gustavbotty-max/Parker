@@ -753,7 +753,7 @@
                 <small>Even $50 extra per month can save thousands in interest and years of payments</small>
             </div>
             
-            <button type="submit" id="calculateButton" class="calculate-button" onclick="calculateAllStrategies()" style="display: none;">Compare All Debt Payoff Strategies</button>
+            <button type="button" id="calculateButton" class="calculate-button" onclick="calculateAllStrategies()" style="display: none;">🧮 Compare All Debt Payoff Strategies</button>
             
             <div class="loading">
                 <div class="loading-spinner"></div>
@@ -786,18 +786,16 @@
             <h4>📋 Want Your Personalized Debt Payoff Plan?</h4>
             <p>I'll send you a detailed debt payoff action plan showing exactly how much you'll save with each strategy and step-by-step implementation guide.</p>
             
-            <form id="emailForm" method="POST" action="../../lead-capture.php">
-                <div class="email-form">
-                    <input type="email" class="email-input" name="email" placeholder="Enter your email address" required>
-                    <input type="hidden" name="calculator_type" value="debt-payoff">
-                    <input type="hidden" name="lead_source" value="calculator-results">
-                    <input type="hidden" name="total_debt" id="hiddenTotalDebt">
-                    <input type="hidden" name="best_strategy" id="hiddenBestStrategy">
-                    <input type="hidden" name="potential_savings" id="hiddenPotentialSavings">
-                    <button type="submit" class="email-button">Send My Plan 📧</button>
+            <div class="email-form">
+                <p style="text-align: center; margin-bottom: 1rem;">📧 Contact me for a personalized debt payoff plan:</p>
+                <div style="text-align: center; margin: 1rem 0;">
+                    <a href="mailto:jlparker0106@gmail.com?subject=Financial Calculator Help Request - Debt Payoff Calculator" 
+                       style="display: inline-block; background: var(--warning-color); color: white; padding: 0.75rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600;">
+                       Send My Plan 📧
+                    </a>
                 </div>
-                <p style="font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.8;">Your information is secure and will never be shared.</p>
-            </form>
+                <p style="font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.8; text-align: center;">Contact Jonathan Parker directly via email for personalized help.</p>
+            </div>
         </div>
         
         <div class="footer">
@@ -827,7 +825,16 @@
             // Add one debt card by default
             addDebtCard();
             document.getElementById('calculateButton').style.display = 'block';
+            // Clear results initially
+            clearResults();
         });
+        
+        function clearResults() {
+            document.getElementById('resultsSection').style.display = 'none';
+            document.getElementById('consolidationSection').style.display = 'none';
+            document.getElementById('detailedComparison').style.display = 'none';
+            document.getElementById('emailSection').style.display = 'none';
+        }
         
         function addDebtCard() {
             debtCounter++;
@@ -892,6 +899,8 @@
             document.getElementById('extraPaymentSection').style.display = 'block';
             document.getElementById('calculateButton').style.display = 'block';
             
+            // Clear previous results when adding new debt
+            clearResults();
             updateSummary();
             calculateAllStrategies();
         }
@@ -948,51 +957,75 @@
             let totalPayment = 0;
             let rateCount = 0;
             
+            // Clear and rebuild debts array
             debts = [];
             
+            if (debtCards.length === 0) {
+                return { totalDebt: 0, totalPayment: 0, avgRate: 0, debts: [] };
+            }
+            
             debtCards.forEach((card, index) => {
-                const balance = parseFloat(card.querySelector('.debt-balance').value) || 0;
-                const rate = parseFloat(card.querySelector('.debt-rate').value) || 0;
-                const payment = parseFloat(card.querySelector('.debt-payment').value) || 0;
-                const name = card.querySelector('.debt-name').value || `Debt ${index + 1}`;
-                const type = card.querySelector('.debt-type').value || 'other';
+                const balanceInput = card.querySelector('.debt-balance');
+                const rateInput = card.querySelector('.debt-rate');
+                const paymentInput = card.querySelector('.debt-payment');
+                const nameInput = card.querySelector('.debt-name');
+                const typeInput = card.querySelector('.debt-type');
                 
-                totalDebt += balance;
-                totalInterest += (rate / 100) * balance;
-                totalPayment += payment;
-                totalInterest += (rate / 100) * balance;
-                totalPayment += payment;
-                rateCount++;
+                if (!balanceInput || !rateInput || !paymentInput) {
+                    console.log('Missing input fields for debt card', card.id);
+                    return;
+                }
                 
-                debts.push({
-                    id: card.id,
-                    name: name,
-                    balance: balance,
-                    rate: rate / 100,
-                    payment: payment,
-                    monthsToPayoff: 0,
-                    totalInterest: 0,
-                    debtType: type
-                });
+                const balance = parseFloat(balanceInput.value) || 0;
+                const rate = parseFloat(rateInput.value) || 0;
+                const payment = parseFloat(paymentInput.value) || 0;
+                const name = nameInput ? nameInput.value : `Debt ${index + 1}`;
+                const type = typeInput ? typeInput.value : 'other';
+                
+                if (balance > 0 && payment > 0) {
+                    totalDebt += balance;
+                    totalInterest += (rate / 100) * balance;
+                    totalPayment += payment;
+                    rateCount++;
+                    
+                    debts.push({
+                        id: card.id,
+                        name: name,
+                        balance: balance,
+                        rate: rate / 100,
+                        payment: payment,
+                        monthsToPayoff: 0,
+                        totalInterest: 0,
+                        debtType: type
+                    });
+                }
             });
             
-            const avgRate = rateCount > 0 ? (totalInterest / totalDebt * 100) : 0;
+            const avgRate = (rateCount > 0 && totalDebt > 0) ? (totalInterest / totalDebt * 100) : 0;
             
             // Update summary display
-            if (debts.length > 0) {
+            if (debts.length > 0 && totalDebt > 0) {
                 document.getElementById('debtSummary').style.display = 'block';
                 document.getElementById('totalDebt').textContent = '$' + Math.round(totalDebt).toLocaleString();
                 document.getElementById('avgAPR').textContent = avgRate.toFixed(1) + '%';
                 document.getElementById('totalMonthly').textContent = '$' + Math.round(totalPayment).toLocaleString();
+            } else {
+                document.getElementById('debtSummary').style.display = 'none';
             }
             
             return { totalDebt, totalPayment, avgRate, debts };
         }
         
         function calculateAllStrategies() {
-            if (debts.length === 0) return;
-            
+            // Ensure we have valid debt data
             const summary = updateSummary();
+            
+            if (!summary || summary.debts.length === 0 || summary.totalDebt <= 0) {
+                clearResults();
+                alert('Please add at least one debt to calculate payoff strategies.');
+                return;
+            }
+            
             const extraPayment = parseFloat(document.getElementById('extraPayment').value) || 0;
             
             // Calculate different strategies
