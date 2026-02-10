@@ -560,25 +560,29 @@
                 </div>
         </div>
         
-        <div id="emailSection" class="email-section" style="display: none;">
-            <h4>📋 Want Your Personalized Debt Payoff Plan?</h4>
-            <p>I'll send you a detailed debt payoff action plan showing exactly how much you'll save with each strategy and step-by-step implementation guide.</p>
-            
-            <div class="email-form">
-                <input type="hidden" id="hiddenTotalDebt" name="totalDebt">
-                <input type="hidden" id="hiddenPotentialSavings" name="potentialSavings">
-                <input type="hidden" id="hiddenBestStrategy" name="bestStrategy">
+<div id="emailSection" class="email-section" style="display: none;">
+    <div id="emailContent">
+        <h4>📋 Want Your Personalized Debt Payoff Plan?</h4>
+        <p>Enter your email below, and I'll send you a detailed action plan showing exactly how much you'll save with each strategy.</p>
+        
+        <form class="email-form" onsubmit="handleEmailSubmit(event)">
+            <input type="email" id="userEmail" class="email-input" placeholder="Enter Your Email Address..." required>
+            <button type="submit" class="email-button">
+                Send My Plan 📧
+            </button>
+        </form>
+        <p style="font-size: 0.8rem; margin-top: 1rem; opacity: 0.8; text-align: center; width: 100%;">
+            🔒 We respect your privacy. No spam.
+        </p>
+    </div>
 
-                <p style="text-align: center; margin-bottom: 1rem; width: 100%;">📧 Contact me for a personalized debt payoff plan:</p>
-                <div style="text-align: center; margin: 1rem 0; width: 100%;">
-                    <a href="mailto:jlparker0106@gmail.com?subject=Financial Calculator Help Request - Debt Payoff Calculator" 
-                       style="display: inline-block; background: var(--warning-color); color: white; padding: 0.75rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600;">
-                        Send My Plan 📧
-                    </a>
-                </div>
-                <p style="font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.8; text-align: center; width: 100%;">Contact Jonathan Parker directly via email for personalized help.</p>
-            </div>
-        </div>
+    <div id="emailSuccess" style="display: none; text-align: center;">
+        <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
+        <h4>Plan Sent Successfully!</h4>
+        <p>Please check your inbox (and spam folder) for your personalized debt payoff guide.</p>
+        <button onclick="resetEmailForm()" style="background: none; border: 1px solid white; color: white; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; margin-top: 1rem;">Send to another email</button>
+    </div>
+</div>
         
         <div class="footer">
             <div class="disclaimer">
