@@ -833,7 +833,7 @@
             document.getElementById('totalSavings').textContent = '$' + Math.round(totalSavings).toLocaleString();
             
             // Update lead capture data
-            // FIX: Ensure these elements exist in HTML or check for null before setting value
+           
             if(document.getElementById('hiddenTotalDebt')) document.getElementById('hiddenTotalDebt').value = Math.round(summary.totalDebt);
             if(document.getElementById('hiddenPotentialSavings')) document.getElementById('hiddenPotentialSavings').value = Math.round(totalSavings);
             
