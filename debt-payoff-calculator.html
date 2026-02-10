@@ -1179,7 +1179,42 @@
                  // Scroll to strategy comparison
                  document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
             }
-        }
+            function handleEmailSubmit(event) {
+    event.preventDefault(); // Stop the page from reloading
+    
+    const emailInput = document.getElementById('userEmail');
+    const email = emailInput.value;
+    const button = document.querySelector('.email-button');
+    const originalText = button.innerHTML;
+
+    // 1. Show Loading State
+    button.innerHTML = 'Sending... ⏳';
+    button.disabled = true;
+
+    // 2. Simulate Sending (Wait 1.5 seconds)
+    setTimeout(() => {
+        // Hide the form and show the success message
+        document.getElementById('emailContent').style.display = 'none';
+        document.getElementById('emailSuccess').style.display = 'block';
+        
+        // Reset button for next time
+        button.innerHTML = originalText;
+        button.disabled = false;
+        
+        // CONSOLE LOG: This is where you would send data to a real service
+        console.log(`captured_lead: ${email}`);
+        console.log(`strategy: ${globalResults.bestStrategy}`);
+        console.log(`savings: ${globalResults.savings[globalResults.bestStrategy]}`);
+
+    }, 1500);
+}
+
+function resetEmailForm() {
+    document.getElementById('emailContent').style.display = 'block';
+    document.getElementById('emailSuccess').style.display = 'none';
+    document.getElementById('userEmail').value = '';
+}
+        
     </script>
 </body>
 </html>
