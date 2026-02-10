@@ -1179,42 +1179,74 @@
                  // Scroll to strategy comparison
                  document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
             }
-            function handleEmailSubmit(event) {
-    event.preventDefault(); // Stop the page from reloading
-    
-    const emailInput = document.getElementById('userEmail');
-    const email = emailInput.value;
-    const button = document.querySelector('.email-button');
-    const originalText = button.innerHTML;
-
-    // 1. Show Loading State
-    button.innerHTML = 'Sending... ⏳';
-    button.disabled = true;
-
-    // 2. Simulate Sending (Wait 1.5 seconds)
-    setTimeout(() => {
-        // Hide the form and show the success message
-        document.getElementById('emailContent').style.display = 'none';
-        document.getElementById('emailSuccess').style.display = 'block';
+        }            
+function handleEmailSubmit(event) {
+        event.preventDefault(); 
         
-        // Reset button for next time
-        button.innerHTML = originalText;
-        button.disabled = false;
+        // Select elements
+        const emailInput = document.getElementById('userEmail');
+        const button = document.querySelector('.email-button');
+        const formContainer = document.getElementById('emailContent');
+        const successMessage = document.getElementById('emailSuccess');
         
-        // CONSOLE LOG: This is where you would send data to a real service
-        console.log(`captured_lead: ${email}`);
-        console.log(`strategy: ${globalResults.bestStrategy}`);
-        console.log(`savings: ${globalResults.savings[globalResults.bestStrategy]}`);
+        // 1. Gather the data
+        // We check if globalResults exists to avoid errors if calculations haven't run
+        const formData = {
+            email: emailInput.value,
+            best_strategy: (typeof globalResults !== 'undefined' && globalResults) ? globalResults.bestStrategy : 'Not calculated',
+            potential_savings: (typeof globalResults !== 'undefined' && globalResults) ? Math.round(globalResults.savings[globalResults.bestStrategy]) : 0,
+            total_debt: document.getElementById('totalDebt') ? document.getElementById('totalDebt').textContent : '0'
+        };
 
-    }, 1500);
-}
+        // 2. Show Loading State
+        const originalText = button.innerHTML;
+        button.innerHTML = 'Sending... ⏳';
+        button.disabled = true;
 
-function resetEmailForm() {
-    document.getElementById('emailContent').style.display = 'block';
-    document.getElementById('emailSuccess').style.display = 'none';
-    document.getElementById('userEmail').value = '';
-}
-        
+        // 3. Send data to Formspree
+        fetch("https://formspree.io/f/xkovojay", {
+            method: "POST",
+            body: JSON.stringify(formData),
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                // SUCCESS: Hide form, show success message
+                formContainer.style.display = 'none';
+                successMessage.style.display = 'block';
+                
+                // Optional: Reset form for future use
+                emailInput.value = '';
+            } else {
+                // ERROR: Something went wrong
+                response.json().then(data => {
+                    if (data.errors) {
+                        alert(data.errors.map(error => error.message).join(", "));
+                    } else {
+                        alert("Oops! There was a problem submitting your form");
+                    }
+                });
+            }
+        })
+        .catch(error => {
+            alert("Oops! There was a problem submitting your form");
+            console.error('Error:', error);
+        })
+        .finally(() => {
+            // Reset button state
+            button.innerHTML = originalText;
+            button.disabled = false;
+        });
+    }
+
+    function resetEmailForm() {
+        document.getElementById('emailContent').style.display = 'block';
+        document.getElementById('emailSuccess').style.display = 'none';
+        document.getElementById('userEmail').value = '';
+    }
     </script>
 </body>
 </html>
