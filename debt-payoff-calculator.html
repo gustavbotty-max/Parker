@@ -6,11 +6,7 @@
     <title>Debt Payoff Calculator - Jonathan Parker | Triangle Families</title>
     <meta name="description" content="Get debt-free faster! Compare debt snowball vs avalanche, see consolidation savings, and calculate payoff dates. Free tool for NC families.">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         :root {
             --primary-color: #2c5aa0;
@@ -35,11 +31,7 @@
             min-height: 100vh;
         }
         
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
         
         /* Header */
         header {
@@ -52,20 +44,9 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.2);
         }
         
-        .header-content {
-            padding: 0 20px;
-        }
-        
-        .header-content h1 {
-            font-size: 2.2rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .header-content p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            margin-bottom: 0;
-        }
+        .header-content { padding: 0 20px; }
+        .header-content h1 { font-size: 2.2rem; margin-bottom: 0.5rem; }
+        .header-content p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 0; }
         
         /* Strategy Selector */
         .strategy-selector {
@@ -76,11 +57,7 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
-        .strategy-title {
-            text-align: center;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
+        .strategy-title { text-align: center; color: var(--primary-color); margin-bottom: 1rem; }
         
         .strategy-tabs {
             display: flex;
@@ -111,14 +88,8 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         
-        .strategy-content {
-            display: none;
-            margin-top: 1.5rem;
-        }
-        
-        .strategy-content.active {
-            display: block;
-        }
+        .strategy-content { display: none; margin-top: 1.5rem; }
+        .strategy-content.active { display: block; }
         
         /* Calculator Container */
         .calculator-container {
@@ -129,23 +100,9 @@
             margin-bottom: 2rem;
         }
         
-        .calculator-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        
-        .calculator-header h2 {
-            color: var(--danger-color);
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .calculator-header p {
-            color: var(--text-light);
-            font-size: 1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
+        .calculator-header { text-align: center; margin-bottom: 2rem; }
+        .calculator-header h2 { color: var(--danger-color); font-size: 1.8rem; margin-bottom: 0.5rem; }
+        .calculator-header p { color: var(--text-light); font-size: 1rem; max-width: 600px; margin: 0 auto; }
         
         /* Debt Entry Section */
         .debt-entry {
@@ -156,10 +113,7 @@
             text-align: center;
         }
         
-        .debt-entry h4 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
+        .debt-entry h4 { color: var(--primary-color); margin-bottom: 1rem; }
         
         .add-debt-button {
             background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
@@ -216,10 +170,7 @@
             margin-bottom: 1rem;
         }
         
-        .debt-title {
-            font-weight: 600;
-            color: var(--text-dark);
-        }
+        .debt-title { font-weight: 600; color: var(--text-dark); }
         
         .remove-debt {
             color: var(--danger-color);
@@ -233,19 +184,10 @@
             align-items: center;
             justify-content: center;
         }
+        
         /* Form Groups */
-        .form-group {
-            margin-bottom: 1rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.4rem;
-            color: var(--text-dark);
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-        
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; margin-bottom: 0.4rem; color: var(--text-dark); font-weight: 500; font-size: 0.9rem; }
         .form-group input, .form-group select {
             width: 100%;
             padding: 0.6rem;
@@ -261,10 +203,7 @@
             box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.1);
         }
         
-        .input-group {
-            position: relative;
-        }
-        
+        .input-group { position: relative; }
         .input-prefix {
             position: absolute;
             left: 0.75rem;
@@ -275,9 +214,7 @@
             font-size: 0.9rem;
         }
         
-        .input-prefix + input {
-            padding-left: 2.5rem;
-        }
+        .input-prefix + input { padding-left: 2.5rem; }
         
         /* Calculate Button */
         .calculate-button {
@@ -308,16 +245,8 @@
             border-top: 2px solid var(--border-color);
         }
         
-        .results-header {
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-        
-        .results-header h3 {
-            color: var(--success-color);
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
+        .results-header { text-align: center; margin-bottom: 1.5rem; }
+        .results-header h3 { color: var(--success-color); font-size: 1.5rem; margin-bottom: 0.5rem; }
         
         .results-grid {
             display: grid;
@@ -335,47 +264,15 @@
             position: relative;
         }
         
-        .result-card.urgent {
-            border: 2px solid var(--danger-color);
-            background: linear-gradient(135deg, #ffe6e6, #ffffff);
-        }
+        .result-card.urgent { border: 2px solid var(--danger-color); background: linear-gradient(135deg, #ffe6e6, #ffffff); }
+        .result-card.good { border: 2px solid var(--success-color); background: linear-gradient(135deg, #e8f5e8, #ffffff); }
+        .result-card.warning { border: 2px solid var(--warning-color); background: linear-gradient(135deg, #fef5e4, #ffffff); }
         
-        .result-card.good {
-            border: 2px solid var(--success-color);
-            background: linear-gradient(135deg, #e8f5e8, #ffffff);
-        }
-        
-        .result-card.warning {
-            border: 2px solid var(--warning-color);
-            background: linear-gradient(135deg, #fef5e4, #ffffff);
-        }
-        
-        .result-card h4 {
-            color: var(--text-dark);
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-        }
-        
-        .result-card .amount {
-            color: var(--danger-color);
-            font-size: 1.6rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-        
-        .result-card .good .amount {
-            color: var(--success-color);
-        }
-        
-        .result-card .warning .amount {
-            color: var(--warning-color);
-        }
-        
-        .result-card .note {
-            color: var(--text-light);
-            font-size: 0.8rem;
-            line-height: 1.3;
-        }
+        .result-card h4 { color: var(--text-dark); margin-bottom: 0.5rem; font-size: 1rem; }
+        .result-card .amount { color: var(--danger-color); font-size: 1.6rem; font-weight: bold; margin-bottom: 0.5rem; }
+        .result-card .good .amount { color: var(--success-color); }
+        .result-card .warning .amount { color: var(--warning-color); }
+        .result-card .note { color: var(--text-light); font-size: 0.8rem; line-height: 1.3; }
         
         /* Comparison Section */
         .comparison-section {
@@ -386,11 +283,7 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
         
-        .comparison-title {
-            text-align: center;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-        }
+        .comparison-title { text-align: center; color: var(--primary-color); margin-bottom: 1.5rem; }
         
         .strategy-comparison {
             display: grid;
@@ -424,10 +317,7 @@
             border: none;
         }
         
-        .strategy-card.best {
-            border: 3px solid gold;
-            position: relative;
-        }
+        .strategy-card.best { border: 3px solid gold; position: relative; }
         
         .best-badge {
             position: absolute;
@@ -456,47 +346,13 @@
             padding: 1.5rem;
         }
         
-        .consolidation-card h5 {
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+        .consolidation-card h5 { color: var(--primary-color); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .loan-rate { font-size: 1.2rem; font-weight: bold; color: var(--success-color); margin-bottom: 0.5rem; }
+        .rate-info { font-size: 0.9rem; color: var(--text-light); margin-bottom: 1rem; }
         
-        .loan-rate {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--success-color);
-            margin-bottom: 0.5rem;
-        }
-        
-        .rate-info {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            margin-bottom: 1rem;
-        }
-        
-        .consolidation-benefits {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 1rem;
-        }
-        
-        .consolidation-benefits li {
-            display: flex;
-            align-items: start;
-            gap: 0.5rem;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-        }
-        
-        .consolidation-benefits li::before {
-            content: "✓";
-            color: var(--success-color);
-            font-weight: bold;
-            margin-top: 0.1rem;
-        }
+        .consolidation-benefits { list-style: none; padding: 0; margin: 0 0 1rem; }
+        .consolidation-benefits li { display: flex; align-items: start; gap: 0.5rem; margin-bottom: 0.5rem; font-size: 0.9rem; }
+        .consolidation-benefits li::before { content: "✓"; color: var(--success-color); font-weight: bold; margin-top: 0.1rem; }
         
         /* Email Capture */
         .email-section {
@@ -507,20 +363,8 @@
             margin-top: 2rem;
         }
         
-        .email-section h4 {
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-            text-align: center;
-        }
-        
-        .email-section p {
-            margin-bottom: 1.5rem;
-            opacity: 0.9;
-            text-align: center;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+        .email-section h4 { margin-bottom: 1rem; font-size: 1.3rem; text-align: center; }
+        .email-section p { margin-bottom: 1.5rem; opacity: 0.9; text-align: center; max-width: 600px; margin-left: auto; margin-right: auto; }
         
         .email-form {
             display: flex;
@@ -558,12 +402,7 @@
         }
         
         /* Footer */
-        .footer {
-            text-align: center;
-            padding: 2rem 0;
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
+        .footer { text-align: center; padding: 2rem 0; color: var(--text-light); font-size: 0.9rem; }
         
         .disclaimer {
             background: rgba(255, 255, 255, 0.9);
@@ -573,24 +412,11 @@
             border-left: 4px solid var(--warning-color);
         }
         
-        .disclaimer h5 {
-            color: var(--warning-color);
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-        }
-        
-        .disclaimer p {
-            margin: 0;
-            font-size: 0.8rem;
-            line-height: 1.5;
-        }
+        .disclaimer h5 { color: var(--warning-color); margin-bottom: 0.5rem; font-size: 0.9rem; }
+        .disclaimer p { margin: 0; font-size: 0.8rem; line-height: 1.5; }
         
         /* Loading Animation */
-        .loading {
-            display: none;
-            text-align: center;
-            padding: 1rem;
-        }
+        .loading { display: none; text-align: center; padding: 1rem; }
         
         .loading-spinner {
             width: 40px;
@@ -622,60 +448,24 @@
             margin-top: 1rem;
         }
         
-        .summary-item {
-            text-align: center;
-        }
-        
-        .summary-amount {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 0.25rem;
-        }
-        
+        .summary-item { text-align: center; }
+        .summary-amount { font-size: 1.5rem; font-weight: bold; margin-bottom: 0.25rem; }
         .summary-debt { color: var(--danger-color); }
         .summary-interest { color: var(--warning-color); }
         .summary-payment { color: var(--primary-color); }
         .summary-savings { color: var(--success-color); }
-        
-        .summary-label {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
+        .summary-label { color: var(--text-light); font-size: 0.9rem; }
         
         /* Responsive Design */
         @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-            
-            .header-content h1 {
-                font-size: 1.8rem;
-            }
-            
-            .calculator-container {
-                padding: 1.5rem;
-            }
-            
-            .results-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .strategy-tabs {
-                flex-direction: column;
-            }
-            
-            .email-form {
-                flex-direction: column;
-            }
-            
-            .email-input {
-                min-width: auto;
-                width: 100%;
-            }
-            
-            .consolidation-options {
-                grid-template-columns: 1fr;
-            }
+            .container { padding: 10px; }
+            .header-content h1 { font-size: 1.8rem; }
+            .calculator-container { padding: 1.5rem; }
+            .results-grid { grid-template-columns: 1fr; }
+            .strategy-tabs { flex-direction: column; }
+            .email-form { flex-direction: column; }
+            .email-input { min-width: auto; width: 100%; }
+            .consolidation-options { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -708,7 +498,6 @@
                 <p>Add all your debts to see personalized payoff strategies that could save you thousands in interest.</p>
             </div>
             
-            <!-- Debt Summary -->
             <div id="debtSummary" class="debt-summary" style="display: none;">
                 <h4 style="color: var(--warning-color); text-align: center; margin-bottom: 1rem;">📊 Your Debt Overview</h4>
                 <div class="summary-grid">
@@ -731,19 +520,15 @@
                 </div>
             </div>
             
-            <!-- Debt Entry -->
             <div id="debtEntry" class="debt-entry">
                 <h4>Let's Get Started! Add Your First Debt</h4>
                 <p style="color: var(--text-light); margin-bottom: 1rem;">Include credit cards, loans, car payments, or any debt with monthly minimum payments.</p>
                 <button type="button" class="add-debt-button" onclick="addDebtCard()">+ Add First Debt</button>
             </div>
             
-            <!-- Debt Cards Container -->
             <div id="debtCards" class="debt-cards">
-                <!-- Debt cards will be dynamically added here -->
-            </div>
+                </div>
             
-            <!-- Extra Payment Input -->
             <div id="extraPaymentSection" class="form-group" style="display: none;">
                 <label for="extraPayment">Additional Monthly Payment (How much extra can you pay toward debt?)</label>
                 <div class="input-group">
@@ -760,41 +545,38 @@
                 <p>Analyzing debt payoff strategies...</p>
             </div>
             
-            <!-- Results Section -->
             <div id="resultsSection" class="results-section">
-                <!-- Strategy comparisons will be shown here -->
-            </div>
+                </div>
             
-            <!-- Consolidation Options -->
             <div id="consolidationSection" class="comparison-section" style="display: none;">
                 <h3 class="comparison-title">💸 Consolidation Options for High-Interest Debt</h3>
                 <p style="text-align: center; color: var(--text-light); margin-bottom: 1.5rem;">See potential savings with lower-rate consolidation loans</p>
                 
                 <div class="consolidation-options" id="consolidationOptions">
-                    <!-- Consolidation options will be populated -->
-                </div>
+                    </div>
             </div>
             
-            <!-- Detailed Strategy Comparison -->
             <div id="detailedComparison" class="strategy-comparison" style="display: none;">
-                <!-- Detailed strategy cards -->
-            </div>
+                </div>
         </div>
         
-        <!-- Email Capture -->
         <div id="emailSection" class="email-section" style="display: none;">
             <h4>📋 Want Your Personalized Debt Payoff Plan?</h4>
             <p>I'll send you a detailed debt payoff action plan showing exactly how much you'll save with each strategy and step-by-step implementation guide.</p>
             
             <div class="email-form">
-                <p style="text-align: center; margin-bottom: 1rem;">📧 Contact me for a personalized debt payoff plan:</p>
-                <div style="text-align: center; margin: 1rem 0;">
+                <input type="hidden" id="hiddenTotalDebt" name="totalDebt">
+                <input type="hidden" id="hiddenPotentialSavings" name="potentialSavings">
+                <input type="hidden" id="hiddenBestStrategy" name="bestStrategy">
+
+                <p style="text-align: center; margin-bottom: 1rem; width: 100%;">📧 Contact me for a personalized debt payoff plan:</p>
+                <div style="text-align: center; margin: 1rem 0; width: 100%;">
                     <a href="mailto:jlparker0106@gmail.com?subject=Financial Calculator Help Request - Debt Payoff Calculator" 
                        style="display: inline-block; background: var(--warning-color); color: white; padding: 0.75rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600;">
-                       Send My Plan 📧
+                        Send My Plan 📧
                     </a>
                 </div>
-                <p style="font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.8; text-align: center;">Contact Jonathan Parker directly via email for personalized help.</p>
+                <p style="font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.8; text-align: center; width: 100%;">Contact Jonathan Parker directly via email for personalized help.</p>
             </div>
         </div>
         
@@ -820,6 +602,8 @@
         
         let debts = [];
         let debtCounter = 0;
+        // Fix: Variable to store results globally so tabs can access them
+        let globalResults = null;
         
         document.addEventListener('DOMContentLoaded', function() {
             // Add one debt card by default
@@ -1022,7 +806,7 @@
             
             if (!summary || summary.debts.length === 0 || summary.totalDebt <= 0) {
                 clearResults();
-                alert('Please add at least one debt to calculate payoff strategies.');
+                // Removed alert so it doesn't pop up while typing
                 return;
             }
             
@@ -1045,8 +829,9 @@
             document.getElementById('totalSavings').textContent = '$' + Math.round(totalSavings).toLocaleString();
             
             // Update lead capture data
-            document.getElementById('hiddenTotalDebt').value = Math.round(summary.totalDebt);
-            document.getElementById('hiddenPotentialSavings').value = Math.round(totalSavings);
+            // FIX: Ensure these elements exist in HTML or check for null before setting value
+            if(document.getElementById('hiddenTotalDebt')) document.getElementById('hiddenTotalDebt').value = Math.round(summary.totalDebt);
+            if(document.getElementById('hiddenPotentialSavings')) document.getElementById('hiddenPotentialSavings').value = Math.round(totalSavings);
             
             // Determine best strategy
             let bestStrategy = 'current';
@@ -1057,29 +842,36 @@
             } else if (savings.snowball > 0) {
                 bestStrategy = 'snowball';
             }
-            document.getElementById('hiddenBestStrategy').value = bestStrategy;
             
-            // Update results
-            displayResults({
+            if(document.getElementById('hiddenBestStrategy')) document.getElementById('hiddenBestStrategy').value = bestStrategy;
+            
+            // Save results globally
+            globalResults = {
                 snowball: snowballResults,
                 avalanche: avalancheResults,
                 consolidation: consolidationResults,
                 current: calculateCurrentPlan([...summary.debts], extraPayment),
                 savings: savings,
                 bestStrategy: bestStrategy
-            });
+            };
+            
+            // Update results
+            displayResults(globalResults);
         }
         
         function calculateDebtSnowball(debtsCopy, totalPayment, extraPayment) {
             // Sort by balance (lowest first)
-            debtsCopy.sort((a, b) => a.balance - b.balance);
-            return calculateStrategy(debtsCopy, totalPayment, extraPayment, 'Debt Snowball');
+            // Need to deep copy debts to avoid modifying original reference in subsequent calculations
+            let deepCopy = JSON.parse(JSON.stringify(debtsCopy));
+            deepCopy.sort((a, b) => a.balance - b.balance);
+            return calculateStrategy(deepCopy, totalPayment, extraPayment, 'Debt Snowball');
         }
         
         function calculateDebtAvalanche(debtsCopy, totalPayment, extraPayment) {
             // Sort by interest rate (highest first)
-            debtsCopy.sort((a, b) => b.rate - a.rate);
-            return calculateStrategy(debtsCopy, totalPayment, extraPayment, 'Debt Avalanche');
+            let deepCopy = JSON.parse(JSON.stringify(debtsCopy));
+            deepCopy.sort((a, b) => b.rate - a.rate);
+            return calculateStrategy(deepCopy, totalPayment, extraPayment, 'Debt Avalanche');
         }
         
         function calculateStrategy(debtsCopy, totalPayment, extraPayment, strategyName) {
@@ -1100,43 +892,48 @@
             let month = 0;
             let totalInterestPaid = 0;
             
-            while (debtsCopy.some(d => d.balance > 0)) {
+            // We need a baseline comparison (current plan interest) to calculate savings
+            // This is simplified; ideally we'd compare against the current plan interest calculated separately
+            // For now, let's just calculate the interest paid in this strategy
+            
+            while (debtsCopy.some(d => d.balance > 0.01)) {
                 month++;
                 let monthlyPayment = totalPayment + extraPayment;
                 
-                // Apply minimum payments to all debts
+                if (month > 1000) break; // Safety break
+                
+                // 1. Calculate Interest for all debts first
                 debtsCopy.forEach(debt => {
                     if (debt.balance > 0) {
-                        const minPayment = Math.min(debt.payment, debt.balance);
-                        debt.balance -= minPayment;
-                        monthlyPayment -= minPayment;
-                        
-                        // Calculate interest for this month
-                        const monthlyInterest = (debt.rate / 12) * Math.min(debt.balance + minPayment, debt.balance + minPayment);
+                        const monthlyInterest = (debt.rate / 12) * debt.balance;
                         debt.balance += monthlyInterest;
-                        monthlyInterestPaid += monthlyInterest;
                         results.totalInterestPaid += monthlyInterest;
                     }
                 });
                 
-                // Apply extra payment to first debt in strategy order
-                if (monthlyPayment > 0 && debtsCopy.length > 0) {
+                // 2. Make Minimum Payments
+                debtsCopy.forEach(debt => {
+                    if (debt.balance > 0) {
+                        // Min payment covers interest + some principal usually, but here we just take the min payment amount
+                        // We must ensure min payment doesn't exceed balance
+                        let paymentAmount = Math.min(debt.payment, debt.balance);
+                        debt.balance -= paymentAmount;
+                        monthlyPayment -= paymentAmount;
+                    }
+                });
+                
+                // 3. Apply Extra Payment (Snowball/Avalanche)
+                // The list is already sorted by the specific strategy
+                if (monthlyPayment > 0) {
                     for (let debt of debtsCopy) {
                         if (debt.balance > 0) {
                             const paymentToDebt = Math.min(monthlyPayment, debt.balance);
                             debt.balance -= paymentToDebt;
                             monthlyPayment -= paymentToDebt;
-                            break;
+                            if (monthlyPayment <= 0) break;
                         }
                     }
                 }
-                
-                // Check if any debts are paid off
-                debtsCopy.forEach(debt => {
-                    if (debt.balance <= 0.01 && debt.paidOffMonth === undefined) {
-                        debt.paidOffMonth = month;
-                    }
-                });
             }
             
             results.totalMonths = month;
@@ -1145,28 +942,34 @@
             results.monthsToDebtFree = month;
             results.totalInterest = results.totalInterestPaid;
             
+            // Calculate savings vs current (rough estimate logic here, refined in display)
+            // Note: Actual savings calc happens in main function by comparing with 'Current'
+            
             return results;
         }
         
         function calculateCurrentPlan(debtsCopy, extraPayment) {
-            // Calculate current plan (no strategy optimization)
+            let deepCopy = JSON.parse(JSON.stringify(debtsCopy));
             let monthsToPayoff = new Set();
             let totalInterest = 0;
-            let totalInterestSaved = 0;
             
-            debtsCopy.forEach(debt => {
+            deepCopy.forEach(debt => {
                 let months = 0;
                 let balance = debt.balance;
                 let totalInterestDebt = 0;
                 
                 while (balance > 0.01) {
                     months++;
+                    if (months > 1000) break;
+                    
                     const monthlyRate = debt.rate / 12;
                     const interest = monthlyRate * balance;
                     const principalPayment = debt.payment - interest;
                     
                     if (principalPayment <= 0) {
-                        break; // Payment doesn't cover interest
+                        // Payment doesn't cover interest - debt grows forever
+                        months = 999; 
+                        break; 
                     }
                     
                     balance -= principalPayment;
@@ -1179,7 +982,7 @@
             
             const maxMonths = Math.max(...monthsToPayoff);
             const payoffDate = new Date();
-            payoffDate.setMonth(payoffDate.getMonth() + Math.max(...monthsToPayoff));
+            payoffDate.setMonth(payoffDate.getMonth() + maxMonths);
             
             return {
                 strategy: 'Current Plan',
@@ -1188,7 +991,8 @@
                 totalInterest: totalInterest,
                 totalInterestPaid: totalInterest,
                 totalInterestSaved: 0,
-                payoffDate: payoffDate
+                payoffDate: payoffDate,
+                monthlyPayment: 0 // Varies
             };
         }
         
@@ -1207,37 +1011,40 @@
             
             weightedAvgRate = totalDebtWeighted > 0 ? (weightedAvgRate / totalDebtWeighted) : 0;
             
+            // Need current plan total interest for comparison
+            const currentPlan = calculateCurrentPlan(debtsCopy, 0);
+            
             const consolidationResults = [];
             
             // Personal Loan Consolidation Option
             const personalLoan = {
                 type: 'Personal Loan',
                 rate: Math.min(weightedAvgRate - 0.06, 0.12), // Typically 6% below current or max 12%
-                termMonths: Math.min(60, summary.monthsToDebtFree * 0.8), // Up to 5 years or 80% of current plan
+                termMonths: Math.min(60, Math.max(12, summary.debts.length * 12)), 
                 monthlyFee: 0,
                 setupFee: 0
             };
             
             const helocOption = {
                 type: 'HELOC/Refinance',
-                rate: Math.min(weightedAvgRate - 0.08, 0.08), // Home equity typically much lower
-                termMonths: Math.min(120, summary.monthsToDebtFree * 0.7), // Up to 10 years
+                rate: Math.min(weightedAvgRate - 0.08, 0.08), 
+                termMonths: 120, 
                 monthlyFee: 25,
                 setupFee: 500
             };
             
             [personalLoan, helocOption].forEach(option => {
-                if (option.rate >= 0.02) { // Only show if rate would be lower than current weighted average
+                if (option.rate < weightedAvgRate) { 
                     const payment = calculatePayment(totalDebt, option.rate, option.termMonths) + option.monthlyFee;
-                    const totalInterest = (payment * option.termMonths) - totalDebt + option.setupFee;
-                    const interestSaved = Math.max(0, summary.totalInterest - totalInterest);
+                    const totalInterestNew = (payment * option.termMonths) - totalDebt + option.setupFee;
+                    const interestSaved = Math.max(0, currentPlan.totalInterest - totalInterestNew);
                     
                     consolidationResults.push({
                         type: option.type,
                         rate: option.rate,
                         termMonths: option.termMonths,
                         monthlyPayment: payment,
-                        totalInterest: totalInterest,
+                        totalInterest: totalInterestNew,
                         monthlyFee: option.monthlyFee,
                         setupFee: option.setupFee,
                         interestSaved: interestSaved
@@ -1245,21 +1052,29 @@
                 }
             });
             
-            const totalInterestSaved = consolidationResults.reduce((sum, option) => sum + option.interestSaved, 0);
+            // Sort by most savings
+            consolidationResults.sort((a,b) => b.interestSaved - a.interestSaved);
+            
+            const bestOption = consolidationResults.length > 0 ? consolidationResults[0] : { interestSaved: 0 };
             
             return {
                 consolidationOptions: consolidationResults,
-                totalInterestSaved: totalInterestSaved,
-                bestOption: consolidationResults.length > 0 ? consolidationResults[0] : null
+                totalInterestSaved: bestOption.interestSaved,
+                bestOption: bestOption
             };
         }
         
         function calculatePayment(principal, rate, months) {
             const monthlyRate = rate / 12;
+            if (monthlyRate === 0) return principal / months;
             return principal * (monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
         }
         
         function displayResults(results) {
+            // Recalculate savings based on Current Plan vs Strategy
+            results.snowball.totalInterestSaved = results.current.totalInterest - results.snowball.totalInterest;
+            results.avalanche.totalInterestSaved = results.current.totalInterest - results.avalanche.totalInterest;
+            
             const resultsSection = document.getElementById('resultsSection');
             const consolidationSection = document.getElementById('consolidationSection');
             const detailedComparison = document.getElementById('detailedComparison');
@@ -1269,16 +1084,19 @@
             // Strategy comparison section
             let strategyHTML = `
                 <div class="results-header">
-                    <h3>🏆 Best Strategy: ${results[bestStrategy].strategy}</h3>
+                    <h3>🏆 Best Strategy: ${results[bestStrategy].strategy || results[bestStrategy].bestOption.type}</h3>
                     <p>Could save you $${Math.round(results[bestStrategy].totalInterestSaved).toLocaleString()} in interest</p>
                 </div>
                 
                 <div class="strategy-comparison">
-                    ${Object.entries(results).filter(([key]) => key !== 'savings').map(([strategy, data]) => `
-                        <div class="strategy-card ${strategy} ${strategy === bestStrategy ? 'best' : ''}">
-                            ${strategy === bestStrategy ? '<div class="best-badge">BEST</div>' : ''}
+                    ${['snowball', 'avalanche'].map(strategy => {
+                        const data = results[strategy];
+                        const isBest = strategy === bestStrategy;
+                        return `
+                        <div class="strategy-card ${strategy} ${isBest ? 'best' : ''}">
+                            ${isBest ? '<div class="best-badge">BEST</div>' : ''}
                             <h4>${data.strategy}</h4>
-                            <div class="amount">$${Math.round(data.totalInterestSaved || 0).toLocaleString()}</div>
+                            <div class="amount">$${Math.round(data.totalInterestSaved).toLocaleString()}</div>
                             <div class="note">Interest Savings</div>
                             <div style="font-size: 0.9rem; margin: 0.5rem 0;">
                                 <strong>${data.monthsToDebtFree} months</strong> to debt-free
@@ -1287,7 +1105,7 @@
                                 Payoff: ${formatDate(data.payoffDate)}
                             </div>
                         </div>
-                    `).join('')}
+                    `}).join('')}
                 </div>
             `;
             
@@ -1297,6 +1115,8 @@
                 let consolidationHTML = '';
                 
                 results.consolidation.consolidationOptions.forEach(option => {
+                    const monthlyDiff = results.current.monthlyPayment ? (results.current.monthlyPayment - option.monthlyPayment) : 0;
+                    
                     consolidationHTML += `
                         <div class="consolidation-card">
                             <h5>💰 ${option.type} Consolidation</h5>
@@ -1312,14 +1132,15 @@
                             </ul>
                             
                             <div style="background: var(--background-light); padding: 1rem; border-radius: 6px; margin-top: 1rem;">
-                                <strong>Monthly Savings:</strong> $${Math.round(option.monthlyPayment < results.current.monthlyPayment ? Math.abs(results.current.monthlyPayment - option.monthlyPayment) : 0).toLocaleString()}
-                                <br><strong>Total Interest Saved:</strong> $${Math.round(option.interestSaved).toLocaleString()}
+                                <strong>Total Interest Saved:</strong> $${Math.round(option.interestSaved).toLocaleString()}
                             </div>
                         </div>
                     `;
                 });
                 
                 document.getElementById('consolidationOptions').innerHTML = consolidationHTML;
+            } else {
+                 consolidationSection.style.display = 'none';
             }
             
             resultsSection.innerHTML = strategyHTML;
@@ -1342,11 +1163,17 @@
             });
             event.target.classList.add('active');
             
-            // Update content if results are ready
-            if (strategyName === 'consolidation' && results.consolidation.consolidationOptions) {
-                document.getElementById('consolidationSection').style.display = 'block';
-            } else {
-                document.getElementById('consolidationSection').style.display = 'none';
+            // Check if results exist
+            if (!globalResults) return;
+
+            // Update content logic
+            if (strategyName === 'consolidation') {
+                 // The consolidation HTML is already handled in displayResults inside #consolidationSection
+                 // We scroll to it
+                 document.getElementById('consolidationSection').scrollIntoView({ behavior: 'smooth' });
+            } else if (strategyName === 'snowball' || strategyName === 'avalanche') {
+                 // Scroll to strategy comparison
+                 document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
             }
         }
     </script>
