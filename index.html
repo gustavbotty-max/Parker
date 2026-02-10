@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jonathan Parker - Financial Calculators for Triangle Families</title>
+    <meta name="description" content="Free financial planning calculators for life insurance, retirement, and more. Created by a Triangle professional with 3+ years experience helping middle-class families make informed financial decisions.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #2c5aa0;
+            --secondary-color: #4a90e2;
+            --accent-color: #27ae60;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --background-light: #f8f9fa;
+            --border-color: #e1e8ed;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --error-color: #e74c3c;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #ffffff;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .tagline {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 0.25rem;
+        }
+        
+        .contact-info {
+            text-align: right;
+            font-size: 0.9rem;
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: var(--background-light);
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            justify-content: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
+        }
+        
+        /* Calculators Grid */
+        .calculators-section {
+            padding: 4rem 0;
+            background-color: var(--background-light);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: var(--text-dark);
+        }
+        
+        .calculators-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .calculator-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .calculator-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        
+        .calculator-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .calculator-card h3 {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+        
+        .calculator-card p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .calculator-link {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .calculator-link:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        /* Featured Calculator */
+        .featured-calculator {
+            background: white;
+            border-radius: 10px;
+            padding: 3rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-top: 2rem;
+        }
+        
+        .featured-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .featured-header h3 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .featured-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+        
+        /* Benefits Section */
+        .benefits {
+            padding: 4rem 0;
+            background-color: white;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .benefit-item {
+            text-align: center;
+            padding: 1.5rem;
+        }
+        
+        .benefit-icon {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 1rem;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .benefit-item h4 {
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .benefit-item p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 4rem 0;
+            background-color: var(--background-light);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+        
+        .about-text p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+        
+        .about-image {
+            text-align: center;
+        }
+        
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--text-dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h4 {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .calculators-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div>
+                    <a href="#" class="logo">Jonathan Parker</a>
+                    <div class="tagline">Financial Educator & Investment Agent</div>
+                </div>
+                <div class="contact-info">
+                    <div>Serving North Carolina</div>
+                    <div>📞 (555) 123-4567</div>
+                    <div>✉️ jonathan@parkerfinancial.com</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#calculators">Calculators</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#resources">Resources</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Financial Tools for Triangle Families</h1>
+            <p>I'm a Triangle professional with 3+ years experience who believes financial planning shouldn't be out of reach for middle-class families. Free calculators with real numbers - no sales pitch.</p>
+            <a href="#calculators" class="cta-button">Explore Calculators</a>
+        </div>
+    </section>
+
+    <!-- Calculators Section -->
+    <section id="calculators" class="calculators-section">
+        <div class="container">
+            <h2 class="section-title">Free Financial Planning Tools</h2>
+            <div class="calculators-grid">
+                <div class="calculator-card">
+                    <div class="calculator-icon">🛡️</div>
+                    <h3>Life Insurance Calculator</h3>
+                    <p>Compare term life insurance options and find the right coverage amount for your family's needs.</p>
+                    <a href="insurance-calculator.html" class="calculator-link">Calculate Now</a>
+                </div>
+                
+                <div class="calculator-card">
+                    <div class="calculator-icon">🎯</div>
+                    <h3>Retirement Planning</h3>
+                    <p>Estimate how much you need to save for retirement and create a savings plan that works.</p>
+                    <a href="retirement-planning-calculator.html" class="calculator-link">Calculate Now</a>
+                </div>
+                
+                <div class="calculator-card">
+                    <div class="calculator-icon">🎓</div>
+                    <h3>College Savings Planner</h3>
+                    <p>Plan for your children's education expenses and explore different savings strategies.</p>
+                    <a href="college-savings-calculator.html" class="calculator-link">Calculate Now</a>
+                </div>
+                
+                <div class="calculator-card">
+                    <div class="calculator-icon">💳</div>
+                    <h3>Debt Payoff Calculator</h3>
+                    <p>See how quickly you can pay off your debts using different payment strategies.</p>
+                    <a href="debt-payoff-calculator.html" class="calculator-link">Calculate Now</a>
+                </div>
+                
+                <div class="calculator-card">
+                    <div class="calculator-icon">🏠</div>
+                    <h3>Mortgage Comparison</h3>
+                    <p>Compare different mortgage options and see what fits your budget best.</p>
+                    <a href="#" class="calculator-link">Coming Soon</a>
+                </div>
+                
+                <div class="calculator-card">
+                    <div class="calculator-icon">💰</div>
+                    <h3>Emergency Fund Calculator</h3>
+                    <p>Determine how much you should have saved for emergencies and unexpected expenses.</p>
+                    <a href="emergency-fund-calculator.html" class="calculator-link">Calculate Now</a>
+                </div>
+            </div>
+            
+            <!-- Featured Calculator -->
+            <div class="featured-calculator">
+                <div class="featured-header">
+                    <h3>🔥 Most Popular: Life Insurance Calculator</h3>
+                    <p>See exactly what different types of life insurance cost - no guesswork, no sales pressure</p>
+                </div>
+                <div style="text-align: center;">
+                    <a href="insurance-calculator.html" class="cta-button" style="background: linear-gradient(135deg, #667eea, #764ba2);">Try It Now - Takes 2 Minutes</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="container">
+            <h2 class="section-title">Why Use Our Calculators?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">✅</div>
+                    <h4>100% Free</h4>
+                    <p>No hidden fees, no subscriptions, no sales calls. Just honest calculations.</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">🔒</div>
+                    <h4>Private & Secure</h4>
+                    <p>Your information stays with you. We don't store or share your personal data.</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">📱</div>
+                    <h4>Mobile Friendly</h4>
+                    <p>Works perfectly on your phone, tablet, or computer - anywhere, anytime.</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">📊</div>
+                    <h4>Real Numbers</h4>
+                    <p>Based on actual market rates and financial data, not generic estimates.</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">🎯</div>
+                    <h4>Local Focus</h4>
+                    <p>Designed specifically for families in North Carolina.</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">💡</div>
+                    <h4>Educational</h4>
+                    <p>Learn about your options while you calculate. No jargon, just clear explanations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Jonathan Parker</h2>
+                    <p>I've spent the last three years in the financial industry, but at my core, I'm just a guy who grew up in a middle-class home. For a long time, I assumed "financial planning" was a luxury reserved for the 1%—people with massive portfolios and complicated estates.</p>
+                    <p>What I've realized is that the industry is built to feel that way. The jargon and the high barriers to entry make regular families feel like they don't belong in the conversation.</p>
+                    <p>I built these calculators to change that. These tools use the exact same data the pros use, but I've stripped away the gatekeeping. You shouldn't need a finance degree just to see if you're on track for retirement.</p>
+                    <a href="#contact" class="cta-button">Get in Touch</a>
+                </div>
+                <div class="about-image">
+                    <img src="https://via.placeholder.com/400x300/667eea/ffffff?text=Jonathan+Parker" alt="Jonathan Parker - Financial Educator">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Calculators</h4>
+                    <ul>
+                        <li><a href="insurance-calculator.html">Life Insurance Calculator</a></li>
+                        <li><a href="#">Retirement Planning</a></li>
+                        <li><a href="#">College Savings</a></li>
+                        <li><a href="#">Debt Payoff</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Financial Planning Guide</a></li>
+                        <li><a href="#">Insurance Basics</a></li>
+                        <li><a href="#">Retirement Planning Tips</a></li>
+                        <li><a href="#">College Savings Strategies</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>📞 (555) 123-4567</li>
+                        <li>✉️ jonathan@parkerfinancial.com</li>
+                        <li>📍 Serving the NC Triangle</li>
+                        <li><a href="#schedule">Schedule a Consultation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Follow Me</h4>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">YouTube</a></li>
+                        <li><a href="#">Newsletter</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Jonathan Parker Financial Services. All rights reserved.</p>
+                <p>Licensed in North Carolina | Not affiliated with any government agency</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Lead Capture Script -->
+    <script>
+        // Track calculator usage for lead generation
+        function trackCalculatorUsage(calculatorName) {
+            // This would integrate with your CRM/email system
+            console.log('Calculator used:', calculatorName);
+            // Could trigger email capture popup after usage
+        }
+        
+        // Email capture for resource downloads
+        function showEmailCapture(resource) {
+            // Implement email capture form
+            // "Get your personalized results emailed to you"
+            // "Stay updated with new financial tools"
+        }
+    </script>
+</body>
+</html>
