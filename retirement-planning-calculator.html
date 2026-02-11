@@ -880,7 +880,7 @@
             }
         }
         
-        function calculateRetirement() {
+       function calculateRetirement() {
             // Get form data
             const currentAge = parseInt(document.getElementById('currentAge').value) || 35;
             const retirementAge = parseInt(document.getElementById('retirementAge').value) || 65;
@@ -898,98 +898,75 @@
             
             // Calculate key numbers
             const yearsToRetirement = retirementAge - currentAge;
-            const yearsInRetirement = lifeExpectancy - retirementAge;
             const monthsToRetirement = yearsToRetirement * 12;
-            const monthsInRetirement = yearsInRetirement * 12;
             
-            // Calculate retirement income needed (in retirement dollars, adjusted for inflation)
-            const currentExpenseMultiplier = expenseMultiplier;
-            const monthlyExpensesNow = monthlyIncome * currentExpenseMultiplier;
-            const monthlyExpensesAtRetirement = monthlyExpensesNow * Math.pow(1 + inflationRate, yearsToRetirement);
-            const totalMonthlyRetirementNeed = monthlyExpensesAtRetirement;
+            // 1. Calculate Retirement Needs
+            const monthlyExpensesAtRetirement = monthlyIncome * expenseMultiplier * Math.pow(1 + inflationRate, yearsToRetirement);
             
-            // Calculate total retirement nest egg needed using 4% rule
-            const annualRetirementNeed = monthlyExpensesAtRetirement * 12;
-            const totalRetirementFundNeeded = annualRetirementNeed / 0.04; // 4% rule
-            
-            // Calculate Social Security and other income in retirement dollars
+            // 2. Calculate Social Security & Pension in Future Dollars
             const socialSecurityAtRetirement = socialSecurity * Math.pow(1 + inflationRate, yearsToRetirement);
             const pensionAtRetirement = pension * Math.pow(1 + inflationRate, yearsToRetirement);
             const totalSocialIncome = socialSecurityAtRetirement + pensionAtRetirement;
             
-            // Calculate gap that needs to be filled by savings
-            const monthlyIncomeGap = Math.max(0, totalMonthlyRetirementNeed - totalSocialIncome);
+            // 3. Calculate the NET Monthly Gap (Expenses - Guaranteed Income)
+            const monthlyIncomeGap = Math.max(0, monthlyExpensesAtRetirement - totalSocialIncome);
             const annualIncomeGap = monthlyIncomeGap * 12;
-            const fundGap = annualIncomeGap / 0.04; // Using 4% rule for withdrawal
             
-            // Calculate current savings future value
+            // 4. Calculate Portfolio Goal (The "Nest Egg" needed to cover the Gap)
+            // Using 4% Rule: Need = Annual Gap / 0.04
+            const fundGap = annualIncomeGap / 0.04; 
+            
+            // 5. Calculate Projected Savings (Future Value of Savings + Contributions)
             const futureValueCurrent = currentSavings * Math.pow(1 + expectedReturn, yearsToRetirement);
-            
-            // Calculate future value of monthly contributions
             const monthlyRate = expectedReturn / 12;
             const futureValueContributions = monthlyContributions * ((Math.pow(1 + monthlyRate, monthsToRetirement) - 1) / monthlyRate);
-            
-            // Calculate total projected savings at retirement
             const totalProjectedSavings = futureValueCurrent + futureValueContributions;
             
-            // Calculate shortfall or surplus
-            const retirementGap = Math.max(0, fundGap - totalProjectedSavings);
-            const retirementSurplus = Math.max(0, totalProjectedSavings - fundGap);
+            // 6. Calculate Shortage/Surplus
+            const retirementGap = fundGap - totalProjectedSavings; // Positive = Shortage, Negative = Surplus
             
-            // Calculate additional monthly contribution needed
+            // 7. Calculate Fix (Additional Monthly Contribution)
             let additionalMonthlyNeeded = 0;
             if (retirementGap > 0) {
                 additionalMonthlyNeeded = retirementGap / ((Math.pow(1 + monthlyRate, monthsToRetirement) - 1) / monthlyRate);
             }
             
-            // Store results for comparison and email sending
+            // Store results
             calculationResults = {
-                currentAge: currentAge,
-                retirementAge: retirementAge,
-                yearsToRetirement: yearsToRetirement,
-                yearsInRetirement: yearsInRetirement,
-                currentSavings: currentSavings,
-                monthlyIncome: monthlyIncome,
-                monthlyContributions: monthlyContributions,
-                retirementIncome: retirementIncome,
-                monthlyExpensesAtRetirement: monthlyExpensesAtRetirement,
-                totalMonthlyRetirementNeed: totalMonthlyRetirementNeed,
-                expectedReturn: expectedReturn,
-                inflationRate: inflationRate,
-                socialSecurityAtRetirement: socialSecurityAtRetirement,
-                pensionAtRetirement: pensionAtRetirement,
-                totalSocialIncome: totalSocialIncome,
-                monthlyIncomeGap: monthlyIncomeGap,
-                annualIncomeGap: annualIncomeGap,
-                totalRetirementFundNeeded: totalRetirementFundNeeded,
-                fundGap: fundGap,
-                totalProjectedSavings: totalProjectedSavings,
-                retirementGap: retirementGap,
-                retirementSurplus: retirementSurplus,
-                additionalMonthlyNeeded: additionalMonthlyNeeded
+                currentAge, retirementAge, yearsToRetirement,
+                currentSavings, monthlyContributions, expectedReturn,
+                totalRetirementFundNeeded: fundGap, // Update: Now storing the NET goal so numbers match
+                totalProjectedSavings,
+                retirementGap,
+                additionalMonthlyNeeded,
+                monthlyExpensesAtRetirement
             };
+            
+            // Update hidden form fields for email
+            if(document.getElementById('hiddenYearsToRetirement')) document.getElementById('hiddenYearsToRetirement').value = yearsToRetirement;
+            if(document.getElementById('hiddenRetirementGoal')) document.getElementById('hiddenRetirementGoal').value = Math.round(fundGap);
+            if(document.getElementById('hiddenProjectedShortage')) document.getElementById('hiddenProjectedShortage').value = Math.round(retirementGap);
+            if(document.getElementById('hiddenRecommendedContribution')) document.getElementById('hiddenRecommendedContribution').value = Math.round(additionalMonthlyNeeded);
             
             displayResults(calculationResults);
             displayStrategyComparison();
             displayTimeline();
             
-            // Show results
+            // Show sections
             document.getElementById('resultsSection').style.display = 'block';
             document.getElementById('strategyComparison').style.display = 'block';
             document.getElementById('timelineVisualization').style.display = 'block';
             document.getElementById('emailSection').style.display = 'block';
             
-            // Scroll to results
+            // Scroll
             setTimeout(() => {
-                document.getElementById('resultsSection').scrollIntoView({ 
-                    behavior: 'smooth', 
-                    block: 'start' 
-                });
+                document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
             }, 300);
         }
         
         function displayResults(data) {
             const resultsGrid = document.getElementById('resultsSection');
+            const isShortage = data.retirementGap > 0;
             
             let resultsHTML = `
                 <div class="results-header">
@@ -999,9 +976,9 @@
                 
                 <div class="results-grid">
                     <div class="result-card highlight">
-                        <h4>💰 Retirement Nest Egg Needed</h4>
+                        <h4>💰 Portfolio Goal</h4>
                         <div class="amount">$${Math.round(data.totalRetirementFundNeeded).toLocaleString()}</div>
-                        <div class="note">Based on ${Math.round(data.monthlyExpensesAtRetirement).toLocaleString()}/month expenses</div>
+                        <div class="note">Amount needed from investments (after Social Security)</div>
                     </div>
                     
                     <div class="result-card">
@@ -1010,21 +987,21 @@
                         <div class="note">${(data.expectedReturn * 100).toFixed(1)}% annual return</div>
                     </div>
                     
-                    <div class="result-card ${data.retirementGap > 0 ? 'warning' : 'good'}">
-                        <h4>${data.retirementGap > 0 ? '⚠️ Shortage' : '🎉 On Track!'}</h4>
-                        <div class="amount">${data.retirementGap > 0 ? '-' : '+'}${Math.round(Math.abs(data.retirementGap)).toLocaleString()}</div>
-                        <div class="note">${data.retirementGap > 0 ? 'Additional savings needed' : 'Surplus available'}</div>
+                    <div class="result-card ${isShortage ? 'warning' : 'good'}">
+                        <h4>${isShortage ? '⚠️ Shortage' : '🎉 Surplus'}</h4>
+                        <div class="amount">$${Math.round(Math.abs(data.retirementGap)).toLocaleString()}</div>
+                        <div class="note">${isShortage ? 'Gap to reach your goal' : 'Extra cushion available'}</div>
                     </div>
                     
                     <div class="result-card">
-                        <h4>${data.retirementGap > 0 ? '🔧 Fix Needed' : '💪 Great Progress'}</h4>
-                        <div class="amount">${data.retirementGap > 0 ? '$' + Math.round(data.additionalMonthlyNeeded).toLocaleString() : '$' + Math.round(data.monthlyContributions).toLocaleString()}</div>
-                        <div class="note">${data.retirementGap > 0 ? 'Additional per month required' : 'Current monthly contribution'}</div>
+                        <h4>${isShortage ? '🔧 Fix Needed' : '💪 Great Progress'}</h4>
+                        <div class="amount">${isShortage ? '$' + Math.round(data.additionalMonthlyNeeded).toLocaleString() : 'On Track'}</div>
+                        <div class="note">${isShortage ? 'Additional monthly savings required' : 'You are fully funded!'}</div>
                     </div>
                 </div>
             `;
             
-            if (data.retirementGap > 0) {
+            if (isShortage) {
                 resultsHTML += `
                     <div style="background: linear-gradient(135deg, #fff3cd, #ffffff); border: 1px solid var(--warning-color); border-radius: 10px; padding: 1.5rem; margin: 1.5rem 0;">
                         <h4 style="color: var(--warning-color); margin-bottom: 0.5rem;">📈 Action Plan to Close the Gap</h4>
@@ -1032,8 +1009,7 @@
                             <li><strong>Increase monthly contribution</strong> by $<strong>${Math.round(data.additionalMonthlyNeeded).toLocaleString()}</strong> per month</li>
                             <li>Consider employer 401(k) matching - it's free money!</li>
                             <li>Review investment allocation for potential higher returns</li>
-                            <li>Delay retirement by ${Math.max(0, 65 - data.retirementAge)} years for more savings time</li>
-                            <li>Consider Roth IRA conversions for tax-free growth</li>
+                            <li>Delay retirement by 1-2 years to let savings compound longer</li>
                         </ul>
                     </div>
                 `;
@@ -1042,50 +1018,8 @@
             resultsGrid.innerHTML = resultsHTML;
         }
         
-        function displayStrategyComparison() {
-            const strategyResults = document.getElementById('strategyResults');
-            
-            // Calculate results for each risk level
-            const strategies = ['conservative', 'moderate', 'aggressive'];
-            const comparisonResults = {};
-            
-            strategies.forEach(strategy => {
-                const returnData = investmentReturns[strategy];
-                const avgReturn = returnData.avg;
-                
-                // Recalculate with different return rates
-                const futureValueWithStrategy = calculationResults.currentSavings * Math.pow(1 + avgReturn, calculationResults.yearsToRetirement);
-                const monthlyRate = avgReturn / 12;
-                const futureValueContributions = calculationResults.monthlyContributions * ((Math.pow(1 + monthlyRate, calculationResults.yearsToRetirement * 12) - 1) / monthlyRate);
-                const totalProjected = futureValueWithStrategy + futureValueContributions;
-                
-                comparisonResults[strategy] = {
-                    monthlyIncome: calculationResults.monthlyIncome * avgReturn * 0.04,
-                    projectedSavings: totalProjected,
-                    successRate: Math.min((totalProjected / calculationResults.totalRetirementFundNeeded) * 100, 100),
-                    monthlyIncomeInRetirement: Math.min(totalProjected * 0.04 / 12, calculationResults.totalMonthlyRetirementNeed)
-                };
-            });
-            
-            strategyResults.innerHTML = `
-                ${strategies.map(strategy => `
-                    <div class="comparison-card">
-                        <h5>${strategy.charAt(0).toUpperCase() + strategy.slice(1)} Strategy</h5>
-                        <div class="comparison-value">${(investmentReturns[strategy].avg * 100).toFixed(1)}%</div>
-                        <div class="note">Expected annual return</div>
-                        <div style="font-size: 0.9rem; margin-top: 1rem; color: var(--text-dark);">
-                            <strong>Monthly retirement income:</strong> $${Math.round(comparisonResults[strategy].monthlyIncome).toLocaleString()}<br>
-                            <strong>Success rate:</strong> ${Math.round(comparisonResults[strategy].successRate)}%<br>
-                            <strong>Confidence level:</strong> ${strategy === 'conservative' ? 'High' : strategy === 'moderate' ? 'Medium' : 'Higher potential'}
-                        </div>
-                    </div>
-                `).join('')}
-            `;
-        }
-        
         function displayTimeline() {
-            // Helper function to calculate Future Value at a specific year mark
-            // This includes both Initial Savings growth AND Monthly Contributions growth
+            // Helper function to calculate Future Value accurately for intermediate years
             function calculateProgress(targetAge) {
                 const yearsToTarget = targetAge - calculationResults.currentAge;
                 if (yearsToTarget <= 0) return calculationResults.currentSavings;
@@ -1093,10 +1027,10 @@
                 const months = yearsToTarget * 12;
                 const monthlyRate = calculationResults.expectedReturn / 12;
                 
-                // 1. Growth of Current Savings
-                const fvCurrent = calculationResults.currentSavings * Math.pow(1 + monthlyRate, months);
+                // 1. Growth of Starting Savings (Compound Interest)
+                const fvPrincipal = calculationResults.currentSavings * Math.pow(1 + monthlyRate, months);
                 
-                // 2. Growth of Monthly Contributions
+                // 2. Growth of Monthly Contributions (Future Value of Annuity)
                 let fvContrib = 0;
                 if (monthlyRate > 0) {
                     fvContrib = calculationResults.monthlyContributions * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate);
@@ -1104,7 +1038,7 @@
                     fvContrib = calculationResults.monthlyContributions * months;
                 }
                 
-                return fvCurrent + fvContrib;
+                return fvPrincipal + fvContrib;
             }
 
             const oneThirdYears = Math.floor(calculationResults.yearsToRetirement / 3);
@@ -1147,7 +1081,7 @@
             `;
             
             document.getElementById('timelineVisualization').innerHTML = timelineContent;
-        }
+        }        
         
         function showStrategy(strategy) {
             // Update button states
