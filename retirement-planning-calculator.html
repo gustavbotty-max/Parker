@@ -316,37 +316,6 @@
             font-size: 1.3rem;
         }
         
-        .strategy-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-        
-        .strategy-btn {
-            flex: 1;
-            min-width: 150px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-        
-        .strategy-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(44, 90, 160, 0.3);
-        }
-        
-        .strategy-btn.active {
-            background: linear-gradient(135deg, var(--retirement-gold), var(--retirement-orange));
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-        }
-        
         .comparison-results {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -461,7 +430,6 @@
             .header-content h1 { font-size: 1.8rem; }
             .calculator-container { padding: 1.5rem; }
             .results-grid { grid-template-columns: 1fr; }
-            .strategy-buttons { flex-direction: column; }
             .email-form { flex-direction: column; }
             .email-input { min-width: auto; width: 100%; }
             .account-types { grid-template-columns: 1fr; }
@@ -622,7 +590,7 @@
                         <label for="socialSecurity">Expected Social Security (Monthly)</label>
                         <div class="input-group">
                             <div class="input-prefix">$</div>
-                            <input type="number" id="socialSecurity" name="socialSecurity" min="0" step="100" placeholder="1800" value="1800">
+                            <input type="number" id="socialSecurity" name="socialSecurity" min="0" step="any" placeholder="1800" value="1800">
                         </div>
                     </div>
                     
@@ -630,7 +598,7 @@
                         <label for="pension">Expected Pension (Monthly)</label>
                         <div class="input-group">
                             <div class="input-prefix">$</div>
-                            <input type="number" id="pension" name="pension" min="0" step="100" placeholder="0" value="0">
+                            <input type="number" id="pension" name="pension" min="0" step="any" placeholder="0" value="0">
                         </div>
                     </div>
                 </div>
@@ -648,12 +616,6 @@
             <div id="strategyComparison" class="strategy-comparison" style="display: none;">
                 <h3 class="comparison-title">📊 Compare Investment Strategies</h3>
                 <p style="text-align: center; color: var(--text-light); margin-bottom: 1.5rem;">See how different approaches affect your retirement timeline</p>
-                
-                <div class="strategy-buttons" style="justify-content: center; max-width: 600px; margin: 0 auto;">
-                    <button class="strategy-btn active" onclick="showStrategy('conservative')">Conservative</button>
-                    <button class="strategy-btn" onclick="showStrategy('moderate')">Moderate</button>
-                    <button class="strategy-btn" onclick="showStrategy('aggressive')">Aggressive</button>
-                </div>
                 
                 <div id="strategyResults" class="comparison-results"></div>
             </div>
@@ -695,7 +657,7 @@
         </div>
     </div>
     
-<script>
+    <script>
         // Investment return expectations by risk level
         const investmentReturns = {
             conservative: { min: 0.04, avg: 0.05, max: 0.06 },
@@ -721,32 +683,22 @@
             if (!annualIncome) return 0;
 
             // Step 1: Estimate AIME (Average Indexed Monthly Earnings)
-            // We use current income as a proxy, capped at the taxable max
             let countableIncome = Math.min(annualIncome, ssData.maxTaxableIncome);
             let aime = countableIncome / 12;
 
             // Step 2: Calculate PIA (Primary Insurance Amount) using 2026 Bend Points
-            // Formula: 90% of first bend, 32% of second, 15% of remainder
             let pia = 0;
-            
-            // First bracket (90%)
             pia += 0.90 * Math.min(aime, ssData.bendPoints[0]);
             
-            // Second bracket (32%)
             if (aime > ssData.bendPoints[0]) {
                 pia += 0.32 * Math.min(aime - ssData.bendPoints[0], ssData.bendPoints[1] - ssData.bendPoints[0]);
             }
             
-            // Third bracket (15%)
             if (aime > ssData.bendPoints[1]) {
                 pia += 0.15 * (aime - ssData.bendPoints[1]);
             }
 
             // Step 3: Adjust for Early or Late Retirement
-            // Standard FRA is 67. 
-            // - Retire early (62): Benefit reduced by up to 30%
-            // - Retire late (70): Benefit increased by 8% per year (delayed credits)
-            
             let monthsDiff = (retireAge - ssData.fullRetirementAge) * 12;
             let adjustmentFactor = 1.0;
 
@@ -754,16 +706,15 @@
                 // Early Retirement Reductions
                 let earlyMonths = Math.abs(monthsDiff);
                 if (earlyMonths <= 36) {
-                    adjustmentFactor -= (earlyMonths * (5/900)); // 5/9 of 1% per month
+                    adjustmentFactor -= (earlyMonths * (5/900)); 
                 } else {
                     adjustmentFactor -= (36 * (5/900));
-                    adjustmentFactor -= ((earlyMonths - 36) * (5/1200)); // 5/12 of 1% per month
+                    adjustmentFactor -= ((earlyMonths - 36) * (5/1200)); 
                 }
             } else if (monthsDiff > 0) {
                 // Delayed Retirement Credits
-                // Capped at age 70 (36 months max credit after 67)
                 let delayedMonths = Math.min(monthsDiff, 36); 
-                adjustmentFactor += (delayedMonths * (8/1200)); // 8% per year / 12
+                adjustmentFactor += (delayedMonths * (8/1200)); 
             }
 
             // Return calculated benefit, rounded
@@ -782,7 +733,6 @@
 
             if (estimatedSS > 0) {
                 document.getElementById('socialSecurity').value = estimatedSS;
-                // Visual cue (flash yellow slightly) to show it updated? Optional.
             }
         }
 
@@ -836,6 +786,7 @@
             const monthsToRetirement = yearsToRetirement * 12;
             
             // 1. Calculate Retirement Needs (Inflation Adjusted)
+            // Use directly entered desired income (future adjusted)
             const monthlyExpensesAtRetirement = retirementIncome * Math.pow(1 + inflationRate, yearsToRetirement);
             
             // 2. Calculate Social Security & Pension in Future Dollars
@@ -882,12 +833,6 @@
                 monthlyExpensesAtRetirement
             };
             
-            // Update hidden fields
-            if(document.getElementById('hiddenYearsToRetirement')) document.getElementById('hiddenYearsToRetirement').value = yearsToRetirement;
-            if(document.getElementById('hiddenRetirementGoal')) document.getElementById('hiddenRetirementGoal').value = Math.round(fundGap);
-            if(document.getElementById('hiddenProjectedShortage')) document.getElementById('hiddenProjectedShortage').value = Math.round(retirementGap);
-            if(document.getElementById('hiddenRecommendedContribution')) document.getElementById('hiddenRecommendedContribution').value = Math.round(additionalMonthlyNeeded);
-
             displayResults(calculationResults);
             displayStrategyComparison(); 
             displayTimeline();
@@ -1058,13 +1003,6 @@
             `;
             document.getElementById('timelineVisualization').innerHTML = timelineContent;
         }
-        
-        function showStrategy(strategy) {
-            document.querySelectorAll('.strategy-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            if(event) event.target.classList.add('active');
-        }
 
         // --- EMAIL FUNCTIONALITY ---
         function handleEmailSubmit(event) {
@@ -1164,5 +1102,5 @@
             });
         });
     </script>
-    </body>
+</body>
 </html>
