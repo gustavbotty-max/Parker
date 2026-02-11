@@ -633,17 +633,6 @@
                             <input type="number" id="pension" name="pension" min="0" step="100" placeholder="0" value="0">
                         </div>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="expenseMultiplier">Expense Multiplier (of current income)</label>
-                        <select id="expenseMultiplier" name="expenseMultiplier">
-                            <option value="0.6">60% - Minimalist retirement</option>
-                            <option value="0.7">70% - Frugal but comfortable</option>
-                            <option value="0.8" selected>80% - Similar lifestyle</option>
-                            <option value="0.9">90% - Enhanced lifestyle</option>
-                            <option value="1.0">100% - Current lifestyle</option>
-                        </select>
-                    </div>
                 </div>
                 
                 <button type="submit" class="calculate-button">Calculate Retirement Plan</button>
@@ -659,6 +648,12 @@
             <div id="strategyComparison" class="strategy-comparison" style="display: none;">
                 <h3 class="comparison-title">📊 Compare Investment Strategies</h3>
                 <p style="text-align: center; color: var(--text-light); margin-bottom: 1.5rem;">See how different approaches affect your retirement timeline</p>
+                
+                <div class="strategy-buttons" style="justify-content: center; max-width: 600px; margin: 0 auto;">
+                    <button class="strategy-btn active" onclick="showStrategy('conservative')">Conservative</button>
+                    <button class="strategy-btn" onclick="showStrategy('moderate')">Moderate</button>
+                    <button class="strategy-btn" onclick="showStrategy('aggressive')">Aggressive</button>
+                </div>
                 
                 <div id="strategyResults" class="comparison-results"></div>
             </div>
@@ -700,7 +695,7 @@
         </div>
     </div>
     
-    <script>
+<script>
         // Investment return expectations by risk level
         const investmentReturns = {
             conservative: { min: 0.04, avg: 0.05, max: 0.06 },
@@ -708,37 +703,98 @@
             aggressive: { min: 0.08, avg: 0.10, max: 0.12 }
         };
         
-        // NC-specific data
-        const ncData = {
-            socialSecurityAvg: 1850, // Monthly for NC/VA retirees
-            pensionPlans: {
-                'nc-teacher': { monthly: 2800, age: 65 },
-                'nc-state': { monthly: 2400, age: 65 },
-                'federal': { monthly: 3200, age: 65 },
-                'none': { monthly: 0, age: 65 }
-            },
-            costOfLiving: 0.95, // NC slightly below national average
-            stateTaxBenefits: {
-                '401k': true, 'ira': true, 'pension': true
-            }
+        // 2026 Social Security Data
+        const ssData = {
+            maxTaxableIncome: 184500, // 2026 Cap
+            bendPoints: [1286, 7749], // 2026 Bend Points
+            fullRetirementAge: 67 // For anyone born after 1960
         };
 
-        // --- GLOBAL VARIABLES ---
-        let selectedAccount = 'mixed';
+        // Track if user manually edited the SS field
+        let manualSS = false;
         let calculationResults = {};
 
         // --- HELPER FUNCTIONS ---
+        
+        // 1. Calculate ESTIMATED Social Security Benefit
+        function calculateSocialSecurity(annualIncome, retireAge) {
+            if (!annualIncome) return 0;
+
+            // Step 1: Estimate AIME (Average Indexed Monthly Earnings)
+            // We use current income as a proxy, capped at the taxable max
+            let countableIncome = Math.min(annualIncome, ssData.maxTaxableIncome);
+            let aime = countableIncome / 12;
+
+            // Step 2: Calculate PIA (Primary Insurance Amount) using 2026 Bend Points
+            // Formula: 90% of first bend, 32% of second, 15% of remainder
+            let pia = 0;
+            
+            // First bracket (90%)
+            pia += 0.90 * Math.min(aime, ssData.bendPoints[0]);
+            
+            // Second bracket (32%)
+            if (aime > ssData.bendPoints[0]) {
+                pia += 0.32 * Math.min(aime - ssData.bendPoints[0], ssData.bendPoints[1] - ssData.bendPoints[0]);
+            }
+            
+            // Third bracket (15%)
+            if (aime > ssData.bendPoints[1]) {
+                pia += 0.15 * (aime - ssData.bendPoints[1]);
+            }
+
+            // Step 3: Adjust for Early or Late Retirement
+            // Standard FRA is 67. 
+            // - Retire early (62): Benefit reduced by up to 30%
+            // - Retire late (70): Benefit increased by 8% per year (delayed credits)
+            
+            let monthsDiff = (retireAge - ssData.fullRetirementAge) * 12;
+            let adjustmentFactor = 1.0;
+
+            if (monthsDiff < 0) {
+                // Early Retirement Reductions
+                let earlyMonths = Math.abs(monthsDiff);
+                if (earlyMonths <= 36) {
+                    adjustmentFactor -= (earlyMonths * (5/900)); // 5/9 of 1% per month
+                } else {
+                    adjustmentFactor -= (36 * (5/900));
+                    adjustmentFactor -= ((earlyMonths - 36) * (5/1200)); // 5/12 of 1% per month
+                }
+            } else if (monthsDiff > 0) {
+                // Delayed Retirement Credits
+                // Capped at age 70 (36 months max credit after 67)
+                let delayedMonths = Math.min(monthsDiff, 36); 
+                adjustmentFactor += (delayedMonths * (8/1200)); // 8% per year / 12
+            }
+
+            // Return calculated benefit, rounded
+            return Math.max(0, Math.round(pia * adjustmentFactor));
+        }
+
+        // 2. Auto-Update Logic
+        function updateSocialSecurityEstimate() {
+            if (manualSS) return; // Don't overwrite if user manually typed a number
+
+            const monthlyIncome = parseFloat(document.getElementById('monthlyIncome').value) || 0;
+            const retireAge = parseFloat(document.getElementById('retirementAge').value) || 67;
+            
+            const annualIncome = monthlyIncome * 12;
+            const estimatedSS = calculateSocialSecurity(annualIncome, retireAge);
+
+            if (estimatedSS > 0) {
+                document.getElementById('socialSecurity').value = estimatedSS;
+                // Visual cue (flash yellow slightly) to show it updated? Optional.
+            }
+        }
+
         function updateFutureIncomePreview() {
             const currentAge = parseFloat(document.getElementById('currentAge').value) || 0;
             const retirementAge = parseFloat(document.getElementById('retirementAge').value) || 0;
             const incomeToday = parseFloat(document.getElementById('retirementIncome').value) || 0;
             
-            const inflationRate = 0.03; // Matches the label text
+            const inflationRate = 0.03; 
             const yearsToRetirement = Math.max(0, retirementAge - currentAge);
             
-            // Calculate Future Value: PV * (1+r)^n
             const futureIncome = incomeToday * Math.pow(1 + inflationRate, yearsToRetirement);
-            
             document.getElementById('futureIncomePreview').value = Math.round(futureIncome).toLocaleString();
         }
 
@@ -765,41 +821,36 @@
 
         // --- MAIN CALCULATION ---
         function calculateRetirement() {
-            // Get form data (with defaults to prevent NaN)
             const currentAge = parseInt(document.getElementById('currentAge').value) || 35;
             const retirementAge = parseInt(document.getElementById('retirementAge').value) || 65;
-            const lifeExpectancy = parseInt(document.getElementById('lifeExpectancy').value) || 90;
             const currentSavings = parseFloat(document.getElementById('currentSavings').value) || 0;
             const monthlyIncome = parseFloat(document.getElementById('monthlyIncome').value) || 0;
             const monthlyContributions = parseFloat(document.getElementById('monthlyContributions').value) || 0;
             const retirementIncome = parseFloat(document.getElementById('retirementIncome').value) || 0;
-            const inflationRate = 0.03; // Fixed at 3% per the hidden input logic
-            const socialSecurity = parseFloat(document.getElementById('socialSecurity').value) || ncData.socialSecurityAvg;
+            const inflationRate = 0.03; 
+            const socialSecurity = parseFloat(document.getElementById('socialSecurity').value) || 0;
             const pension = parseFloat(document.getElementById('pension').value) || 0;
-            const expenseMultiplier = parseFloat(document.getElementById('expenseMultiplier').value) || 0.8;
             const expectedReturn = parseFloat(document.getElementById('expectedReturn').value) / 100 || 0.08;
             
-            // Calculate key numbers
             const yearsToRetirement = Math.max(0, retirementAge - currentAge);
             const monthsToRetirement = yearsToRetirement * 12;
             
             // 1. Calculate Retirement Needs (Inflation Adjusted)
-            const monthlyExpensesAtRetirement = monthlyIncome * expenseMultiplier * Math.pow(1 + inflationRate, yearsToRetirement);
+            const monthlyExpensesAtRetirement = retirementIncome * Math.pow(1 + inflationRate, yearsToRetirement);
             
             // 2. Calculate Social Security & Pension in Future Dollars
             const socialSecurityAtRetirement = socialSecurity * Math.pow(1 + inflationRate, yearsToRetirement);
             const pensionAtRetirement = pension * Math.pow(1 + inflationRate, yearsToRetirement);
             const totalSocialIncome = socialSecurityAtRetirement + pensionAtRetirement;
             
-            // 3. Calculate the NET Monthly Gap
+            // 3. NET Gap
             const monthlyIncomeGap = Math.max(0, monthlyExpensesAtRetirement - totalSocialIncome);
             const annualIncomeGap = monthlyIncomeGap * 12;
             
-            // 4. Calculate Portfolio Goal (The "Nest Egg" needed) - Using 4% Rule
-            // If annual gap is 0, goal is 0.
+            // 4. Portfolio Goal (4% Rule)
             const fundGap = annualIncomeGap > 0 ? (annualIncomeGap / 0.04) : 0; 
             
-            // 5. Calculate Projected Savings
+            // 5. Projected Savings
             const futureValueCurrent = currentSavings * Math.pow(1 + expectedReturn, yearsToRetirement);
             const monthlyRate = expectedReturn / 12;
             let futureValueContributions = 0;
@@ -812,16 +863,15 @@
             
             const totalProjectedSavings = futureValueCurrent + futureValueContributions;
             
-            // 6. Calculate Shortage/Surplus
+            // 6. Shortage
             const retirementGap = fundGap - totalProjectedSavings; 
             
-            // 7. Calculate Fix (Additional Monthly Contribution)
+            // 7. Fix
             let additionalMonthlyNeeded = 0;
             if (retirementGap > 0 && monthsToRetirement > 0 && monthlyRate > 0) {
                 additionalMonthlyNeeded = retirementGap / ((Math.pow(1 + monthlyRate, monthsToRetirement) - 1) / monthlyRate);
             }
             
-            // SAVE RESULTS GLOBALLY (This fixes the NaN issue in other functions)
             calculationResults = {
                 currentAge, retirementAge, yearsToRetirement,
                 currentSavings, monthlyContributions, expectedReturn,
@@ -832,24 +882,26 @@
                 monthlyExpensesAtRetirement
             };
             
-            // Display Everything
+            // Update hidden fields
+            if(document.getElementById('hiddenYearsToRetirement')) document.getElementById('hiddenYearsToRetirement').value = yearsToRetirement;
+            if(document.getElementById('hiddenRetirementGoal')) document.getElementById('hiddenRetirementGoal').value = Math.round(fundGap);
+            if(document.getElementById('hiddenProjectedShortage')) document.getElementById('hiddenProjectedShortage').value = Math.round(retirementGap);
+            if(document.getElementById('hiddenRecommendedContribution')) document.getElementById('hiddenRecommendedContribution').value = Math.round(additionalMonthlyNeeded);
+
             displayResults(calculationResults);
-            displayStrategyComparison(); // This relies on calculationResults being set above
+            displayStrategyComparison(); 
             displayTimeline();
             
-            // Show sections
             document.getElementById('resultsSection').style.display = 'block';
             document.getElementById('strategyComparison').style.display = 'block';
             document.getElementById('timelineVisualization').style.display = 'block';
             document.getElementById('emailSection').style.display = 'block';
             
-            // Scroll
             setTimeout(() => {
                 document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
             }, 300);
         }
         
-        // --- DISPLAY FUNCTIONS ---
         function displayResults(data) {
             const resultsGrid = document.getElementById('resultsSection');
             const isShortage = data.retirementGap > 0;
@@ -910,7 +962,6 @@
             strategyResults.innerHTML = strategies.map(strategy => {
                 const avgReturn = investmentReturns[strategy].avg;
                 
-                // Recalculate Projection for this specific strategy
                 const startBal = calculationResults.currentSavings || 0;
                 const monthlyCont = calculationResults.monthlyContributions || 0;
                 const years = calculationResults.yearsToRetirement || 0;
@@ -926,11 +977,8 @@
                 }
                 
                 const projected = fvStart + fvCont;
-                
-                // Calculate Monthly Income (Safe 4% Withdrawal)
                 const monthlyIncome = (projected * 0.04) / 12;
                 
-                // Calculate Goal Coverage (Avoid divide by zero)
                 let coverage = 100;
                 if (calculationResults.totalRetirementFundNeeded > 0) {
                     coverage = (projected / calculationResults.totalRetirementFundNeeded) * 100;
@@ -958,7 +1006,6 @@
         }
         
         function displayTimeline() {
-            // Helper for intermediate growth
             function calculateProgress(targetAge) {
                 const yearsToTarget = targetAge - calculationResults.currentAge;
                 if (yearsToTarget <= 0) return calculationResults.currentSavings;
@@ -982,7 +1029,7 @@
             const age2 = calculationResults.currentAge + twoThirdsYears;
 
             const timelineContent = `
-                <div class="timeline-title">🗓️ Your Current Projection </div>
+                <div class="timeline-title">🗓️ Your Retirement Savings Journey</div>
                 <div class="timeline-grid">
                     <div class="timeline-item">
                         <div class="timeline-year">Age ${calculationResults.currentAge}</div>
@@ -1029,7 +1076,6 @@
             const successMessage = document.getElementById('emailSuccess');
             const originalText = button.innerHTML;
             
-            // Only prepare data if calculation has run
             if (!calculationResults || Object.keys(calculationResults).length === 0) {
                 alert("Please calculate your retirement plan first!");
                 return;
@@ -1096,7 +1142,27 @@
 
         // Initialize Listeners
         document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('currentAge').addEventListener('input', updateFutureIncomePreview);
-            document.getElementById('retirementAge').addEventListener('input', updateFutureIncomePreview);
+            const ageInput = document.getElementById('currentAge');
+            const retireAgeInput = document.getElementById('retirementAge');
+            const incomeInput = document.getElementById('monthlyIncome');
+            const ssInput = document.getElementById('socialSecurity');
+            const retirementIncomeInput = document.getElementById('retirementIncome');
+
+            // 1. Future Income Preview Listeners
+            ageInput.addEventListener('input', updateFutureIncomePreview);
+            retireAgeInput.addEventListener('input', updateFutureIncomePreview);
+            retirementIncomeInput.addEventListener('input', updateFutureIncomePreview);
+
+            // 2. Social Security Auto-Calc Listeners
+            ageInput.addEventListener('input', updateSocialSecurityEstimate);
+            retireAgeInput.addEventListener('input', updateSocialSecurityEstimate);
+            incomeInput.addEventListener('input', updateSocialSecurityEstimate);
+
+            // 3. Stop auto-updating SS if user manually edits the field
+            ssInput.addEventListener('input', function() {
+                manualSS = true;
+            });
         });
     </script>
+    </body>
+</html>
