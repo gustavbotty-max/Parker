@@ -1,1572 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retirement Planning Calculator - Jonathan Parker | Triangle Families</title>
-    <meta name="description" content="Plan your retirement with 401k, IRA calculators and Social Security projections. See how much you need to retire comfortably in NC. Free retirement planning tool.">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        :root {
-            --primary-color: #2c5aa0;
-            --secondary-color: #4a90e2;
-            --accent-color: #27ae60;
-            --golden-color: #f1c40f;
-            --text-dark: #2c3e50;
-            --text-light: #7f8c8d;
-            --background-light: #f8f9fa;
-            --border-color: #e1e8ed;
-            --success-color: #27ae60;
-            --retirement-gold: #d4af37;
-            --retirement-orange: #f39c12;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-        
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        /* Header */
-        header {
-            background: linear-gradient(135deg, var(--golden-color), var(--retirement-orange));
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-            margin-bottom: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-        }
-        
-        .header-content {
-            padding: 0 20px;
-        }
-        
-        .header-content h1 {
-            font-size: 2.2rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .header-content p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            margin-bottom: 0;
-        }
-        
-        /* Calculator Container */
-        .calculator-container {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
-        }
-        
-        .calculator-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        
-        .calculator-header h2 {
-            color: var(--retirement-gold);
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .calculator-header p {
-            color: var(--text-light);
-            font-size: 1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        /* Form Layout */
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-dark);
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-        
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-        
-        .form-group input:focus, .form-group select:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.1);
-        }
-        
-        .input-group {
-            position: relative;
-        }
-        
-        .input-prefix {
-            position: absolute;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-light);
-            font-weight: 500;
-        }
-        
-        .input-prefix + input {
-            padding-left: 2.5rem;
-        }
-        
-        /* Account Type Selection */
-        .account-types {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        
-        .account-card {
-            background: linear-gradient(135deg, var(--background-light), #ffffff);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 1.5rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .account-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-        
-        .account-card.active {
-            border: 3px solid var(--primary-color);
-            background: linear-gradient(135deg, var(--background-light), #e8f4fd);
-        }
-        
-        .account-icon {
-            width: 40px;
-            height: 40px;
-            margin: 0 auto 0.5rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-        
-        .account-name {
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 0.25rem;
-            font-size: 0.95rem;
-        }
-        
-        .account-desc {
-            color: var(--text-light);
-            font-size: 0.8rem;
-            line-height: 1.3;
-        }
-        
-        .account-benefits {
-            list-style: none;
-            padding: 0;
-            margin: 0.75rem 0 0;
-            font-size: 0.8rem;
-        }
-        
-        .account-benefits li {
-            margin-bottom: 0.25rem;
-            color: var(--text-dark);
-        }
-        
-        .account-benefits li::before {
-            content: "✓";
-            color: var(--success-color);
-            margin-right: 0.5rem;
-        }
-        
-        /* Calculate Button */
-        .calculate-button {
-            width: 100%;
-            background: linear-gradient(135deg, var(--retirement-gold), var(--retirement-orange));
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-            margin-bottom: 1rem;
-            letter-spacing: 0.5px;
-        }
-        
-        .calculate-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
-        }
-        
-        /* Results Section */
-        .results-section {
-            display: none;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 2px solid var(--border-color);
-        }
-        
-        .results-header {
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-        
-        .results-header h3 {
-            color: var(--retirement-gold);
-            font-size: 1.6rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        
-        .result-card {
-            background: linear-gradient(135deg, var(--background-light), #ffffff);
-            padding: 1.5rem;
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-            text-align: center;
-            position: relative;
-        }
-        
-        .result-card.highlight {
-            border: 3px solid var(--retirement-gold);
-            background: linear-gradient(135deg, #fff8e1, #ffffff);
-        }
-        
-        .result-card h4 {
-            color: var(--text-dark);
-            margin-bottom: 0.75rem;
-            font-size: 1rem;
-        }
-        
-        .result-card .amount {
-            color: var(--retirement-gold);
-            font-size: 1.6rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-        
-        .result-card .note {
-            color: var(--text-light);
-            font-size: 0.85rem;
-            line-height: 1.3;
-        }
-        
-        /* Retirement Timeline */
-        .retirement-timeline {
-            background: linear-gradient(135deg, #fff8e1, #ffffff);
-            border: 1px solid var(--retirement-gold);
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-        }
-        
-        .timeline-title {
-            text-align: center;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-        }
-        
-        .timeline-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-        
-        .timeline-item {
-            text-align: center;
-            padding: 1rem;
-            background: rgba(255, 248, 225, 0.5);
-            border-radius: 8px;
-        }
-        
-        .timeline-year {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: var(--retirement-gold);
-            margin-bottom: 0.5rem;
-        }
-        
-        .timeline-description {
-            font-size: 0.9rem;
-            color: var(--text-dark);
-            margin-bottom: 0.5rem;
-        }
-        
-        .timeline-amount {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-        
-        /* Strategy Comparison */
-        .strategy-comparison {
-            background: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-        
-        .comparison-title {
-            text-align: center;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            font-size: 1.3rem;
-        }
-        
-        .strategy-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-        
-        .strategy-btn {
-            flex: 1;
-            min-width: 150px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-        
-        .strategy-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(44, 90, 160, 0.3);
-        }
-        
-        .strategy-btn.active {
-            background: linear-gradient(135deg, var(--retirement-gold), var(--retirement-orange));
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-        }
-        
-        .comparison-results {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-        
-        .comparison-card {
-            background: linear-gradient(135deg, var(--background-light), #ffffff);
-            padding: 1.5rem;
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-            text-align: center;
-        }
-        
-        .comparison-card h5 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-        
-        .comparison-value {
-            font-size: 1.4rem;
-            font-weight: bold;
-            color: var(--retirement-gold);
-            margin-bottom: 0.5rem;
-        }
-        
-        /* Email Capture */
-        .email-section {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            margin-top: 2rem;
-        }
-        
-        .email-section h4 {
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-            text-align: center;
-        }
-        
-        .email-section p {
-            margin-bottom: 1.5rem;
-            opacity: 0.9;
-            text-align: center;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .email-form {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        
-        .email-input {
-            flex: 1;
-            min-width: 250px;
-            padding: 0.75rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-        }
-        
-        .email-button {
-            background: var(--retirement-gold);
-            color: white;
-            padding: 0.75rem 2rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            white-space: nowrap;
-            transition: all 0.3s ease;
-        }
-        
-        .email-button:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
-        }
-        
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 2rem 0;
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-        
-        .disclaimer {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            border-left: 4px solid var(--warning-color);
-        }
-        
-        .disclaimer h5 {
-            color: var(--warning-color);
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-        }
-        
-        .disclaimer p {
-            margin: 0;
-            font-size: 0.8rem;
-            line-height: 1.5;
-        }
-        
-        /* Loading Animation */
-        .loading {
-            display: none;
-            text-align: center;
-            padding: 1rem;
-        }
-        
-        .loading-spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid var(--border-color);
-            border-top: 4px solid var(--primary-color);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .container { padding: 10px; }
-            .header-content h1 { font-size: 1.8rem; }
-            .calculator-container { padding: 1.5rem; }
-            .results-grid { grid-template-columns: 1fr; }
-            .strategy-buttons { flex-direction: column; }
-            .email-form { flex-direction: column; }
-            .email-input { min-width: auto; width: 100%; }
-            .account-types { grid-template-columns: 1fr; }
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <div class="header-content">
-            <h1>Retirement Planning Calculator</h1>
-            <p>Plan your retirement with 401k, IRA, and smart investment strategies for NC families</p>
-        </div>
-    </header>
-    
-    <div class="container">
-        <div class="calculator-container">
-            <div class="calculator-header">
-                <h2>How Much Do You Need to Retire Comfortably?</h2>
-                <p>Calculate your retirement needs, compare investment strategies, and create your personalized retirement savings plan.</p>
-            </div>
-            
-            <form id="retirementForm">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="currentAge">Your Current Age</label>
-                        <input type="number" id="currentAge" name="currentAge" min="18" max="75" required placeholder="35">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="retirementAge">Desired Retirement Age</label>
-                        <input type="number" id="retirementAge" name="retirementAge" min="50" max="75" required placeholder="65">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="lifeExpectancy">Life Expectancy Planning</label>
-                        <select id="lifeExpectancy" name="lifeExpectancy">
-                            <option value="85">Conservative (Age 85)</option>
-                            <option value="90" selected>Average (Age 90)</option>
-                            <option value="95">Optimistic (Age 95)</option>
-                            <option value="100">Long-lived (Age 100)</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="currentSavings">Current Retirement Savings</label>
-                        <div class="input-group">
-                            <div class="input-prefix">$</div>
-                            <input type="number" id="currentSavings" name="currentSavings" min="0" step="any" placeholder="50000">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="monthlyIncome">Monthly Household Income</label>
-                        <div class="input-group">
-                            <div class="input-prefix">$</div>
-                            <input type="number" id="monthlyIncome" name="monthlyIncome" min="0" step="any" required placeholder="6000">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="monthlyContributions">Monthly Retirement Contributions</label>
-                        <div class="input-group">
-                            <div class="input-prefix">$</div>
-                            <input type="number" id="monthlyContributions" name="monthlyContributions" min="0" step="any" required placeholder="800">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="retirementIncome">Desired Monthly Income (Today's Dollars)</label>
-                        <div class="input-group">
-                            <div class="input-prefix">$</div>
-                            <input type="number" id="retirementIncome" name="retirementIncome" min="0" step="any" required placeholder="4500" oninput="updateFutureIncomePreview()">
-                        </div>
-                        <small style="color: var(--text-light); font-size: 0.8rem;">Enter the amount you would need to live on if you retired <strong>today</strong>.</small>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="futureIncomePreview" style="color: var(--primary-color);">Equivalent in Future Dollars (w/ 3% inflation)</label>
-                        <div class="input-group">
-                            <div class="input-prefix" style="color: var(--primary-color);">$</div>
-                            <input type="text" id="futureIncomePreview" readonly 
-                                   style="background-color: #e8f4fd; color: var(--primary-color); font-weight: bold; border-color: var(--secondary-color);" 
-                                   value="0">
-                        </div>
-                        <input type="hidden" id="inflationRate" name="inflationRate" value="3.0">
-                    </div>
-                </div>
-                
-                <div style="margin: 2rem 0;">
-                    <label style="display: block; margin-bottom: 1rem; color: var(--text-dark); font-weight: 600;">Investment Account Types</label>
-                    <div class="account-types">
-                        <div class="account-card" data-account="401k" onclick="selectAccount('401k')">
-                            <div class="account-icon">401k</div>
-                            <div class="account-name">401(k) / 403(b)</div>
-                            <div class="account-desc">Employer-sponsored with matching</div>
-                            <ul class="account-benefits">
-                                <li>Tax-deductible contributions</li>
-                                <li>Potential employer match</li>
-                                <li>High contribution limits</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="account-card" data-account="ira" onclick="selectAccount('ira')">
-                            <div class="account-icon">IRA</div>
-                            <div class="account-name">Traditional/Roth IRA</div>
-                            <div class="account-desc">Individual retirement account</div>
-                            <ul class="account-benefits">
-                                <li>Tax advantages</li>
-                                <li>Investment flexibility</li>
-                                <li>Low fees</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="account-card" data-account="brokerage" onclick="selectAccount('brokerage')">
-                            <div class="account-icon">📈</div>
-                            <div class="account-name">Taxable Brokerage</div>
-                            <div class="account-desc">Regular investment account</div>
-                            <ul class="account-benefits">
-                                <li>Full flexibility</li>
-                                <li>No contribution limits</li>
-                                <li>Early access possible</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="account-card active" data-account="mixed" onclick="selectAccount('mixed')">
-                            <div class="account-icon">🎯</div>
-                            <div class="account-name">Mixed Strategy</div>
-                            <div class="account-desc">Combination of accounts</div>
-                            <ul class="account-benefits">
-                                <li>Tax diversification</li>
-                                <li>Flexibility + tax benefits</li>
-                                <li>Risk management</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <input type="hidden" id="accountType" name="accountType" value="mixed">
-                </div>
-                
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="riskLevel">Investment Risk Level</label>
-                        <select id="riskLevel" name="riskLevel" onchange="updateExpectedReturn()">
-                            <option value="conservative">Conservative (Low Risk)</option>
-                            <option value="moderate" selected>Moderate (Balanced)</option>
-                            <option value="aggressive">Aggressive (High Risk)</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="expectedReturn">Expected Annual Return</label>
-                        <div class="input-group">
-                            <input type="number" id="expectedReturn" name="expectedReturn" min="1" max="12" step="0.5" value="7.0" required>
-                            <div style="position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%); color: var(--text-light);">%</div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="socialSecurity">Expected Social Security (Monthly)</label>
-                        <div class="input-group">
-                            <div class="input-prefix">$</div>
-                            <input type="number" id="socialSecurity" name="socialSecurity" min="0" step="100" placeholder="1800" value="1800">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="pension">Expected Pension (Monthly)</label>
-                        <div class="input-group">
-                            <div class="input-prefix">$</div>
-                            <input type="number" id="pension" name="pension" min="0" step="100" placeholder="0" value="0">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="expenseMultiplier">Expense Multiplier (of current income)</label>
-                        <select id="expenseMultiplier" name="expenseMultiplier">
-                            <option value="0.6">60% - Minimalist retirement</option>
-                            <option value="0.7">70% - Frugal but comfortable</option>
-                            <option value="0.8" selected>80% - Similar lifestyle</option>
-                            <option value="0.9">90% - Enhanced lifestyle</option>
-                            <option value="1.0">100% - Current lifestyle</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <button type="submit" class="calculate-button">Calculate Retirement Plan</button>
-                
-                <div class="loading">
-                    <div class="loading-spinner"></div>
-                    <p>Calculating your retirement projections...</p>
-                </div>
-            </form>
-            
-            <div id="resultsSection" class="results-section"></div>
-            
-            <div id="strategyComparison" class="strategy-comparison" style="display: none;">
-                <h3 class="comparison-title">📊 Compare Investment Strategies</h3>
-                <p style="text-align: center; color: var(--text-light); margin-bottom: 1.5rem;">See how different approaches affect your retirement timeline</p>
-                
-                <div class="strategy-buttons" style="justify-content: center; max-width: 600px; margin: 0 auto;">
-                    <button class="strategy-btn active" onclick="showStrategy('conservative')">Conservative</button>
-                    <button class="strategy-btn" onclick="showStrategy('moderate')">Moderate</button>
-                    <button class="strategy-btn" onclick="showStrategy('aggressive')">Aggressive</button>
-                </div>
-                
-                <div id="strategyResults" class="comparison-results"></div>
-            </div>
-            
-            <div id="timelineVisualization" class="retirement-timeline" style="display: none;"></div>
-        </div>
-        
-        <div id="emailSection" class="email-section" style="display: none;">
-            <div id="emailContent">
-                <h4>📝 Want Your Complete Retirement Plan?</h4>
-                <p>Enter your email below, and I'll send you a detailed retirement planning guide with account recommendations, tax strategies, and step-by-step implementation plan for Triangle families.</p>
-                
-                <form class="email-form" onsubmit="handleEmailSubmit(event)">
-                    <input type="email" id="userEmail" class="email-input" placeholder="Enter your email address..." required>
-                    <button type="submit" class="email-button">
-                        Send My Plan 📧
-                    </button>
-                </form>
-                <p style="font-size: 0.8rem; margin-top: 1rem; opacity: 0.8; text-align: center; width: 100%;">
-                    🔒 We respect your privacy. No spam.
-                </p>
-            </div>
-
-            <div id="emailSuccess" style="display: none; text-align: center;">
-                <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
-                <h4>Plan Sent Successfully!</h4>
-                <p>Please check your inbox (and spam folder) for your personalized retirement guide.</p>
-                <button onclick="resetEmailForm()" style="background: none; border: 1px solid white; color: white; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; margin-top: 1rem;">Send to another email</button>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <div class="disclaimer">
-                <h5>📊 Retirement Planning Disclaimer</h5>
-                <p>This calculator provides estimates based on historical market performance and standard financial planning methodologies. Investment returns, inflation rates, and Social Security benefits are not guaranteed. Consult with qualified financial and tax professionals before making retirement planning decisions. This is for educational purposes only.</p>
-            </div>
-            <p>© 2026 Jonathan Parker - Retirement Planning for Triangle Families | Licensed Financial Representative</p>
-            <p><a href="index.html" style="color: var(--primary-color);">← Back to All Calculators</a></p>
-        </div>
-    </div>
-    
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retirement Planning Calculator - Jonathan Parker | Triangle Families</title>
-    <meta name="description" content="Plan your retirement with 401k, IRA calculators and Social Security projections. See how much you need to retire comfortably in NC. Free retirement planning tool.">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        :root {
-            --primary-color: #2c5aa0;
-            --secondary-color: #4a90e2;
-            --accent-color: #27ae60;
-            --golden-color: #f1c40f;
-            --text-dark: #2c3e50;
-            --text-light: #7f8c8d;
-            --background-light: #f8f9fa;
-            --border-color: #e1e8ed;
-            --success-color: #27ae60;
-            --retirement-gold: #d4af37;
-            --retirement-orange: #f39c12;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-        
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        /* Header */
-        header {
-            background: linear-gradient(135deg, var(--golden-color), var(--retirement-orange));
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-            margin-bottom: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-        }
-        
-        .header-content {
-            padding: 0 20px;
-        }
-        
-        .header-content h1 {
-            font-size: 2.2rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .header-content p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            margin-bottom: 0;
-        }
-        
-        /* Calculator Container */
-        .calculator-container {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
-        }
-        
-        .calculator-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        
-        .calculator-header h2 {
-            color: var(--retirement-gold);
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .calculator-header p {
-            color: var(--text-light);
-            font-size: 1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        /* Form Layout */
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-dark);
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-        
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-        
-        .form-group input:focus, .form-group select:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.1);
-        }
-        
-        .input-group {
-            position: relative;
-        }
-        
-        .input-prefix {
-            position: absolute;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-light);
-            font-weight: 500;
-        }
-        
-        .input-prefix + input {
-            padding-left: 2.5rem;
-        }
-        
-        /* Account Type Selection */
-        .account-types {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        
-        .account-card {
-            background: linear-gradient(135deg, var(--background-light), #ffffff);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 1.5rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .account-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-        
-        .account-card.active {
-            border: 3px solid var(--primary-color);
-            background: linear-gradient(135deg, var(--background-light), #e8f4fd);
-        }
-        
-        .account-icon {
-            width: 40px;
-            height: 40px;
-            margin: 0 auto 0.5rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-        
-        .account-name {
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 0.25rem;
-            font-size: 0.95rem;
-        }
-        
-        .account-desc {
-            color: var(--text-light);
-            font-size: 0.8rem;
-            line-height: 1.3;
-        }
-        
-        .account-benefits {
-            list-style: none;
-            padding: 0;
-            margin: 0.75rem 0 0;
-            font-size: 0.8rem;
-        }
-        
-        .account-benefits li {
-            margin-bottom: 0.25rem;
-            color: var(--text-dark);
-        }
-        
-        .account-benefits li::before {
-            content: "✓";
-            color: var(--success-color);
-            margin-right: 0.5rem;
-        }
-        
-        /* Calculate Button */
-        .calculate-button {
-            width: 100%;
-            background: linear-gradient(135deg, var(--retirement-gold), var(--retirement-orange));
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-            margin-bottom: 1rem;
-            letter-spacing: 0.5px;
-        }
-        
-        .calculate-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
-        }
-        
-        /* Results Section */
-        .results-section {
-            display: none;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 2px solid var(--border-color);
-        }
-        
-        .results-header {
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-        
-        .results-header h3 {
-            color: var(--retirement-gold);
-            font-size: 1.6rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        
-        .result-card {
-            background: linear-gradient(135deg, var(--background-light), #ffffff);
-            padding: 1.5rem;
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-            text-align: center;
-            position: relative;
-        }
-        
-        .result-card.highlight {
-            border: 3px solid var(--retirement-gold);
-            background: linear-gradient(135deg, #fff8e1, #ffffff);
-        }
-        
-        .result-card h4 {
-            color: var(--text-dark);
-            margin-bottom: 0.75rem;
-            font-size: 1rem;
-        }
-        
-        .result-card .amount {
-            color: var(--retirement-gold);
-            font-size: 1.6rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-        
-        .result-card .note {
-            color: var(--text-light);
-            font-size: 0.85rem;
-            line-height: 1.3;
-        }
-        
-        /* Retirement Timeline */
-        .retirement-timeline {
-            background: linear-gradient(135deg, #fff8e1, #ffffff);
-            border: 1px solid var(--retirement-gold);
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-        }
-        
-        .timeline-title {
-            text-align: center;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-        }
-        
-        .timeline-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-        
-        .timeline-item {
-            text-align: center;
-            padding: 1rem;
-            background: rgba(255, 248, 225, 0.5);
-            border-radius: 8px;
-        }
-        
-        .timeline-year {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: var(--retirement-gold);
-            margin-bottom: 0.5rem;
-        }
-        
-        .timeline-description {
-            font-size: 0.9rem;
-            color: var(--text-dark);
-            margin-bottom: 0.5rem;
-        }
-        
-        .timeline-amount {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-        
-        /* Strategy Comparison */
-        .strategy-comparison {
-            background: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-        
-        .comparison-title {
-            text-align: center;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            font-size: 1.3rem;
-        }
-        
-        .strategy-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-        
-        .strategy-btn {
-            flex: 1;
-            min-width: 150px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-        
-        .strategy-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(44, 90, 160, 0.3);
-        }
-        
-        .strategy-btn.active {
-            background: linear-gradient(135deg, var(--retirement-gold), var(--retirement-orange));
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-        }
-        
-        .comparison-results {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-        
-        .comparison-card {
-            background: linear-gradient(135deg, var(--background-light), #ffffff);
-            padding: 1.5rem;
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-            text-align: center;
-        }
-        
-        .comparison-card h5 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-        
-        .comparison-value {
-            font-size: 1.4rem;
-            font-weight: bold;
-            color: var(--retirement-gold);
-            margin-bottom: 0.5rem;
-        }
-        
-        /* Email Capture */
-        .email-section {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            margin-top: 2rem;
-        }
-        
-        .email-section h4 {
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-            text-align: center;
-        }
-        
-        .email-section p {
-            margin-bottom: 1.5rem;
-            opacity: 0.9;
-            text-align: center;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .email-form {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        
-        .email-input {
-            flex: 1;
-            min-width: 250px;
-            padding: 0.75rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-        }
-        
-        .email-button {
-            background: var(--retirement-gold);
-            color: white;
-            padding: 0.75rem 2rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            white-space: nowrap;
-            transition: all 0.3s ease;
-        }
-        
-        .email-button:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
-        }
-        
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 2rem 0;
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-        
-        .disclaimer {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            border-left: 4px solid var(--warning-color);
-        }
-        
-        .disclaimer h5 {
-            color: var(--warning-color);
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-        }
-        
-        .disclaimer p {
-            margin: 0;
-            font-size: 0.8rem;
-            line-height: 1.5;
-        }
-        
-        /* Loading Animation */
-        .loading {
-            display: none;
-            text-align: center;
-            padding: 1rem;
-        }
-        
-        .loading-spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid var(--border-color);
-            border-top: 4px solid var(--primary-color);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .container { padding: 10px; }
-            .header-content h1 { font-size: 1.8rem; }
-            .calculator-container { padding: 1.5rem; }
-            .results-grid { grid-template-columns: 1fr; }
-            .strategy-buttons { flex-direction: column; }
-            .email-form { flex-direction: column; }
-            .email-input { min-width: auto; width: 100%; }
-            .account-types { grid-template-columns: 1fr; }
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <div class="header-content">
-            <h1>Retirement Planning Calculator</h1>
-            <p>Plan your retirement with 401k, IRA, and smart investment strategies for NC families</p>
-        </div>
-    </header>
-    
-    <div class="container">
-        <div class="calculator-container">
-            <div class="calculator-header">
-                <h2>How Much Do You Need to Retire Comfortably?</h2>
-                <p>Calculate your retirement needs, compare investment strategies, and create your personalized retirement savings plan.</p>
-            </div>
-            
-            <form id="retirementForm">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="currentAge">Your Current Age</label>
-                        <input type="number" id="currentAge" name="currentAge" min="18" max="75" required placeholder="35">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="retirementAge">Desired Retirement Age</label>
-                        <input type="number" id="retirementAge" name="retirementAge" min="50" max="75" required placeholder="65">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="lifeExpectancy">Life Expectancy Planning</label>
-                        <select id="lifeExpectancy" name="lifeExpectancy">
-                            <option value="85">Conservative (Age 85)</option>
-                            <option value="90" selected>Average (Age 90)</option>
-                            <option value="95">Optimistic (Age 95)</option>
-                            <option value="100">Long-lived (Age 100)</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="currentSavings">Current Retirement Savings</label>
-                        <div class="input-group">
-                            <div class="input-prefix">$</div>
-                            <input type="number" id="currentSavings" name="currentSavings" min="0" step="any" placeholder="50000">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="monthlyIncome">Monthly Household Income</label>
-                        <div class="input-group">
-                            <div class="input-prefix">$</div>
-                            <input type="number" id="monthlyIncome" name="monthlyIncome" min="0" step="any" required placeholder="6000">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="monthlyContributions">Monthly Retirement Contributions</label>
-                        <div class="input-group">
-                            <div class="input-prefix">$</div>
-                            <input type="number" id="monthlyContributions" name="monthlyContributions" min="0" step="any" required placeholder="800">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="retirementIncome">Desired Monthly Income (Today's Dollars)</label>
-                        <div class="input-group">
-                            <div class="input-prefix">$</div>
-                            <input type="number" id="retirementIncome" name="retirementIncome" min="0" step="any" required placeholder="4500" oninput="updateFutureIncomePreview()">
-                        </div>
-                        <small style="color: var(--text-light); font-size: 0.8rem;">Enter the amount you would need to live on if you retired <strong>today</strong>.</small>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="futureIncomePreview" style="color: var(--primary-color);">Equivalent in Future Dollars (w/ 3% inflation)</label>
-                        <div class="input-group">
-                            <div class="input-prefix" style="color: var(--primary-color);">$</div>
-                            <input type="text" id="futureIncomePreview" readonly 
-                                   style="background-color: #e8f4fd; color: var(--primary-color); font-weight: bold; border-color: var(--secondary-color);" 
-                                   value="0">
-                        </div>
-                        <input type="hidden" id="inflationRate" name="inflationRate" value="3.0">
-                    </div>
-                </div>
-                
-                <div style="margin: 2rem 0;">
-                    <label style="display: block; margin-bottom: 1rem; color: var(--text-dark); font-weight: 600;">Investment Account Types</label>
-                    <div class="account-types">
-                        <div class="account-card" data-account="401k" onclick="selectAccount('401k')">
-                            <div class="account-icon">401k</div>
-                            <div class="account-name">401(k) / 403(b)</div>
-                            <div class="account-desc">Employer-sponsored with matching</div>
-                            <ul class="account-benefits">
-                                <li>Tax-deductible contributions</li>
-                                <li>Potential employer match</li>
-                                <li>High contribution limits</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="account-card" data-account="ira" onclick="selectAccount('ira')">
-                            <div class="account-icon">IRA</div>
-                            <div class="account-name">Traditional/Roth IRA</div>
-                            <div class="account-desc">Individual retirement account</div>
-                            <ul class="account-benefits">
-                                <li>Tax advantages</li>
-                                <li>Investment flexibility</li>
-                                <li>Low fees</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="account-card" data-account="brokerage" onclick="selectAccount('brokerage')">
-                            <div class="account-icon">📈</div>
-                            <div class="account-name">Taxable Brokerage</div>
-                            <div class="account-desc">Regular investment account</div>
-                            <ul class="account-benefits">
-                                <li>Full flexibility</li>
-                                <li>No contribution limits</li>
-                                <li>Early access possible</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="account-card active" data-account="mixed" onclick="selectAccount('mixed')">
-                            <div class="account-icon">🎯</div>
-                            <div class="account-name">Mixed Strategy</div>
-                            <div class="account-desc">Combination of accounts</div>
-                            <ul class="account-benefits">
-                                <li>Tax diversification</li>
-                                <li>Flexibility + tax benefits</li>
-                                <li>Risk management</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <input type="hidden" id="accountType" name="accountType" value="mixed">
-                </div>
-                
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="riskLevel">Investment Risk Level</label>
-                        <select id="riskLevel" name="riskLevel" onchange="updateExpectedReturn()">
-                            <option value="conservative">Conservative (Low Risk)</option>
-                            <option value="moderate" selected>Moderate (Balanced)</option>
-                            <option value="aggressive">Aggressive (High Risk)</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="expectedReturn">Expected Annual Return</label>
-                        <div class="input-group">
-                            <input type="number" id="expectedReturn" name="expectedReturn" min="1" max="12" step="0.5" value="7.0" required>
-                            <div style="position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%); color: var(--text-light);">%</div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="socialSecurity">Expected Social Security (Monthly)</label>
-                        <div class="input-group">
-                            <div class="input-prefix">$</div>
-                            <input type="number" id="socialSecurity" name="socialSecurity" min="0" step="100" placeholder="1800" value="1800">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="pension">Expected Pension (Monthly)</label>
-                        <div class="input-group">
-                            <div class="input-prefix">$</div>
-                            <input type="number" id="pension" name="pension" min="0" step="100" placeholder="0" value="0">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="expenseMultiplier">Expense Multiplier (of current income)</label>
-                        <select id="expenseMultiplier" name="expenseMultiplier">
-                            <option value="0.6">60% - Minimalist retirement</option>
-                            <option value="0.7">70% - Frugal but comfortable</option>
-                            <option value="0.8" selected>80% - Similar lifestyle</option>
-                            <option value="0.9">90% - Enhanced lifestyle</option>
-                            <option value="1.0">100% - Current lifestyle</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <button type="submit" class="calculate-button">Calculate Retirement Plan</button>
-                
-                <div class="loading">
-                    <div class="loading-spinner"></div>
-                    <p>Calculating your retirement projections...</p>
-                </div>
-            </form>
-            
-            <div id="resultsSection" class="results-section"></div>
-            
-            <div id="strategyComparison" class="strategy-comparison" style="display: none;">
-                <h3 class="comparison-title">📊 Compare Investment Strategies</h3>
-                <p style="text-align: center; color: var(--text-light); margin-bottom: 1.5rem;">See how different approaches affect your retirement timeline</p>
-                
-                <div class="strategy-buttons" style="justify-content: center; max-width: 600px; margin: 0 auto;">
-                    <button class="strategy-btn active" onclick="showStrategy('conservative')">Conservative</button>
-                    <button class="strategy-btn" onclick="showStrategy('moderate')">Moderate</button>
-                    <button class="strategy-btn" onclick="showStrategy('aggressive')">Aggressive</button>
-                </div>
-                
-                <div id="strategyResults" class="comparison-results"></div>
-            </div>
-            
-            <div id="timelineVisualization" class="retirement-timeline" style="display: none;"></div>
-        </div>
-        
-        <div id="emailSection" class="email-section" style="display: none;">
-            <div id="emailContent">
-                <h4>📝 Want Your Complete Retirement Plan?</h4>
-                <p>Enter your email below, and I'll send you a detailed retirement planning guide with account recommendations, tax strategies, and step-by-step implementation plan for Triangle families.</p>
-                
-                <form class="email-form" onsubmit="handleEmailSubmit(event)">
-                    <input type="email" id="userEmail" class="email-input" placeholder="Enter your email address..." required>
-                    <button type="submit" class="email-button">
-                        Send My Plan 📧
-                    </button>
-                </form>
-                <p style="font-size: 0.8rem; margin-top: 1rem; opacity: 0.8; text-align: center; width: 100%;">
-                    🔒 We respect your privacy. No spam.
-                </p>
-            </div>
-
-            <div id="emailSuccess" style="display: none; text-align: center;">
-                <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
-                <h4>Plan Sent Successfully!</h4>
-                <p>Please check your inbox (and spam folder) for your personalized retirement guide.</p>
-                <button onclick="resetEmailForm()" style="background: none; border: 1px solid white; color: white; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; margin-top: 1rem;">Send to another email</button>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <div class="disclaimer">
-                <h5>📊 Retirement Planning Disclaimer</h5>
-                <p>This calculator provides estimates based on historical market performance and standard financial planning methodologies. Investment returns, inflation rates, and Social Security benefits are not guaranteed. Consult with qualified financial and tax professionals before making retirement planning decisions. This is for educational purposes only.</p>
-            </div>
-            <p>© 2026 Jonathan Parker - Retirement Planning for Triangle Families | Licensed Financial Representative</p>
-            <p><a href="index.html" style="color: var(--primary-color);">← Back to All Calculators</a></p>
-        </div>
-    </div>
-    
-    <script>
+<script>
         // Investment return expectations by risk level
         const investmentReturns = {
             conservative: { min: 0.04, avg: 0.05, max: 0.06 },
@@ -1589,49 +21,25 @@
             }
         };
 
+        // --- GLOBAL VARIABLES ---
+        let selectedAccount = 'mixed';
+        let calculationResults = {};
+
+        // --- HELPER FUNCTIONS ---
         function updateFutureIncomePreview() {
-            // Get current inputs
             const currentAge = parseFloat(document.getElementById('currentAge').value) || 0;
             const retirementAge = parseFloat(document.getElementById('retirementAge').value) || 0;
             const incomeToday = parseFloat(document.getElementById('retirementIncome').value) || 0;
             
-            // Hardcoded 3% for the preview display (matches the label text)
-            const inflationRate = 0.03; 
-            
-            // Calculate years until retirement
+            const inflationRate = 0.03; // Matches the label text
             const yearsToRetirement = Math.max(0, retirementAge - currentAge);
             
             // Calculate Future Value: PV * (1+r)^n
             const futureIncome = incomeToday * Math.pow(1 + inflationRate, yearsToRetirement);
             
-            // Update the display field
             document.getElementById('futureIncomePreview').value = Math.round(futureIncome).toLocaleString();
         }
 
-        // Add event listeners to Age inputs so the Future Dollar amount updates if they change ages
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('currentAge').addEventListener('input', updateFutureIncomePreview);
-            document.getElementById('retirementAge').addEventListener('input', updateFutureIncomePreview);
-        });
-
-        let selectedAccount = 'mixed';
-        let calculationResults = {};
-        
-        document.getElementById('retirementForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Show loading
-            document.querySelector('.loading').style.display = 'block';
-            document.getElementById('resultsSection').style.display = 'none';
-            document.getElementById('strategyComparison').style.display = 'none';
-            document.getElementById('timelineVisualization').style.display = 'none';
-            
-            setTimeout(() => {
-                calculateRetirement();
-                document.querySelector('.loading').style.display = 'none';
-            }, 1500);
-        });
-        
         function updateExpectedReturn() {
             const riskLevel = document.getElementById('riskLevel').value;
             const returnData = investmentReturns[riskLevel];
@@ -1639,33 +47,23 @@
         }
         
         function selectAccount(accountType) {
-            // Remove active from all
             document.querySelectorAll('.account-card').forEach(card => {
                 card.classList.remove('active');
             });
-            
-            // Add active to selected
             document.querySelector(`[data-account="${accountType}"]`).classList.add('active');
-            
-            // Update hidden field
             document.getElementById('accountType').value = accountType;
             
-            // Update expected return based on account type
             if (accountType === 'mixed') {
-                updateExpectedReturn(); // Use risk level
+                updateExpectedReturn(); 
             } else {
-                // Set recommended returns for account types
-                const accountReturns = {
-                    '401k': 8.0,
-                    'ira': 7.5,
-                    'brokerage': 9.0
-                };
+                const accountReturns = { '401k': 8.0, 'ira': 7.5, 'brokerage': 9.0 };
                 document.getElementById('expectedReturn').value = accountReturns[accountType] || 8.0;
             }
         }
-        
+
+        // --- MAIN CALCULATION ---
         function calculateRetirement() {
-            // Get form data
+            // Get form data (with defaults to prevent NaN)
             const currentAge = parseInt(document.getElementById('currentAge').value) || 35;
             const retirementAge = parseInt(document.getElementById('retirementAge').value) || 65;
             const lifeExpectancy = parseInt(document.getElementById('lifeExpectancy').value) || 90;
@@ -1673,18 +71,17 @@
             const monthlyIncome = parseFloat(document.getElementById('monthlyIncome').value) || 0;
             const monthlyContributions = parseFloat(document.getElementById('monthlyContributions').value) || 0;
             const retirementIncome = parseFloat(document.getElementById('retirementIncome').value) || 0;
-            const inflationRate = parseFloat(document.getElementById('inflationRate').value) / 100 || 0.03;
+            const inflationRate = 0.03; // Fixed at 3% per the hidden input logic
             const socialSecurity = parseFloat(document.getElementById('socialSecurity').value) || ncData.socialSecurityAvg;
             const pension = parseFloat(document.getElementById('pension').value) || 0;
             const expenseMultiplier = parseFloat(document.getElementById('expenseMultiplier').value) || 0.8;
             const expectedReturn = parseFloat(document.getElementById('expectedReturn').value) / 100 || 0.08;
-            const accountType = document.getElementById('accountType').value;
             
             // Calculate key numbers
-            const yearsToRetirement = retirementAge - currentAge;
+            const yearsToRetirement = Math.max(0, retirementAge - currentAge);
             const monthsToRetirement = yearsToRetirement * 12;
             
-            // 1. Calculate Retirement Needs
+            // 1. Calculate Retirement Needs (Inflation Adjusted)
             const monthlyExpensesAtRetirement = monthlyIncome * expenseMultiplier * Math.pow(1 + inflationRate, yearsToRetirement);
             
             // 2. Calculate Social Security & Pension in Future Dollars
@@ -1692,42 +89,50 @@
             const pensionAtRetirement = pension * Math.pow(1 + inflationRate, yearsToRetirement);
             const totalSocialIncome = socialSecurityAtRetirement + pensionAtRetirement;
             
-            // 3. Calculate the NET Monthly Gap (Expenses - Guaranteed Income)
+            // 3. Calculate the NET Monthly Gap
             const monthlyIncomeGap = Math.max(0, monthlyExpensesAtRetirement - totalSocialIncome);
             const annualIncomeGap = monthlyIncomeGap * 12;
             
-            // 4. Calculate Portfolio Goal (The "Nest Egg" needed to cover the Gap)
-            // Using 4% Rule: Need = Annual Gap / 0.04
-            const fundGap = annualIncomeGap / 0.04; 
+            // 4. Calculate Portfolio Goal (The "Nest Egg" needed) - Using 4% Rule
+            // If annual gap is 0, goal is 0.
+            const fundGap = annualIncomeGap > 0 ? (annualIncomeGap / 0.04) : 0; 
             
-            // 5. Calculate Projected Savings (Future Value of Savings + Contributions)
+            // 5. Calculate Projected Savings
             const futureValueCurrent = currentSavings * Math.pow(1 + expectedReturn, yearsToRetirement);
             const monthlyRate = expectedReturn / 12;
-            const futureValueContributions = monthlyContributions * ((Math.pow(1 + monthlyRate, monthsToRetirement) - 1) / monthlyRate);
+            let futureValueContributions = 0;
+            
+            if (monthlyRate > 0 && monthsToRetirement > 0) {
+                futureValueContributions = monthlyContributions * ((Math.pow(1 + monthlyRate, monthsToRetirement) - 1) / monthlyRate);
+            } else {
+                futureValueContributions = monthlyContributions * monthsToRetirement;
+            }
+            
             const totalProjectedSavings = futureValueCurrent + futureValueContributions;
             
             // 6. Calculate Shortage/Surplus
-            const retirementGap = fundGap - totalProjectedSavings; // Positive = Shortage, Negative = Surplus
+            const retirementGap = fundGap - totalProjectedSavings; 
             
             // 7. Calculate Fix (Additional Monthly Contribution)
             let additionalMonthlyNeeded = 0;
-            if (retirementGap > 0) {
+            if (retirementGap > 0 && monthsToRetirement > 0 && monthlyRate > 0) {
                 additionalMonthlyNeeded = retirementGap / ((Math.pow(1 + monthlyRate, monthsToRetirement) - 1) / monthlyRate);
             }
             
-            // Store results
+            // SAVE RESULTS GLOBALLY (This fixes the NaN issue in other functions)
             calculationResults = {
                 currentAge, retirementAge, yearsToRetirement,
                 currentSavings, monthlyContributions, expectedReturn,
-                totalRetirementFundNeeded: fundGap, // Update: Now storing the NET goal so numbers match
+                totalRetirementFundNeeded: fundGap, 
                 totalProjectedSavings,
                 retirementGap,
                 additionalMonthlyNeeded,
                 monthlyExpensesAtRetirement
             };
             
+            // Display Everything
             displayResults(calculationResults);
-            displayStrategyComparison();
+            displayStrategyComparison(); // This relies on calculationResults being set above
             displayTimeline();
             
             // Show sections
@@ -1742,6 +147,7 @@
             }, 300);
         }
         
+        // --- DISPLAY FUNCTIONS ---
         function displayResults(data) {
             const resultsGrid = document.getElementById('resultsSection');
             const isShortage = data.retirementGap > 0;
@@ -1792,12 +198,66 @@
                     </div>
                 `;
             }
-            
             resultsGrid.innerHTML = resultsHTML;
         }
         
+        function displayStrategyComparison() {
+            const strategyResults = document.getElementById('strategyResults');
+            const strategies = ['conservative', 'moderate', 'aggressive'];
+            
+            strategyResults.innerHTML = strategies.map(strategy => {
+                const avgReturn = investmentReturns[strategy].avg;
+                
+                // Recalculate Projection for this specific strategy
+                // Using explicit fallbacks (|| 0) to prevent NaN if data is missing
+                const startBal = calculationResults.currentSavings || 0;
+                const monthlyCont = calculationResults.monthlyContributions || 0;
+                const years = calculationResults.yearsToRetirement || 0;
+                
+                const fvStart = startBal * Math.pow(1 + avgReturn, years);
+                
+                const mRate = avgReturn / 12;
+                let fvCont = 0;
+                if (mRate > 0 && years > 0) {
+                    fvCont = monthlyCont * ((Math.pow(1 + mRate, years * 12) - 1) / mRate);
+                } else {
+                    fvCont = monthlyCont * years * 12;
+                }
+                
+                const projected = fvStart + fvCont;
+                
+                // Calculate Monthly Income (Safe 4% Withdrawal)
+                const monthlyIncome = (projected * 0.04) / 12;
+                
+                // Calculate Goal Coverage (Avoid divide by zero)
+                let coverage = 100;
+                if (calculationResults.totalRetirementFundNeeded > 0) {
+                    coverage = (projected / calculationResults.totalRetirementFundNeeded) * 100;
+                }
+
+                return `
+                    <div class="comparison-card">
+                        <h5>${strategy.charAt(0).toUpperCase() + strategy.slice(1)} Strategy</h5>
+                        <div class="comparison-value">${(avgReturn * 100).toFixed(1)}%</div>
+                        <div class="note">Expected annual return</div>
+                        <div style="font-size: 0.9rem; margin-top: 1rem; color: var(--text-dark); text-align: left; padding-left: 10px;">
+                            <div style="margin-bottom: 4px;">
+                                <strong>Potential Nest Egg:</strong> $${Math.round(projected).toLocaleString()}
+                            </div>
+                            <div style="margin-bottom: 4px;">
+                                <strong>Monthly Income:</strong> $${Math.round(monthlyIncome).toLocaleString()}
+                            </div>
+                            <div>
+                                <strong>Goal Coverage:</strong> ${Math.round(Math.min(coverage, 999))}%
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
         function displayTimeline() {
-            // Helper function to calculate Future Value accurately for intermediate years
+            // Helper for intermediate growth
             function calculateProgress(targetAge) {
                 const yearsToTarget = targetAge - calculationResults.currentAge;
                 if (yearsToTarget <= 0) return calculationResults.currentSavings;
@@ -1805,23 +265,18 @@
                 const months = yearsToTarget * 12;
                 const monthlyRate = calculationResults.expectedReturn / 12;
                 
-                // 1. Growth of Starting Savings (Compound Interest)
                 const fvPrincipal = calculationResults.currentSavings * Math.pow(1 + monthlyRate, months);
-                
-                // 2. Growth of Monthly Contributions (Future Value of Annuity)
                 let fvContrib = 0;
                 if (monthlyRate > 0) {
                     fvContrib = calculationResults.monthlyContributions * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate);
                 } else {
                     fvContrib = calculationResults.monthlyContributions * months;
                 }
-                
                 return fvPrincipal + fvContrib;
             }
 
             const oneThirdYears = Math.floor(calculationResults.yearsToRetirement / 3);
             const twoThirdsYears = Math.floor(calculationResults.yearsToRetirement * 2 / 3);
-            
             const age1 = calculationResults.currentAge + oneThirdYears;
             const age2 = calculationResults.currentAge + twoThirdsYears;
 
@@ -1833,135 +288,78 @@
                         <div class="timeline-description">Starting Point</div>
                         <div class="timeline-amount">$${Math.round(calculationResults.currentSavings).toLocaleString()}</div>
                     </div>
-                    
                     <div class="timeline-item">
                         <div class="timeline-year">Age ${age1}</div>
                         <div class="timeline-description">${oneThirdYears} Years Progress</div>
                         <div class="timeline-amount">~$${Math.round(calculateProgress(age1)).toLocaleString()}</div>
                     </div>
-                    
                     <div class="timeline-item">
                         <div class="timeline-year">Age ${age2}</div>
                         <div class="timeline-description">${twoThirdsYears} Years Progress</div>
                         <div class="timeline-amount">~$${Math.round(calculateProgress(age2)).toLocaleString()}</div>
                     </div>
-                    
                     <div class="timeline-item" style="background: linear-gradient(135deg, #e8f5e8, #ffffff);">
                         <div class="timeline-year">Age ${calculationResults.retirementAge}</div>
                         <div class="timeline-description">🏖️ Retirement!</div>
                         <div class="timeline-amount">$${Math.round(calculationResults.totalProjectedSavings).toLocaleString()}</div>
                     </div>
                 </div>
-                
                 <div style="text-align: center; margin-top: 1rem; background: linear-gradient(135deg, #fff3cd, #ffffff); padding: 1rem; border-radius: 8px;">
                     <strong>Next Steps:</strong> Review your contribution rate, consider catch-up contributions after 50, and maintain your investment allocation.
                 </div>
             `;
-            
             document.getElementById('timelineVisualization').innerHTML = timelineContent;
         }
         
-        function displayStrategyComparison() {
-            const strategyResults = document.getElementById('strategyResults');
-            
-            // Calculate results for each risk level
-            const strategies = ['conservative', 'moderate', 'aggressive'];
-            const comparisonResults = {};
-            
-            strategies.forEach(strategy => {
-                const returnData = investmentReturns[strategy];
-                const avgReturn = returnData.avg;
-                
-                // Recalculate with different return rates
-                const futureValueWithStrategy = calculationResults.currentSavings * Math.pow(1 + avgReturn, calculationResults.yearsToRetirement);
-                const monthlyRate = avgReturn / 12;
-                const futureValueContributions = calculationResults.monthlyContributions * ((Math.pow(1 + monthlyRate, calculationResults.yearsToRetirement * 12) - 1) / monthlyRate);
-                const totalProjected = futureValueWithStrategy + futureValueContributions;
-                
-                comparisonResults[strategy] = {
-                    monthlyIncome: calculationResults.monthlyIncome * avgReturn * 0.04,
-                    projectedSavings: totalProjected,
-                    successRate: Math.min((totalProjected / calculationResults.totalRetirementFundNeeded) * 100, 100),
-                    monthlyIncomeInRetirement: Math.min(totalProjected * 0.04 / 12, calculationResults.totalMonthlyRetirementNeed)
-                };
-            });
-            
-            strategyResults.innerHTML = `
-                ${strategies.map(strategy => `
-                    <div class="comparison-card">
-                        <h5>${strategy.charAt(0).toUpperCase() + strategy.slice(1)} Strategy</h5>
-                        <div class="comparison-value">${(investmentReturns[strategy].avg * 100).toFixed(1)}%</div>
-                        <div class="note">Expected annual return</div>
-                        <div style="font-size: 0.9rem; margin-top: 1rem; color: var(--text-dark);">
-                            <strong>Monthly retirement income:</strong> $${Math.round(comparisonResults[strategy].monthlyIncome).toLocaleString()}<br>
-                            <strong>Success rate:</strong> ${Math.round(comparisonResults[strategy].successRate)}%<br>
-                            <strong>Confidence level:</strong> ${strategy === 'conservative' ? 'High' : strategy === 'moderate' ? 'Medium' : 'Higher potential'}
-                        </div>
-                    </div>
-                `).join('')}
-            `;
-        }
-        
         function showStrategy(strategy) {
-            // Update button states
             document.querySelectorAll('.strategy-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            event.target.classList.add('active');
-            
-            console.log('Showing', strategy, 'strategy results');
+            if(event) event.target.classList.add('active');
         }
 
         // --- EMAIL FUNCTIONALITY ---
         function handleEmailSubmit(event) {
             event.preventDefault(); 
             
-            // Select elements
             const emailInput = document.getElementById('userEmail');
             const button = document.querySelector('.email-button');
             const formContainer = document.getElementById('emailContent');
             const successMessage = document.getElementById('emailSuccess');
             const originalText = button.innerHTML;
             
-            // 1. Gather the data from calculationResults
+            // Only prepare data if calculation has run
+            if (!calculationResults || Object.keys(calculationResults).length === 0) {
+                alert("Please calculate your retirement plan first!");
+                return;
+            }
+
             const formData = {
                 email: emailInput.value,
                 retirement_age: calculationResults.retirementAge,
                 total_needed: Math.round(calculationResults.totalRetirementFundNeeded),
                 projected_savings: Math.round(calculationResults.totalProjectedSavings),
-                gap_or_surplus: Math.round(calculationResults.retirementGap), 
+                gap: Math.round(calculationResults.retirementGap), 
                 monthly_contribution_needed: Math.round(calculationResults.additionalMonthlyNeeded)
             };
 
-            // 2. Show Loading State
             button.innerHTML = 'Sending... ⏳';
             button.disabled = true;
 
-            // 3. Send data to Formspree
             fetch("https://formspree.io/f/xkovojay", {
                 method: "POST",
                 body: JSON.stringify(formData),
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                }
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
             })
             .then(response => {
                 if (response.ok) {
-                    // SUCCESS: Hide form, show success message
                     formContainer.style.display = 'none';
                     successMessage.style.display = 'block';
-                    
-                    // Optional: Reset form for future use
                     emailInput.value = '';
                 } else {
-                    // ERROR: Something went wrong
                     response.json().then(data => {
-                        if (data.errors) {
-                            alert(data.errors.map(error => error.message).join(", "));
-                        } else {
-                            alert("Oops! There was a problem submitting your form");
-                        }
+                        if (data.errors) alert(data.errors.map(e => e.message).join(", "));
+                        else alert("Oops! There was a problem submitting your form");
                     });
                 }
             })
@@ -1970,7 +368,6 @@
                 console.error('Error:', error);
             })
             .finally(() => {
-                // Reset button state
                 button.innerHTML = originalText;
                 button.disabled = false;
             });
@@ -1981,6 +378,24 @@
             document.getElementById('emailSuccess').style.display = 'none';
             document.getElementById('userEmail').value = '';
         }
+
+        // --- INITIALIZATION ---
+        document.getElementById('retirementForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.querySelector('.loading').style.display = 'block';
+            document.getElementById('resultsSection').style.display = 'none';
+            document.getElementById('strategyComparison').style.display = 'none';
+            document.getElementById('timelineVisualization').style.display = 'none';
+            
+            setTimeout(() => {
+                calculateRetirement();
+                document.querySelector('.loading').style.display = 'none';
+            }, 1500);
+        });
+
+        // Initialize Listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('currentAge').addEventListener('input', updateFutureIncomePreview);
+            document.getElementById('retirementAge').addEventListener('input', updateFutureIncomePreview);
+        });
     </script>
-</body>
-</html>
