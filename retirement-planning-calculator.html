@@ -510,40 +510,37 @@
             line-height: 1.5;
         }
         
+        /* Loading Animation */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 1rem;
+        }
+        
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
         /* Responsive Design */
         @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-            
-            .header-content h1 {
-                font-size: 1.8rem;
-            }
-            
-            .calculator-container {
-                padding: 1.5rem;
-            }
-            
-            .results-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .strategy-buttons {
-                flex-direction: column;
-            }
-            
-            .email-form {
-                flex-direction: column;
-            }
-            
-            .email-input {
-                min-width: auto;
-                width: 100%;
-            }
-            
-            .account-types {
-                grid-template-columns: 1fr;
-            }
+            .container { padding: 10px; }
+            .header-content h1 { font-size: 1.8rem; }
+            .calculator-container { padding: 1.5rem; }
+            .results-grid { grid-template-columns: 1fr; }
+            .strategy-buttons { flex-direction: column; }
+            .email-form { flex-direction: column; }
+            .email-input { min-width: auto; width: 100%; }
+            .account-types { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -564,7 +561,6 @@
             
             <form id="retirementForm">
                 <div class="form-grid">
-                    <!-- Basic Information -->
                     <div class="form-group">
                         <label for="currentAge">Your Current Age</label>
                         <input type="number" id="currentAge" name="currentAge" min="18" max="75" required placeholder="35">
@@ -585,7 +581,6 @@
                         </select>
                     </div>
                     
-                    <!-- Current Financials -->
                     <div class="form-group">
                         <label for="currentSavings">Current Retirement Savings</label>
                         <div class="input-group">
@@ -610,7 +605,6 @@
                         </div>
                     </div>
                     
-                    <!-- Retirement Planning -->
                     <div class="form-group">
                         <label for="retirementIncome">Desired Monthly Income in Retirement</label>
                         <div class="input-group">
@@ -628,7 +622,6 @@
                     </div>
                 </div>
                 
-                <!-- Account Type Selection -->
                 <div style="margin: 2rem 0;">
                     <label style="display: block; margin-bottom: 1rem; color: var(--text-dark); font-weight: 600;">Investment Account Types</label>
                     <div class="account-types">
@@ -680,7 +673,6 @@
                 </div>
                 
                 <div class="form-grid">
-                    <!-- Investment Strategy -->
                     <div class="form-group">
                         <label for="riskLevel">Investment Risk Level</label>
                         <select id="riskLevel" name="riskLevel" onchange="updateExpectedReturn()">
@@ -698,7 +690,6 @@
                         </div>
                     </div>
                     
-                    <!-- Social Security -->
                     <div class="form-group">
                         <label for="socialSecurity">Expected Social Security (Monthly)</label>
                         <div class="input-group">
@@ -735,12 +726,9 @@
                 </div>
             </form>
             
-            <!-- Results Section -->
             <div id="resultsSection" class="results-section">
-                <!-- Results will be populated here -->
-            </div>
+                </div>
             
-            <!-- Strategy Comparison -->
             <div id="strategyComparison" class="strategy-comparison" style="display: none;">
                 <h3 class="comparison-title">📊 Compare Investment Strategies</h3>
                 <p style="text-align: center; color: var(--text-light); margin-bottom: 1.5rem;">See how different approaches affect your retirement timeline</p>
@@ -752,34 +740,35 @@
                 </div>
                 
                 <div id="strategyResults" class="comparison-results">
-                    <!-- Strategy comparison results -->
-                </div>
+                    </div>
             </div>
             
-            <!-- Retirement Timeline Visualization -->
             <div id="timelineVisualization" class="retirement-timeline" style="display: none;">
-                <!-- Timeline will be populated -->
-            </div>
+                </div>
         </div>
         
-        <!-- Email Capture -->
         <div id="emailSection" class="email-section" style="display: none;">
-            <h4>📝 Want Your Complete Retirement Plan?</h4>
-            <p>I'll send you a detailed retirement planning guide with account recommendations, tax strategies, and step-by-step implementation plan for Triangle families.</p>
-            
-            <form id="emailForm" method="POST" action="../../lead-capture.php">
-                <div class="email-form">
-                    <input type="email" class="email-input" name="email" placeholder="Enter your email address" required>
-                    <input type="hidden" name="calculator_type" value="retirement-planning">
-                    <input type="hidden" name="lead_source" value="calculator-results">
-                    <input type="hidden" name="years_to_retirement" id="hiddenYearsToRetirement">
-                    <input type="hidden" name="retirement_goal" id="hiddenRetirementGoal">
-                    <input type="hidden" name="projected_shortage" id="hiddenProjectedShortage">
-                    <input type="hidden" name="recommended_monthly_contribution" id="hiddenRecommendedContribution">
-                    <button type="submit" class="email-button">Send My Plan 📧</button>
-                </div>
-                <p style="font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.8;">Your information is secure and will never be shared.</p>
-            </form>
+            <div id="emailContent">
+                <h4>📝 Want Your Complete Retirement Plan?</h4>
+                <p>Enter your email below, and I'll send you a detailed retirement planning guide with account recommendations, tax strategies, and step-by-step implementation plan for Triangle families.</p>
+                
+                <form class="email-form" onsubmit="handleEmailSubmit(event)">
+                    <input type="email" id="userEmail" class="email-input" placeholder="Enter your email address..." required>
+                    <button type="submit" class="email-button">
+                        Send My Plan 📧
+                    </button>
+                </form>
+                <p style="font-size: 0.8rem; margin-top: 1rem; opacity: 0.8; text-align: center; width: 100%;">
+                    🔒 We respect your privacy. No spam.
+                </p>
+            </div>
+
+            <div id="emailSuccess" style="display: none; text-align: center;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
+                <h4>Plan Sent Successfully!</h4>
+                <p>Please check your inbox (and spam folder) for your personalized retirement guide.</p>
+                <button onclick="resetEmailForm()" style="background: none; border: 1px solid white; color: white; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; margin-top: 1rem;">Send to another email</button>
+            </div>
         </div>
         
         <div class="footer">
@@ -927,13 +916,7 @@
                 additionalMonthlyNeeded = retirementGap / ((Math.pow(1 + monthlyRate, monthsToRetirement) - 1) / monthlyRate);
             }
             
-            // Set hidden form values for lead capture
-            document.getElementById('hiddenYearsToRetirement').value = yearsToRetirement;
-            document.getElementById('hiddenRetirementGoal').value = Math.round(totalRetirementFundNeeded);
-            document.getElementById('hiddenProjectedShortage').value = Math.round(retirementGap);
-            document.getElementById('hiddenRecommendedContribution').value = Math.round(additionalMonthlyNeeded);
-            
-            // Store results for comparison
+            // Store results for comparison and email sending
             calculationResults = {
                 currentAge: currentAge,
                 retirementAge: retirementAge,
@@ -1118,9 +1101,79 @@
             });
             event.target.classList.add('active');
             
-            // Recalculate with different risk level
-            // This would update the display in a real implementation
             console.log('Showing', strategy, 'strategy results');
+        }
+
+        // --- NEW EMAIL FUNCTIONALITY ---
+        function handleEmailSubmit(event) {
+            event.preventDefault(); 
+            
+            // Select elements
+            const emailInput = document.getElementById('userEmail');
+            const button = document.querySelector('.email-button');
+            const formContainer = document.getElementById('emailContent');
+            const successMessage = document.getElementById('emailSuccess');
+            const originalText = button.innerHTML;
+            
+            // 1. Gather the data from calculationResults
+            // Data is safe to access because the email section only shows after calculation
+            const formData = {
+                email: emailInput.value,
+                retirement_age: calculationResults.retirementAge,
+                total_needed: Math.round(calculationResults.totalRetirementFundNeeded),
+                projected_savings: Math.round(calculationResults.totalProjectedSavings),
+                gap_or_surplus: Math.round(calculationResults.retirementGap), // Positive means gap, negative means surplus (based on calculation logic)
+                monthly_contribution_needed: Math.round(calculationResults.additionalMonthlyNeeded)
+            };
+
+            // 2. Show Loading State
+            button.innerHTML = 'Sending... ⏳';
+            button.disabled = true;
+
+            // 3. Send data to Formspree
+            // Using your ID: xkovojay
+            fetch("https://formspree.io/f/xkovojay", {
+                method: "POST",
+                body: JSON.stringify(formData),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // SUCCESS: Hide form, show success message
+                    formContainer.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    
+                    // Optional: Reset form for future use
+                    emailInput.value = '';
+                } else {
+                    // ERROR: Something went wrong
+                    response.json().then(data => {
+                        if (data.errors) {
+                            alert(data.errors.map(error => error.message).join(", "));
+                        } else {
+                            alert("Oops! There was a problem submitting your form");
+                        }
+                    });
+                }
+            })
+            .catch(error => {
+                alert("Oops! There was a problem submitting your form");
+                console.error('Error:', error);
+            })
+            .finally(() => {
+                // Reset button state
+                button.innerHTML = originalText;
+                button.disabled = false;
+            });
+        }
+
+        function resetEmailForm() {
+            document.getElementById('emailContent').style.display = 'block';
+            document.getElementById('emailSuccess').style.display = 'none';
+            document.getElementById('userEmail').value = '';
         }
     </script>
 </body>
