@@ -1058,6 +1058,29 @@
         }
         
         function displayTimeline() {
+            // Helper function to calculate Future Value at a specific year mark
+            // This includes both Initial Savings growth AND Monthly Contributions growth
+            function calculateProgress(years) {
+                const months = years * 12;
+                const monthlyRate = calculationResults.expectedReturn / 12;
+                
+                // 1. Growth of Current Savings
+                const fvCurrent = calculationResults.currentSavings * Math.pow(1 + monthlyRate, months);
+                
+                // 2. Growth of Monthly Contributions
+                let fvContrib = 0;
+                if (monthlyRate > 0) {
+                    fvContrib = calculationResults.monthlyContributions * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate);
+                } else {
+                    fvContrib = calculationResults.monthlyContributions * months;
+                }
+                
+                return fvCurrent + fvContrib;
+            }
+
+            const oneThirdYears = Math.floor(calculationResults.yearsToRetirement / 3);
+            const twoThirdsYears = Math.floor(calculationResults.yearsToRetirement * 2 / 3);
+
             const timelineContent = `
                 <div class="timeline-title">🗓️ Your Retirement Savings Journey</div>
                 <div class="timeline-grid">
@@ -1068,15 +1091,15 @@
                     </div>
                     
                     <div class="timeline-item">
-                        <div class="timeline-year">Age ${Math.floor(calculationResults.currentAge + calculationResults.yearsToRetirement/3)}</div>
-                        <div class="timeline-description">${Math.floor(calculationResults.yearsToRetirement/3)} Years Progress</div>
-                        <div class="timeline-amount">~$${Math.round(calculationResults.currentSavings * Math.pow(1 + calculationResults.expectedReturn, calculationResults.yearsToRetirement/3)).toLocaleString()}</div>
+                        <div class="timeline-year">Age ${calculationResults.currentAge + oneThirdYears}</div>
+                        <div class="timeline-description">${oneThirdYears} Years Progress</div>
+                        <div class="timeline-amount">~$${Math.round(calculateProgress(oneThirdYears)).toLocaleString()}</div>
                     </div>
                     
                     <div class="timeline-item">
-                        <div class="timeline-year">Age ${Math.floor(calculationResults.currentAge + calculationResults.yearsToRetirement*2/3)}</div>
-                        <div class="timeline-description">${Math.floor(calculationResults.yearsToRetirement*2/3)} Years Progress</div>
-                        <div class="timeline-amount">~$${Math.round(calculationResults.currentSavings * Math.pow(1 + calculationResults.expectedReturn, calculationResults.yearsToRetirement*2/3)).toLocaleString()}</div>
+                        <div class="timeline-year">Age ${calculationResults.currentAge + twoThirdsYears}</div>
+                        <div class="timeline-description">${twoThirdsYears} Years Progress</div>
+                        <div class="timeline-amount">~$${Math.round(calculateProgress(twoThirdsYears)).toLocaleString()}</div>
                     </div>
                     
                     <div class="timeline-item" style="background: linear-gradient(135deg, #e8f5e8, #ffffff);">
