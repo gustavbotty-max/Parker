@@ -806,10 +806,33 @@
             stateTaxBenefits: {
                 '401k': true, 'ira': true, 'pension': true
             }
-        };
+    function updateFutureIncomePreview() {
+        // Get current inputs
+        const currentAge = parseFloat(document.getElementById('currentAge').value) || 0;
+        const retirementAge = parseFloat(document.getElementById('retirementAge').value) || 0;
+        const incomeToday = parseFloat(document.getElementById('retirementIncome').value) || 0;
         
-        let selectedAccount = 'mixed';
-        let calculationResults = {};
+        // Hardcoded 3% for the preview display (matches the label text)
+        const inflationRate = 0.03; 
+        
+        // Calculate years until retirement
+        const yearsToRetirement = Math.max(0, retirementAge - currentAge);
+        
+        // Calculate Future Value: PV * (1+r)^n
+        const futureIncome = incomeToday * Math.pow(1 + inflationRate, yearsToRetirement);
+        
+        // Update the display field
+        document.getElementById('futureIncomePreview').value = Math.round(futureIncome).toLocaleString();
+    }
+
+    // Add event listeners to Age inputs so the Future Dollar amount updates if they change ages
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('currentAge').addEventListener('input', updateFutureIncomePreview);
+        document.getElementById('retirementAge').addEventListener('input', updateFutureIncomePreview);
+    });
+
+    let selectedAccount = 'mixed';
+    let calculationResults = {};
         
         document.getElementById('retirementForm').addEventListener('submit', function(e) {
             e.preventDefault();
