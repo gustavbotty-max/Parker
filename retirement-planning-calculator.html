@@ -606,24 +606,24 @@
                     </div>
                     
                     <div class="form-group">
-        <label for="retirementIncome">Desired Monthly Income (Today's Dollars)</label>
-        <div class="input-group">
-            <div class="input-prefix">$</div>
-            <input type="number" id="retirementIncome" name="retirementIncome" min="0" step="any" required placeholder="4500" oninput="updateFutureIncomePreview()">
-        </div>
-        <small style="color: var(--text-light); font-size: 0.8rem;">Enter the amount you would need to live on if you retired <strong>today</strong>.</small>
-    </div>
-    
-    <div class="form-group">
-        <label for="futureIncomePreview" style="color: var(--primary-color);">Equivalent in Future Dollars (w/ 3% inflation)</label>
-        <div class="input-group">
-            <div class="input-prefix" style="color: var(--primary-color);">$</div>
-            <input type="text" id="futureIncomePreview" readonly 
-                   style="background-color: #e8f4fd; color: var(--primary-color); font-weight: bold; border-color: var(--secondary-color);" 
-                   value="0">
-        </div>
-        <input type="hidden" id="inflationRate" name="inflationRate" value="3.0">
-    </div>                
+                        <label for="retirementIncome">Desired Monthly Income (Today's Dollars)</label>
+                        <div class="input-group">
+                            <div class="input-prefix">$</div>
+                            <input type="number" id="retirementIncome" name="retirementIncome" min="0" step="any" required placeholder="4500" oninput="updateFutureIncomePreview()">
+                        </div>
+                        <small style="color: var(--text-light); font-size: 0.8rem;">Enter the amount you would need to live on if you retired <strong>today</strong>.</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="futureIncomePreview" style="color: var(--primary-color);">Equivalent in Future Dollars (w/ 3% inflation)</label>
+                        <div class="input-group">
+                            <div class="input-prefix" style="color: var(--primary-color);">$</div>
+                            <input type="text" id="futureIncomePreview" readonly 
+                                   style="background-color: #e8f4fd; color: var(--primary-color); font-weight: bold; border-color: var(--secondary-color);" 
+                                   value="0">
+                        </div>
+                        <input type="hidden" id="inflationRate" name="inflationRate" value="3.0">
+                    </div>
                 </div>
                 
                 <div style="margin: 2rem 0;">
@@ -730,8 +730,7 @@
                 </div>
             </form>
             
-            <div id="resultsSection" class="results-section">
-                </div>
+            <div id="resultsSection" class="results-section"></div>
             
             <div id="strategyComparison" class="strategy-comparison" style="display: none;">
                 <h3 class="comparison-title">📊 Compare Investment Strategies</h3>
@@ -743,12 +742,10 @@
                     <button class="strategy-btn" onclick="showStrategy('aggressive')">Aggressive</button>
                 </div>
                 
-                <div id="strategyResults" class="comparison-results">
-                    </div>
+                <div id="strategyResults" class="comparison-results"></div>
             </div>
             
-            <div id="timelineVisualization" class="retirement-timeline" style="display: none;">
-                </div>
+            <div id="timelineVisualization" class="retirement-timeline" style="display: none;"></div>
         </div>
         
         <div id="emailSection" class="email-section" style="display: none;">
@@ -806,33 +803,35 @@
             stateTaxBenefits: {
                 '401k': true, 'ira': true, 'pension': true
             }
-    function updateFutureIncomePreview() {
-        // Get current inputs
-        const currentAge = parseFloat(document.getElementById('currentAge').value) || 0;
-        const retirementAge = parseFloat(document.getElementById('retirementAge').value) || 0;
-        const incomeToday = parseFloat(document.getElementById('retirementIncome').value) || 0;
-        
-        // Hardcoded 3% for the preview display (matches the label text)
-        const inflationRate = 0.03; 
-        
-        // Calculate years until retirement
-        const yearsToRetirement = Math.max(0, retirementAge - currentAge);
-        
-        // Calculate Future Value: PV * (1+r)^n
-        const futureIncome = incomeToday * Math.pow(1 + inflationRate, yearsToRetirement);
-        
-        // Update the display field
-        document.getElementById('futureIncomePreview').value = Math.round(futureIncome).toLocaleString();
-    }
+        };
 
-    // Add event listeners to Age inputs so the Future Dollar amount updates if they change ages
-    document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('currentAge').addEventListener('input', updateFutureIncomePreview);
-        document.getElementById('retirementAge').addEventListener('input', updateFutureIncomePreview);
-    });
+        function updateFutureIncomePreview() {
+            // Get current inputs
+            const currentAge = parseFloat(document.getElementById('currentAge').value) || 0;
+            const retirementAge = parseFloat(document.getElementById('retirementAge').value) || 0;
+            const incomeToday = parseFloat(document.getElementById('retirementIncome').value) || 0;
+            
+            // Hardcoded 3% for the preview display (matches the label text)
+            const inflationRate = 0.03; 
+            
+            // Calculate years until retirement
+            const yearsToRetirement = Math.max(0, retirementAge - currentAge);
+            
+            // Calculate Future Value: PV * (1+r)^n
+            const futureIncome = incomeToday * Math.pow(1 + inflationRate, yearsToRetirement);
+            
+            // Update the display field
+            document.getElementById('futureIncomePreview').value = Math.round(futureIncome).toLocaleString();
+        }
 
-    let selectedAccount = 'mixed';
-    let calculationResults = {};
+        // Add event listeners to Age inputs so the Future Dollar amount updates if they change ages
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('currentAge').addEventListener('input', updateFutureIncomePreview);
+            document.getElementById('retirementAge').addEventListener('input', updateFutureIncomePreview);
+        });
+
+        let selectedAccount = 'mixed';
+        let calculationResults = {};
         
         document.getElementById('retirementForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -1087,8 +1086,11 @@
         function displayTimeline() {
             // Helper function to calculate Future Value at a specific year mark
             // This includes both Initial Savings growth AND Monthly Contributions growth
-            function calculateProgress(years) {
-                const months = years * 12;
+            function calculateProgress(targetAge) {
+                const yearsToTarget = targetAge - calculationResults.currentAge;
+                if (yearsToTarget <= 0) return calculationResults.currentSavings;
+
+                const months = yearsToTarget * 12;
                 const monthlyRate = calculationResults.expectedReturn / 12;
                 
                 // 1. Growth of Current Savings
@@ -1107,6 +1109,9 @@
 
             const oneThirdYears = Math.floor(calculationResults.yearsToRetirement / 3);
             const twoThirdsYears = Math.floor(calculationResults.yearsToRetirement * 2 / 3);
+            
+            const age1 = calculationResults.currentAge + oneThirdYears;
+            const age2 = calculationResults.currentAge + twoThirdsYears;
 
             const timelineContent = `
                 <div class="timeline-title">🗓️ Your Retirement Savings Journey</div>
@@ -1118,15 +1123,15 @@
                     </div>
                     
                     <div class="timeline-item">
-                        <div class="timeline-year">Age ${calculationResults.currentAge + oneThirdYears}</div>
+                        <div class="timeline-year">Age ${age1}</div>
                         <div class="timeline-description">${oneThirdYears} Years Progress</div>
-                        <div class="timeline-amount">~$${Math.round(calculateProgress(oneThirdYears)).toLocaleString()}</div>
+                        <div class="timeline-amount">~$${Math.round(calculateProgress(age1)).toLocaleString()}</div>
                     </div>
                     
                     <div class="timeline-item">
-                        <div class="timeline-year">Age ${calculationResults.currentAge + twoThirdsYears}</div>
+                        <div class="timeline-year">Age ${age2}</div>
                         <div class="timeline-description">${twoThirdsYears} Years Progress</div>
-                        <div class="timeline-amount">~$${Math.round(calculateProgress(twoThirdsYears)).toLocaleString()}</div>
+                        <div class="timeline-amount">~$${Math.round(calculateProgress(age2)).toLocaleString()}</div>
                     </div>
                     
                     <div class="timeline-item" style="background: linear-gradient(135deg, #e8f5e8, #ffffff);">
@@ -1154,7 +1159,7 @@
             console.log('Showing', strategy, 'strategy results');
         }
 
-        // --- NEW EMAIL FUNCTIONALITY ---
+        // --- EMAIL FUNCTIONALITY ---
         function handleEmailSubmit(event) {
             event.preventDefault(); 
             
@@ -1166,13 +1171,12 @@
             const originalText = button.innerHTML;
             
             // 1. Gather the data from calculationResults
-            // Data is safe to access because the email section only shows after calculation
             const formData = {
                 email: emailInput.value,
                 retirement_age: calculationResults.retirementAge,
                 total_needed: Math.round(calculationResults.totalRetirementFundNeeded),
                 projected_savings: Math.round(calculationResults.totalProjectedSavings),
-                gap_or_surplus: Math.round(calculationResults.retirementGap), // Positive means gap, negative means surplus (based on calculation logic)
+                gap_or_surplus: Math.round(calculationResults.retirementGap), 
                 monthly_contribution_needed: Math.round(calculationResults.additionalMonthlyNeeded)
             };
 
@@ -1181,7 +1185,6 @@
             button.disabled = true;
 
             // 3. Send data to Formspree
-            // Using your ID: xkovojay
             fetch("https://formspree.io/f/xkovojay", {
                 method: "POST",
                 body: JSON.stringify(formData),
