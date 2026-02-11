@@ -606,20 +606,24 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="retirementIncome">Desired Monthly Income in Retirement</label>
-                        <div class="input-group">
-                            <div class="input-prefix">$</div>
-                            <input type="number" id="retirementIncome" name="retirementIncome" min="0" step="any" required placeholder="4500">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="inflationRate">Expected Inflation Rate</label>
-                        <div class="input-group">
-                            <input type="number" id="inflationRate" name="inflationRate" min="1" max="10" step="0.1" value="3.0" required>
-                            <div style="position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%); color: var(--text-light);">%</div>
-                        </div>
-                    </div>
+        <label for="retirementIncome">Desired Monthly Income (Today's Dollars)</label>
+        <div class="input-group">
+            <div class="input-prefix">$</div>
+            <input type="number" id="retirementIncome" name="retirementIncome" min="0" step="any" required placeholder="4500" oninput="updateFutureIncomePreview()">
+        </div>
+        <small style="color: var(--text-light); font-size: 0.8rem;">Enter the amount you would need to live on if you retired <strong>today</strong>.</small>
+    </div>
+    
+    <div class="form-group">
+        <label for="futureIncomePreview" style="color: var(--primary-color);">Equivalent in Future Dollars (w/ 3% inflation)</label>
+        <div class="input-group">
+            <div class="input-prefix" style="color: var(--primary-color);">$</div>
+            <input type="text" id="futureIncomePreview" readonly 
+                   style="background-color: #e8f4fd; color: var(--primary-color); font-weight: bold; border-color: var(--secondary-color);" 
+                   value="0">
+        </div>
+        <input type="hidden" id="inflationRate" name="inflationRate" value="3.0">
+    </div>                
                 </div>
                 
                 <div style="margin: 2rem 0;">
