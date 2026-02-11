@@ -880,7 +880,7 @@
             }
         }
         
-       function calculateRetirement() {
+        function calculateRetirement() {
             // Get form data
             const currentAge = parseInt(document.getElementById('currentAge').value) || 35;
             const retirementAge = parseInt(document.getElementById('retirementAge').value) || 65;
@@ -941,12 +941,6 @@
                 additionalMonthlyNeeded,
                 monthlyExpensesAtRetirement
             };
-            
-            // Update hidden form fields for email
-            if(document.getElementById('hiddenYearsToRetirement')) document.getElementById('hiddenYearsToRetirement').value = yearsToRetirement;
-            if(document.getElementById('hiddenRetirementGoal')) document.getElementById('hiddenRetirementGoal').value = Math.round(fundGap);
-            if(document.getElementById('hiddenProjectedShortage')) document.getElementById('hiddenProjectedShortage').value = Math.round(retirementGap);
-            if(document.getElementById('hiddenRecommendedContribution')) document.getElementById('hiddenRecommendedContribution').value = Math.round(additionalMonthlyNeeded);
             
             displayResults(calculationResults);
             displayStrategyComparison();
@@ -1081,7 +1075,48 @@
             `;
             
             document.getElementById('timelineVisualization').innerHTML = timelineContent;
-        }        
+        }
+        
+        function displayStrategyComparison() {
+            const strategyResults = document.getElementById('strategyResults');
+            
+            // Calculate results for each risk level
+            const strategies = ['conservative', 'moderate', 'aggressive'];
+            const comparisonResults = {};
+            
+            strategies.forEach(strategy => {
+                const returnData = investmentReturns[strategy];
+                const avgReturn = returnData.avg;
+                
+                // Recalculate with different return rates
+                const futureValueWithStrategy = calculationResults.currentSavings * Math.pow(1 + avgReturn, calculationResults.yearsToRetirement);
+                const monthlyRate = avgReturn / 12;
+                const futureValueContributions = calculationResults.monthlyContributions * ((Math.pow(1 + monthlyRate, calculationResults.yearsToRetirement * 12) - 1) / monthlyRate);
+                const totalProjected = futureValueWithStrategy + futureValueContributions;
+                
+                comparisonResults[strategy] = {
+                    monthlyIncome: calculationResults.monthlyIncome * avgReturn * 0.04,
+                    projectedSavings: totalProjected,
+                    successRate: Math.min((totalProjected / calculationResults.totalRetirementFundNeeded) * 100, 100),
+                    monthlyIncomeInRetirement: Math.min(totalProjected * 0.04 / 12, calculationResults.totalMonthlyRetirementNeed)
+                };
+            });
+            
+            strategyResults.innerHTML = `
+                ${strategies.map(strategy => `
+                    <div class="comparison-card">
+                        <h5>${strategy.charAt(0).toUpperCase() + strategy.slice(1)} Strategy</h5>
+                        <div class="comparison-value">${(investmentReturns[strategy].avg * 100).toFixed(1)}%</div>
+                        <div class="note">Expected annual return</div>
+                        <div style="font-size: 0.9rem; margin-top: 1rem; color: var(--text-dark);">
+                            <strong>Monthly retirement income:</strong> $${Math.round(comparisonResults[strategy].monthlyIncome).toLocaleString()}<br>
+                            <strong>Success rate:</strong> ${Math.round(comparisonResults[strategy].successRate)}%<br>
+                            <strong>Confidence level:</strong> ${strategy === 'conservative' ? 'High' : strategy === 'moderate' ? 'Medium' : 'Higher potential'}
+                        </div>
+                    </div>
+                `).join('')}
+            `;
+        }
         
         function showStrategy(strategy) {
             // Update button states
