@@ -660,12 +660,6 @@
                 <h3 class="comparison-title">📊 Compare Investment Strategies</h3>
                 <p style="text-align: center; color: var(--text-light); margin-bottom: 1.5rem;">See how different approaches affect your retirement timeline</p>
                 
-                <div class="strategy-buttons" style="justify-content: center; max-width: 600px; margin: 0 auto;">
-                    <button class="strategy-btn active" onclick="showStrategy('conservative')">Conservative</button>
-                    <button class="strategy-btn" onclick="showStrategy('moderate')">Moderate</button>
-                    <button class="strategy-btn" onclick="showStrategy('aggressive')">Aggressive</button>
-                </div>
-                
                 <div id="strategyResults" class="comparison-results"></div>
             </div>
             
@@ -988,7 +982,7 @@
             const age2 = calculationResults.currentAge + twoThirdsYears;
 
             const timelineContent = `
-                <div class="timeline-title">🗓️ Your Retirement Savings Journey</div>
+                <div class="timeline-title">🗓️ Your Current Projection </div>
                 <div class="timeline-grid">
                     <div class="timeline-item">
                         <div class="timeline-year">Age ${calculationResults.currentAge}</div>
