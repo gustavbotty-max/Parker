@@ -4,7 +4,7 @@ Free financial planning tools for Triangle families in North Carolina.
 
 ## 🧮 Calculators Available
 
-- **Life Insurance Calculator** - Compare term life insurance options
+- **Life Insurance Calculator** - Compare life insurance options
 - **Retirement Planning Calculator** - Estimate retirement savings needs  
 - **College Savings Calculator** - Plan for education expenses
 - **Debt Payoff Calculator** - Create debt repayment strategies
@@ -21,12 +21,12 @@ https://gustavbotty-max.github.io/Parker/
 
 ## 💡 About
 
-Created by Jonathan Parker, a Triangle professional who believes financial planning shouldn't be gatekept for the wealthy. These tools provide honest calculations without sales pressure.
+Created by Jonathan Parker, a Triangle professional who believes financial planning shouldn't be gatekept for the wealthy. These tools provide honest calculations on demand.
 
 ## 📞 Contact
 
 Jonathan Parker - Financial Educator
-📞 (555) 123-4567
+📞 (919) 749-3739
 ✉️ jonathan@parkerfinancial.com
 
 Serving Raleigh, Durham, Chapel Hill, and surrounding areas in North Carolina.
