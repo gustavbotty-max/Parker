@@ -638,6 +638,33 @@
             <div id="debtCards" class="debt-cards">
             </div>
             
+            <!-- Add Debt Button (appears after cards) -->
+            <div id="addDebtAfter" style="display: none; text-align: center; margin: 1.5rem 0;">
+                <button type="button" class="add-debt-button" onclick="addDebtCard()">+ Add Another Debt</button>
+            </div>
+            
+            <!-- Current Path Summary (no intervention) -->
+            <div id="currentPathSummary" class="debt-summary" style="display: none; background: linear-gradient(135deg, #fff3e0, #ffffff); border-left: 4px solid var(--warning-color);">
+                <h4 style="color: var(--warning-color); text-align: center; margin-bottom: 1rem;">⏱️ Current Path (Minimum Payments Only)</h4>
+                <p style="text-align: center; color: var(--text-light); margin-bottom: 1rem; font-size: 0.9rem;">
+                    Based on making only minimum payments with no additional strategy
+                </p>
+                <div class="summary-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
+                    <div class="summary-item">
+                        <div class="summary-amount summary-interest" id="currentTotalInterest">$0</div>
+                        <div class="summary-label">Total Interest Paid</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-amount summary-debt" id="currentPayoffDate">--</div>
+                        <div class="summary-label">Estimated Payoff Date</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-amount summary-payment" id="currentMonthsToFree">0</div>
+                        <div class="summary-label">Months to Debt-Free</div>
+                    </div>
+                </div>
+            </div>
+            
             <div id="extraPaymentSection" class="form-group" style="display: none;">
                 <label for="extraPayment">Additional Monthly Payment (How much extra can you pay toward debt?)</label>
                 <div class="input-group">
@@ -819,7 +846,7 @@
                     <label>Current Balance</label>
                     <div class="input-group">
                         <div class="input-prefix">$</div>
-                        <input type="number" class="debt-balance" min="0" step="100" value="5000" placeholder="5000" onchange="updateSummary(); calculateAllStrategies()">
+                        <input type="number" class="debt-balance" min="0" step="100" value="5000" placeholder="5000" onchange="updateMortgageBalance(${debtCounter}); updateSummary(); calculateAllStrategies()">
                     </div>
                 </div>
                 
@@ -850,7 +877,12 @@
             document.getElementById('debtCards').appendChild(debtCard);
             
             // Show relevant sections
-            document.getElementById('debtEntry').style.display = 'block';
+            const numCards = document.querySelectorAll('.debt-card').length;
+            if (numCards > 0) {
+                // Hide initial "Add New Debt" button, show "Add Another" button below cards
+                document.getElementById('debtEntry').querySelector('.add-debt-button').style.display = 'none';
+                document.getElementById('addDebtAfter').style.display = 'block';
+            }
             document.getElementById('extraPaymentSection').style.display = 'block';
             document.getElementById('calculateButton').style.display = 'block';
             
@@ -865,6 +897,14 @@
             const debtCard = document.getElementById(`debt-${debtId}`);
             if (debtCard && document.querySelectorAll('.debt-card').length > 1) {
                 debtCard.remove();
+                
+                // If no cards left, show initial add button
+                const numCards = document.querySelectorAll('.debt-card').length;
+                if (numCards === 0) {
+                    document.getElementById('debtEntry').querySelector('.add-debt-button').style.display = 'block';
+                    document.getElementById('addDebtAfter').style.display = 'none';
+                }
+                
                 updateSummary();
                 checkHomeownerSection();
                 calculateAllStrategies();
@@ -887,13 +927,40 @@
             }
         }
         
+        function updateMortgageBalance(debtId) {
+            const card = document.getElementById(`debt-${debtId}`);
+            const typeSelect = card.querySelector('.debt-type');
+            const balanceInput = card.querySelector('.debt-balance');
+            
+            const debtType = typeSelect.value;
+            const balance = parseFloat(balanceInput.value) || 0;
+            
+            // If it's a mortgage, update the homeowner section mortgage balance
+            if (debtType === 'mortgage' && balance > 0) {
+                document.getElementById('mortgageBalance').value = balance;
+                calculateLTV();
+            }
+        }
+        
         function updateRateSuggestions(debtId) {
             const card = document.getElementById(`debt-${debtId}`);
             const typeSelect = card.querySelector('.debt-type');
             const rateInput = card.querySelector('.debt-rate');
+            const balanceInput = card.querySelector('.debt-balance');
             const suggestion = card.querySelector('.rate-suggestion');
             
             const debtType = typeSelect.value;
+            
+            // Auto-select homeowner and pre-fill mortgage balance if mortgage is selected
+            if (debtType === 'mortgage') {
+                const balance = parseFloat(balanceInput.value) || 0;
+                setHomeownerStatus(true);
+                if (balance > 0) {
+                    document.getElementById('mortgageBalance').value = balance;
+                    calculateLTV();
+                }
+            }
+            
             if (debtType && ncRates[debtType.replace('-', '')]) {
                 const rates = ncRates[debtType.replace('-', '')];
                 const avgRate = (rates.min + rates.max) / 2;
@@ -1123,8 +1190,18 @@
                 document.getElementById('totalDebt').textContent = '$' + Math.round(totalDebt).toLocaleString();
                 document.getElementById('avgAPR').textContent = avgRate.toFixed(1) + '%';
                 document.getElementById('totalMonthly').textContent = '$' + Math.round(totalPayment).toLocaleString();
+                
+                // Calculate current path (minimum payments only, no strategy)
+                const currentPath = calculateCurrentPlan(JSON.parse(JSON.stringify(debts)), 0);
+                
+                // Update current path summary
+                document.getElementById('currentPathSummary').style.display = 'block';
+                document.getElementById('currentTotalInterest').textContent = '$' + Math.round(currentPath.totalInterest).toLocaleString();
+                document.getElementById('currentPayoffDate').textContent = formatDate(currentPath.payoffDate);
+                document.getElementById('currentMonthsToFree').textContent = currentPath.monthsToDebtFree + ' months';
             } else {
                 document.getElementById('debtSummary').style.display = 'none';
+                document.getElementById('currentPathSummary').style.display = 'none';
             }
             
             return { totalDebt, totalPayment, avgRate, debts };
