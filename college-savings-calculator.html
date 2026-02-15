@@ -599,18 +599,26 @@
         
         <!-- Email Capture -->
         <div id="emailSection" class="email-section" style="display: none;">
-            <h4>📧 Want Your Complete College Plan?</h4>
+            <h4>📋 Want Your Complete College Plan?</h4>
             <p>I'll send you a detailed college savings plan with account recommendations, tax strategies, and comparison worksheets for NC families.</p>
             
-            <form id="emailForm" method="POST" action="../../lead-capture.php">
+            <div id="formspreeStatus" style="display: none; background: var(--success-color); color: white; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; text-align: center;">
+                <div style="font-size: 2rem; margin-bottom: 0.5rem;">✅</div>
+                <h5>Plan Sent Successfully!</h5>
+                <p>Check your email for your complete college savings guide.</p>
+            </div>
+            
+            <form id="emailForm" accept-charset="UTF-8" action="javascript:void(0);">
                 <div class="email-form">
-                    <input type="email" class="email-input" name="email" placeholder="Enter your email address" required>
+                    <input type="email" id="userEmail" class="email-input" name="email" placeholder="Enter your email address..." required>
                     <input type="hidden" name="calculator_type" value="college-savings">
-                    <input type="hidden" name="lead_source" value="colculator-results">
+                    <input type="hidden" name="lead_source" value="calculator-results">
                     <input type="hidden" name="child_age" id="hiddenChildAge">
                     <input type="hidden" name="target_cost" id="hiddenTargetCost">
                     <input type="hidden" name="projected_savings" id="hiddenProjectedSavings">
                     <input type="hidden" name="monthly_contribution" id="hiddenMonthlyContribution">
+                    <input type="hidden" name="best_strategy" id="hiddenBestStrategy">
+                    <input type="hidden" name="potential_savings" id="hiddenPotentialSavings">
                     <button type="submit" class="email-button">Send My Plan 📧</button>
                 </div>
                 <p style="font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.8;">Your information is secure and will never be shared.</p>
@@ -746,11 +754,13 @@
             const rothFutureValue = rothContribution * Math.pow(1 + rothReturn, rothYears);
             const rothTaxFreeGrowth = rothFutureValue - rothContribution;
             
-            // Set hidden form values for lead capture
+            // Set hidden form values for lead capture and Formspree
             document.getElementById('hiddenChildAge').value = childAge;
             document.getElementById('hiddenTargetCost').value = Math.round(totalCollegeCost);
             document.getElementById('hiddenProjectedSavings').value = Math.round(totalSavings);
             document.getElementById('hiddenMonthlyContribution').value = monthlyContribution;
+            document.getElementById('hiddenBestStrategy').value = 'NC 529 College Savings Plan';
+            document.getElementById('hiddenPotentialSavings').value = Math.round(totalSavings - totalCollegeCost > 0 ? totalSavings - totalCollegeCost : 0); // Positive = surplus, negative = gap
             
             // Display results
             displayCollegeResults({
@@ -950,6 +960,149 @@
             document.getElementById('optionTabs').style.display = 'none';
             document.getElementById('emailSection').style.display = 'none';
         }
+        
+                // Formspree Integration - Complete implementation from debt calculator with corrected field names
+        function handleEmailSubmit(event) {
+            event.preventDefault();
+            
+            // Select elements
+            const emailInput = document.getElementById('userEmail');
+            const button = document.querySelector('.email-button');
+            const successMessage = document.getElementById('formspreeStatus');
+            
+            // Validate email
+            if (!emailInput.value || !emailInput.value.includes('@')) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+        
+            // Gather calculator-specific data using proper field names
+            const childAge = document.getElementById('childAge')?.value || 'Not provided';
+            const targetCost = document.getElementById('hiddenTargetCost')?.value || 'Not calculated';
+            const projectedSavings = document.getElementById('hiddenProjectedSavings')?.value || 'Not calculated';
+            
+            const formData = {
+                email: emailInput.value,
+                calculator_type: 'college-savings',
+                lead_source: 'calculator-results',
+                child_age: childAge,
+                target_cost: targetCost,
+                projected_savings: projectedSavings,
+                monthly_contribution: document.getElementById('hiddenMonthlyContribution')?.value || 'Not provided',
+                best_strategy: 'NC 529 College Savings Plan',
+                potential_savings: Math.round(projectedSavings || 0),
+                calculator_results: {
+                    summary: generateResultsSummary(),
+                    recommendation: generateCollegeRecommendation()
+                },
+                timestamp: new Date().toISOString()
+            };
+            
+            // Show loading state
+            const originalText = button.innerHTML;
+            button.innerHTML = 'Sending... ⏳';
+            button.disabled = true;
+            
+            // Send data to Formspree
+            fetch('https://formspree.io/f/xkovojay', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.ok) {
+                    // SUCCESS: Show success message
+                    document.getElementById('formspreeStatus').style.display = 'block';
+                    button.textContent = '✅ Plan Sent!';
+                    
+                    // Scroll to success message
+                    document.getElementById('formspreeStatus').scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'nearest' 
+                    });
+                    
+                } else {
+                    // Error from Formspree
+                    if (data.errors) {
+                        alert(data.errors.map(error => error.message).join(', '));
+                    } else {
+                        alert('Oops! There was a problem submitting your form');
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Formspree error:', error);
+                alert('Connection error. Please try again or contact me directly.');
+            })
+            .finally(() => {
+                // Reset button state
+                button.innerHTML = originalText;
+                button.disabled = false;
+            });
+        }
+        
+        // Add event listener for email form submission
+        document.getElementById('emailForm').addEventListener('submit', handleEmailSubmit);
+        
+        function generateResultsSummary() {
+            return {
+                college_cost: document.getElementById('totalCollegeCostSpan')?.textContent || 'Not calculated',
+                current_savings: document.getElementById('currentSavings')?.value || 0,
+                monthly_contribution: document.getElementById('monthlyContribution')?.value || 0,
+                years_to_college: document.getElementById('childAge') ? (18 - parseInt(document.getElementById('childAge').value)) : 'Not calculated'
+            };
+        }
+        
+        function generateLeadRecommendation() {
+            const monthlyNeeded = document.getElementById('monthlyNeeded')?.textContent || 'Not calculated';
+            const currentMonthly = document.getElementById('monthlyInvestment')?.value || 0;
+            
+            if (currentMonthly && monthlyNeeded) {
+                const needed = parseFloat(monthlyNeeded.replace(/[$,]/g, ''));
+                const current = parseFloat(currentMonthly);
+                
+                if (current >= needed) {
+                    return "You're on track! Consider increasing contributions when possible to provide a cushion for unexpected college costs or graduate school options.";
+                } else {
+                    return `Consider increasing your monthly contribution to $${needed.toLocaleString()} to reach your college savings goal. Explore NC 529 tax benefits for North Carolina residents or consider opening additional investment accounts for diversification.`;
+                }
+            }
+            
+            return "Chat with me to create a personalized college savings plan that works for your family budget and North Carolina tax situation.";
+        }
+        
+        function generateCollegeResults() {
+            return {
+                child_age: document.getElementById('childAge').value,
+                target_cost: document.getElementById('targetCost').textContent,
+                projected_savings: calculateProjectedSavings(),
+                monthly_contribution: document.getElementById('monthlyInvestment').value,
+                recommendation: generateCollegeRecommendation()
+            };
+        }
+        
+        function generateCollegeRecommendation() {
+            const recommendations = [
+                "Focus on starting early with monthly contributions to maximize compound growth.",
+                "Consider NC 529 plans for tax advantages on college savings.",
+                "Adjust your monthly contribution if college costs increase more than expected.",
+                "Explore Roth IRA rollover options for flexible savings strategy."
+            ];
+            return recommendations[Math.floor(Math.random() * recommendations.length)];
+        }
+        
+        function calculateProjectedSavings() {
+            return document.getElementById('hiddenProjectedSavings')?.value || 0;
+        }
+        
+        console.log('📧 College Savings Calculator: Formspree integration ready!');
+        
+        // Add event listener for email form submission
+        document.getElementById('emailForm').addEventListener('submit', handleEmailSubmit);
     </script>
 </body>
 </html>
