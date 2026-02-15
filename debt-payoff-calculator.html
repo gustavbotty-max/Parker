@@ -913,11 +913,13 @@
             const balanceInput = card.querySelector('.debt-balance');
             const rateInput = card.querySelector('.debt-rate');
             const paymentInput = card.querySelector('.debt-payment');
+            const typeInput = card.querySelector('.debt-type');
             const warningDiv = document.getElementById(`payment-warning-${debtId}`);
             
             const balance = parseFloat(balanceInput.value) || 0;
             const annualRate = parseFloat(rateInput.value) || 0;
             const payment = parseFloat(paymentInput.value) || 0;
+            const debtType = typeInput ? typeInput.value : '';
             
             if (balance <= 0 || payment <= 0) {
                 warningDiv.classList.remove('show');
@@ -926,12 +928,25 @@
             
             const monthlyRate = annualRate / 100 / 12;
             const minInterest = balance * monthlyRate;
-            const suggestedMinPayment = minInterest + (balance * 0.01); // Interest + 1% of balance as principal
+            
+            let suggestedMinPayment;
+            let paymentDescription = "minimum payment";
+            
+            // For mortgages, calculate proper 30-year amortized payment
+            if (debtType === 'mortgage' && annualRate > 0) {
+                const monthlyRate = annualRate / 100 / 12;
+                const numPayments = 360; // 30 years
+                suggestedMinPayment = balance * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) / (Math.pow(1 + monthlyRate, numPayments) - 1);
+                paymentDescription = "30-year mortgage payment";
+            } else {
+                // For other debts: Interest + 1% of balance as principal
+                suggestedMinPayment = minInterest + (balance * 0.01);
+            }
             
             const difference = Math.abs(payment - suggestedMinPayment);
             
             if (difference > 25 && payment < suggestedMinPayment) {
-                warningDiv.innerHTML = `⚠️ Your payment seems low. For a $${balance.toLocaleString()} balance at ${annualRate}% APR, minimum payment should be around <strong>$${Math.round(suggestedMinPayment)}</strong> to make meaningful progress.`;
+                warningDiv.innerHTML = `⚠️ Your payment seems low. For a $${balance.toLocaleString()} balance at ${annualRate}% APR, ${paymentDescription} should be around <strong>$${Math.round(suggestedMinPayment)}</strong>.`;
                 warningDiv.classList.add('show');
             } else if (payment < minInterest) {
                 warningDiv.innerHTML = `❌ Your payment is less than the monthly interest ($${Math.round(minInterest)}). Your balance will grow! Consider at least <strong>$${Math.round(suggestedMinPayment)}</strong>.`;
