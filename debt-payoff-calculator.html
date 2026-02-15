@@ -932,14 +932,44 @@
             let suggestedMinPayment;
             let paymentDescription = "minimum payment";
             
-            // For mortgages, calculate proper 30-year amortized payment
-            if (debtType === 'mortgage' && annualRate > 0) {
-                const monthlyRate = annualRate / 100 / 12;
-                const numPayments = 360; // 30 years
-                suggestedMinPayment = balance * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) / (Math.pow(1 + monthlyRate, numPayments) - 1);
-                paymentDescription = "30-year mortgage payment";
+            // Calculate suggested payment based on debt type
+            if (annualRate > 0 && monthlyRate > 0) {
+                let numPayments;
+                
+                switch(debtType) {
+                    case 'mortgage':
+                    case 'heloc':
+                        numPayments = 360; // 30 years
+                        paymentDescription = "30-year payment";
+                        break;
+                    case 'student':
+                        numPayments = 240; // 20 years
+                        paymentDescription = "20-year payment";
+                        break;
+                    case 'auto':
+                        numPayments = 72; // 6 years
+                        paymentDescription = "72-month payment";
+                        break;
+                    case 'personal':
+                        numPayments = 120; // 10 years
+                        paymentDescription = "10-year payment";
+                        break;
+                    case 'credit':
+                    case 'medical':
+                    default:
+                        // Credit cards and medical: Interest + 1% of balance as principal
+                        suggestedMinPayment = minInterest + (balance * 0.01);
+                        paymentDescription = "minimum payment";
+                        numPayments = null;
+                        break;
+                }
+                
+                // Calculate amortized payment for installment loans
+                if (numPayments) {
+                    suggestedMinPayment = balance * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) / (Math.pow(1 + monthlyRate, numPayments) - 1);
+                }
             } else {
-                // For other debts: Interest + 1% of balance as principal
+                // Fallback for 0% rate
                 suggestedMinPayment = minInterest + (balance * 0.01);
             }
             
@@ -1281,36 +1311,45 @@
         function calculateConsolidation(debtsCopy, extraPayment) {
             if (debtsCopy.length === 0) return { totalInterestSaved: 0, consolidationOptions: [] };
             
-            const summary = updateSummary();
-            let totalDebt = summary.totalDebt;
+            // Only consolidate high-interest debts (exclude mortgages and low-rate debts)
+            const consolidatableDebts = debtsCopy.filter(d => 
+                d.debtType !== 'mortgage' && d.debtType !== 'heloc' && d.rate >= 0.08
+            );
+            
+            if (consolidatableDebts.length === 0) {
+                return { totalInterestSaved: 0, consolidationOptions: [] };
+            }
+            
+            let totalDebt = 0;
             let weightedAvgRate = 0;
             let totalDebtWeighted = 0;
             
-            debtsCopy.forEach(debt => {
+            consolidatableDebts.forEach(debt => {
+                totalDebt += debt.balance;
                 weightedAvgRate += (debt.rate * debt.balance);
                 totalDebtWeighted += debt.balance;
             });
             
             weightedAvgRate = totalDebtWeighted > 0 ? (weightedAvgRate / totalDebtWeighted) : 0;
             
-            // Calculate Current Plan Interest for comparison
-            const currentPlan = calculateCurrentPlan(JSON.parse(JSON.stringify(debtsCopy)), 0);
+            // Calculate Current Plan Interest for comparison (only for consolidatable debts)
+            const currentPlan = calculateCurrentPlan(JSON.parse(JSON.stringify(consolidatableDebts)), 0);
             
             const consolidationResults = [];
             
-            // Personal Loan (always show if not homeowner OR if homeowner)
+            // Personal Loan - More realistic rates (10-18% range)
             const personalLoan = {
                 type: 'Personal Loan',
-                rate: Math.max(0.06, Math.min(weightedAvgRate - 0.06, 0.15)),
-                termMonths: Math.min(60, Math.max(12, debtsCopy.length * 12)),
+                rate: Math.max(0.10, Math.min(weightedAvgRate - 0.04, 0.18)),
+                termMonths: Math.min(60, Math.max(12, consolidatableDebts.length * 12)),
                 monthlyFee: 0,
-                setupFee: 0
+                setupFee: 250
             };
             
-            // HELOC/Refinance (only if homeowner with good LTV)
+            // HELOC/Refinance - Better rates for homeowners (5-8% range)
             const helocOption = {
                 type: 'HELOC/Refinance',
-                rate: Math.max(0.06, Math.min(weightedAvgRate - 0.08, 0.09)),
+                rate: Math.max(0.05, Math.min(weightedAvgRate - 0.10, 0.08)),
                 termMonths: 120,
                 monthlyFee: 25,
                 setupFee: 500
