@@ -216,6 +216,127 @@
         
         .input-prefix + input { padding-left: 2.5rem; }
         
+        /* Warning message for payment validation */
+        .payment-warning {
+            background: #fff3cd;
+            border: 1px solid var(--warning-color);
+            border-radius: 6px;
+            padding: 0.75rem;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            color: #856404;
+            display: none;
+        }
+        
+        .payment-warning.show {
+            display: block;
+        }
+        
+        /* Homeowner section */
+        .homeowner-section {
+            background: var(--background-light);
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            display: none;
+        }
+        
+        .homeowner-section.show {
+            display: block;
+        }
+        
+        .homeowner-question {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .homeowner-question h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .homeowner-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        
+        .homeowner-button {
+            padding: 0.75rem 2rem;
+            border: 2px solid var(--primary-color);
+            background: white;
+            color: var(--primary-color);
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .homeowner-button:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .homeowner-button.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .ltv-inputs {
+            display: none;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px dashed var(--border-color);
+        }
+        
+        .ltv-inputs.show {
+            display: block;
+        }
+        
+        .ltv-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .ltv-result {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 1rem;
+            display: none;
+        }
+        
+        .ltv-result.show {
+            display: block;
+        }
+        
+        .ltv-result.good {
+            border: 2px solid var(--success-color);
+        }
+        
+        .ltv-result.warning {
+            border: 2px solid var(--warning-color);
+        }
+        
+        .ltv-result.bad {
+            border: 2px solid var(--danger-color);
+        }
+        
+        .ltv-percentage {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .ltv-percentage.good { color: var(--success-color); }
+        .ltv-percentage.warning { color: var(--warning-color); }
+        .ltv-percentage.bad { color: var(--danger-color); }
+        
         /* Calculate Button */
         .calculate-button {
             width: 100%;
@@ -466,6 +587,7 @@
             .email-form { flex-direction: column; }
             .email-input { min-width: auto; width: 100%; }
             .consolidation-options { grid-template-columns: 1fr; }
+            .homeowner-buttons { flex-direction: column; }
         }
     </style>
 </head>
@@ -514,7 +636,7 @@
             </div>
             
             <div id="debtCards" class="debt-cards">
-                </div>
+            </div>
             
             <div id="extraPaymentSection" class="form-group" style="display: none;">
                 <label for="extraPayment">Additional Monthly Payment (How much extra can you pay toward debt?)</label>
@@ -525,6 +647,45 @@
                 <small>Even $50 extra per month can save thousands in interest and years of payments</small>
             </div>
             
+            <!-- Homeowner Status Section -->
+            <div id="homeownerSection" class="homeowner-section">
+                <div class="homeowner-question">
+                    <h4>🏠 Are you a homeowner?</h4>
+                    <p style="color: var(--text-light); margin-bottom: 1rem;">This helps us show relevant consolidation options like HELOCs or refinancing.</p>
+                    <div class="homeowner-buttons">
+                        <button type="button" class="homeowner-button" onclick="setHomeownerStatus(true)">Yes, I own a home</button>
+                        <button type="button" class="homeowner-button" onclick="setHomeownerStatus(false)">No, I rent</button>
+                    </div>
+                </div>
+                
+                <div id="ltvInputs" class="ltv-inputs">
+                    <h5 style="color: var(--primary-color); margin-bottom: 1rem; text-align: center;">Home Equity Information</h5>
+                    <p style="text-align: center; color: var(--text-light); margin-bottom: 1rem; font-size: 0.9rem;">
+                        We'll calculate your Loan-to-Value (LTV) ratio to determine HELOC eligibility.
+                    </p>
+                    <div class="ltv-grid">
+                        <div class="form-group">
+                            <label for="homeValue">Estimated Home Value</label>
+                            <div class="input-group">
+                                <div class="input-prefix">$</div>
+                                <input type="number" id="homeValue" min="0" step="10000" placeholder="250000" onchange="calculateLTV()">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="mortgageBalance">Current Mortgage Balance</label>
+                            <div class="input-group">
+                                <div class="input-prefix">$</div>
+                                <input type="number" id="mortgageBalance" min="0" step="5000" placeholder="150000" onchange="calculateLTV()">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="ltvResult" class="ltv-result">
+                        <div class="ltv-percentage" id="ltvPercentage">0%</div>
+                        <div id="ltvMessage"></div>
+                    </div>
+                </div>
+            </div>
+            
             <button type="button" id="calculateButton" class="calculate-button" onclick="calculateAllStrategies()" style="display: none;">🧮 Compare All Debt Payoff Strategies</button>
             
             <div class="loading">
@@ -533,18 +694,18 @@
             </div>
             
             <div id="resultsSection" class="results-section">
-                </div>
+            </div>
             
             <div id="consolidationSection" class="comparison-section" style="display: none;">
                 <h3 class="comparison-title">💸 Consolidation Options for High-Interest Debt</h3>
                 <p style="text-align: center; color: var(--text-light); margin-bottom: 1.5rem;">See potential savings with lower-rate consolidation loans</p>
                 
                 <div class="consolidation-options" id="consolidationOptions">
-                    </div>
+                </div>
             </div>
             
             <div id="detailedComparison" class="strategy-comparison" style="display: none;">
-                </div>
+            </div>
         </div>
 
         <div class="strategy-selector" style="margin-top: 2rem;">
@@ -610,6 +771,8 @@
         let debts = [];
         let debtCounter = 0;
         let globalResults = null;
+        let isHomeowner = null;
+        let ltvRatio = null;
         
         document.addEventListener('DOMContentLoaded', function() {
             // Add one debt card by default
@@ -648,7 +811,7 @@
                         <option value="student-loan">Student Loan</option>
                         <option value="medical">Medical Debt</option>
                         <option value="heloc">Home Equity Line</option>
-                        <option value="heloc">Mortgage</option>
+                        <option value="mortgage">Mortgage</option>
                     </select>
                 </div>
                 
@@ -663,7 +826,7 @@
                 <div class="form-group">
                     <label>Interest Rate (APR)</label>
                     <div class="input-group">
-                        <input type="number" class="debt-rate" min="0" max="35" step="0.1" value="18.0" placeholder="18.0" onchange="updateCardColor(${debtCounter}); calculateAllStrategies()">
+                        <input type="number" class="debt-rate" min="0" max="35" step="0.1" value="18.0" placeholder="18.0" onchange="updateCardColor(${debtCounter}); validatePayment(${debtCounter}); calculateAllStrategies()">
                         <div style="position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%); color: var(--text-light);">%</div>
                     </div>
                     <small class="rate-suggestion" style="color: var(--text-light); font-size: 0.8rem;"></small>
@@ -673,8 +836,9 @@
                     <label>Monthly Minimum Payment</label>
                     <div class="input-group">
                         <div class="input-prefix">$</div>
-                        <input type="number" class="debt-payment" min="0" step="10" value="200" placeholder="200" onchange="calculateAllStrategies()">
+                        <input type="number" class="debt-payment" min="0" step="10" value="200" placeholder="200" onchange="validatePayment(${debtCounter}); calculateAllStrategies()">
                     </div>
+                    <div class="payment-warning" id="payment-warning-${debtCounter}"></div>
                 </div>
                 
                 <div class="form-group">
@@ -693,6 +857,7 @@
             // Clear previous results when adding new debt
             clearResults();
             updateSummary();
+            checkHomeownerSection();
             calculateAllStrategies();
         }
         
@@ -701,6 +866,7 @@
             if (debtCard && document.querySelectorAll('.debt-card').length > 1) {
                 debtCard.remove();
                 updateSummary();
+                checkHomeownerSection();
                 calculateAllStrategies();
             }
         }
@@ -736,9 +902,120 @@
                 if (!rateInput.value || rateInput.value === '18.0') {
                     rateInput.value = (avgRate * 100).toFixed(1);
                     updateCardColor(debtId);
+                    validatePayment(debtId);
                     calculateAllStrategies();
                 }
             }
+        }
+        
+        function validatePayment(debtId) {
+            const card = document.getElementById(`debt-${debtId}`);
+            const balanceInput = card.querySelector('.debt-balance');
+            const rateInput = card.querySelector('.debt-rate');
+            const paymentInput = card.querySelector('.debt-payment');
+            const warningDiv = document.getElementById(`payment-warning-${debtId}`);
+            
+            const balance = parseFloat(balanceInput.value) || 0;
+            const annualRate = parseFloat(rateInput.value) || 0;
+            const payment = parseFloat(paymentInput.value) || 0;
+            
+            if (balance <= 0 || payment <= 0) {
+                warningDiv.classList.remove('show');
+                return;
+            }
+            
+            const monthlyRate = annualRate / 100 / 12;
+            const minInterest = balance * monthlyRate;
+            const suggestedMinPayment = minInterest + (balance * 0.01); // Interest + 1% of balance as principal
+            
+            const difference = Math.abs(payment - suggestedMinPayment);
+            
+            if (difference > 25 && payment < suggestedMinPayment) {
+                warningDiv.innerHTML = `⚠️ Your payment seems low. For a $${balance.toLocaleString()} balance at ${annualRate}% APR, minimum payment should be around <strong>$${Math.round(suggestedMinPayment)}</strong> to make meaningful progress.`;
+                warningDiv.classList.add('show');
+            } else if (payment < minInterest) {
+                warningDiv.innerHTML = `❌ Your payment is less than the monthly interest ($${Math.round(minInterest)}). Your balance will grow! Consider at least <strong>$${Math.round(suggestedMinPayment)}</strong>.`;
+                warningDiv.classList.add('show');
+            } else {
+                warningDiv.classList.remove('show');
+            }
+        }
+        
+        function checkHomeownerSection() {
+            const summary = updateSummary();
+            const hasHighInterestDebt = summary.debts.some(d => d.rate >= 0.12 && d.balance >= 3000);
+            
+            if (hasHighInterestDebt && summary.totalDebt >= 5000) {
+                document.getElementById('homeownerSection').classList.add('show');
+            } else {
+                document.getElementById('homeownerSection').classList.remove('show');
+                isHomeowner = null;
+            }
+        }
+        
+        function setHomeownerStatus(status) {
+            isHomeowner = status;
+            
+            // Update button states
+            const buttons = document.querySelectorAll('.homeowner-button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Show/hide LTV inputs
+            const ltvInputs = document.getElementById('ltvInputs');
+            if (status === true) {
+                ltvInputs.classList.add('show');
+            } else {
+                ltvInputs.classList.remove('show');
+                ltvRatio = null;
+                document.getElementById('ltvResult').classList.remove('show');
+            }
+            
+            // Recalculate to update consolidation options
+            calculateAllStrategies();
+        }
+        
+        function calculateLTV() {
+            const homeValue = parseFloat(document.getElementById('homeValue').value) || 0;
+            const mortgageBalance = parseFloat(document.getElementById('mortgageBalance').value) || 0;
+            
+            if (homeValue <= 0 || mortgageBalance < 0) {
+                document.getElementById('ltvResult').classList.remove('show');
+                ltvRatio = null;
+                return;
+            }
+            
+            ltvRatio = mortgageBalance / homeValue;
+            const ltvPercentage = (ltvRatio * 100).toFixed(1);
+            
+            const ltvResultDiv = document.getElementById('ltvResult');
+            const ltvPercentageDiv = document.getElementById('ltvPercentage');
+            const ltvMessageDiv = document.getElementById('ltvMessage');
+            
+            ltvPercentageDiv.textContent = ltvPercentage + '% LTV';
+            
+            // Remove all classes
+            ltvResultDiv.classList.remove('good', 'warning', 'bad');
+            ltvPercentageDiv.classList.remove('good', 'warning', 'bad');
+            
+            if (ltvRatio <= 0.80) {
+                ltvResultDiv.classList.add('good');
+                ltvPercentageDiv.classList.add('good');
+                ltvMessageDiv.innerHTML = '✅ <strong>Excellent!</strong> You likely qualify for HELOC or cash-out refinance options with competitive rates.';
+            } else if (ltvRatio <= 0.85) {
+                ltvResultDiv.classList.add('warning');
+                ltvPercentageDiv.classList.add('warning');
+                ltvMessageDiv.innerHTML = '⚠️ <strong>Borderline.</strong> You may qualify for some HELOC options, but rates might be higher and approval less certain.';
+            } else {
+                ltvResultDiv.classList.add('bad');
+                ltvPercentageDiv.classList.add('bad');
+                ltvMessageDiv.innerHTML = '❌ <strong>Limited options.</strong> Your LTV is too high for most HELOC programs. Focus on personal loan consolidation or debt payoff strategies.';
+            }
+            
+            ltvResultDiv.classList.add('show');
+            
+            // Recalculate to update consolidation options
+            calculateAllStrategies();
         }
         
         function updateSummary() {
@@ -862,22 +1139,24 @@
         }
         
         function calculateDebtSnowball(debtsCopy, totalPayment, extraPayment) {
+            // Snowball: Sort by BALANCE (smallest first)
             debtsCopy.sort((a, b) => a.balance - b.balance);
-            return calculateStrategy(debtsCopy, totalPayment, extraPayment, 'Debt Snowball');
+            return calculateStrategyRollover(debtsCopy, totalPayment, extraPayment, 'Debt Snowball');
         }
         
         function calculateDebtAvalanche(debtsCopy, totalPayment, extraPayment) {
+            // Avalanche: Sort by RATE (highest first)
             debtsCopy.sort((a, b) => b.rate - a.rate);
-            return calculateStrategy(debtsCopy, totalPayment, extraPayment, 'Debt Avalanche');
+            return calculateStrategyRollover(debtsCopy, totalPayment, extraPayment, 'Debt Avalanche');
         }
         
-        function calculateStrategy(debtsCopy, totalPayment, extraPayment, strategyName) {
+        function calculateStrategyRollover(debtsCopy, totalPayment, extraPayment, strategyName) {
             const results = {
                 strategy: strategyName,
                 totalMonths: 0,
                 totalInterest: 0,
                 payoffDate: null,
-                monthsToDebtFree: Infinity,
+                monthsToDebtFree: 0,
                 totalInterestPaid: 0,
                 totalInterestSaved: 0,
                 monthlyPayment: totalPayment + extraPayment,
@@ -885,14 +1164,16 @@
             };
             
             let month = 0;
+            let availablePayment = totalPayment + extraPayment;
+            
+            // Track original minimum payments for each debt
+            const minPayments = debtsCopy.map(d => d.payment);
             
             while (debtsCopy.some(d => d.balance > 0.01)) {
                 month++;
                 if (month > 1000) break; // Safety break
                 
-                let monthlyPayment = totalPayment + extraPayment;
-                
-                // 1. Apply Interest
+                // 1. Apply interest to all debts with remaining balance
                 debtsCopy.forEach(debt => {
                     if (debt.balance > 0) {
                         const monthlyInterest = (debt.rate / 12) * debt.balance;
@@ -901,24 +1182,30 @@
                     }
                 });
                 
-                // 2. Minimum Payments
-                debtsCopy.forEach(debt => {
+                // 2. Make minimum payments on all debts
+                let leftoverPayment = availablePayment;
+                debtsCopy.forEach((debt, idx) => {
                     if (debt.balance > 0) {
-                        let paymentAmount = Math.min(debt.payment, debt.balance);
+                        const minPmt = minPayments[idx];
+                        const paymentAmount = Math.min(minPmt, debt.balance);
                         debt.balance -= paymentAmount;
-                        monthlyPayment -= paymentAmount;
+                        leftoverPayment -= paymentAmount;
                     }
                 });
                 
-                // 3. Extra Payment (Snowball/Avalanche order)
-                if (monthlyPayment > 0) {
-                    for (let debt of debtsCopy) {
-                        if (debt.balance > 0) {
-                            const paymentToDebt = Math.min(monthlyPayment, debt.balance);
-                            debt.balance -= paymentToDebt;
-                            monthlyPayment -= paymentToDebt;
-                            if (monthlyPayment <= 0) break;
+                // 3. Apply leftover payment to first debt with balance (following strategy order)
+                for (let i = 0; i < debtsCopy.length; i++) {
+                    if (debtsCopy[i].balance > 0 && leftoverPayment > 0) {
+                        const extraPmt = Math.min(leftoverPayment, debtsCopy[i].balance);
+                        debtsCopy[i].balance -= extraPmt;
+                        leftoverPayment -= extraPmt;
+                        
+                        // If this debt is paid off, roll its minimum payment into the pool
+                        if (debtsCopy[i].balance < 0.01) {
+                            availablePayment += minPayments[i];
+                            minPayments[i] = 0; // Don't add it again
                         }
+                        break;
                     }
                 }
             }
@@ -933,7 +1220,7 @@
         }
         
         function calculateCurrentPlan(debtsCopy, extraPayment) {
-            let monthsToPayoff = new Set();
+            let maxMonths = 0;
             let totalInterest = 0;
             
             debtsCopy.forEach(debt => {
@@ -955,11 +1242,10 @@
                     totalInterestDebt += interest;
                 }
                 
-                monthsToPayoff.add(months);
+                maxMonths = Math.max(maxMonths, months);
                 totalInterest += totalInterestDebt;
             });
             
-            const maxMonths = Math.max(...monthsToPayoff);
             const payoffDate = new Date();
             payoffDate.setMonth(payoffDate.getMonth() + maxMonths);
             
@@ -976,7 +1262,7 @@
         }
         
         function calculateConsolidation(debtsCopy, extraPayment) {
-            if (debtsCopy.length === 0) return { totalInterestSaved: 0 };
+            if (debtsCopy.length === 0) return { totalInterestSaved: 0, consolidationOptions: [] };
             
             const summary = updateSummary();
             let totalDebt = summary.totalDebt;
@@ -991,45 +1277,65 @@
             weightedAvgRate = totalDebtWeighted > 0 ? (weightedAvgRate / totalDebtWeighted) : 0;
             
             // Calculate Current Plan Interest for comparison
-            // Re-calculate strictly for comparison logic to ensure fresh data
             const currentPlan = calculateCurrentPlan(JSON.parse(JSON.stringify(debtsCopy)), 0);
             
             const consolidationResults = [];
             
+            // Personal Loan (always show if not homeowner OR if homeowner)
             const personalLoan = {
                 type: 'Personal Loan',
-                rate: Math.min(weightedAvgRate - 0.06, 0.12),
+                rate: Math.max(0.06, Math.min(weightedAvgRate - 0.06, 0.15)),
                 termMonths: Math.min(60, Math.max(12, debtsCopy.length * 12)),
                 monthlyFee: 0,
                 setupFee: 0
             };
             
+            // HELOC/Refinance (only if homeowner with good LTV)
             const helocOption = {
                 type: 'HELOC/Refinance',
-                rate: Math.min(weightedAvgRate - 0.08, 0.08),
+                rate: Math.max(0.06, Math.min(weightedAvgRate - 0.08, 0.09)),
                 termMonths: 120,
                 monthlyFee: 25,
                 setupFee: 500
             };
             
-            [personalLoan, helocOption].forEach(option => {
-                if (option.rate < weightedAvgRate) {
-                    const payment = calculatePayment(totalDebt, option.rate, option.termMonths) + option.monthlyFee;
-                    const totalInterestNew = (payment * option.termMonths) - totalDebt + option.setupFee;
-                    const interestSaved = Math.max(0, currentPlan.totalInterest - totalInterestNew);
-                    
-                    consolidationResults.push({
-                        type: option.type,
-                        rate: option.rate,
-                        termMonths: option.termMonths,
-                        monthlyPayment: payment,
-                        totalInterest: totalInterestNew,
-                        monthlyFee: option.monthlyFee,
-                        setupFee: option.setupFee,
-                        interestSaved: interestSaved
-                    });
-                }
-            });
+            // Add personal loan if beneficial
+            if (personalLoan.rate < weightedAvgRate) {
+                const payment = calculatePayment(totalDebt, personalLoan.rate, personalLoan.termMonths) + personalLoan.monthlyFee;
+                const totalInterestNew = (payment * personalLoan.termMonths) - totalDebt + personalLoan.setupFee;
+                const interestSaved = Math.max(0, currentPlan.totalInterest - totalInterestNew);
+                
+                consolidationResults.push({
+                    type: personalLoan.type,
+                    rate: personalLoan.rate,
+                    termMonths: personalLoan.termMonths,
+                    monthlyPayment: payment,
+                    totalInterest: totalInterestNew,
+                    monthlyFee: personalLoan.monthlyFee,
+                    setupFee: personalLoan.setupFee,
+                    interestSaved: interestSaved
+                });
+            }
+            
+            // Add HELOC only if: homeowner = true AND (ltvRatio <= 0.85 OR ltvRatio is null)
+            const showHELOC = isHomeowner === true && (ltvRatio === null || ltvRatio <= 0.85);
+            
+            if (showHELOC && helocOption.rate < weightedAvgRate) {
+                const payment = calculatePayment(totalDebt, helocOption.rate, helocOption.termMonths) + helocOption.monthlyFee;
+                const totalInterestNew = (payment * helocOption.termMonths) - totalDebt + helocOption.setupFee;
+                const interestSaved = Math.max(0, currentPlan.totalInterest - totalInterestNew);
+                
+                consolidationResults.push({
+                    type: helocOption.type,
+                    rate: helocOption.rate,
+                    termMonths: helocOption.termMonths,
+                    monthlyPayment: payment,
+                    totalInterest: totalInterestNew,
+                    monthlyFee: helocOption.monthlyFee,
+                    setupFee: helocOption.setupFee,
+                    interestSaved: interestSaved
+                });
+            }
             
             consolidationResults.sort((a,b) => b.interestSaved - a.interestSaved);
             const bestOption = consolidationResults.length > 0 ? consolidationResults[0] : { interestSaved: 0 };
@@ -1096,10 +1402,10 @@
                             <div class="rate-info">${option.termMonths} months • Save $${Math.round(option.interestSaved).toLocaleString()}</div>
                             
                             <ul class="consolidation-benefits">
-                                <li><span>✓</span> Lower monthly payment</li>
-                                <li><span>✓</span> Single payment vs multiple</li>
-                                <li><span>✓</span> Fixed rate protection</li>
-                                ${option.type.includes('HELOC') ? '<li><span>✓</span> Tax-deductible interest (if used for home)</li>' : '<li><span>✓</span> No collateral required</li>'}
+                                <li>Lower monthly payment</li>
+                                <li>Single payment vs multiple</li>
+                                <li>Fixed rate protection</li>
+                                ${option.type.includes('HELOC') ? '<li>Tax-deductible interest (if used for home)</li>' : '<li>No collateral required</li>'}
                             </ul>
                             
                             <div style="background: var(--background-light); padding: 1rem; border-radius: 6px; margin-top: 1rem;">
