@@ -959,8 +959,10 @@
         function checkHomeownerSection() {
             const summary = updateSummary();
             const hasHighInterestDebt = summary.debts.some(d => d.rate >= 0.12 && d.balance >= 3000);
+            const hasMortgage = summary.debts.some(d => d.debtType === 'mortgage' || d.debtType === 'heloc');
             
-            if (hasHighInterestDebt && summary.totalDebt >= 5000) {
+            // Show homeowner section if they have high interest debt OR a mortgage
+            if ((hasHighInterestDebt || hasMortgage) && summary.totalDebt >= 5000) {
                 document.getElementById('homeownerSection').classList.add('show');
             } else {
                 document.getElementById('homeownerSection').classList.remove('show');
@@ -1335,7 +1337,8 @@
             // Add HELOC only if: homeowner = true AND (ltvRatio <= 0.85 OR ltvRatio is null)
             const showHELOC = isHomeowner === true && (ltvRatio === null || ltvRatio <= 0.85);
             
-            if (showHELOC && helocOption.rate < weightedAvgRate) {
+            if (showHELOC) {
+                // Show HELOC even if rate isn't better - it may still be useful for cash-out refi
                 const payment = calculatePayment(totalDebt, helocOption.rate, helocOption.termMonths) + helocOption.monthlyFee;
                 const totalInterestNew = (payment * helocOption.termMonths) - totalDebt + helocOption.setupFee;
                 const interestSaved = Math.max(0, currentPlan.totalInterest - totalInterestNew);
@@ -1348,7 +1351,8 @@
                     totalInterest: totalInterestNew,
                     monthlyFee: helocOption.monthlyFee,
                     setupFee: helocOption.setupFee,
-                    interestSaved: interestSaved
+                    interestSaved: interestSaved,
+                    isHeloc: true
                 });
             }
             
@@ -1409,12 +1413,17 @@
                 let consolidationHTML = '';
                 
                 results.consolidation.consolidationOptions.forEach(option => {
+                    const isHelocWithNoSavings = option.isHeloc && option.interestSaved === 0;
+                    const savingsText = isHelocWithNoSavings 
+                        ? 'Consider for cash-out to pay higher-interest debts' 
+                        : `Save $${Math.round(option.interestSaved).toLocaleString()}`;
+                    
                     consolidationHTML += `
                         <div class="consolidation-card">
                             <h5>💰 ${option.type} Consolidation</h5>
                             <div class="loan-rate">${(option.rate * 100).toFixed(1)}% APR</div>
                             <div class="rate-info">Monthly payment: $${Math.round(option.monthlyPayment).toLocaleString()}</div>
-                            <div class="rate-info">${option.termMonths} months • Save $${Math.round(option.interestSaved).toLocaleString()}</div>
+                            <div class="rate-info">${option.termMonths} months • ${savingsText}</div>
                             
                             <ul class="consolidation-benefits">
                                 <li>Lower monthly payment</li>
@@ -1425,6 +1434,7 @@
                             
                             <div style="background: var(--background-light); padding: 1rem; border-radius: 6px; margin-top: 1rem;">
                                 <strong>Total Interest Saved:</strong> $${Math.round(option.interestSaved).toLocaleString()}
+                                ${isHelocWithNoSavings ? '<br><small style="color: var(--text-light);">HELOC may still be useful for accessing equity to pay off higher-rate debts.</small>' : ''}
                             </div>
                         </div>
                     `;
