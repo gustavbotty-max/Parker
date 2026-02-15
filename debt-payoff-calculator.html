@@ -1221,9 +1221,11 @@
             const snowballResults = calculateDebtSnowball(JSON.parse(JSON.stringify(summary.debts)), summary.totalPayment, extraPayment);
             const avalancheResults = calculateDebtAvalanche(JSON.parse(JSON.stringify(summary.debts)), summary.totalPayment, extraPayment);
             const consolidationResults = calculateConsolidation(JSON.parse(JSON.stringify(summary.debts)), extraPayment);
-            const currentPlanResults = calculateCurrentPlan(JSON.parse(JSON.stringify(summary.debts)), extraPayment);
             
-            // Calculate potential savings (comparing to Current Plan)
+            // Current plan baseline = minimum payments ONLY (no extra payment)
+            const currentPlanResults = calculateCurrentPlan(JSON.parse(JSON.stringify(summary.debts)), 0);
+            
+            // Calculate potential savings (comparing to Current Plan with NO extra payment)
             const savings = {
                 snowball: Math.max(0, currentPlanResults.totalInterest - snowballResults.totalInterest),
                 avalanche: Math.max(0, currentPlanResults.totalInterest - avalancheResults.totalInterest),
@@ -1388,9 +1390,9 @@
         function calculateConsolidation(debtsCopy, extraPayment) {
             if (debtsCopy.length === 0) return { totalInterestSaved: 0, consolidationOptions: [] };
             
-            // Only consolidate high-interest debts (exclude mortgages and low-rate debts)
+            // Only consolidate non-mortgage debts (mortgages/HELOCs shouldn't be part of consolidation)
             const consolidatableDebts = debtsCopy.filter(d => 
-                d.debtType !== 'mortgage' && d.debtType !== 'heloc' && d.rate >= 0.08
+                d.debtType !== 'mortgage' && d.debtType !== 'heloc'
             );
             
             if (consolidatableDebts.length === 0) {
