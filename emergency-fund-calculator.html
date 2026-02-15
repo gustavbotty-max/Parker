@@ -470,9 +470,15 @@
             <h4>📝 Want Your Detailed Emergency Fund Plan?</h4>
             <p>Enter your email below and I'll send you a personalized emergency fund savings plan including worksheets and progress trackers.</p>
             
-            <form id="emailForm" method="POST" action="../../lead-capture.php">
+            <div id="formspreeStatus" style="display: none; background: var(--success-color); color: white; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; text-align: center;">
+                <div style="font-size: 2rem; margin-bottom: 0.5rem;">✅</div>
+                <h5>Plan Sent Successfully!</h5>
+                <p>Check your email for your emergency fund guide.</p>
+            </div>
+            
+            <form id="emailForm" accept-charset="UTF-8" action="javascript:void(0);">
                 <div class="email-form">
-                    <input type="email" class="email-input" name="email" placeholder="Enter your email address" required>
+                    <input type="email" id="userEmail" class="email-input" name="email" placeholder="Enter your email address" required>
                     <input type="hidden" name="calculator_type" value="emergency-fund">
                     <input type="hidden" name="lead_source" value="calculator-results">
                     <input type="hidden" name="monthly_expenses" id="hiddenMonthlyExpenses">
@@ -680,6 +686,85 @@
                 });
             }, 300);
         }
+        
+        // Formspree Integration - Send email via JavaScript
+        function handleEmailSubmit(event) {
+            event.preventDefault();
+            
+            // Select elements
+            const emailInput = document.getElementById('userEmail');
+            const button = document.querySelector('.email-button');
+            
+            // Validate email
+            if (!emailInput.value || !emailInput.value.includes('@')) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            
+            // Gather calculator-specific data
+            const formData = {
+                email: emailInput.value,
+                calculator_type: 'emergency-fund',
+                lead_source: 'calculator-results',
+                monthly_expenses: document.getElementById('hiddenMonthlyExpenses')?.value || 'Not calculated',
+                recommended_fund: document.getElementById('hiddenRecommendedFund')?.value || 'Not calculated',
+                current_gap: document.getElementById('hiddenCurrentGap')?.value || 'Not calculated',
+                best_strategy: 'Emergency Fund Builder',
+                potential_savings: document.getElementById('hiddenRecommendedFund')?.value || 0,
+                timestamp: new Date().toISOString()
+            };
+            
+            // Show loading state
+            const originalText = button.innerHTML;
+            button.innerHTML = 'Sending... ⏳';
+            button.disabled = true;
+            
+            // Send data to Formspree
+            fetch('https://formspree.io/f/xkovojay', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.ok) {
+                    // SUCCESS: Show success message
+                    document.getElementById('formspreeStatus').style.display = 'block';
+                    button.textContent = '✅ Plan Sent!';
+                    
+                    // Scroll to success message
+                    document.getElementById('formspreeStatus').scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'nearest' 
+                    });
+                    
+                } else {
+                    // Error from Formspree
+                    if (data.errors) {
+                        alert(data.errors.map(error => error.message).join(', '));
+                    } else {
+                        alert('Oops! There was a problem submitting your form');
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Formspree error:', error);
+                alert('Connection error. Please try again or contact me directly.');
+            })
+            .finally(() => {
+                // Reset button state
+                button.innerHTML = originalText;
+                button.disabled = false;
+            });
+        }
+        
+        // Add event listener for email form submission
+        document.getElementById('emailForm').addEventListener('submit', handleEmailSubmit);
+        
+        console.log('📧 Emergency Fund Calculator: Formspree integration ready!');
     </script>
 </body>
 </html>
