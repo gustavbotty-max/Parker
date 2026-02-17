@@ -2,3 +2,8 @@ github_deploy_key*
 client_secret.json
 oauth_token_exchange.py
 google_env.sh
+.openclaw/
+openclaw.json
+openclaw.json.backup
+backups/*/openclaw.json*
+*.backup
