@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Pipeline Dashboard | Jonathan Parker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --bg-dark: #1a1a2e;
+            --bg-card: #16213e;
+            --bg-hover: #1f2b47;
+            --accent-primary: #4a90e2;
+            --accent-success: #27ae60;
+            --accent-warning: #f39c12;
+            --accent-danger: #e74c3c;
+            --text-primary: #ffffff;
+            --text-secondary: #a0aec0;
+            --border: #2d3748;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+        
+        .header {
+            background: var(--bg-card);
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .header .status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-success);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        /* Pipeline Flow */
+        .pipeline-section {
+            margin-bottom: 2rem;
+        }
+        
+        .section-title {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .pipeline-flow {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .agent-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            min-width: 200px;
+            flex: 1;
+            transition: all 0.2s;
+        }
+        
+        .agent-card:hover {
+            background: var(--bg-hover);
+            transform: translateY(-2px);
+        }
+        
+        .agent-card.active {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+        }
+        
+        .agent-card.completed {
+            border-color: var(--accent-success);
+        }
+        
+        .agent-card.error {
+            border-color: var(--accent-danger);
+        }
+        
+        .agent-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+        
+        .agent-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .agent-role {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .agent-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .status-idle {
+            background: rgba(160, 174, 192, 0.2);
+            color: var(--text-secondary);
+        }
+        
+        .status-running {
+            background: rgba(74, 144, 226, 0.2);
+            color: var(--accent-primary);
+        }
+        
+        .status-completed {
+            background: rgba(39, 174, 96, 0.2);
+            color: var(--accent-success);
+        }
+        
+        .status-error {
+            background: rgba(231, 76, 60, 0.2);
+            color: var(--accent-danger);
+        }
+        
+        .agent-meta {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+        
+        .arrow {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+        }
+        
+        /* Control Panel */
+        .controls-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .controls-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .control-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            border: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary {
+            background: var(--accent-primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #357abd;
+        }
+        
+        .btn-secondary {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--border);
+        }
+        
+        .btn-success {
+            background: var(--accent-success);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #219a52;
+        }
+        
+        .input {
+            padding: 0.75rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+        
+        .input:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+        }
+        
+        /* Content Preview */
+        .content-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+        
+        .tab {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .tab:hover {
+            background: var(--bg-hover);
+        }
+        
+        .tab.active {
+            background: var(--accent-primary);
+            color: white;
+        }
+        
+        .content-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .content-item {
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .content-info h4 {
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+        
+        .content-info p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+        
+        .content-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .btn-sm {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.8rem;
+        }
+        
+        /* Quick Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+        
+        /* Model Config */
+        .model-badge {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            background: rgba(74, 144, 226, 0.2);
+            color: var(--accent-primary);
+            border-radius: 4px;
+            font-size: 0.7rem;
+            margin-left: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>🔧 Content Pipeline OS</h1>
+        <div class="status">
+            <span class="status-dot"></span>
+            <span>System Online</span>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- Quick Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="stat-research">0</div>
+                <div class="stat-label">Research Files</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="stat-blog">0</div>
+                <div class="stat-label">Blog Posts</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="stat-social">0</div>
+                <div class="stat-label">Social Posts</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="stat-scripts">0</div>
+                <div class="stat-label">Video Scripts</div>
+            </div>
+        </div>
+        
+        <!-- Agent Pipeline -->
+        <div class="pipeline-section">
+            <h2 class="section-title">Agent Pipeline</h2>
+            <div class="pipeline-flow">
+                <div class="agent-card" id="agent-gustav">
+                    <div class="agent-header">
+                        <div>
+                            <div class="agent-name">Gustav <span class="model-badge">orchestrator</span></div>
+                            <div class="agent-role">You</div>
+                        </div>
+                        <span class="agent-status status-idle">Idle</span>
+                    </div>
+                    <div class="agent-meta">Coordinates all agents</div>
+                </div>
+                
+                <span class="arrow">→</span>
+                
+                <div class="agent-card" id="agent-scout">
+                    <div class="agent-header">
+                        <div>
+                            <div class="agent-name">Scout <span class="model-badge">cheap</span></div>
+                            <div class="agent-role">Research</div>
+                        </div>
+                        <span class="agent-status status-idle" id="status-scout">Idle</span>
+                    </div>
+                    <div class="agent-meta" id="meta-scout">Financial news & analysis</div>
+                </div>
+                
+                <span class="arrow">→</span>
+                
+                <div class="agent-card" id="agent-quill">
+                    <div class="agent-header">
+                        <div>
+                            <div class="agent-name">Quill <span class="model-badge">default</span></div>
+                            <div class="agent-role">Writer</div>
+                        </div>
+                        <span class="agent-status status-idle" id="status-quill">Idle</span>
+                    </div>
+                    <div class="agent-meta" id="meta-quill">Blog post creation</div>
+                </div>
+                
+                <span class="arrow">→</span>
+                
+                <div class="agent-card" id="agent-echo">
+                    <div class="agent-header">
+                        <div>
+                            <div class="agent-name">Echo <span class="model-badge">cheap</span></div>
+                            <div class="agent-role">Social</div>
+                        </div>
+                        <span class="agent-status status-idle" id="status-echo">Idle</span>
+                    </div>
+                    <div class="agent-meta" id="meta-echo">Multi-platform content</div>
+                </div>
+                
+                <span class="arrow">→</span>
+                
+                <div class="agent-card" id="agent-frame">
+                    <div class="agent-header">
+                        <div>
+                            <div class="agent-name">Frame <span class="model-badge">default</span></div>
+                            <div class="agent-role">Video</div>
+                        </div>
+                        <span class="agent-status status-idle" id="status-frame">Idle</span>
+                    </div>
+                    <div class="agent-meta" id="meta-frame">Short-form scripts</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Control Panel -->
+        <div class="controls-section">
+            <h2 class="section-title">Control Panel</h2>
+            <div class="controls-grid">
+                <div class="control-group">
+                    <label class="control-label">Full Pipeline</label>
+                    <button class="btn btn-success" onclick="runPipeline()">
+                        ▶ Run All Agents
+                    </button>
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label">Research Topic</label>
+                    <input type="text" class="input" id="research-topic" placeholder="e.g., NC housing market trends">
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label">Individual Agents</label>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn btn-secondary btn-sm" onclick="runAgent('scout')">Scout</button>
+                        <button class="btn btn-secondary btn-sm" onclick="runAgent('quill')">Quill</button>
+                        <button class="btn btn-secondary btn-sm" onclick="runAgent('echo')">Echo</button>
+                        <button class="btn btn-secondary btn-sm" onclick="runAgent('frame')">Frame</button>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label">System</label>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn btn-secondary btn-sm" onclick="refreshData()">🔄 Refresh</button>
+                        <button class="btn btn-secondary btn-sm" onclick="clearQueue()">Clear Queue</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Content Preview -->
+        <div class="content-section">
+            <div class="tabs">
+                <div class="tab active" onclick="showTab('research')">Research</div>
+                <div class="tab" onclick="showTab('blog')">Blog Posts</div>
+                <div class="tab" onclick="showTab('social')">Social</div>
+                <div class="tab" onclick="showTab('scripts')">Scripts</div>
+            </div>
+            
+            <div class="content-list" id="content-research">
+                <div class="content-item">
+                    <div class="content-info">
+                        <h4>No research files yet</h4>
+                        <p>Run Scout to generate research</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-list" id="content-blog" style="display:none;">
+                <div class="content-item">
+                    <div class="content-info">
+                        <h4>No blog posts yet</h4>
+                        <p>Run Quill after Scout completes</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-list" id="content-social" style="display:none;">
+                <div class="content-item">
+                    <div class="content-info">
+                        <h4>No social content yet</h4>
+                        <p>Run Echo after Quill completes</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-list" id="content-scripts" style="display:none;">
+                <div class="content-item">
+                    <div class="content-info">
+                        <h4>No scripts yet</h4>
+                        <p>Run Frame after Quill completes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // State management
+        let currentState = {};
+        
+        // Load state from JSON
+        async function loadState() {
+            try {
+                const response = await fetch('pipeline/state.json');
+                currentState = await response.json();
+                updateDashboard();
+            } catch (e) {
+                console.log('No state file yet');
+            }
+        }
+        
+        // Update dashboard UI
+        function updateDashboard() {
+            if (!currentState.agents) return;
+            
+            // Update agent statuses
+            Object.keys(currentState.agents).forEach(agentId => {
+                const agent = currentState.agents[agentId];
+                const statusEl = document.getElementById(`status-${agentId}`);
+                const cardEl = document.getElementById(`agent-${agentId}`);
+                
+                if (statusEl) {
+                    statusEl.textContent = agent.status;
+                    statusEl.className = `agent-status status-${agent.status}`;
+                }
+                
+                if (cardEl) {
+                    cardEl.className = `agent-card ${agent.status}`;
+                }
+            });
+        }
+        
+        // Tab switching
+        function showTab(tab) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.content-list').forEach(c => c.style.display = 'none');
+            
+            event.target.classList.add('active');
+            document.getElementById(`content-${tab}`).style.display = 'flex';
+        }
+        
+        // Run full pipeline
+        function runPipeline() {
+            const topic = document.getElementById('research-topic').value || 'general financial news';
+            alert(`Starting pipeline with topic: ${topic}\n\nIn production, this would spawn Scout → Quill → Echo → Frame`);
+        }
+        
+        // Run individual agent
+        function runAgent(agent) {
+            alert(`Running ${agent}...\n\nIn production, this would spawn the agent session`);
+        }
+        
+        // Refresh data
+        function refreshData() {
+            loadState();
+            updateStats();
+        }
+        
+        // Update stats
+        function updateStats() {
+            // In production, count actual files in directories
+            document.getElementById('stat-research').textContent = '0';
+            document.getElementById('stat-blog').textContent = '0';
+            document.getElementById('stat-social').textContent = '0';
+            document.getElementById('stat-scripts').textContent = '0';
+        }
+        
+        // Clear queue
+        function clearQueue() {
+            if (confirm('Clear all pending tasks?')) {
+                alert('Queue cleared');
+            }
+        }
+        
+        // Initial load
+        loadState();
+        updateStats();
+        
+        // Auto-refresh every 30 seconds
+        setInterval(refreshData, 30000);
+    </script>
+</body>
+</html>

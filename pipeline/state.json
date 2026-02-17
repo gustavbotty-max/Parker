@@ -1,0 +1,47 @@
+{
+  "version": "1.0",
+  "last_updated": "",
+  "active_run": null,
+  "queue": [],
+  "history": [],
+  "agents": {
+    "gustav": {
+      "name": "Gustav",
+      "role": "Orchestrator",
+      "status": "idle",
+      "model": "default"
+    },
+    "scout": {
+      "name": "Scout",
+      "role": "Research",
+      "status": "idle",
+      "model": "cheap",
+      "last_run": null,
+      "outputs": []
+    },
+    "quill": {
+      "name": "Quill",
+      "role": "Writer",
+      "status": "idle",
+      "model": "default",
+      "last_run": null,
+      "outputs": []
+    },
+    "echo": {
+      "name": "Echo",
+      "role": "Social Content",
+      "status": "idle",
+      "model": "cheap",
+      "last_run": null,
+      "outputs": []
+    },
+    "frame": {
+      "name": "Frame",
+      "role": "Video Scripts",
+      "status": "idle",
+      "model": "default",
+      "last_run": null,
+      "outputs": []
+    }
+  }
+}
