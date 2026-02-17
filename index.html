@@ -906,8 +906,8 @@
         </div>
     </footer>
     
-    <!-- Blog Post Full Content (Hidden by default) -->
-    <div id="blog-post-dow-50k" class="blog-full">
+    <!-- Blog Post Overlay (Hidden by default, appears over content) -->
+    <div id="blog-post-dow-50k" class="blog-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 1000; overflow-y: auto;">
         <div class="container">
             <div class="blog-full-content">
                 <a href="#blog" class="blog-back-btn" onclick="hideBlogPost()">← Back to all articles</a>
@@ -988,20 +988,21 @@
         
         // Blog post navigation
         function showBlogPost(postId) {
-            // Hide blog list, show full post
-            document.querySelector('.blog').style.display = 'none';
-            document.getElementById('blog-post-' + postId).classList.add('active');
-            document.getElementById('blog-post-' + postId).style.display = 'block';
-            window.scrollTo(0, 0);
+            // Show the overlay
+            const overlay = document.getElementById('blog-post-' + postId);
+            if (overlay) {
+                overlay.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                window.scrollTo(0, 0);
+            }
         }
         
         function hideBlogPost() {
-            // Show blog list, hide full post
-            document.querySelector('.blog').style.display = 'block';
-            document.querySelectorAll('.blog-full').forEach(el => {
-                el.classList.remove('active');
+            // Hide all blog overlays
+            document.querySelectorAll('.blog-overlay').forEach(el => {
                 el.style.display = 'none';
             });
+            document.body.style.overflow = ''; // Restore scrolling
             window.location.hash = 'blog';
         }
         
