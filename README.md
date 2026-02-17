@@ -1,32 +1,22 @@
 # Parker Financial Calculators
 
-Free financial planning tools for Triangle families in North Carolina.
+**Free financial planning tools for Triangle families**
 
-## 🧮 Calculators Available
+Live site: https://gustavbotty-max.github.io/Parker/
 
-- **Life Insurance Calculator** - Compare life insurance options
-- **Retirement Planning Calculator** - Estimate retirement savings needs  
-- **College Savings Calculator** - Plan for education expenses
-- **Debt Payoff Calculator** - Create debt repayment strategies
-- **Emergency Fund Calculator** - Calculate emergency savings needs
+## 📊 Calculators
 
-## 🚀 Quick Start
+- Life Insurance Calculator
+- Retirement Planning  
+- College Savings Planner
+- Debt Payoff Calculator
+- Emergency Fund Calculator
+- Mortgage Comparison (Coming Soon)
 
-All calculators are static HTML/CSS/JavaScript - just open any `.html` file in your browser!
+## 📝 Content
 
-## 🌐 Live Site
+Educational blog posts and resources are published here. Content is generated via the private Parker Pipeline system.
 
-This repository is configured for GitHub Pages. Visit:
-https://gustavbotty-max.github.io/Parker/
+---
 
-## 💡 About
-
-Created by Jonathan Parker, a Triangle professional who believes financial planning shouldn't be gatekept for the wealthy. These tools provide honest calculations on demand.
-
-## 📞 Contact
-
-Jonathan Parker - Financial Educator
-📞 (919) 749-3739
-✉️ jonathan@parkerfinancial.com
-
-Serving Raleigh, Durham, Chapel Hill, and surrounding areas in North Carolina.
+**Note:** The content generation pipeline (multi-agent system) lives in a separate private repository.
