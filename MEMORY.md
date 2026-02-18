@@ -48,6 +48,55 @@
 ## Technical Migration
 - Previously: Cloud-based AI (~$48/month, reliability issues)
 - Now: Self-hosted VPS with Ollama
+
+## Troubleshooting Log
+
+### 2026-02-18: Gateway Token Mismatch & Tailscale Zombie Crisis
+**Problem**: Gateway failing with `device token mismatch` error, pipeline architecture broken
+
+**Root Cause**: 
+- Tailscale serve failing (`/usr/bin/tailscale serve --bg --yes 18789`)
+- Failed serve attempts accumulating zombie processes
+- RAM exhaustion → gateway sluggishness (1300ms+ response times)
+- Auth handshake failures → token rotation required
+
+**Symptoms**:
+- `gateway closed (1008): unauthorized: device token mismatch`
+- `[tailscale] serve failed` in logs every startup
+- Pipeline agents (Scout, Quill, Echo, Frame) failing to spawn
+- Main agent doing all work instead of sub-agents
+
+**Fixes Applied**:
+```bash
+# Clear zombie Tailscale state
+sudo tailscale serve reset
+sudo systemctl restart tailscaled
+
+# Restart gateway fresh
+systemctl --user restart openclaw-gateway
+
+# Update OpenClaw (2026.2.15 → 2026.2.17)
+openclaw update
+
+# Rotate device token (via onboard wizard)
+openclaw onboard
+```
+
+**Current State**: Gateway stable, Tailscale still enabled (`mode: serve`) but loopback binding working. Monitoring for zombie recurrence.
+
+**Detection Commands**:
+```bash
+# Check for zombie buildup
+ps aux | grep tailscale | wc -l
+
+# Check gateway health
+openclaw gateway probe
+journalctl --user -u openclaw-gateway -n 20
+
+# Check Tailscale serve status
+tailscale serve status
+```
+
 - VPS: Ubuntu 22.04, 16-32GB RAM, 4+ cores
 - Models: Qwen2.5-72B, Llama3.1-70B, Mixtral-8x7B
 
