@@ -7,3 +7,17 @@ openclaw.json
 openclaw.json.backup
 backups/*/openclaw.json*
 *.backup
+
+# Agent/internal files - keep local only
+AGENTS.md
+BOOTSTRAP.md
+CALENDAR_EMAIL_SETUP.md
+FORMSPREE_SETUP.md
+HEARTBEAT.md
+IDENTITY.md
+SOUL.md
+TOOLS.md
+USER.md
+memory/
+.local/
+clawhub/
