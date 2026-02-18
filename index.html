@@ -805,7 +805,29 @@
             </div>
             
             <div class="blog-grid">
-                <!-- Featured Blog Post -->
+                <!-- Featured Blog Post - Trending Financial News -->
+                <article class="blog-card" onclick="showBlogPost('trending-news')" style="cursor: pointer;">
+                    <div class="blog-card-header">
+                        <span class="blog-category">📰 Financial News</span>
+                        <h3 class="blog-card-title">What's Actually Happening in Financial News This Week</h3>
+                    </div>
+                    <div class="blog-card-body">
+                        <div class="blog-meta">
+                            <span>📅 February 18, 2025</span>
+                            <span>⏱️ 6 min read</span>
+                        </div>
+                        <p class="blog-excerpt">The Fed hit pause, your 529 just got way more flexible, and NC insurance costs are creeping up again. Here's what actually matters for Triangle families this week—no fluff, no jargon.</p>
+                        <div class="blog-tags">
+                            <span class="blog-tag">Fed Rates</span>
+                            <span class="blog-tag">529 Plans</span>
+                            <span class="blog-tag">Insurance</span>
+                            <span class="blog-tag">Social Security</span>
+                        </div>
+                        <a href="#" class="blog-read-more" onclick="event.preventDefault(); showBlogPost('trending-news')">Read the full article</a>
+                    </div>
+                </article>
+                
+                <!-- Blog Post - Dow 50k -->
                 <article class="blog-card" onclick="showBlogPost('dow-50k')" style="cursor: pointer;">
                     <div class="blog-card-header">
                         <span class="blog-category">📈 Investing</span>
@@ -1011,6 +1033,89 @@
                     <div class="blog-cta-box">
                         <h3>Want a Second Pair of Eyes?</h3>
                         <p>I help Triangle families review their 401(k) allocations to make sure they're actually diversified—not just collecting tech stocks in a trenchcoat.</p>
+                        <a href="https://scheduler.zoom.us/jonathan-parker-i9rj3o/pfs-intro" class="cta-button" target="_blank" rel="noopener noreferrer">Schedule a Free 15-Minute Chat</a>
+                    </div>
+                    
+                    <p style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color); color: var(--text-light);"><em>Written by Jonathan Parker | 3+ years helping Triangle families make smarter financial decisions | <a href="mailto:jlparker0106@gmail.com">jlparker0106@gmail.com</a></em></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Blog Post Overlay - Trending Financial News -->
+    <div id="blog-post-trending-news" class="blog-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 1000; overflow-y: auto;">
+        <div class="container">
+            <div class="blog-full-content">
+                <a href="#blog" class="blog-back-btn" onclick="hideBlogPost()">← Back to all articles</a>
+                
+                <div class="blog-full-header">
+                    <span class="blog-category" style="display: inline-block; background: var(--primary-color); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 1rem;">📰 Financial News</span>
+                    <h1 class="blog-full-title">What's Actually Happening in Financial News This Week (And Why It Matters to Your Family)</h1>
+                    <div class="blog-full-meta">
+                        <span>📅 February 18, 2025</span> • <span>⏱️ 6 min read</span> • <span>✍️ Jonathan Parker</span>
+                    </div>
+                </div>
+                
+                <div class="blog-full-body">
+                    <!-- SEO: Article Schema -->
+                    <script type="application/ld+json">
+                    {
+                      "@context": "https://schema.org",
+                      "@type": "BlogPosting",
+                      "headline": "What's Actually Happening in Financial News This Week (And Why It Matters to Your Family)",
+                      "description": "The Fed hit pause, 529 plans got more flexible, and NC insurance costs are rising. Here's what Triangle families need to know this week.",
+                      "author": {
+                        "@type": "Person",
+                        "name": "Jonathan Parker"
+                      },
+                      "datePublished": "2025-02-18",
+                      "dateModified": "2025-02-18",
+                      "keywords": ["Fed rates", "529 plans", "Roth IRA rollover", "NC insurance rates", "Social Security COLA", "Triangle NC", "financial news"],
+                      "articleSection": "Financial News",
+                      "audience": {
+                        "@type": "Audience",
+                        "audienceType": "Middle-class families in North Carolina"
+                      }
+                    }
+                    </script>
+                    
+                    <p style="font-size: 1.2rem; font-style: italic; color: var(--text-light); border-left: 3px solid var(--primary-color); padding-left: 1.5rem; margin: 2rem 0;">Let's be honest—most financial news is noise. Headlines scream about market movements that don't affect your grocery bill, and experts debate Fed policy like it's a sport. But this week? There are actually a few things worth your attention.</p>
+                    
+                    <h2 id="fed-pause">The Fed Hit Pause (Finally)</h2>
+                    <p>After years of "will they, won't they" on interest rates, the Federal Reserve held steady. For Triangle families, this matters because <strong>mortgage rates have stabilized around 6.5-7%</strong>.</p>
+                    <p><strong>What this means for you:</strong> If you've been sitting on the homebuying sidelines, spring inventory is coming. You might not get 3% rates again, but you also won't get surprised by sudden spikes. First-time buyers—start watching those listings.</p>
+                    
+                    <h2 id="529-flexibility">Your 529 Just Got Way More Flexible</h2>
+                    <p>Here's a change that flew under the radar: <strong>unused 529 college savings can now roll into a Roth IRA. Up to $35,000 lifetime.</strong></p>
+                    <p>This is huge for NC parents who've been worried about over-saving. Maybe your kid gets a full ride, or chooses a trade school, or—let's be real—wants to take a gap year to "find themselves." Previously, you faced penalties and taxes on that money. Now? It becomes retirement savings.</p>
+                    <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0;">
+                        <p style="margin: 0;"><strong>The catch:</strong> There are rules. The 529 has to be open 15+ years, rollovers count toward annual Roth limits, etc. But the flexibility is real.</p>
+                    </div>
+                    
+                    <h2 id="insurance-costs">Insurance Costs Are Creeping Up (Again)</h2>
+                    <p>Nobody talks about this at dinner parties, but <strong>NC homeowners have seen property insurance jump 15-25% over two years</strong>. Hurricane risk reassessments, reinsurance costs, climate concerns—it all filters down to your premium.</p>
+                    <p>Auto insurance isn't much better.</p>
+                    <p><strong>Your move:</strong> Shop around before your renewal. NC has a competitive insurance market, and you might find savings even while rates climb industry-wide. Don't just auto-renew.</p>
+                    
+                    <h2 id="social-security">Social Security Got a Small Bump</h2>
+                    <p>Retirees saw a 2.5% COLA increase this year. Helpful? Sure. Enough to keep up with Raleigh's cost of living? Probably not.</p>
+                    <p>If you're approaching retirement (or helping parents navigate theirs), this is your reminder: <strong>Social Security was never meant to be your only income</strong>. The gap between benefits and actual living expenses keeps widening—especially in growing metros like ours.</p>
+                    
+                    <h2 id="bottom-line">The Bottom Line</h2>
+                    <p>Financial news isn't just for Wall Street. The Fed's decisions, IRS rule changes, and state-level policy updates all trickle down to your household budget.</p>
+                    <p>But here's the thing: <strong>information without action is just anxiety.</strong></p>
+                    <p>If reading this made you realize you've got gaps—whether it's underfunded college savings, outdated life insurance, or no clear retirement strategy—that's actually good news. Awareness is the first step.</p>
+                    
+                    <h3>Related Articles</h3>
+                    <ul>
+                        <li><a href="#" style="color: var(--primary-color);" onclick="event.preventDefault(); hideBlogPost(); setTimeout(() => showBlogPost('dow-50k'), 100);">Dow 50,000: Should You Care?</a></li>
+                        <li><a href="college-savings-calculator.html" style="color: var(--primary-color);">College Savings Calculator</a></li>
+                        <li><a href="insurance-calculator.html" style="color: var(--primary-color);">Life Insurance Calculator</a></li>
+                    </ul>
+                    
+                    <div class="blog-cta-box">
+                        <h3>Want to Talk It Through?</h3>
+                        <p>I'm a local financial professional who helps Triangle families make sense of their money. No jargon, no pressure—just honest guidance from someone who lives here too.</p>
                         <a href="https://scheduler.zoom.us/jonathan-parker-i9rj3o/pfs-intro" class="cta-button" target="_blank" rel="noopener noreferrer">Schedule a Free 15-Minute Chat</a>
                     </div>
                     
