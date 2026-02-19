@@ -21,3 +21,5 @@ USER.md
 memory/
 .local/
 clawhub/
+*.wav
+*.mp4

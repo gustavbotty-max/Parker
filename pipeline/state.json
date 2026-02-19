@@ -1,0 +1,54 @@
+{
+  "version": "1.0",
+  "last_updated": "2026-02-19T11:47:00Z",
+  "active_run": null,
+  "queue": [],
+  "history": [
+    {
+      "timestamp": "2026-02-19T11:47:00Z",
+      "topic": "k-shaped recovery",
+      "agents": ["scout", "quill", "echo", "frame"],
+      "status": "completed"
+    }
+  ],
+  "agents": {
+    "gustav": {
+      "name": "Gustav",
+      "role": "Orchestrator",
+      "status": "idle",
+      "model": "default"
+    },
+    "scout": {
+      "name": "Scout",
+      "role": "Research",
+      "status": "completed",
+      "model": "cheap",
+      "last_run": "2026-02-19T11:43:00Z",
+      "outputs": ["content/research/2026-02-19-findings.md"]
+    },
+    "quill": {
+      "name": "Quill",
+      "role": "Writer",
+      "status": "completed",
+      "model": "default",
+      "last_run": "2026-02-19T11:45:00Z",
+      "outputs": ["content/blog/2026-02-19-k-shaped-recovery.md"]
+    },
+    "echo": {
+      "name": "Echo",
+      "role": "Social Content",
+      "status": "completed",
+      "model": "cheap",
+      "last_run": "2026-02-19T11:46:00Z",
+      "outputs": ["content/social/2026-02-19-k-shaped-recovery-social.json"]
+    },
+    "frame": {
+      "name": "Frame",
+      "role": "Video Scripts",
+      "status": "completed",
+      "model": "default",
+      "last_run": "2026-02-19T11:47:00Z",
+      "outputs": ["content/scripts/2026-02-19-k-shaped-recovery-script.json"]
+    }
+  }
+}
