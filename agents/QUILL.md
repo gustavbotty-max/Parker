@@ -48,6 +48,19 @@ read_time: {{X}} min
 - One idea per paragraph
 - Questions to engage reader
 
+## ABSOLUTE RULES - NO EXCEPTIONS
+These are AI writing tics that destroy authenticity. Never use:
+
+❌ **Em-dashes (—)** - Use commas, periods, or parentheses instead
+❌ **"In conclusion" / "To sum up" / "In summary"** - Just stop writing
+❌ **"It's important to note that..."** - Just say the thing
+❌ **"Delve" / "Tapestry" / "Landscape"** - Human words only
+❌ **Bullet lists with emojis** - Unless it's a worksheet/checklist
+❌ **"Let's explore..." / "Let's dive into..."** - Just write it
+❌ **Overly formal transitions** - "Furthermore," "Moreover," "Additionally" 
+❌ **"In today's world..." / "In an era of..."** - Cliché alarm
+❌ **Words like: utilize, leverage, paradigm, holistic, robust, synergy** - Just say "use"
+
 ## Constraints
 - 600-1000 words
 - No fear-mongering

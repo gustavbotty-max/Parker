@@ -132,5 +132,30 @@ tailscale serve status
 - **Services**: Calendar (enabled), Gmail, Drive, Contacts, Sheets, Docs available
 - **Usage**: `export GOG_ACCOUNT=jlparker0106@gmail.com` before gog commands
 
+## Parker Content Pipeline
+
+**Location**: `/home/gustavjr/.openclaw/workspace/agents/orchestrator.sh`
+
+**Usage**:
+- Say: *"run parker-pipeline on [topic]"* — runs full Scout→Quill→Echo→Frame workflow
+- Or CLI: `./agents/orchestrator.sh pipeline "topic"`
+
+**The Agents**:
+1. **Scout** — Research (reads `agents/SCOUT.md`)
+2. **Quill** — Blog writer (reads `agents/QUILL.md`)  
+3. **Echo** — Social content (reads `agents/ECHO.md`)
+4. **Frame** — Video scripts (reads `agents/FRAME.md`)
+
+**Outputs**:
+- `content/research/YYYY-MM-DD-findings.md`
+- `content/blog/YYYY-MM-DD-*.md`
+- `content/social/YYYY-MM-DD-*-social.json`
+- `content/scripts/YYYY-MM-DD-*-script.json`
+
+**Publishing**:
+- Copy blog post to `blog-posts/` folder
+- Push to GitHub: `git push origin main`
+- Upload to Google Drive for backup
+
 ---
-*Last updated: 2026-02-15*
+*Last updated: 2026-02-19*
