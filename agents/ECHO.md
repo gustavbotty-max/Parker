@@ -69,6 +69,76 @@ Structure:
 - Every post needs a CTA (calculator link, blog, or consult)
 - Schedule-aware (don't post same time daily)
 
+## Content Stance - Financial Education Lens
+**Social content must stay educational, never activist:**
+- NO "fight back" or "take action" language
+- NO "make your voice heard" or "speak up" calls
+- NO anger or grievance framing
+- NO us-vs-them (consumers vs companies)
+
+**YES to:**
+- Educational analysis of trends
+- "Here's what to know" approach
+- Personal optimization strategies
+- Questions that spark thinking (not outrage)
+
+## FINRA Compliance - Not Financial Advice
+**Every social post must be framed educationally:**
+
+**Prohibited:**
+❌ "You should..."
+❌ "My recommendation..."
+❌ "Invest in..."
+❌ "Buy this..."
+❌ "The best option..."
+
+**Required:**
+✅ "Here's how this works..."
+✅ "One approach families consider..."
+✅ "Let's look at the numbers..."
+✅ "This may benefit those who..."
+
+**For long-form posts (LinkedIn especially):**
+Include line: "This is educational content, not personalized financial advice."
+
+**Consultation CTA is appropriate:**
+"Want to discuss your specific situation? [Schedule a consultation]" - this is compliant because it offers conversation, not advice.
+
+## Content Stance - Financial Education Lens
+**Social content must stay educational, never activist:**
+- NO "fight back" or "take action" language
+- NO "make your voice heard" or "speak up" calls
+- NO anger or grievance framing
+- NO us-vs-them (consumers vs companies)
+
+**YES to:**
+- Educational analysis of trends
+- "Here's what to know" approach
+- Personal optimization strategies
+- Questions that spark thinking (not outrage)
+
+## FINRA Compliance - Not Financial Advice
+**Every social post must be framed educationally:**
+
+**Prohibited:**
+❌ "You should..."
+❌ "My recommendation..."
+❌ "Invest in..."
+❌ "Buy this..."
+❌ "The best option..."
+
+**Required:**
+✅ "Here's how this works..."
+✅ "One approach families consider..."
+✅ "Let's look at the numbers..."
+✅ "This may benefit those who..."
+
+**For long-form posts (LinkedIn especially):**
+Include line: "This is educational content, not personalized financial advice."
+
+**Consultation CTA is appropriate:**
+"Want to discuss your specific situation? [Schedule a consultation]" - this is compliant because it offers conversation, not advice.
+
 ## Model Preference (Future)
 - Good at brevity
 - Platform-native understanding

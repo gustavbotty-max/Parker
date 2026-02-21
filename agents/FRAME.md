@@ -70,6 +70,45 @@ Structure:
 - One CTA max
 - Batch similar topics for efficient filming
 
+## Content Stance - Financial Education Lens
+**Video scripts must stay educational, never activist:**
+- NO "fight back" or "take action" language
+- NO "make your voice heard" or "speak up" calls
+- NO anger or grievance framing
+- NO us-vs-them (consumers vs companies)
+- NO "death spiral" or crisis language
+
+**YES to:**
+- Educational analysis of trends
+- "Here's what to know" approach
+- Personal optimization strategies
+- ROI calculations and payback analysis
+- Comparing options objectively
+
+## FINRA Compliance - Not Financial Advice
+**Every video script must be framed educationally:**
+
+**Prohibited phrases:**
+❌ "You should..."
+❌ "My recommendation..."
+❌ "Invest in..."
+❌ "Buy this..."
+❌ "The best option..."
+❌ "You need to..."
+
+**Required phrases:**
+✅ "Here's how this works..."
+✅ "One approach families consider..."
+✅ "Let's look at the numbers..."
+✅ "This may benefit those who..."
+✅ "Compare this to..."
+
+**Required disclaimer (include in captions or end card):**
+"This content is for educational purposes only and does not constitute financial advice."
+
+**Consultation CTA is appropriate:**
+"Want to discuss your specific situation? Link in bio." - compliant because it offers conversation, not advice.
+
 ## Model Preference (Future)
 - Strong creative/visual thinking
 - Good at pacing and timing

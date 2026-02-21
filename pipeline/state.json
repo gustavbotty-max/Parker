@@ -1,13 +1,38 @@
 {
   "version": "1.0",
-  "last_updated": "2026-02-19T11:47:00Z",
+  "last_updated": "2026-02-21T14:30:30",
   "active_run": null,
   "queue": [],
   "history": [
     {
-      "timestamp": "2026-02-19T11:47:00Z",
-      "topic": "k-shaped recovery",
-      "agents": ["scout", "quill", "echo", "frame"],
+      "timestamp": "2026-02-21T14:30:30",
+      "action": "frame_script",
+      "result": "completed"
+    },
+    {
+      "timestamp": "2026-02-21T14:30:25",
+      "action": "echo_social",
+      "result": "completed"
+    },
+    {
+      "timestamp": "2026-02-21T14:30:19",
+      "action": "quill_write",
+      "result": "completed"
+    },
+    {
+      "timestamp": "2026-02-21T14:30:06",
+      "action": "scout_research",
+      "result": "completed"
+    },
+    {
+      "timestamp": "2026-02-20T14:34:00Z",
+      "topic": "m2 money supply",
+      "agents": [
+        "scout",
+        "quill",
+        "echo",
+        "frame"
+      ],
       "status": "completed"
     }
   ],
@@ -23,32 +48,40 @@
       "role": "Research",
       "status": "completed",
       "model": "cheap",
-      "last_run": "2026-02-19T11:43:00Z",
-      "outputs": ["content/research/2026-02-19-findings.md"]
+      "last_run": "2026-02-21T14:30:06",
+      "outputs": [
+        "content/research/2026-02-20-findings.md"
+      ]
     },
     "quill": {
       "name": "Quill",
       "role": "Writer",
       "status": "completed",
       "model": "default",
-      "last_run": "2026-02-19T11:45:00Z",
-      "outputs": ["content/blog/2026-02-19-k-shaped-recovery.md"]
+      "last_run": "2026-02-21T14:30:19",
+      "outputs": [
+        "content/blog/2026-02-20-m2-money-supply.md"
+      ]
     },
     "echo": {
       "name": "Echo",
       "role": "Social Content",
       "status": "completed",
       "model": "cheap",
-      "last_run": "2026-02-19T11:46:00Z",
-      "outputs": ["content/social/2026-02-19-k-shaped-recovery-social.json"]
+      "last_run": "2026-02-21T14:30:25",
+      "outputs": [
+        "content/social/2026-02-20-m2-money-supply-social.json"
+      ]
     },
     "frame": {
       "name": "Frame",
       "role": "Video Scripts",
       "status": "completed",
       "model": "default",
-      "last_run": "2026-02-19T11:47:00Z",
-      "outputs": ["content/scripts/2026-02-19-k-shaped-recovery-script.json"]
+      "last_run": "2026-02-21T14:30:30",
+      "outputs": [
+        "content/scripts/2026-02-20-m2-money-supply-script.json"
+      ]
     }
   }
 }

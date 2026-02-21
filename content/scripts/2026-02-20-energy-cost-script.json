@@ -1,0 +1,42 @@
+{
+  "source_blog": "2026-02-20-energy-cost-security.md",
+  "created": "2026-02-20T15:17:00",
+  "scripts": [
+    {
+      "type": "60_second",
+      "title": "How to Turn Your Electric Bill Into an Optimizable Investment",
+      "hook": "Your electric bill went up $23 this month.",
+      "segments": [
+        {"time": "0-3s", "visual": "Jonathan holding phone showing $186.95 bill", "audio": "One eighty-six ninety-five. That's the new typical Duke Energy bill. Up from one sixty-three."},
+        {"time": "3-10s", "visual": "Phone calculator showing 22% increase since 2020", "audio": "NC electricity bills up twenty-two percent since twenty twenty. Another increase scheduled for next year."},
+        {"time": "10-18s", "visual": "Split screen: spiky utility bills vs. smooth budget billing line", "audio": "You can't switch providers. But you can optimize. Budget billing gives you twelve equal payments. Predictable cash flow."},
+        {"time": "18-28s", "visual": "Whiteboard showing '30% tax credit × $4,000 = $1,200'", "audio": "Federal tax credits pay thirty percent of efficiency upgrades. Up to twelve hundred dollars a year. Insulation, windows, HVAC."},
+        {"time": "28-40s", "visual": "Writing on whiteboard: '7-year payback, then $400/year forever'", "audio": "Spend four thousand on insulation, get twelve hundred back. If it saves four hundred a year, you break even in seven years. Then it's four hundred a year forever."},
+        {"time": "40-50s", "visual": "Three buckets visual: Emergency Fund, Utility Buffer, Retirement", "audio": "Build a utility buffer. Two to three months of peak bills. Protects your emergency fund and retirement contributions from seasonal spikes."},
+        {"time": "50-60s", "visual": "Jonathan directly to camera, confident expression", "audio": "Energy costs belong in your financial plan. Optimize them like any other line item. Full strategy linked below."}
+      ],
+      "captions": "\"$186.95 new bill\" / Up 22% since 2020 / Can't switch providers / CAN optimize / Budget billing = smooth cash flow / 30% tax credits / $1,200/year max / 7-year payback example / Then $400/year forever / Build utility buffer / Link below",
+      "props_needed": ["Phone showing bill/calculator", "Whiteboard and markers", "Coffee mug"],
+      "filming_notes": "Keep tone educational and calm—not angry. Focus on the math and optimization. Use whiteboard for clear ROI examples."
+    },
+    {
+      "type": "90_second",
+      "title": "Energy Efficiency: The Tax-Advantaged Investment Nobody Talks About",
+      "hook": "There's a thirty percent return investment most families ignore.",
+      "segments": [
+        {"time": "0-3s", "visual": "Close-up of Jonathan, curious expression", "audio": "There's a thirty percent return investment most families ignore."},
+        {"time": "3-10s", "visual": "Text overlay: 'Federal Energy Tax Credit: 30% of costs up to $1,200/year'", "audio": "Federal tax credit. Thirty percent of your home efficiency upgrades. Up to twelve hundred dollars a year through twenty thirty-two."},
+        {"time": "10-20s", "visual": "Whiteboard with calculation: $4,000 insulation - $1,200 credit = $2,800 net cost", "audio": "Here's the math. You spend four thousand on insulation and air sealing. You get twelve hundred back as a tax credit. Your actual cost is twenty-eight hundred."},
+        {"time": "20-30s", "visual": "Writing on whiteboard: '$400/year savings ÷ $2,800 = 7 year payback'", "audio": "If those improvements save you four hundred a year on heating and cooling, you break even in seven years. That's a fourteen percent annual return."},
+        {"time": "30-40s", "visual": "Whiteboard showing 'Year 8+ = $400/year forever'", "audio": "After year seven, that four hundred dollars a year is pure savings. Forever. Or until you sell the house, at which point you've increased your home's value."},
+        {"time": "40-50s", "visual": "Split screen: savings account at 0.5% vs. efficiency investment at 14%", "audio": "Compare that to a savings account paying half a percent. Or even the stock market's historical seven to ten percent. This is a guaranteed return backed by the federal government."},
+        {"time": "50-60s", "visual": "Phone screen showing Duke Energy free audit signup", "audio": "Start with Duke's free energy assessment. They'll identify the highest-ROI improvements for your specific home. No cost, high-value information."},
+        {"time": "60-75s", "visual": "Jonathan writing 'Tax Credit + Efficiency = Wealth Building' on whiteboard", "audio": "Then run the numbers. Tax credit plus efficiency equals wealth building. Not just lower bills, but money that stays in your pocket and can be redirected to investments that compound."},
+        {"time": "75-90s", "visual": "Jonathan directly to camera, confident", "audio": "Energy efficiency isn't just about being green. It's about keeping more of your money. Full investment breakdown linked below."}
+      ],
+      "captions": "\"30% return investment\" / Federal tax credit: 30% up to $1,200/year / Example: $4,000 insulation - $1,200 credit = $2,800 cost / $400/year savings = 7-year payback / 14% annual return / After year 7: $400/year forever / Compare to 0.5% savings account / FREE Duke audit / Tax credit + efficiency = wealth building / Link below",
+      "props_needed": ["Whiteboard and markers", "Phone with calculator", "Sample tax form (prop)"],
+      "filming_notes": "Focus on the investment math. This is an educational piece about ROI, not a complaint about utilities. Keep tone analytical and optimistic."
+    }
+  ]
+}
