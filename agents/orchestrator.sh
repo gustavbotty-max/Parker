@@ -8,6 +8,19 @@ STATE_FILE="$WORKSPACE/pipeline/state.json"
 DATE=$(date +%Y-%m-%d)
 TIMESTAMP=$(date +%Y-%m-%dT%H:%M:%S)
 
+# ============================================
+# MODEL CONFIGURATION - Optimized per agent
+# ============================================
+# Scout: Grok for real-time trending financial data
+MODEL_SCOUT="github-copilot/grok-3-fast"
+# Quill: Claude for natural, human writing style  
+MODEL_QUILL="github-copilot/claude-sonnet-4"
+# Echo: Fast model for quick, punchy social content
+MODEL_ECHO="github-copilot/gpt-4o-mini"
+# Frame: Claude for structured video scripts with AI generation prompts
+MODEL_FRAME="github-copilot/claude-sonnet-4"
+# ============================================
+
 # Colors
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -63,13 +76,14 @@ case "$1" in
     "run-scout")
         TOPIC="${2:-general financial news}"
         log "🔍 Starting Scout research on: $TOPIC"
+        log "📡 Using agent: scout (Grok - real-time trending access)"
         update_agent_status "scout" "running"
         
-        # Use main agent with scout label since only main is configured
-        openclaw sessions_spawn \
-            --agent-id main \
-            --label "scout-$(echo $TOPIC | tr ' ' '-' | cut -c1-30)" \
-            --task "You are **Scout**, a Financial News & Research Analyst. Read $WORKSPACE/agents/SCOUT.md for your full persona. Research topic: $TOPIC. Save findings to $WORKSPACE/content/research/${DATE}-findings.md"
+        # Scout agent configured with Grok for real-time financial news
+        openclaw agent \
+            --agent scout \
+            --to "scout-$(echo $TOPIC | tr ' ' '-' | cut -c1-30)" \
+            --message "You are **Scout**, a Financial News & Research Analyst. Read $WORKSPACE/agents/SCOUT.md for your full persona. Research topic: $TOPIC. Use web_search to find the latest trending financial news on this topic. Save findings to $WORKSPACE/content/research/${DATE}-findings.md"
         
         update_agent_status "scout" "completed"
         add_to_history "scout_research" "completed"
@@ -78,18 +92,20 @@ case "$1" in
     
     "run-quill")
         RESEARCH_FILE="${2:-$(ls -t $WORKSPACE/content/research/*.md 2>/dev/null | head -1)}"
-        if [ -z "$$RESEARCH_FILE" ]; then
+        if [ -z "$RESEARCH_FILE" ]; then
             log "${RED}✗ No research file found. Run scout first.${NC}"
             exit 1
         fi
         
         log "📝 Starting Quill writing from: $(basename $RESEARCH_FILE)"
+        log "✍️  Using agent: quill (Claude - natural human writing)"
         update_agent_status "quill" "running"
         
-        openclaw sessions_spawn \
-            --agent-id main \
-            --label "quill-$(date +%s)" \
-            --task "You are **Quill**, a Blog Writer & Content Distiller. Read $WORKSPACE/agents/QUILL.md for your persona. Read $RESEARCH_FILE and create a blog post. Save to $WORKSPACE/content/blog/${DATE}-$(basename $RESEARCH_FILE .md).md"
+        # Quill agent configured with Claude for natural writing
+        openclaw agent \
+            --agent quill \
+            --to "quill-$(date +%s)" \
+            --message "You are **Quill**, a Blog Writer & Content Distiller. Read $WORKSPACE/agents/QUILL.md for your persona. Read $RESEARCH_FILE and create a blog post. Save to $WORKSPACE/content/blog/${DATE}-$(basename $RESEARCH_FILE .md).md"
         
         update_agent_status "quill" "completed"
         add_to_history "quill_write" "completed"
@@ -104,12 +120,14 @@ case "$1" in
         fi
         
         log "📱 Starting Echo social content from: $(basename $BLOG_FILE)"
+        log "⚡ Using agent: echo (GPT-4o - fast, concise)"
         update_agent_status "echo" "running"
         
-        openclaw sessions_spawn \
-            --agent-id main \
-            --label "echo-$(date +%s)" \
-            --task "You are **Echo**, a Social Media Content Creator. Read $WORKSPACE/agents/ECHO.md for your persona. Read $BLOG_FILE and create social media posts. Save to $WORKSPACE/content/social/${DATE}-$(basename $BLOG_FILE .md)-social.json"
+        # Echo agent configured with GPT-4o for fast social content
+        openclaw agent \
+            --agent echo \
+            --to "echo-$(date +%s)" \
+            --message "You are **Echo**, a Social Media Content Creator. Read $WORKSPACE/agents/ECHO.md for your persona. Read $BLOG_FILE and create social media posts. Save to $WORKSPACE/content/social/${DATE}-$(basename $BLOG_FILE .md)-social.json"
         
         update_agent_status "echo" "completed"
         add_to_history "echo_social" "completed"
@@ -124,12 +142,14 @@ case "$1" in
         fi
         
         log "🎬 Starting Frame video scripts from: $(basename $BLOG_FILE)"
+        log "🎥 Using agent: frame (Claude - structured scripts + AI prompts)"
         update_agent_status "frame" "running"
         
-        openclaw sessions_spawn \
-            --agent-id main \
-            --label "frame-$(date +%s)" \
-            --task "You are **Frame**, a Video Scriptwriter. Read $WORKSPACE/agents/FRAME.md for your persona. Read $BLOG_FILE and create video scripts. Save to $WORKSPACE/content/scripts/${DATE}-$(basename $BLOG_FILE .md)-script.json"
+        # Frame agent configured with Claude for structured video scripts
+        openclaw agent \
+            --agent frame \
+            --to "frame-$(date +%s)" \
+            --message "You are **Frame**, a Video Scriptwriter. Read $WORKSPACE/agents/FRAME.md for your persona. Read $BLOG_FILE and create video scripts. IMPORTANT: For each segment, include 'ai_visual_prompt' fields with detailed prompts suitable for AI video generation tools (Runway, Pika, Sora). Save to $WORKSPACE/content/scripts/${DATE}-$(basename $BLOG_FILE .md)-script.json"
         
         update_agent_status "frame" "completed"
         add_to_history "frame_script" "completed"

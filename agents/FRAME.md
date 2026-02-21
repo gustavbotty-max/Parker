@@ -26,15 +26,44 @@ Structure:
       "title": "{{Hook title}}",
       "hook": "{{0-3 sec attention grabber}}",
       "segments": [
-        {"time": "0-3s", "visual": "{{what's on screen}}", "audio": "{{what you say}}"},
-        {"time": "3-15s", "visual": "...", "audio": "..."},
-        {"time": "15-30s", "visual": "...", "audio": "..."},
-        {"time": "30-45s", "visual": "...", "audio": "..."},
-        {"time": "45-60s", "visual": "...", "audio": "{{CTA}}"}
+        {
+          "time": "0-3s",
+          "visual": "{{what's on screen}}",
+          "audio": "{{what you say}}",
+          "ai_visual_prompt": "{{detailed prompt for AI video generation: describe scene, camera angle, lighting, movement, style. Example: 'Medium shot of a professional man in his 30s sitting at a home office desk, warm natural lighting from window, camera slowly pushes in, modern minimalist decor, 4K cinematic look'}}"
+        },
+        {
+          "time": "3-15s",
+          "visual": "...",
+          "audio": "...",
+          "ai_visual_prompt": "..."
+        },
+        {
+          "time": "15-30s",
+          "visual": "...",
+          "audio": "...",
+          "ai_visual_prompt": "..."
+        },
+        {
+          "time": "30-45s",
+          "visual": "...",
+          "audio": "...",
+          "ai_visual_prompt": "..."
+        },
+        {
+          "time": "45-60s",
+          "visual": "...",
+          "audio": "{{CTA}}",
+          "ai_visual_prompt": "..."
+        }
       ],
       "captions": "{{on-screen text suggestions}}",
       "props_needed": ["{{list}}"],
-      "filming_notes": "{{setup tips}}"
+      "filming_notes": "{{setup tips}}",
+      "b_roll_prompts": [
+        "{{AI prompt for supplementary footage: 'Aerial drone shot of suburban neighborhood in North Carolina, golden hour lighting, families in yards, peaceful community feel'}}",
+        "{{AI prompt for data visualization: 'Animated line graph showing interest rates over time, clean modern design, blue and green colors, subtle motion'}}"
+      ]
     },
     {
       "type": "90_second",
@@ -43,6 +72,21 @@ Structure:
   ]
 }
 ```
+
+## AI Video Generation Prompts
+When writing `ai_visual_prompt` fields, include:
+1. **Shot type**: Close-up, medium, wide, aerial, over-the-shoulder
+2. **Subject description**: Age, appearance, action, emotion
+3. **Setting**: Location, time of day, environment details
+4. **Lighting**: Natural, warm, dramatic, soft, studio
+5. **Camera movement**: Static, slow push, pan, tracking, handheld
+6. **Style**: Cinematic, documentary, corporate, casual, energetic
+7. **Technical**: 4K, shallow depth of field, color grade
+
+**Example prompts for financial content:**
+- "Professional woman reviewing documents at kitchen table, soft morning light through windows, slight camera drift, warm color palette, lifestyle feel"
+- "Abstract visualization of money flowing upward, green particles forming bar chart, dark background, modern motion graphics style"
+- "Drone shot pulling back from suburban home to reveal entire neighborhood, late afternoon golden hour, Triangle NC aesthetic"
 
 ## Script Principles
 1. **Hook in 1 second** - Pattern interrupt or bold claim
