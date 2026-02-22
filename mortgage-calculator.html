@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Much House Can You Afford? - Mortgage Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2rem;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin: 0.5rem 0;
+        }
+        input, select {
+            width: 100%;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+        }
+        button {
+            padding: 0.7rem;
+            background: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .results {
+            margin-top: 1rem;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>How Much House Can You Afford?</h1>
+        <p>Enter your details below to find out how much house you can afford based on your target monthly payment and local property rates for Wake County, NC.</p>
+
+        <label for="monthlyPayment">Target Monthly Payment ($):</label>
+        <input type="number" id="monthlyPayment" placeholder="e.g. 1500">
+
+        <label for="interestRate">Estimated Mortgage Interest Rate (%):</label>
+        <input type="number" id="interestRate" placeholder="e.g. 6">
+
+        <label for="loanTerm">Loan Term (Years):</label>
+        <select id="loanTerm">
+            <option value="15">15</option>
+            <option value="30">30</option>
+        </select>
+
+        <label for="downPayment">Down Payment (% of Home Price):</label>
+        <input type="number" id="downPayment" placeholder="e.g. 20">
+
+        <button onclick="calculateAffordability()">Calculate</button>
+
+        <div id="results" class="results" style="display: none;">
+            <h2>Results:</h2>
+            <p id="homePrice">Estimated Home Price: </p>
+            <p id="loanAmount">Estimated Loan Amount: </p>
+            <p>Property Taxes (est. at 0.85%): Included in your monthly payment</p>
+            <p>Homeowner's Insurance ($1200/year avg.): Included in your monthly payment</p>
+        </div>
+    </div>
+
+    <script>
+        function calculateAffordability() {
+            const monthlyPayment = parseFloat(document.getElementById('monthlyPayment').value);
+            const interestRate = parseFloat(document.getElementById('interestRate').value) / 100 / 12; // monthly rate
+            const loanTerm = parseInt(document.getElementById('loanTerm').value) * 12; // total months
+            const downPaymentPercent = parseFloat(document.getElementById('downPayment').value) / 100;
+
+            const propertyTaxRate = 0.0085; // Wake County average
+            const annualInsurance = 1200; // Homeowner's insurance average
+
+            if (isNaN(monthlyPayment) || isNaN(interestRate) || isNaN(loanTerm) || isNaN(downPaymentPercent)) {
+                alert('Please fill in all fields with valid numbers.');
+                return;
+            }
+
+            // Estimate monthly taxes and insurance
+            const monthlyInsurance = annualInsurance / 12;
+            const monthlyTaxes = (propertyTaxRate * monthlyPayment) / (1 + propertyTaxRate + (monthlyInsurance / monthlyPayment));
+            const mortgagePayment = monthlyPayment - monthlyTaxes - monthlyInsurance;
+
+            // Calculate maximum loan amount using loan formula
+            const loanAmount = mortgagePayment * (1 - Math.pow(1 + interestRate, -loanTerm)) / interestRate;
+
+            // Calculate total home price based on loan + down payment
+            const homePrice = loanAmount / (1 - downPaymentPercent);
+
+            // Display results
+            document.getElementById('results').style.display = 'block';
+            document.getElementById('homePrice').textContent = `Estimated Home Price: $${homePrice.toFixed(2)}`;
+            document.getElementById('loanAmount').textContent = `Estimated Loan Amount: $${loanAmount.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
