@@ -1,0 +1,165 @@
+{
+  "source_blog": "2026-02-22-2026-02-22-findings.md",
+  "created": "2026-02-22T19:56:00Z",
+  "scripts": [
+    {
+      "type": "60_second",
+      "title": "Why Your Parents' Money Advice Doesn't Work Anymore",
+      "hook": "Your parents' financial advice? It's outdated.",
+      "segments": [
+        {
+          "time": "0-3s",
+          "visual": "Direct to camera, slight head shake",
+          "audio": "Your parents' financial advice? It's outdated. Here's why.",
+          "ai_visual_prompt": "Medium close-up of professional man in early 30s, casual button-down shirt, slight knowing head shake, direct eye contact with camera, home office with warm natural side lighting, shallow depth of field on background bookshelf, subtle camera push-in, authentic conversational energy"
+        },
+        {
+          "time": "3-15s",
+          "visual": "Vintage-style graphics of old advice, then red X marks",
+          "audio": "Save ten percent, buy a house, put away money for college, you'll be fine. That worked when housing was affordable, college costs grew slowly, and one income covered a family. None of that is true in twenty-twenty-six.",
+          "ai_visual_prompt": "Animated retro-style checklist appearing with 1980s aesthetic: 'Save 10%' checkmark, 'Buy a House' checkmark, 'College Fund' checkmark - then modern red X marks slam over each item one by one, visual style transitions from warm sepia vintage to cool modern blue, satisfying transition effects"
+        },
+        {
+          "time": "15-28s",
+          "visual": "Side-by-side comparison graphics",
+          "audio": "Housing in the Triangle has climbed. College tuition keeps outpacing inflation. Most families are juggling two incomes just to stay even, not get ahead. The rules changed.",
+          "ai_visual_prompt": "Split-screen animated infographic: left side shows house icon with price arrow shooting upward, right side shows graduation cap with dollar signs multiplying, center shows two briefcases on a balance scale barely staying level, clean modern design with blue and coral accent colors, smooth data visualization animations"
+        },
+        {
+          "time": "28-42s",
+          "visual": "Back to camera, shift to empowering tone",
+          "audio": "This isn't about blame. It's about adjusting your strategy. The old playbook assumed a different economy. You're playing a different game, so you need different moves.",
+          "ai_visual_prompt": "Medium shot of presenter with confident posture shift, hands coming together then opening outward in explanatory gesture, warm lighting suggesting optimism, slight camera drift creating dynamic energy, clean modern home office background, authentic documentary style"
+        },
+        {
+          "time": "42-52s",
+          "visual": "Quick tips appearing as bullet points",
+          "audio": "Track where your money actually goes. Check if your savings rate matches your timeline. And look at new tools—AI budgeting apps have gotten surprisingly good.",
+          "ai_visual_prompt": "Animated bullet points flying in from right side: phone icon with budget app, calendar with timeline, robot/AI icon - each with subtle glow effect on appearance, dark gradient background, modern minimalist typography, smooth staggered timing, tech-forward aesthetic"
+        },
+        {
+          "time": "52-60s",
+          "visual": "Warm close, CTA",
+          "audio": "Want help running your numbers for today's reality? Link in bio. Let's build a strategy that actually fits twenty-twenty-six.",
+          "ai_visual_prompt": "Close-up of presenter with genuine warm smile, slight nod, natural eye contact, then smooth crossfade to end card with 'Link in Bio' animated text, modern gradient background blue to teal, subtle particle effects, professional yet approachable branding"
+        }
+      ],
+      "captions": "On-screen: 'Old rules ≠ New economy' | 'Track your spending' | 'Link in bio'",
+      "props_needed": ["phone for showing apps", "clean desk setup"],
+      "filming_notes": "Start with slight skepticism in voice, then pivot to empowerment around 28s mark. This is relatable content—most viewers have heard outdated advice from well-meaning parents. Don't mock, just acknowledge reality.",
+      "b_roll_prompts": [
+        "Vintage 1980s family photo aesthetic transitioning to modern smartphone screen showing budget app, time warp visual effect, sepia to full color transition",
+        "Aerial drone shot of Research Triangle Park area showing mix of suburban homes and office buildings, golden hour lighting, establishing the local context",
+        "Close-up of hands scrolling through modern budgeting app on smartphone, clean interface visible, soft natural lighting, lifestyle documentary feel",
+        "Abstract visualization of multiple income streams flowing into single household icon, modern motion graphics with flowing lines, optimistic blue and green palette"
+      ],
+      "disclaimer": "This content is for educational purposes only and does not constitute financial advice."
+    },
+    {
+      "type": "60_second",
+      "title": "The 25-Year Retirement Problem",
+      "hook": "Retire at 65. Live to 90. That's 25 years.",
+      "segments": [
+        {
+          "time": "0-3s",
+          "visual": "Numbers appearing: 65... 90... 25",
+          "audio": "Retire at sixty-five. Live to ninety. That's twenty-five years of income you need to cover.",
+          "ai_visual_prompt": "Bold animated numbers appearing center frame in sequence: '65' appears, slight pause, '90' appears above, line connects them, '= 25 YEARS' appears below with emphasis effect, dark background with dramatic spotlight, modern typography with subtle glow, impactful reveal timing"
+        },
+        {
+          "time": "3-15s",
+          "visual": "Timeline graphic showing old vs new retirement spans",
+          "audio": "Old retirement planning assumed fifteen years of drawdown. Your grandparents' generation didn't live as long. But you probably will. The math is completely different now.",
+          "ai_visual_prompt": "Animated timeline comparison: top bar shows '15 years' in faded vintage style, bottom bar extends to '25 years' in vibrant modern colors, visual grows showing the gap, clean infographic style, smooth morphing animation, subtle pulse on the extended portion"
+        },
+        {
+          "time": "15-28s",
+          "visual": "Back to camera, conversational",
+          "audio": "This doesn't mean panic. It means extending your planning horizon. Contributing a bit more when you can. And thinking about income beyond just one four-oh-one-k.",
+          "ai_visual_prompt": "Medium shot of presenter speaking calmly with reassuring hand gestures, natural leaning posture suggesting conversation, warm afternoon window light, home office with plant visible in background, slight handheld camera movement for authenticity, relaxed professional vibe"
+        },
+        {
+          "time": "28-42s",
+          "visual": "Icons for multiple income streams appearing",
+          "audio": "Part-time work you actually enjoy. Dividend investments. Maybe rental income. One source of retirement income is risky. Multiple streams give you options.",
+          "ai_visual_prompt": "Animated icons appearing in circular arrangement around central 'retirement' hub: briefcase with heart, stock chart trending up, house with key, each connected by flowing lines to center, modern flat design with depth shadows, satisfying reveal animation, optimistic color palette"
+        },
+        {
+          "time": "42-52s",
+          "visual": "Calculator showing compound growth",
+          "audio": "Here's what most people miss: small increases now compound over decades. An extra fifty dollars a month at thirty becomes real money at sixty-five.",
+          "ai_visual_prompt": "Animated calculator or phone screen showing compound interest visualization, $50/month growing exponentially over time graph, numbers climbing with satisfying counter effect, green upward trend, clean modern UI design, slight camera push toward screen"
+        },
+        {
+          "time": "52-60s",
+          "visual": "Direct CTA with warmth",
+          "audio": "Want to see what your numbers look like over twenty-five years? Free calculator in my bio. Let's run it together.",
+          "ai_visual_prompt": "Close-up of presenter with encouraging expression, subtle hand gesture toward camera, warm genuine smile, smooth transition to end card 'Free Calculator - Link in Bio', modern clean design with blue gradient, subtle floating elements, inviting call-to-action feel"
+        }
+      ],
+      "captions": "On-screen: '25 YEARS of retirement' | 'Multiple income streams' | '$50/mo compounds'",
+      "props_needed": ["calculator", "whiteboard optional for timeline"],
+      "filming_notes": "Open with slight gravitas—the numbers are real. But quickly pivot to solution-focused. This isn't doom and gloom, it's planning smarter. The 25-year frame is memorable and shareable.",
+      "b_roll_prompts": [
+        "Happy active seniors walking in park, late afternoon golden light, healthy aging lifestyle, aspirational but realistic, warm color grade",
+        "Abstract visualization of money growing over time, coins stacking and multiplying, modern 3D render with soft shadows, satisfying ASMR-style visuals",
+        "Wide shot of multigenerational family gathering, backyard barbecue scene, warm summer afternoon, genuine happiness, Triangle NC suburban aesthetic",
+        "Time-lapse of piggy bank filling then transforming into larger investment portfolio visualization, playful but sophisticated animation style"
+      ],
+      "disclaimer": "This content is for educational purposes only and does not constitute financial advice."
+    },
+    {
+      "type": "60_second",
+      "title": "The Trade You're Making Without Knowing It",
+      "hook": "Every big purchase is a trade. Do you know what you're trading?",
+      "segments": [
+        {
+          "time": "0-3s",
+          "visual": "Hands on scale, balancing two objects",
+          "audio": "Every big purchase is a trade. Do you know what you're giving up?",
+          "ai_visual_prompt": "Close-up of minimalist balance scale, one side holds a car key, other side holds a retirement nest egg icon, dramatic side lighting creating shadows, shallow depth of field, slight camera drift, conceptual artistic shot, dark moody background"
+        },
+        {
+          "time": "3-15s",
+          "visual": "Examples appearing: new car, renovation, lifestyle upgrades",
+          "audio": "New car. Home renovation. Private school tuition. Lifestyle upgrades that feel necessary. They're not bad choices. But they quietly drain the accounts meant for future-you.",
+          "ai_visual_prompt": "Animated sequence of lifestyle items appearing and transforming into money flowing away: sleek car morphs into dollar bills floating off, house renovation tools dissolve into coins falling, graduation cap becomes scattered currency, elegant visual metaphor, modern motion graphics style"
+        },
+        {
+          "time": "15-28s",
+          "visual": "Back to camera, thoughtful expression",
+          "audio": "Here's the question worth asking: What am I trading for this? Not to guilt yourself. But to make the trade consciously. Know what you're choosing.",
+          "ai_visual_prompt": "Medium shot of presenter with contemplative expression, slight pause for emphasis, hands coming together in thoughtful gesture, warm natural lighting, clean background, authentic documentary feel, camera holds steady allowing the message to land"
+        },
+        {
+          "time": "28-42s",
+          "visual": "Split screen: short-term vs long-term",
+          "audio": "Data shows families stretching for big expenses often cut retirement contributions first. Short-term priority wins. Long-term security loses. It happens slowly, then all at once.",
+          "ai_visual_prompt": "Split screen animation: left side shows 'NOW' with immediate gratification items brightly lit, right side shows 'FUTURE' with retirement savings dimming, visual see-saw effect, left side grows while right shrinks, clean infographic style with emotional color coding - warm vs cool"
+        },
+        {
+          "time": "42-52s",
+          "visual": "Reframe to empowerment, checklist",
+          "audio": "The fix isn't deprivation. It's awareness. Track one month of spending. See where the money actually goes. Most people are surprised. Then you can choose differently.",
+          "ai_visual_prompt": "Animated smartphone showing expense tracking app, categories populating with real-time data visualization, surprised emoji reaction appearing, then transforming into confident checkmark, upbeat transition from analysis to action, modern clean UI aesthetic"
+        },
+        {
+          "time": "52-60s",
+          "visual": "Warm CTA",
+          "audio": "Ready to see your real numbers? Link in bio for a spending audit template. Free, no pressure. Just clarity.",
+          "ai_visual_prompt": "Presenter with open, inviting posture and genuine smile, palms slightly open toward camera, warm lighting, smooth transition to branded end card 'Free Template - Link in Bio', clean professional design, subtle gradient animation, trustworthy and approachable feel"
+        }
+      ],
+      "captions": "On-screen: 'What are you trading?' | 'Track 1 month' | 'Awareness = Power'",
+      "props_needed": ["phone for tracking app demo", "simple props for scale visual optional"],
+      "filming_notes": "This one's introspective. Don't preach—invite reflection. The hook question should feel like a genuine inquiry, not an accusation. Warm, not judgmental. The goal is making people think, not feel bad.",
+      "b_roll_prompts": [
+        "Artistic shot of balance scale with lifestyle item on one side and savings symbol on other, dramatic lighting, conceptual photography style, shallow depth of field",
+        "Overhead shot of family at dinner table reviewing finances together, warm interior lighting, collaborative planning moment, authentic lifestyle feel",
+        "Abstract visualization of timeline splitting into two paths, one leading to financial stress, other to security, stylized fork-in-road concept, modern motion graphics",
+        "Close-up of hands writing budget in notebook then transitioning to digital app, analog to digital evolution, warm natural lighting, hopeful tone"
+      ],
+      "disclaimer": "This content is for educational purposes only and does not constitute financial advice."
+    }
+  ]
+}
