@@ -1,9 +1,94 @@
 {
   "version": "1.0",
-  "last_updated": "2026-02-21T19:03:51",
+  "last_updated": "2026-02-24T18:02:36",
   "active_run": null,
   "queue": [],
   "history": [
+    {
+      "timestamp": "2026-02-24T18:02:36",
+      "action": "frame_script",
+      "result": "completed"
+    },
+    {
+      "timestamp": "2026-02-24T18:02:19",
+      "action": "echo_social",
+      "result": "completed"
+    },
+    {
+      "timestamp": "2026-02-24T18:01:33",
+      "action": "quill_write",
+      "result": "completed"
+    },
+    {
+      "timestamp": "2026-02-24T18:01:10",
+      "action": "scout_research",
+      "result": "completed"
+    },
+    {
+      "timestamp": "2026-02-24T16:52:54",
+      "action": "scout_research",
+      "result": "completed"
+    },
+    {
+      "timestamp": "2026-02-24T16:49:53",
+      "action": "frame_script",
+      "result": "completed"
+    },
+    {
+      "timestamp": "2026-02-24T16:49:37",
+      "action": "echo_social",
+      "result": "completed"
+    },
+    {
+      "timestamp": "2026-02-24T16:45:10",
+      "action": "quill_write",
+      "result": "completed"
+    },
+    {
+      "timestamp": "2026-02-24T16:37:37",
+      "action": "scout_research",
+      "result": "completed"
+    },
+    {
+      "timestamp": "2026-02-23T21:48:57",
+      "action": "frame_script",
+      "result": "completed"
+    },
+    {
+      "timestamp": "2026-02-23T21:48:37",
+      "action": "echo_social",
+      "result": "completed"
+    },
+    {
+      "timestamp": "2026-02-23T21:47:49",
+      "action": "quill_write",
+      "result": "completed"
+    },
+    {
+      "timestamp": "2026-02-23T21:46:08",
+      "action": "scout_research",
+      "result": "completed"
+    },
+    {
+      "timestamp": "2026-02-22T19:56:19",
+      "action": "frame_script",
+      "result": "completed"
+    },
+    {
+      "timestamp": "2026-02-22T19:56:04",
+      "action": "echo_social",
+      "result": "completed"
+    },
+    {
+      "timestamp": "2026-02-22T19:55:15",
+      "action": "quill_write",
+      "result": "completed"
+    },
+    {
+      "timestamp": "2026-02-22T19:54:51",
+      "action": "scout_research",
+      "result": "completed"
+    },
     {
       "timestamp": "2026-02-21T19:03:51",
       "action": "frame_script",
@@ -123,7 +208,7 @@
       "role": "Research",
       "status": "completed",
       "model": "cheap",
-      "last_run": "2026-02-21T18:53:27",
+      "last_run": "2026-02-24T18:01:10",
       "outputs": [
         "content/research/2026-02-20-findings.md"
       ]
@@ -133,7 +218,7 @@
       "role": "Writer",
       "status": "completed",
       "model": "default",
-      "last_run": "2026-02-21T19:02:47",
+      "last_run": "2026-02-24T18:01:33",
       "outputs": [
         "content/blog/2026-02-20-m2-money-supply.md"
       ]
@@ -143,7 +228,7 @@
       "role": "Social Content",
       "status": "completed",
       "model": "cheap",
-      "last_run": "2026-02-21T19:03:32",
+      "last_run": "2026-02-24T18:02:19",
       "outputs": [
         "content/social/2026-02-20-m2-money-supply-social.json"
       ]
@@ -153,7 +238,7 @@
       "role": "Video Scripts",
       "status": "completed",
       "model": "default",
-      "last_run": "2026-02-21T19:03:51",
+      "last_run": "2026-02-24T18:02:36",
       "outputs": [
         "content/scripts/2026-02-20-m2-money-supply-script.json"
       ]

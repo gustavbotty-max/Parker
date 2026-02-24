@@ -1,0 +1,165 @@
+{
+  "source_blog": "2026-02-24-2026-02-24-findings.md",
+  "created": "2026-02-24T18:02:00Z",
+  "scripts": [
+    {
+      "type": "60_second",
+      "title": "Rate Cuts Just Got Delayed. Here's Why.",
+      "hook": "Those rate cuts you've been waiting for? Delayed.",
+      "segments": [
+        {
+          "time": "0-3s",
+          "visual": "Calendar with rate cut date being pushed back",
+          "audio": "Those rate cuts you've been waiting for? Just got pushed back. Here's what happened.",
+          "ai_visual_prompt": "Close-up of animated calendar, date circled in green labeled 'Rate Cut' being erased and redrawn further out with red marker, slight camera shake on the change for emphasis, clean modern design, dramatic reveal moment"
+        },
+        {
+          "time": "3-15s",
+          "visual": "Inflation data graphics, numbers rising",
+          "audio": "Fresh inflation data dropped. Core PCE jumped point-four percent in one month. Annual rate is back up to three percent. The Fed wants two percent before cutting. We're still a full point away.",
+          "ai_visual_prompt": "Animated data visualization: percentage counter climbing from 2.6 to 3.0, red warning pulse effect, then comparison bar showing '3.0% vs 2.0% Target' with gap highlighted, modern financial news style, dark background with red and white typography"
+        },
+        {
+          "time": "15-28s",
+          "visual": "Back to camera, explaining impact",
+          "audio": "Translation? Borrowing costs stay elevated. If you've got credit card debt, a variable-rate loan, or you've been waiting to refinance your mortgage, don't expect relief anytime soon.",
+          "ai_visual_prompt": "Medium shot of presenter speaking with matter-of-fact expression, slight lean forward for emphasis, warm home office lighting, split screen briefly showing credit card, adjustable rate mortgage document, loan paperwork with elevated rate percentages visible"
+        },
+        {
+          "time": "28-42s",
+          "visual": "Tariff graphics showing imported goods",
+          "audio": "And there's more. New tariffs are hitting imported goods. Ten to fifteen percent on electronics, clothing, auto parts. That means higher prices at checkout on top of everything else.",
+          "ai_visual_prompt": "Animated sequence: shipping container opening to reveal consumer products (phone, shirt, car parts), price tags appearing and increasing by 10-15%, dollar signs floating upward, clean infographic style with import/export visual motifs"
+        },
+        {
+          "time": "42-52s",
+          "visual": "Practical advice checklist",
+          "audio": "What's the move? Accelerate debt payoff if you can. Pad your budget by five to ten percent. And hold off on rate-dependent decisions until the picture clears.",
+          "ai_visual_prompt": "Animated checklist appearing with satisfying checkmark effects: 'Attack debt faster', 'Add 5-10% budget buffer', 'Pause rate-dependent plans', modern minimalist design, calm blue and green palette suggesting action without panic"
+        },
+        {
+          "time": "52-60s",
+          "visual": "CTA with warmth",
+          "audio": "Want help adjusting your plan for this reality? Link in bio. Let's run your numbers together.",
+          "ai_visual_prompt": "Close-up of presenter with reassuring expression, slight nod, genuine helpful energy, smooth transition to end card 'Adjust Your Plan - Link in Bio', modern gradient orange to red reflecting urgency but controlled, professional branding"
+        }
+      ],
+      "captions": "On-screen: '3.0% inflation (Target: 2.0%)' | 'Tariffs: 10-15% higher' | 'Accelerate debt payoff'",
+      "props_needed": ["phone", "calculator", "clean desk"],
+      "filming_notes": "Open with slight frustration energy—viewers share this disappointment. But pivot to practical quickly. Don't dwell on bad news; focus on what to do about it. End encouraging, not doom-and-gloom.",
+      "b_roll_prompts": [
+        "Close-up of Federal Reserve building facade, dramatic low angle, official institutional feel, slight overcast sky suggesting uncertainty",
+        "Person at kitchen table looking at bills with concerned but not panicked expression, warm interior lighting, relatable household moment",
+        "Shipping port with containers and cranes, tariff context visual, wide establishing shot, industrial scale visible",
+        "Abstract visualization of interest rate gauge stuck in elevated position, red zone indicator, modern motion graphics style"
+      ],
+      "disclaimer": "This content is for educational purposes only and does not constitute financial advice."
+    },
+    {
+      "type": "60_second",
+      "title": "Why Everything's Getting More Expensive Again",
+      "hook": "Groceries. Gas. Rent. Why is everything going up again?",
+      "segments": [
+        {
+          "time": "0-3s",
+          "visual": "Receipt prices ticking up animation",
+          "audio": "Groceries. Gas. Rent. Why does it feel like everything's going up again?",
+          "ai_visual_prompt": "Close-up of animated receipt with line items, prices visibly ticking upward in real-time, slight camera shake suggesting frustration, warm kitchen lighting in background, relatable everyday moment, 4K detail on the receipt"
+        },
+        {
+          "time": "3-15s",
+          "visual": "Two-part explanation: inflation + tariffs",
+          "audio": "Two things are happening. One: inflation came in hot. Three percent, when the Fed wants two. Two: new tariffs are hitting imported goods. Ten to fifteen percent increases on stuff we buy every day.",
+          "ai_visual_prompt": "Split screen animation: left side shows inflation meter rising with red glow, right side shows cargo ship with tariff percentage overlay appearing on products unloading, both combining into single price impact visual, clean modern infographic"
+        },
+        {
+          "time": "15-28s",
+          "visual": "Products affected: electronics, clothing, auto parts",
+          "audio": "Electronics. Clothing. Auto parts. Anything with components from overseas could see price bumps in the coming months. And businesses don't know what sticks yet, so they're pricing in uncertainty.",
+          "ai_visual_prompt": "Product carousel animation: smartphone, t-shirt, car brake pads each rotating in with price increase indicators appearing, question marks floating around suggesting uncertainty, dark background with dramatic product lighting"
+        },
+        {
+          "time": "28-42s",
+          "visual": "Back to camera, Triangle context",
+          "audio": "Here in the Triangle, we've got some cushion. Tech, healthcare, education jobs help. But you still buy groceries, fill up the car, pay rent. When import costs rise, everyone feels it.",
+          "ai_visual_prompt": "Medium shot of presenter speaking with understanding expression, warm natural lighting, brief overlay of NC map with Triangle highlighted, then transition to grocery store, gas pump, apartment building icons, connecting abstract to concrete"
+        },
+        {
+          "time": "42-52s",
+          "visual": "Budget adjustment graphic",
+          "audio": "The practical move? Build buffer into your monthly budget. Five to ten percent extra for groceries and household gives you breathing room before you have to scramble.",
+          "ai_visual_prompt": "Animated budget pie chart with 'Buffer Zone' section expanding slightly, satisfying growth animation, protective green glow around the buffer portion, clean financial planning aesthetic, reassuring visual"
+        },
+        {
+          "time": "52-60s",
+          "visual": "Supportive CTA",
+          "audio": "Want help building that buffer into your plan? Link in bio. Let's figure this out together.",
+          "ai_visual_prompt": "Close-up of presenter with warm supportive expression, open palm gesture, genuine connection, smooth transition to end card 'Build Your Buffer - Link in Bio', calming gradient blue to green, subtle protective shield icon animation"
+        }
+      ],
+      "captions": "On-screen: 'Inflation: 3% (Target: 2%)' | 'Tariffs: +10-15%' | 'Add 5-10% budget buffer'",
+      "props_needed": ["grocery receipt prop", "phone"],
+      "filming_notes": "This one leans into the shared frustration everyone feels. Validate the feeling, explain why, then give practical action. Don't be preachy—be a neighbor who figured something out.",
+      "b_roll_prompts": [
+        "Overhead shot of grocery cart being filled, prices visible on products, everyday shopping moment, warm supermarket lighting",
+        "Gas station pump display showing price per gallon, slight camera drift, common experience visual",
+        "Young couple reviewing apartment lease renewal letter, kitchen table setting, warm interior, relatable housing cost moment",
+        "Abstract visualization of prices rising but being contained by budget buffer, protective barrier effect, calming motion graphics"
+      ],
+      "disclaimer": "This content is for educational purposes only and does not constitute financial advice."
+    },
+    {
+      "type": "60_second",
+      "title": "The 20% Rule That Saves You Money",
+      "hook": "Every dollar you pay down at twenty percent APR saves you twenty cents a year.",
+      "segments": [
+        {
+          "time": "0-3s",
+          "visual": "Dollar bill transforming into 20 cents",
+          "audio": "Every dollar you pay down at twenty percent APR saves you twenty cents a year. Let that sink in.",
+          "ai_visual_prompt": "Close-up animation: crisp dollar bill transforming into 20 cents appearing beside it, mathematical elegance, clean dark background with spotlight effect, satisfying visual reveal, money physically changing"
+        },
+        {
+          "time": "3-15s",
+          "visual": "Interest rate environment graphic",
+          "audio": "With rates staying high and inflation running hot, those interest rate cuts everyone hoped for aren't coming soon. The Fed wants two percent inflation. We're at three. That gap keeps rates elevated.",
+          "ai_visual_prompt": "Animated gap visualization: two horizontal lines showing 3.0% current vs 2.0% target, space between highlighted with 'Rate Cuts Delayed' text appearing, clean financial news aesthetic, red warning accent colors"
+        },
+        {
+          "time": "15-28s",
+          "visual": "Credit card debt snowball animation",
+          "audio": "So here's the math that matters. If you've got credit card debt at twenty percent, every hundred dollars you pay off saves you twenty dollars per year in interest. Guaranteed return. No stock market risk.",
+          "ai_visual_prompt": "Animated calculation: $100 payment appearing, then 20% interest rate, equals $20 saved floating away as coins, comparison to stock market volatility chart in background with question marks, debt payoff shown as stable green line"
+        },
+        {
+          "time": "28-42s",
+          "visual": "Back to camera, practical energy",
+          "audio": "High rates reward aggressive debt reduction. If you've been making minimum payments waiting for rates to drop, this environment is telling you something different. The math favors paying down now.",
+          "ai_visual_prompt": "Medium shot of presenter with confident advisory energy, slight forward lean, counting gesture with hands, warm natural lighting, trustworthy expression, home office background with subtle financial books visible"
+        },
+        {
+          "time": "42-52s",
+          "visual": "Action items appearing",
+          "audio": "Look at your highest-rate debt first. Even an extra fifty or hundred dollars a month compounds. And once it's gone, that payment becomes your savings.",
+          "ai_visual_prompt": "Animated debt ranking appearing: credit cards at top with highest rate, then other debts below, extra payment arrow hitting top item, then 'paid off' checkmark, payment arrow redirecting to savings bucket, satisfying progression"
+        },
+        {
+          "time": "52-60s",
+          "visual": "Encouraging CTA",
+          "audio": "Want to figure out your debt payoff order? Free calculator in my bio. Let's build your plan.",
+          "ai_visual_prompt": "Close-up of presenter with encouraging smile, slight nod of confidence, smooth transition to end card 'Debt Payoff Calculator - Link in Bio', modern gradient green suggesting financial health, subtle money icons floating upward"
+        }
+      ],
+      "captions": "On-screen: '$1 at 20% = 20¢ saved/year' | 'Guaranteed return' | 'Highest rate first'",
+      "props_needed": ["calculator", "props for illustrating payments optional"],
+      "filming_notes": "This one's about reframing debt payoff as an investment with guaranteed returns. The 20-cent visual is sticky and shareable. Keep energy practical and encouraging, not preachy or guilt-inducing.",
+      "b_roll_prompts": [
+        "Close-up of credit card being cut with scissors, satisfying destruction, dramatic lighting, debt freedom visual",
+        "Hands stacking coins in growing pile, time-lapse effect, warm lighting, tangible savings visualization",
+        "Calculator showing decreasing balance over time, screen recording style, satisfying number countdown",
+        "Happy person closing laptop after making final payment, relief expression, warm home setting, achievement moment"
+      ],
+      "disclaimer": "This content is for educational purposes only and does not constitute financial advice."
+    }
+  ]
+}
