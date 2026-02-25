@@ -1,0 +1,165 @@
+{
+  "source_blog": "2026-02-24-2026-03-02-findings.md",
+  "created": "2026-02-24T16:49:00Z",
+  "scripts": [
+    {
+      "type": "60_second",
+      "title": "Remember When You Couldn't Buy a Car?",
+      "hook": "Remember paying MORE for a used car than a new one?",
+      "segments": [
+        {
+          "time": "0-3s",
+          "visual": "Shocked face, hands on head",
+          "audio": "Remember paying more for a used car than a new one? That was wild.",
+          "ai_visual_prompt": "Medium shot of presenter with exaggerated shocked expression, hands coming up near head in disbelief gesture, casual button-down shirt, warm home office lighting, slight camera shake for emphasis, relatable reaction moment, 4K quality"
+        },
+        {
+          "time": "3-15s",
+          "visual": "Flashback montage: empty lots, delayed shipping, price tags",
+          "audio": "Twenty-twenty-one, twenty-twenty-two. Appliances took months. Car lots were empty. 'Supply chain issues' became the excuse for everything. Those days taught us something important.",
+          "ai_visual_prompt": "Quick-cut montage with slight desaturated color grade: empty car dealership lot with tumbleweeds effect, appliance store with 'Backordered 12 weeks' signs, shipping container stuck at port, frustrated customer on phone - documentary flashback style, handheld camera feel"
+        },
+        {
+          "time": "15-28s",
+          "visual": "Plumbing analogy animation",
+          "audio": "Think of supply chains like plumbing. When everything flows, you don't notice. When there's a clog? Suddenly prices spike, inventory disappears, and your wallet feels it.",
+          "ai_visual_prompt": "Clean animated visualization: pipes with flowing blue liquid representing goods moving smoothly, then dramatic clog forming with pressure building, pipe turning red, liquid stops - then cut to dollar signs shooting upward and product icons disappearing, modern motion graphics style, satisfying visual metaphor"
+        },
+        {
+          "time": "28-40s",
+          "visual": "Back to camera, shift to good news",
+          "audio": "Here's the good news right now. Industrial companies are reporting strong performance. Stable operations. The plumbing is working. Shelves are stocked. Lead times are normal.",
+          "ai_visual_prompt": "Medium shot of presenter with relieved, optimistic expression, slight smile, confident posture shift, warm natural side lighting, transition to overlay of green checkmarks appearing, then full shelves b-roll peek, encouraging energy"
+        },
+        {
+          "time": "40-52s",
+          "visual": "Price stability graphics",
+          "audio": "If you've been waiting to replace that dishwasher or fix the deck, this is a reasonable window. Not because prices are cheap, but because availability is good and prices aren't spiking.",
+          "ai_visual_prompt": "Animated price trend line staying stable and flat, appliance and home improvement icons appearing alongside with 'Available' badges, clean infographic style with calm blue and green palette, subtle pulse on 'stable window' indicator"
+        },
+        {
+          "time": "52-60s",
+          "visual": "CTA with warmth",
+          "audio": "Want help timing your big purchases? Link in bio. Let's make sure the math works before you buy.",
+          "ai_visual_prompt": "Close-up of presenter with helpful genuine smile, slight nod, open palm gesture, smooth transition to end card 'Link in Bio' with modern gradient background teal to blue, subtle animated elements, trustworthy approachable branding"
+        }
+      ],
+      "captions": "On-screen: 'Supply chain = Your prices' | 'The plumbing is working' | 'Good window for big purchases'",
+      "props_needed": ["clean desk setup"],
+      "filming_notes": "Open with shared trauma everyone remembers. The plumbing analogy is sticky—lean into it with hand gestures. Pivot to optimism around 28s. End practical, not salesy.",
+      "b_roll_prompts": [
+        "Empty car dealership lot from 2021-2022 era, 'No Inventory' signs, slightly grainy documentary footage style, establishing the memory",
+        "Modern warehouse interior with full organized shelves, workers efficiently moving products, smooth operations visible, optimistic industrial feel",
+        "Close-up of delivery driver handing package to happy homeowner, suburban setting, normal commerce restored, warm afternoon light",
+        "Abstract visualization of supply chain network with nodes lighting up green in sequence, flowing connections, modern tech aesthetic"
+      ],
+      "disclaimer": "This content is for educational purposes only and does not constitute financial advice."
+    },
+    {
+      "type": "60_second",
+      "title": "3 Signs Supply Chains Are Healthy (And Why You Care)",
+      "hook": "Three signs the supply chain is healthy. Number three surprises people.",
+      "segments": [
+        {
+          "time": "0-3s",
+          "visual": "Hold up three fingers, direct eye contact",
+          "audio": "Three signs the supply chain is healthy. And why it matters for your wallet.",
+          "ai_visual_prompt": "Medium close-up of presenter holding up three fingers confidently, direct eye contact with camera, casual professional attire, warm natural lighting, slight camera push-in, clean home office background softly blurred"
+        },
+        {
+          "time": "3-18s",
+          "visual": "Sign 1: Shipping times graphic with packages moving",
+          "audio": "Number one: shipping times. Are online orders arriving in normal windows? Or are delays creeping back? Normal delivery times mean upstream production is flowing. Check this before any big purchase.",
+          "ai_visual_prompt": "Animated sequence: package icon moving along delivery route with timer showing '2-3 days', green checkmarks appearing at destination, clean modern UI style, then comparison showing delayed version with red warning - satisfying timeline visualization"
+        },
+        {
+          "time": "18-32s",
+          "visual": "Sign 2: Store shelves full vs empty comparison",
+          "audio": "Number two: inventory levels. Full shelves, multiple options in stock? Supply is meeting demand. Empty shelves, 'limited quantity' warnings? That's tightness. Tightness means prices go up.",
+          "ai_visual_prompt": "Split screen animation: left side shows well-stocked retail shelf with products neatly arranged, glowing green; right side shows sparse shelf with 'Limited Stock' tags, glowing red - smooth transition between states, clean retail environment"
+        },
+        {
+          "time": "32-45s",
+          "visual": "Sign 3: Price tracking tools and graphs",
+          "audio": "Number three: price trends on big-ticket items. Tools like CamelCamelCamel or Honey show price history. Flat or falling? Stable supply. Rising fast? Something's off upstream.",
+          "ai_visual_prompt": "Screen recording style showing price tracking interface, animated line graph with price history, cursor hovering over data points, clean modern UI, then zooming out to show flat stable trend with green indicator, practical tool demonstration feel"
+        },
+        {
+          "time": "45-52s",
+          "visual": "Back to camera, confident summary",
+          "audio": "Right now? All three signals look calm. That makes budgeting easier and big purchases less risky.",
+          "ai_visual_prompt": "Medium shot of presenter with satisfied confident expression, slight hand gesture bringing points together, warm lighting, three checkmark icons appearing briefly beside presenter, documentary authenticity"
+        },
+        {
+          "time": "52-60s",
+          "visual": "CTA",
+          "audio": "Want help running the numbers on your next big purchase? Link in bio.",
+          "ai_visual_prompt": "Close-up of presenter with friendly inviting expression, smooth transition to branded end card 'Run Your Numbers - Link in Bio', modern gradient purple to blue, subtle floating icons representing the three signals, clean professional design"
+        }
+      ],
+      "captions": "On-screen: '1. Shipping times' | '2. Inventory levels' | '3. Price history tools'",
+      "props_needed": ["phone for showing apps", "clean desk"],
+      "filming_notes": "Listicle format works great for retention. Each sign gets its own visual moment. Keep energy consistent across all three. The 'number three surprises people' hook drives curiosity.",
+      "b_roll_prompts": [
+        "Close-up of hands opening delivered package at front door, satisfying unboxing moment, warm natural light, normal consumer experience",
+        "Wide shot of big-box retail store interior with full organized shelves, customers shopping normally, bright commercial lighting",
+        "Over-shoulder shot of person using laptop showing price tracking website, data visualizations on screen, home setting, practical research moment",
+        "Abstract animated chart showing stable prices with gentle green glow, calm pulsing indicator, modern fintech visualization style"
+      ],
+      "disclaimer": "This content is for educational purposes only and does not constitute financial advice."
+    },
+    {
+      "type": "60_second",
+      "title": "Is NOW a Good Time for Big Purchases?",
+      "hook": "Is now a good time to make that big purchase?",
+      "segments": [
+        {
+          "time": "0-3s",
+          "visual": "Thoughtful expression, hand on chin",
+          "audio": "Is now a good time to make that big purchase? Let's look at the signals.",
+          "ai_visual_prompt": "Medium shot of presenter with contemplative expression, hand briefly touching chin in thinking gesture, then transitioning to engaged explanation mode, warm home office lighting, camera holds steady creating anticipation"
+        },
+        {
+          "time": "3-15s",
+          "visual": "Industrial health indicators - positive graphics",
+          "audio": "Industrial companies are reporting strong performance. Manufacturing is running efficiently. Supply chains are stable. That's the production side working well.",
+          "ai_visual_prompt": "Animated dashboard showing industrial indicators: factory icon with upward arrow, supply chain network glowing green, efficiency meter in healthy zone, clean modern infographic style with optimistic blue and green palette, smooth data visualization"
+        },
+        {
+          "time": "15-28s",
+          "visual": "Appliances, cars, home materials with availability badges",
+          "audio": "For durable goods—appliances, vehicles, home improvement materials—stable supply means good availability. You're less likely to hit backorders or scarcity pricing. That's a reasonable window.",
+          "ai_visual_prompt": "Product showcase animation: refrigerator, car, lumber stack each appearing with 'In Stock' badges, no price spike warnings, clean product photography style with soft studio lighting, items rotating slightly, aspirational but practical"
+        },
+        {
+          "time": "28-42s",
+          "visual": "Back to camera, balanced perspective",
+          "audio": "Now, this doesn't mean rush out and buy. It means the supply side isn't working against you. Check your savings. Run your numbers. Make sure the purchase fits your actual budget, not just the market timing.",
+          "ai_visual_prompt": "Medium shot of presenter with balanced reasonable expression, explanatory hand gestures, split screen briefly showing calculator and savings account balance, warm natural lighting, trustworthy advisor energy, slight camera movement"
+        },
+        {
+          "time": "42-52s",
+          "visual": "Warning icons: geopolitics, weather, labor",
+          "audio": "What could change things? Geopolitical disruptions. Major weather events. Labor actions. Any of these ripple through supply chains fast. Staying loosely aware helps you adjust.",
+          "ai_visual_prompt": "Animated warning icons appearing in sequence: globe with tension markers, storm cloud, factory with pause symbol - each with subtle pulse effect, dark background with amber warning colors, not alarmist but informative, clean iconography"
+        },
+        {
+          "time": "52-60s",
+          "visual": "Encouraging CTA",
+          "audio": "Ready to figure out if your big purchase makes sense right now? Link in bio. Let's run the numbers together.",
+          "ai_visual_prompt": "Close-up of presenter with encouraging warm smile, slight head tilt suggesting helpfulness, smooth transition to end card 'Let's Run the Numbers - Link in Bio', modern gradient green to teal suggesting go-ahead energy, subtle calculator icon animation"
+        }
+      ],
+      "captions": "On-screen: 'Supply side: stable' | 'Check YOUR numbers first' | 'Watch for disruptions'",
+      "props_needed": ["calculator", "phone"],
+      "filming_notes": "This answers the direct question people have. Balance optimism with caution—good window doesn't mean 'buy everything now.' The personal budget check is the key message. Don't oversell timing.",
+      "b_roll_prompts": [
+        "Happy couple in appliance store examining new refrigerator, good selection visible, bright retail lighting, purchase consideration moment",
+        "Close-up of hands using calculator with budget spreadsheet visible, practical planning moment, warm home office setting",
+        "News-style footage of shipping port operating smoothly, containers moving, cranes working, efficient global trade visual",
+        "Family standing in front of home with new car in driveway, suburban Triangle NC aesthetic, golden hour, aspirational but achievable"
+      ],
+      "disclaimer": "This content is for educational purposes only and does not constitute financial advice."
+    }
+  ]
+}

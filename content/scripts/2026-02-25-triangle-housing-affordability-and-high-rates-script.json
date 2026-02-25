@@ -1,0 +1,165 @@
+{
+  "source_blog": "2026-02-25-triangle-housing-affordability-and-high-rates.md",
+  "created": "2026-02-25T01:09:00Z",
+  "scripts": [
+    {
+      "type": "60_second",
+      "title": "Triangle Housing Just Crossed a Magic Number",
+      "hook": "For the first time since 2022, Triangle housing just crossed a magic number.",
+      "segments": [
+        {
+          "time": "0-3s",
+          "visual": "Number 30% appearing, then dropping below",
+          "audio": "For the first time since twenty-twenty-two, Triangle housing just crossed a magic number.",
+          "ai_visual_prompt": "Animated percentage counter showing 30% with a threshold line, number dropping to 29.3% and crossing below the line with satisfying green glow effect, clean dark background, dramatic reveal moment, modern financial visualization"
+        },
+        {
+          "time": "3-15s",
+          "visual": "30% rule explanation with income/payment visual",
+          "audio": "Here's the rule: keep your monthly payment under thirty percent of your income. Above that, you're stretched. The typical Triangle home just dipped to twenty-nine-point-three percent of median income.",
+          "ai_visual_prompt": "Animated pie chart showing income, housing payment slice shrinking from red zone to green zone as it crosses below 30%, satisfying transition effect, clean infographic style with blue and green palette, percentage labels appearing"
+        },
+        {
+          "time": "15-28s",
+          "visual": "Three factors: inventory, prices, rates",
+          "audio": "What changed? More homes hitting the market. Prices stabilizing around three-eighty-nine thousand. And rates holding near six percent instead of spiking higher. The math is finally working again.",
+          "ai_visual_prompt": "Three animated icons appearing in sequence: 'For Sale' signs multiplying, price tag stabilizing with flat line, mortgage rate meter holding steady - each with green checkmark appearing, clean modern infographic, optimistic but factual tone"
+        },
+        {
+          "time": "28-42s",
+          "visual": "Triangle map with opportunity indicators",
+          "audio": "The Triangle is still a destination. Jobs, universities, healthcare. Demand isn't going away. But the frenzy is. Bidding wars are down. Sellers are negotiating. Inspection contingencies are back.",
+          "ai_visual_prompt": "Animated NC map zooming into Triangle region, icons appearing for tech jobs, Duke/UNC/NC State, hospitals, then overlay showing 'Bidding Wars ↓' and 'Negotiations ↑' indicators, warm golden tones suggesting opportunity, modern cartographic style"
+        },
+        {
+          "time": "42-52s",
+          "visual": "Back to camera, encouraging tone",
+          "audio": "If you've been priced out for the past few years, this is worth another look. Not because it's suddenly easy. Because the conditions are more balanced than they've been since before the pandemic.",
+          "ai_visual_prompt": "Medium shot of presenter with optimistic but realistic expression, open hand gestures, warm natural lighting from window, home office background, encouraging energy without overselling, authentic documentary feel"
+        },
+        {
+          "time": "52-60s",
+          "visual": "CTA with home visual",
+          "audio": "Ready to run your numbers? Link in bio for a free affordability check. Let's see where you actually stand.",
+          "ai_visual_prompt": "Close-up of presenter with genuine helpful smile, smooth transition to end card featuring subtle house silhouette, 'Free Affordability Check - Link in Bio' text, modern gradient blue to green, aspirational but grounded branding"
+        }
+      ],
+      "captions": "On-screen: '29.3% of income' | 'Inventory ↑ Prices stable' | 'Bidding wars ↓'",
+      "props_needed": ["phone", "clean desk setup"],
+      "filming_notes": "Lead with the specific number—29.3% is concrete and memorable. Tone should be 'good news, but let's be realistic.' Avoid over-promising; emphasize 'more workable' not 'cheap.'",
+      "b_roll_prompts": [
+        "Aerial drone shot of suburban Triangle neighborhood, mix of established homes and new construction, golden hour lighting, community feel, NC aesthetic",
+        "Young couple walking through open house, examining kitchen, genuine interest on faces, warm interior lighting, homebuying journey moment",
+        "Row of 'For Sale' signs in residential neighborhood, multiple options visible, inventory increase visual, pleasant suburban setting",
+        "Abstract visualization of affordability meter moving from red to green zone, satisfying threshold crossing, modern motion graphics"
+      ],
+      "disclaimer": "This content is for educational purposes only and does not constitute financial advice."
+    },
+    {
+      "type": "60_second",
+      "title": "The Quick Math to Know If You Can Afford a Triangle Home",
+      "hook": "Here's exactly how to know if you can afford a Triangle home.",
+      "segments": [
+        {
+          "time": "0-3s",
+          "visual": "Calculator appearing with anticipation",
+          "audio": "Here's exactly how to know if you can afford a home in the Triangle.",
+          "ai_visual_prompt": "Close-up of smartphone calculator app opening, slight camera push-in creating anticipation, clean modern phone screen, warm desk setting visible in background, practical tool-focused shot"
+        },
+        {
+          "time": "3-18s",
+          "visual": "Step-by-step calculation animation",
+          "audio": "Take your gross monthly income—before taxes. Multiply by point-two-eight to point-three-oh. That's your target housing payment. Six thousand a month? Aim for sixteen-eighty to eighteen hundred including everything—principal, interest, taxes, insurance.",
+          "ai_visual_prompt": "Animated calculation sequence: '$6,000' appears, multiplied by '0.28-0.30', equals '$1,680-$1,800' result highlighting, clean modern typography on dark background, satisfying math progression, each step appearing with subtle whoosh effect"
+        },
+        {
+          "time": "18-32s",
+          "visual": "Loan amount conversion",
+          "audio": "At six percent interest, that payment supports a loan around two-eighty to three hundred thousand. Add your down payment, and you've got your price range. No mystery. Just math.",
+          "ai_visual_prompt": "Animated sequence: payment amount transforming into loan amount with 6% rate indicator, then down payment adding on top to show total price range, clean financial calculator aesthetic, green result highlighting, modern infographic style"
+        },
+        {
+          "time": "32-45s",
+          "visual": "Three levers: earn, save, look elsewhere",
+          "audio": "If the math doesn't work for your target neighborhoods, you've got three levers. Earn more. Save a bigger down payment. Or look at different areas. Ten minutes further out often means real savings.",
+          "ai_visual_prompt": "Three lever icons appearing: briefcase with upward arrow, piggy bank growing, map with expanded radius - each lever visually moving to show adjustment possibility, clean modern iconography, solution-focused visual"
+        },
+        {
+          "time": "45-52s",
+          "visual": "Back to camera, reassuring",
+          "audio": "The Triangle median is around three-eighty-nine thousand right now. Prices have stabilized. More inventory than we've seen in years. The window is more realistic than it's been since the pandemic.",
+          "ai_visual_prompt": "Medium shot of presenter with confident reassuring expression, slight nod, warm natural lighting, home office setting, genuine helpful energy, documentary authenticity"
+        },
+        {
+          "time": "52-60s",
+          "visual": "CTA",
+          "audio": "Want me to run these numbers for your situation? Free calculator, link in bio.",
+          "ai_visual_prompt": "Close-up of presenter with inviting expression, pointing gesture toward camera, smooth transition to end card 'Affordability Calculator - Link in Bio', modern gradient orange to coral, calculator icon subtle animation"
+        }
+      ],
+      "captions": "On-screen: 'Income × 0.28-0.30 = Target payment' | '$6K/mo = ~$1,680-$1,800' | '3 levers to adjust'",
+      "props_needed": ["calculator or phone", "whiteboard optional"],
+      "filming_notes": "This is the practical 'how-to' video. Walk through the math clearly. Pause briefly after the formula reveal. Viewers will screenshot or rewatch this one—make the numbers easy to follow.",
+      "b_roll_prompts": [
+        "Close-up of hands typing on calculator, financial planning moment, warm desk lighting, practical action shot",
+        "Young professional reviewing mortgage pre-approval letter at kitchen table, morning light, hopeful expression",
+        "Map of Triangle area with different neighborhoods highlighted at various price points, animated radius expanding, modern cartographic style",
+        "House hunting app on phone screen showing listings, thumb scrolling through options, modern UI visible, lifestyle tech moment"
+      ],
+      "disclaimer": "This content is for educational purposes only and does not constitute financial advice."
+    },
+    {
+      "type": "60_second",
+      "title": "Why 6% Mortgage Rates Might Be Your New Normal",
+      "hook": "Waiting for four percent mortgage rates? You might be waiting forever.",
+      "segments": [
+        {
+          "time": "0-3s",
+          "visual": "Clock ticking with 4% never appearing",
+          "audio": "Waiting for four percent mortgage rates to come back? You might be waiting a long time.",
+          "ai_visual_prompt": "Animated clock face with '4%' as the target hour, hands spinning but never reaching it, slight dust accumulating effect, dramatic waiting visual, dark background with spotlight on clock, cinematic tension"
+        },
+        {
+          "time": "3-15s",
+          "visual": "Rate history chart showing reality",
+          "audio": "Here's the honest truth. The Fed's inflation fight isn't over. Rate cuts keep getting pushed back. Six percent is where we are, and it's likely where we'll stay for a while.",
+          "ai_visual_prompt": "Animated line chart showing mortgage rates over time: 3% in 2021, spike to 7%+ in 2023, settling to 6% current, with 'projected cuts' being pushed further right on timeline, clean financial chart aesthetic, realistic not alarmist"
+        },
+        {
+          "time": "15-28s",
+          "visual": "Mindset shift visualization",
+          "audio": "So the question changes. Instead of 'wait for rates to drop,' it becomes 'can I make the current numbers work?' For more families in the Triangle right now, the answer is actually yes.",
+          "ai_visual_prompt": "Split screen animation: left side shows person waiting by calendar with faded disappointment, right side shows same person actively calculating with engaged expression, transition effect showing mindset shift, warm encouraging colors on right side"
+        },
+        {
+          "time": "28-42s",
+          "visual": "Triangle market improvements",
+          "audio": "Prices have stabilized around three-eighty-nine thousand. Inventory is up. Sellers are negotiating again. The typical payment just dropped below thirty percent of median income for the first time since twenty-twenty-two.",
+          "ai_visual_prompt": "Quick montage of positive indicators: price graph flattening, 'For Sale' signs multiplying, handshake between buyer and seller, 29.3% number appearing with green highlight, upbeat modern visual rhythm"
+        },
+        {
+          "time": "42-52s",
+          "visual": "Back to camera, practical framing",
+          "audio": "Six percent isn't three percent. But three percent was historically unusual. Six percent is closer to normal. And normal can still work if the rest of the math lines up.",
+          "ai_visual_prompt": "Medium shot of presenter with thoughtful realistic expression, hand gesture suggesting balance, warm natural lighting, confident but not dismissive of concerns, trustworthy advisor energy"
+        },
+        {
+          "time": "52-60s",
+          "visual": "Action-oriented CTA",
+          "audio": "Curious if your math lines up? Get pre-approved and see real numbers. Link in bio to get started.",
+          "ai_visual_prompt": "Close-up of presenter with encouraging expression, slight forward lean, smooth transition to end card 'Get Pre-Approved - Link in Bio', modern gradient teal to blue, house key icon subtle animation, action-oriented feel"
+        }
+      ],
+      "captions": "On-screen: '6% is the new normal' | 'Can you make it work?' | '29.3% of income threshold'",
+      "props_needed": ["clean simple setup"],
+      "filming_notes": "This addresses the 'but I'm waiting for better rates' objection directly. Validate the hope but redirect to action. Historical context (6% is actually normal) helps reframe expectations without dismissing concerns.",
+      "b_roll_prompts": [
+        "Calendar pages flipping showing months passing, waiting visual, slight melancholy then shift to action",
+        "Federal Reserve building exterior, institutional context, establishing shot with slight gravitas",
+        "Happy family getting keys to new home, closing day moment, warm celebration, achievable dream visual",
+        "Historical mortgage rate chart showing decades of context, 6% appearing in normal range, educational data visualization"
+      ],
+      "disclaimer": "This content is for educational purposes only and does not constitute financial advice."
+    }
+  ]
+}

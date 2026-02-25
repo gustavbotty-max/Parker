@@ -1,9 +1,49 @@
 {
   "version": "1.0",
-  "last_updated": "2026-02-24T18:02:36",
+  "last_updated": "2026-02-25T10:44:11",
   "active_run": null,
   "queue": [],
   "history": [
+    {
+      "timestamp": "2026-02-25T10:44:11",
+      "action": "frame_script",
+      "result": "completed"
+    },
+    {
+      "timestamp": "2026-02-25T10:43:52",
+      "action": "echo_social",
+      "result": "completed"
+    },
+    {
+      "timestamp": "2026-02-25T10:43:02",
+      "action": "quill_write",
+      "result": "completed"
+    },
+    {
+      "timestamp": "2026-02-25T10:42:36",
+      "action": "scout_research",
+      "result": "completed"
+    },
+    {
+      "timestamp": "2026-02-25T01:09:21",
+      "action": "frame_script",
+      "result": "completed"
+    },
+    {
+      "timestamp": "2026-02-25T01:09:03",
+      "action": "echo_social",
+      "result": "completed"
+    },
+    {
+      "timestamp": "2026-02-25T01:08:15",
+      "action": "quill_write",
+      "result": "completed"
+    },
+    {
+      "timestamp": "2026-02-25T01:07:49",
+      "action": "scout_research",
+      "result": "completed"
+    },
     {
       "timestamp": "2026-02-24T18:02:36",
       "action": "frame_script",
@@ -208,7 +248,7 @@
       "role": "Research",
       "status": "completed",
       "model": "cheap",
-      "last_run": "2026-02-24T18:01:10",
+      "last_run": "2026-02-25T10:42:36",
       "outputs": [
         "content/research/2026-02-20-findings.md"
       ]
@@ -218,7 +258,7 @@
       "role": "Writer",
       "status": "completed",
       "model": "default",
-      "last_run": "2026-02-24T18:01:33",
+      "last_run": "2026-02-25T10:43:02",
       "outputs": [
         "content/blog/2026-02-20-m2-money-supply.md"
       ]
@@ -228,7 +268,7 @@
       "role": "Social Content",
       "status": "completed",
       "model": "cheap",
-      "last_run": "2026-02-24T18:02:19",
+      "last_run": "2026-02-25T10:43:52",
       "outputs": [
         "content/social/2026-02-20-m2-money-supply-social.json"
       ]
@@ -238,7 +278,7 @@
       "role": "Video Scripts",
       "status": "completed",
       "model": "default",
-      "last_run": "2026-02-24T18:02:36",
+      "last_run": "2026-02-25T10:44:11",
       "outputs": [
         "content/scripts/2026-02-20-m2-money-supply-script.json"
       ]

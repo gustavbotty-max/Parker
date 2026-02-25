@@ -75,6 +75,7 @@ case "$1" in
     
     "run-scout")
         TOPIC="${2:-general financial news}"
+        OUT_RESEARCH="${3:-$WORKSPACE/content/research/${DATE}-findings.md}"
         log "🔍 Starting Scout research on: $TOPIC"
         log "📡 Using agent: scout (Grok - real-time trending access)"
         update_agent_status "scout" "running"
@@ -83,18 +84,24 @@ case "$1" in
         openclaw agent \
             --agent scout \
             --to "scout-$(echo $TOPIC | tr ' ' '-' | cut -c1-30)" \
-            --message "You are **Scout**, a Financial News & Research Analyst. Read $WORKSPACE/agents/SCOUT.md for your full persona. Research topic: $TOPIC. Use web_search to find the latest trending financial news on this topic. Save findings to $WORKSPACE/content/research/${DATE}-findings.md"
+            --message "You are **Scout**, a Financial News & Research Analyst. Read $WORKSPACE/agents/SCOUT.md for your full persona. Research topic: $TOPIC. Use web_search to find the latest trending financial news on this topic. Save findings to $OUT_RESEARCH"
         
         update_agent_status "scout" "completed"
         add_to_history "scout_research" "completed"
-        log "${GREEN}✓ Scout completed${NC}"
+        log "${GREEN}✓ Scout completed${NC} (saved to $(basename "$OUT_RESEARCH"))"
         ;;
     
     "run-quill")
         RESEARCH_FILE="${2:-$(ls -t $WORKSPACE/content/research/*.md 2>/dev/null | head -1)}"
+        OUT_BLOG_FILE="$3"
         if [ -z "$RESEARCH_FILE" ]; then
             log "${RED}✗ No research file found. Run scout first.${NC}"
             exit 1
+        fi
+        
+        if [ -z "$OUT_BLOG_FILE" ]; then
+            BLOG_STEM="${DATE}-$(basename "$RESEARCH_FILE" .md)"
+            OUT_BLOG_FILE="$WORKSPACE/content/blog/${BLOG_STEM}.md"
         fi
         
         log "📝 Starting Quill writing from: $(basename $RESEARCH_FILE)"
@@ -105,11 +112,11 @@ case "$1" in
         openclaw agent \
             --agent quill \
             --to "quill-$(date +%s)" \
-            --message "You are **Quill**, a Blog Writer & Content Distiller. Read $WORKSPACE/agents/QUILL.md for your persona. Read $RESEARCH_FILE and create a blog post. Save to $WORKSPACE/content/blog/${DATE}-$(basename $RESEARCH_FILE .md).md"
+            --message "You are **Quill**, a Blog Writer & Content Distiller. Read $WORKSPACE/agents/QUILL.md for your persona. Read $RESEARCH_FILE and create a blog post. Save to $OUT_BLOG_FILE"
         
         update_agent_status "quill" "completed"
         add_to_history "quill_write" "completed"
-        log "${GREEN}✓ Quill completed${NC}"
+        log "${GREEN}✓ Quill completed${NC} (saved to $(basename "$OUT_BLOG_FILE"))"
         ;;
     
     "run-echo")
@@ -119,6 +126,9 @@ case "$1" in
             exit 1
         fi
         
+        BLOG_STEM="$(basename "$BLOG_FILE" .md)"
+        SOCIAL_FILE="$WORKSPACE/content/social/${BLOG_STEM}-social.json"
+        
         log "📱 Starting Echo social content from: $(basename $BLOG_FILE)"
         log "⚡ Using agent: echo (GPT-4o - fast, concise)"
         update_agent_status "echo" "running"
@@ -127,11 +137,11 @@ case "$1" in
         openclaw agent \
             --agent echo \
             --to "echo-$(date +%s)" \
-            --message "You are **Echo**, a Social Media Content Creator. Read $WORKSPACE/agents/ECHO.md for your persona. Read $BLOG_FILE and create social media posts. Save to $WORKSPACE/content/social/${DATE}-$(basename $BLOG_FILE .md)-social.json"
+            --message "You are **Echo**, a Social Media Content Creator. Read $WORKSPACE/agents/ECHO.md for your persona. Read $BLOG_FILE and create social media posts. Save to $SOCIAL_FILE"
         
         update_agent_status "echo" "completed"
         add_to_history "echo_social" "completed"
-        log "${GREEN}✓ Echo completed${NC}"
+        log "${GREEN}✓ Echo completed${NC} (saved to $(basename "$SOCIAL_FILE"))"
         ;;
     
     "run-frame")
@@ -141,43 +151,58 @@ case "$1" in
             exit 1
         fi
         
+        BLOG_STEM="$(basename "$BLOG_FILE" .md)"
+        SCRIPT_FILE="$WORKSPACE/content/scripts/${BLOG_STEM}-script.json"
+        
         log "🎬 Starting Frame video scripts from: $(basename $BLOG_FILE)"
-        log "🎥 Using agent: frame (Claude - structured scripts + AI prompts)"
+        log "🎥 Using agent: frame (Claude - structured video scripts + AI prompts)"
         update_agent_status "frame" "running"
         
         # Frame agent configured with Claude for structured video scripts
         openclaw agent \
             --agent frame \
             --to "frame-$(date +%s)" \
-            --message "You are **Frame**, a Video Scriptwriter. Read $WORKSPACE/agents/FRAME.md for your persona. Read $BLOG_FILE and create video scripts. IMPORTANT: For each segment, include 'ai_visual_prompt' fields with detailed prompts suitable for AI video generation tools (Runway, Pika, Sora). Save to $WORKSPACE/content/scripts/${DATE}-$(basename $BLOG_FILE .md)-script.json"
+            --message "You are **Frame**, a Video Scriptwriter. Read $WORKSPACE/agents/FRAME.md for your persona. Read $BLOG_FILE and create video scripts. IMPORTANT: For each segment, include 'ai_visual_prompt' fields with detailed prompts suitable for AI video generation tools (Runway, Pika, Sora). Save to $SCRIPT_FILE"
         
         update_agent_status "frame" "completed"
         add_to_history "frame_script" "completed"
-        log "${GREEN}✓ Frame completed${NC}"
+        log "${GREEN}✓ Frame completed${NC} (saved to $(basename "$SCRIPT_FILE"))"
         ;;
     
     "pipeline")
         TOPIC="${2:-financial planning for middle-class families}"
         log "🚀 Starting full pipeline: $TOPIC"
+
+        # Create a URL/filename-friendly slug from topic
+        SLUG=$(echo "$TOPIC" \
+            | tr '[:upper:]' '[:lower:]' \
+            | sed 's/[^a-z0-9 ]\+/ /g' \
+            | tr ' ' '-' \
+            | sed 's/-\+/-/g;s/^-//;s/-$//')
+
+        RESEARCH_FILE="$WORKSPACE/content/research/${DATE}-${SLUG}-findings.md"
+        BLOG_FILE="$WORKSPACE/content/blog/${DATE}-${SLUG}.md"
+        SOCIAL_FILE="$WORKSPACE/content/social/${DATE}-${SLUG}-social.json"
+        SCRIPT_FILE="$WORKSPACE/content/scripts/${DATE}-${SLUG}-script.json"
         
         # Update state for active run
         python3 << EOF
 import json
 with open('$STATE_FILE', 'r') as f:
     state = json.load(f)
-state['active_run'] = '$(echo $TOPIC | tr ' ' '-' | cut -c1-30)'
+state['active_run'] = '$SLUG'
 state['queue'] = ['quill', 'echo', 'frame']
 with open('$STATE_FILE', 'w') as f:
     json.dump(state, f, indent=2)
 EOF
         
-        $0 run-scout "$TOPIC"
+        $0 run-scout "$TOPIC" "$RESEARCH_FILE"
         sleep 2
-        $0 run-quill
+        $0 run-quill "$RESEARCH_FILE" "$BLOG_FILE"
         sleep 2
-        $0 run-echo
+        $0 run-echo "$BLOG_FILE"
         sleep 2
-        $0 run-frame
+        $0 run-frame "$BLOG_FILE"
         
         # Mark complete
         python3 << EOF
@@ -189,6 +214,27 @@ state['queue'] = []
 with open('$STATE_FILE', 'w') as f:
     json.dump(state, f, indent=2)
 EOF
+
+        # Auto-upload outputs to Google Drive (Parker Content folder)
+        GOG_ACCOUNT="gustavbotty@gmail.com"
+        DRIVE_FOLDER_ID="1VTDJOKEAMRnYuAwZuiHVPdAAQAP73GPp"  # Parker Content
+        log "☁️ Uploading run outputs to Google Drive (Parker Content)..."
+        if command -v gog >/dev/null 2>&1; then
+            export GOG_ACCOUNT
+            for f in "$RESEARCH_FILE" "$BLOG_FILE" "$SOCIAL_FILE" "$SCRIPT_FILE"; do
+                if [ -f "$f" ]; then
+                    if gog drive upload "$f" --parent "$DRIVE_FOLDER_ID" >/dev/null 2>&1; then
+                        log "   ↳ Uploaded $(basename "$f")"
+                    else
+                        log "   ⚠️ Failed to upload $(basename "$f")"
+                    fi
+                else
+                    log "   (skip) $(basename "$f") not found"
+                fi
+            done
+        else
+            log "⚠️ gog CLI not found; skipping Drive upload."
+        fi
         
         log "${GREEN}✓ Full pipeline completed!${NC}"
         ;;
@@ -226,10 +272,10 @@ EOF
         echo "Commands:"
         echo "  status              Show current pipeline status"
         echo "  run-scout [topic]   Run research agent"
-        echo "  run-quill [file]    Run writer agent"
+        echo "  run-quill [file]    Run writer agent (optionally specify output blog file)"
         echo "  run-echo [file]     Run social content agent"
         echo "  run-frame [file]    Run video script agent"
-        echo "  pipeline [topic]    Run full pipeline (Scout→Quill→Echo→Frame)"
+        echo "  pipeline [topic]    Run full pipeline (Scout→Quill→Echo→Frame) with slugged filenames + Drive upload"
         echo "  dashboard           Open visual dashboard"
         echo "  reset               Reset all agent statuses"
         echo "  help                Show this help"
