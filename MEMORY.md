@@ -157,5 +157,28 @@ tailscale serve status
 - Push to GitHub: `git push origin main`
 - Upload to Google Drive for backup
 
+## Project Sessions
+
+**Main Session** (current) - General work, mixed topics, financial calculators hub
+- Label: `main` (default)
+- Purpose: Primary workspace, calculator development, ad campaigns, VPS management
+
+**Future Sessions** (not yet active):
+- `content-pipeline` — Scout/Quill/Echo/Frame content workflows, blog posts, social
+- `client-work` — Primerica client consultations, policy research, presentations
+- `learning` — Linux/VPS learning, experiments, tutorials
+- `marketing` — Meta ads, SEO, lead gen strategy (separate from calculator dev)
+
+**How to Switch:**
+- Ask: "Switch to [session-name] session" or "List my sessions"
+- I'll spawn/resume the labeled session and route you there
+- Each session keeps its own context/history
+
+**Session Guidelines:**
+- Keep calculator/tech work in main
+- Use content-pipeline when running Scout→Quill→Echo→Frame
+- Use client-work for anything involving real client names/data (privacy isolation)
+- Marketing session for campaign strategy separate from implementation
+
 ---
-*Last updated: 2026-02-19*
+*Last updated: 2026-02-26*

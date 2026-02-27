@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Savings Calculator - Jonathan Parker | Triangle Families</title>
+    <meta name="description" content="Plan your child's college education. Compare 529 plans, project costs, and see Roth IRA rollover alternatives. Free calculator for NC families.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #2c5aa0;
+            --secondary-color: #4a90e2;
+            --accent-color: #27ae60;
+            --warning-color: #f39c12;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --background-light: #f8f9fa;
+            --border-color: #e1e8ed;
+            --success-color: #27ae60;
+            --highlight-color: #9b59b6;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e0e7ff 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        
+        .header-content {
+            padding: 0 20px;
+        }
+        
+        .header-content h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header-content p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 0;
+        }
+
+        .home-button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.25);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .home-button:hover {
+            background: rgba(255,255,255,0.4);
+            transform: translateY(-2px);
+        }
+
+        .schedule-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: #27ae60;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .schedule-button:hover {
+            background: #2ecc71;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        header {
+            position: relative;
+        }
+
+        @media (max-width: 600px) {
+            .schedule-button {
+                position: static;
+                display: inline-block;
+                margin-top: 10px;
+            }
+        }
+        
+        /* Calculator Container */
+        .calculator-container {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .calculator-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .calculator-header h2 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .calculator-header p {
+            color: var(--text-light);
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Form Groups */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.1);
+        }
+        
+        .input-group {
+            position: relative;
+        }
+        
+        .input-prefix {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+            font-weight: 500;
+        }
+        
+        .input-prefix + input {
+            padding-left: 2.5rem;
+        }
+        
+        /* Calculate Button */
+        .calculate-button {
+            width: 100%;
+            background: linear-gradient(135deg, var(--accent-color), #2ecc71);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+            margin-bottom: 1rem;
+        }
+        
+        .calculate-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
+        }
+        
+        .clear-button {
+            background: var(--text-light);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .clear-button:hover {
+            background: #7f8c8d;
+        }
+        
+        /* Results Section */
+        .results-section {
+            display: none;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--border-color);
+        }
+        
+        .results-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .results-header h3 {
+            color: var(--success-color);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .result-card {
+            background: linear-gradient(135deg, var(--background-light), #ffffff);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            position: relative;
+        }
+        
+        .result-card h4 {
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .result-card .amount {
+            color: var(--success-color);
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .result-card .note {
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+        
+        .result-card.highlight {
+            border: 2px solid var(--highlight-color);
+            background: linear-gradient(135deg, #f8f5ff, #ffffff);
+        }
+        
+        .result-card.highlight .amount {
+            color: var(--highlight-color);
+        }
+        
+        /* Roth IRA Comparison */
+        .roth-comparison {
+            background: linear-gradient(135deg, #fdf8f3, #ffffff);
+            border: 2px solid var(--warning-color);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .roth-comparison h4 {
+            color: var(--warning-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Option Tabs */
+        .option-tabs {
+            display: flex;
+            background: var(--background-light);
+            border-radius: 8px;
+            padding: 0.3rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        .tab-button {
+            flex: 1;
+            background: none;
+            border: none;
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: var(--text-light);
+        }
+        
+        .tab-button.active {
+            background: white;
+            color: var(--primary-color);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Timeline Visualization */
+        .timeline {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+        
+        .timeline-title {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+        
+        .timeline-year {
+            font-weight: bold;
+            color: var(--primary-color);
+            min-width: 80px;
+        }
+        
+        .timeline-description {
+            flex: 1;
+            text-align: center;
+            color: var(--text-dark);
+        }
+        
+        .timeline-amount {
+            font-weight: bold;
+            text-align: right;
+            min-width: 120px;
+        }
+        
+        /* Email Capture */
+        .email-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+        
+        .email-section h4 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            text-align: center;
+        }
+        
+        .email-section p {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+            text-align: center;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .email-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .email-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        .email-button {
+            background: var(--warning-color);
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+        
+        .email-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.4);
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .disclaimer {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--warning-color);
+        }
+        
+        .disclaimer h5 {
+            color: var(--warning-color);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .disclaimer p {
+            margin: 0;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .calculator-container {
+                padding: 1.5rem;
+            }
+            
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .email-form {
+                flex-direction: column;
+            }
+            
+            .email-input {
+                min-width: auto;
+                width: 100%;
+            }
+            
+            .option-tabs {
+                flex-direction: column;
+            }
+        }
+        
+        /* Loading Animation */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 1rem;
+        }
+        
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="https://scheduler.zoom.us/jonathan-parker-i9rj3o/pfs-intro" class="schedule-button" target="_blank">📅 Schedule a time to chat</a>
+            <h1>College Savings Calculator</h1>
+            <p>Plan your child's education with 529 plans and smart saving strategies for NC families</p>
+            <a href="index.html" class="home-button">🏠 Back to Home</a>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="calculator-container">
+            <div class="calculator-header">
+                <h2>How Much Will College Cost? Plan Smart for 2024+</h2>
+                <p>Calculate college costs, compare 529 plan benefits, and see your savings growth over time. Includes Roth IRA rollover scenarios.</p>
+            </div>
+            
+            <form id="collegeSavingsForm">
+                <h3 style="color: var(--primary-color); margin-bottom: 1rem;">👶 Child Information</h3>
+                
+                <div class="form-group">
+                    <label for="childAge">Child's Current Age</label>
+                    <input type="number" id="childAge" name="childAge" min="0" max="18" required placeholder="8">
+                </div>
+                
+                <div class="form-group">
+                    <label for="collegeType">Expected College Type</label>
+                    <select id="collegeType" name="collegeType" required>
+                        <option value="">Select college type</option>
+                        <option value="nc-public">NC Public University (UNC System)</option>
+                        <option value="nc-private">NC Private College (Duke, Wake Forest, Davidson)</option>
+                        <option value="out-state-public">Out-of-State Public University</option>
+                        <option value="community">Community College First, Then Transfer</option>
+                        <option value="trade">Trade/Technical School</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="collegeYears">Expected Years of College</label>
+                    <select id="collegeYears" name="collegeYears" required>
+                        <option value="4">4-Year Program (Bachelor's Degree)</option>
+                        <option value="2">2-Year Program (Associate's Degree)</option>
+                        <option value="6">6-Year Program (Professional Degree)</option>
+                    </select>
+                </div>
+                
+                <h3 style="color: var(--primary-color); margin: 2rem 0 1rem;">💰 Your Savings Plan</h3>
+                
+                <div class="form-group">
+                    <label for="currentSavings">Current College Savings</label>
+                    <div class="input-group">
+                        <div class="input-prefix">$</div>
+                        <input type="number" id="currentSavings" name="currentSavings" placeholder="5000">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="monthlyContribution">Monthly Contribution Amount</label>
+                    <div class="input-group">
+                        <div class="input-prefix">$</div>
+                        <input type="number" id="monthlyContribution" name="monthlyContribution" required placeholder="300">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="accountType">Account Type</label>
+                    <select id="accountType" name="accountType" required>
+                        <option value="">Select account type</option>
+                        <option value="529-nc">NC 529 Plan (Tax Advantage)</option>
+                        <option value="529-other">Other State 529 Plan</option>
+                        <option value="custodial">Custodial UTMA/UGMA</option>
+                        <option value="brokerage">Regular Brokerage Account</option>
+                        <option value="savings">High-Yield Savings</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="calculate-button">Calculate College Savings Plan</button>
+                <button type="button" class="clear-button" onclick="clearForm()">Clear</button>
+                
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    <p>Calculating your college plan...</p>
+                </div>
+            </form>
+            
+            <!-- Results Section -->
+            <div id="resultsSection" class="results-section">
+                <!-- Main Results -->
+                <div class="results-header">
+                    <h3>🎓 Your College Savings Action Plan</h3>
+                </div>
+                
+                <div class="option-tabs" id="optionTabs" style="display: none;">
+                    <button class="tab-button active" onclick="showTab('529-plan')">529 Plan</button>
+                    <button class="tab-button" onclick="showTab('roth-alternative')">Roth IRA Option</button>
+                </div>
+                
+                <!-- 529 Plan Tab -->
+                <div id="529-plan" class="tab-content active">
+                    <div class="results-grid" id="resultsGrid-529">
+                        <!-- 529 Plan results will be populated -->
+                    </div>
+                </div>
+                
+                <!-- Roth IRA Alternative Tab -->
+                <div id="roth-alternative" class="tab-content">
+                    <div class="roth-comparison">
+                        <h4>💡 What if $35,000 went to Roth IRA instead?</h4>
+                        <p>This shows what happens if you prioritize retirement savings over education:</p>
+                        <div class="results-grid" id="rothResultsGrid">
+                            <!-- Roth IRA results will be populated -->
+                        </div>
+                        <p style="font-size: 0.9rem; margin-top: 1rem;"><strong>Note:</strong> You can normally withdraw $35k from 529 for Roth IRA rollovers starting in 2024. Tax-free growth continues in retirement accounts.</p>
+                    </div>
+                </div>
+                
+                <!-- Timeline Visualization -->
+                <div class="timeline">
+                    <h4 class="timeline-title">📈 Your Savings Timeline</h4>
+                    <div id="timelineContent">
+                        <!-- Timeline will be populated -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Email Capture -->
+        <div id="emailSection" class="email-section" style="display: none;">
+            <h4>📋 Want Your Complete College Plan?</h4>
+            <p>I'll send you a detailed college savings plan with account recommendations, tax strategies, and comparison worksheets for NC families.</p>
+            
+            <div id="formspreeStatus" style="display: none; background: var(--success-color); color: white; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; text-align: center;">
+                <div style="font-size: 2rem; margin-bottom: 0.5rem;">✅</div>
+                <h5>Plan Sent Successfully!</h5>
+                <p>Check your email for your complete college savings guide.</p>
+            </div>
+            
+            <form id="emailForm" accept-charset="UTF-8" action="javascript:void(0);">
+                <div class="email-form">
+                    <input type="email" id="userEmail" class="email-input" name="email" placeholder="Enter your email address..." required>
+                    <input type="hidden" name="calculator_type" value="college-savings">
+                    <input type="hidden" name="lead_source" value="calculator-results">
+                    <input type="hidden" name="child_age" id="hiddenChildAge">
+                    <input type="hidden" name="target_cost" id="hiddenTargetCost">
+                    <input type="hidden" name="projected_savings" id="hiddenProjectedSavings">
+                    <input type="hidden" name="monthly_contribution" id="hiddenMonthlyContribution">
+                    <input type="hidden" name="best_strategy" id="hiddenBestStrategy">
+                    <input type="hidden" name="potential_savings" id="hiddenPotentialSavings">
+                    <button type="submit" class="email-button">Send My Plan 📧</button>
+                </div>
+                <p style="font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.8;">Your information is secure and will never be shared.</p>
+            </form>
+        </div>
+        
+        <div class="footer">
+            <div class="disclaimer">
+                <h5>📚 Educational Disclaimer</h5>
+                <p>This calculator provides estimates based on historical college cost data and investment projections. College costs, tax laws, and investment returns vary. Consult with a financial advisor and tax professional before making investment decisions. Rates of return are not guaranteed.</p>
+            </div>
+            <p>© 2026 Jonathan Parker - Triangle Family Financial Planning | Licensed Representative</p>
+            <p><a href="index.html" style="color: var(--primary-color);">← Back to All Calculators</a></p>
+        </div>
+    </div>
+    
+    <script>
+        // College cost data for NC and national
+        const collegeCostData = {
+            'nc-public': {
+                2024: { tuition: 9000, roomBoard: 12000, books: 1200, fees: 2000, total: 24200 },
+                name: 'NC Public University',
+                inflation: 0.045
+            },
+            'nc-private': {
+                2024: { tuition: 45000, roomBoard: 14000, books: 1200, fees: 2500, total: 62700 },
+                name: 'NC Private College',
+                inflation: 0.04
+            },
+            'out-state-public': {
+                2024: { tuition: 28000, roomBoard: 13000, books: 1200, fees: 2200, total: 44400 },
+                name: 'Out-of-State Public',
+                inflation: 0.045
+            },
+            'community': {
+                2024: { tuition: 3000, roomBoard: 0, books: 600, fees: 500, total: 4100 },
+                name: 'Community College (2 years)',
+                inflation: 0.035
+            },
+            'trade': {
+                2024: { tuition: 15000, roomBoard: 8000, books: 800, fees: 1500, total: 25300 },
+                name: 'Trade/Technical School',
+                inflation: 0.03
+            }
+        };
+        
+        // Investment return data
+        const investmentReturns = {
+            '529-nc': { conservative: 0.06, moderate: 0.07, aggressive: 0.08 },
+            '529-other': { conservative: 0.06, moderate: 0.07, aggressive: 0.08 },
+            'custodial': { conservative: 0.07, moderate: 0.08, aggressive: 0.09 },
+            'brokerage': { conservative: 0.07, moderate: 0.08, aggressive: 0.09 },
+            'savings': { conservative: 0.04, moderate: 0.045, aggressive: 0.05 }
+        };
+        
+        document.getElementById('collegeSavingsForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading
+            document.querySelector('.loading').style.display = 'block';
+            document.getElementById('resultsSection').style.display = 'none';
+            document.getElementById('optionTabs').style.display = 'none';
+            
+            setTimeout(() => {
+                calculateCollegeSavings();
+                document.querySelector('.loading').style.display = 'none';
+            }, 1500);
+        });
+        
+        function calculateCollegeSavings() {
+            // Get form values
+            const childAge = parseInt(document.getElementById('childAge').value) || 0;
+            const collegeType = document.getElementById('collegeType').value;
+            const collegeYears = parseInt(document.getElementById('collegeYears').value) || 4;
+            const currentSavings = parseFloat(document.getElementById('currentSavings').value) || 0;
+            const monthlyContribution = parseFloat(document.getElementById('monthlyContribution').value) || 0;
+            const accountType = document.getElementById('accountType').value;
+            
+            // Calculate years until college
+            const yearsToCollege = 18 - childAge;
+            const startYear = 2024 + childAge;
+            
+            // Get college cost data
+            const costData = collegeCostData[collegeType];
+            
+            // Calculate projected college costs using compound interest
+            let totalProjectedCosts = [];
+            let yearlyCost = costData[2024].total;
+            
+            for (let year = 0; year < Math.min(collegeYears, 6); year++) {
+                const collegeYear = startYear + year;
+                const yearsUntilCollege = Math.max(0, collegeYear - 2024);
+                const projectedCost = yearlyCost * Math.pow(1 + costData.inflation, yearsUntilCollege);
+                totalProjectedCosts.push({
+                    year: collegeYear,
+                    cost: projectedCost,
+                    type: costData.name
+                });
+                
+                // Account for inflation continuing during college years
+                if (year < collegeYears - 1) {
+                    yearlyCost *= (1 + costData.inflation);
+                }
+            }
+            
+            const totalCollegeCost = totalProjectedCosts.reduce((sum, item) => sum + item.cost, 0);
+            
+            // Calculate investment returns
+            const returnData = investmentReturns[accountType] || investmentReturns['529-nc'];
+            const annualReturn = returnData.moderate; // Default moderate risk
+            
+            // Calculate savings accumulation with compound interest
+            const monthlyReturn = annualReturn / 12;
+            const monthsToSave = yearsToCollege * 12;
+            
+            // Future value of monthly contributions
+            const futureValueOfContributions = calculateFV(monthlyContribution, monthlyReturn, monthsToSave);
+            
+            // Future value of current savings
+            const futureValueOfCurrent = currentSavings * Math.pow(1 + annualReturn, yearsToCollege);
+            
+            // Total projected savings
+            const totalSavings = futureValueOfCurrent + futureValueOfContributions;
+            
+            // Calculate gap
+            const fundingGap = Math.max(totalCollegeCost - totalSavings, 0);
+            const fundingSurplus = Math.max(totalSavings - totalCollegeCost, 0);
+            
+            // Roth IRA comparison calculation
+            const rothContribution = 35000;
+            const rothYears = 45; // Age 20 to 65
+            const rothReturn = 0.09;
+            const rothFutureValue = rothContribution * Math.pow(1 + rothReturn, rothYears);
+            const rothTaxFreeGrowth = rothFutureValue - rothContribution;
+            
+            // Set hidden form values for lead capture and Formspree
+            document.getElementById('hiddenChildAge').value = childAge;
+            document.getElementById('hiddenTargetCost').value = Math.round(totalCollegeCost);
+            document.getElementById('hiddenProjectedSavings').value = Math.round(totalSavings);
+            document.getElementById('hiddenMonthlyContribution').value = monthlyContribution;
+            document.getElementById('hiddenBestStrategy').value = 'NC 529 College Savings Plan';
+            document.getElementById('hiddenPotentialSavings').value = Math.round(totalSavings - totalCollegeCost > 0 ? totalSavings - totalCollegeCost : 0); // Positive = surplus, negative = gap
+            
+            // Display results
+            displayCollegeResults({
+                childAge: childAge,
+                yearsToCollege: yearsToCollege,
+                collegeType: collegeType,
+                collegeYears: collegeYears,
+                totalCollegeCost: totalCollegeCost,
+                totalSavings: totalSavings,
+                fundingGap: fundingGap,
+                fundingSurplus: fundingSurplus,
+                monthlyContribution: monthlyContribution,
+                currentSavings: currentSavings,
+                accountType: accountType,
+                projectedCosts: totalProjectedCosts,
+                annualReturn: annualReturn
+            });
+            
+            // Display Roth IRA results
+            displayRothResults({
+                contribution: rothContribution,
+                years: rothYears,
+                return: rothReturn,
+                futureValue: rothFutureValue,
+                taxFreeGrowth: rothTaxFreeGrowth
+            });
+            
+            // Show results
+            document.getElementById('resultsSection').style.display = 'block';
+            document.getElementById('optionTabs').style.display = 'block';
+            document.getElementById('emailSection').style.display = 'block';
+        }
+        
+        function calculateFV(payment, rate, periods) {
+            if (rate === 0) return payment * periods;
+            return payment * ((Math.pow(1 + rate, periods) - 1) / rate);
+        }
+        
+        function displayCollegeResults(data) {
+            // 529 Plan results
+            const resultsGrid529 = document.getElementById('resultsGrid-529');
+            
+            if (data.fundingGap > 0) {
+                resultsGrid529.innerHTML = `
+                    <div class="result-card">
+                        <h4>💸 Total College Cost</h4>
+                        <div class="amount">$${formatCurrency(data.totalCollegeCost)}</div>
+                        <div class="note">${data.collegeYears}-year ${collegeCostData[data.collegeType]?.name}</div>
+                    </div>
+                    
+                    <div class="result-card">
+                        <h4>💰 Projected Savings</h4>
+                        <div class="amount">$${formatCurrency(data.totalSavings)}</div>
+                        <div class="note">At ${(data.annualReturn * 100).toFixed(1)}% annual growth</div>
+                    </div>
+                    
+                    <div class="result-card highlight">
+                        <h4>🏫 Funding Gap</h4>
+                        <div class="amount">$${formatCurrency(data.fundingGap)}</div>
+                        <div class="note">Additional savings needed</div>
+                    </div>
+                    
+                    <div class="result-card">
+                        <h4>📈 Monthly Increase Needed</h4>
+                        <div class="amount">+$${formatCurrency(calculateAdditionalContribution(data.fundingGap, data.yearsToCollege, data.annualReturn))}</div>
+                        <div class="note">Extra per month to fully fund</div>
+                    </div>
+                `;
+            } else {
+                resultsGrid529.innerHTML = `
+                    <div class="result-card">
+                        <h4>💸 Total College Cost</h4>
+                        <div class="amount">$${formatCurrency(data.totalCollegeCost)}</div>
+                        <div class="note">${data.collegeYears}-year ${collegeCostData[data.collegeType]?.name}</div>
+                    </div>
+                    
+                    <div class="result-card">
+                        <h4>💰 Projected Savings</h4>
+                        <div class="amount">$${formatCurrency(data.totalSavings)}</div>
+                        <div class="note">Your current plan</div>
+                    </div>
+                    
+                    <div class="result-card" style="border: 2px solid var(--success-color); background: linear-gradient(135deg, #e8f5e8, #ffffff);">
+                        <h4>🎉 Surplus Available!</h4>
+                        <div class="amount">$${formatCurrency(data.fundingSurplus)}</div>
+                        <div class="note">For living expenses or graduate school</div>
+                    </div>
+                    
+                    <div class="result-card">
+                        <h4>📚 Years Until College</h4>
+                        <div class="amount">${data.yearsToCollege}</div>
+                        <div class="note">Child is ${data.childAge} years old</div>
+                    </div>
+                `;
+            }
+            
+            // Timeline
+            const timelineContent = document.getElementById('timelineContent');
+            let timelineHTML = '';
+            
+            for (let year = 0; year <= data.yearsToCollege; year++) {
+                const currentYear = 2024 + year;
+                const childAgeAtYear = data.childAge + year;
+                
+                if (year === 0) {
+                    timelineHTML += `
+                        <div class="timeline-item">
+                            <div class="timeline-year">Now</div>
+                            <div class="timeline-description">Age ${childAgeAtYear} - Start saving</div>
+                            <div class="timeline-amount">Monthly: $${formatCurrency(data.monthlyContribution)}</div>
+                        </div>
+                    `;
+                } else if (year === data.yearsToCollege) {
+                    timelineHTML += `
+                        <div class="timeline-item" style="background: linear-gradient(135deg, #e8f5e8, #ffffff); border-radius: 8px;">
+                            <div class="timeline-year">${currentYear}</div>
+                            <div class="timeline-description">College starts! (Age ${childAgeAtYear})</div>
+                            <div class="timeline-amount">🎓 Ready for tuition</div>
+                        </div>
+                    `;
+                } else if (year % 4 === 0 || year === 1) {
+                    const yearsToGo = data.yearsToCollege - year;
+                    const projectedSavingAtYear = data.totalSavings * (year / data.yearsToCollege);
+                    timelineHTML += `
+                        <div class="timeline-item">
+                            <div class="timeline-year">${currentYear}</div>
+                            <div class="timeline-description">Age ${childAgeAtYear} - ${yearsToGo} years to go</div>
+                            <div class="timeline-amount">~$${formatCurrency(Math.round(projectedSavingAtYear))}</div>
+                        </div>
+                    `;
+                }
+            }
+            
+            timelineContent.innerHTML = timelineHTML;
+        }
+        
+        function displayRothResults(data) {
+            // Monthly retirement income calculation (4% rule)
+            const annualIncome = data.futureValue * 0.04;
+            const monthlyIncome = annualIncome / 12;
+            
+            const rothResultsGrid = document.getElementById('rothResultsGrid');
+            rothResultsGrid.innerHTML = `
+                <div class="result-card">
+                    <h4>💰 Initial Roth Contribution</h4>
+                    <div class="amount">$${formatCurrency(data.contribution)}</div>
+                    <div class="note">Instead of 529 plan at age 20</div>
+                </div>
+                
+                <div class="result-card">
+                    <h4>📈 Value at Age 65</h4>
+                    <div class="amount">$${formatCurrency(data.futureValue)}</div>
+                    <div class="note">9% avg return over ${data.years} years</div>
+                </div>
+                
+                <div class="result-card highlight">
+                    <h4>💵 Monthly Retirement Income</h4>
+                    <div class="amount">$${formatCurrency(monthlyIncome)}</div>
+                    <div class="note">4% safe withdrawal rate</div>
+                </div>
+                
+                <div class="result-card">
+                    <h4>🚀 Tax-Free Growth</h4>
+                    <div class="amount">$${formatCurrency(data.taxFreeGrowth)}</div>
+                    <div class="note">Compound earnings</div>
+                </div>
+            `;
+        }
+        
+        function formatCurrency(amount) {
+            return Math.round(amount).toLocaleString();
+        }
+        
+        function calculateAdditionalContribution(remainingAmount, years, rate) {
+            const months = years * 12;
+            const monthlyRate = rate / 12;
+            return remainingAmount / calculateFV(1, monthlyRate, months);
+        }
+        
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+        
+        function clearForm() {
+            document.getElementById('collegeSavingsForm').reset();
+            document.getElementById('resultsSection').style.display = 'none';
+            document.getElementById('optionTabs').style.display = 'none';
+            document.getElementById('emailSection').style.display = 'none';
+        }
+        
+                // Formspree Integration - Complete implementation from debt calculator with corrected field names
+        function handleEmailSubmit(event) {
+            event.preventDefault();
+            
+            // Select elements
+            const emailInput = document.getElementById('userEmail');
+            const button = document.querySelector('.email-button');
+            const successMessage = document.getElementById('formspreeStatus');
+            
+            // Validate email
+            if (!emailInput.value || !emailInput.value.includes('@')) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+        
+            // Gather calculator-specific data using proper field names
+            const childAge = document.getElementById('childAge')?.value || 'Not provided';
+            const targetCost = document.getElementById('hiddenTargetCost')?.value || 'Not calculated';
+            const projectedSavings = document.getElementById('hiddenProjectedSavings')?.value || 'Not calculated';
+            
+            const formData = {
+                email: emailInput.value,
+                calculator_type: 'college-savings',
+                lead_source: 'calculator-results',
+                child_age: childAge,
+                target_cost: targetCost,
+                projected_savings: projectedSavings,
+                monthly_contribution: document.getElementById('hiddenMonthlyContribution')?.value || 'Not provided',
+                best_strategy: 'NC 529 College Savings Plan',
+                potential_savings: Math.round(projectedSavings || 0),
+                calculator_results: {
+                    summary: generateResultsSummary(),
+                    recommendation: generateCollegeRecommendation()
+                },
+                timestamp: new Date().toISOString()
+            };
+            
+            // Show loading state
+            const originalText = button.innerHTML;
+            button.innerHTML = 'Sending... ⏳';
+            button.disabled = true;
+            
+            // Send data to Formspree
+            fetch('https://formspree.io/f/xkovojay', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.ok) {
+                    // SUCCESS: Show success message
+                    document.getElementById('formspreeStatus').style.display = 'block';
+                    button.textContent = '✅ Plan Sent!';
+                    
+                    // Scroll to success message
+                    document.getElementById('formspreeStatus').scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'nearest' 
+                    });
+                    
+                } else {
+                    // Error from Formspree
+                    if (data.errors) {
+                        alert(data.errors.map(error => error.message).join(', '));
+                    } else {
+                        alert('Oops! There was a problem submitting your form');
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Formspree error:', error);
+                alert('Connection error. Please try again or contact me directly.');
+            })
+            .finally(() => {
+                // Reset button state
+                button.innerHTML = originalText;
+                button.disabled = false;
+            });
+        }
+        
+        // Add event listener for email form submission
+        document.getElementById('emailForm').addEventListener('submit', handleEmailSubmit);
+        
+        function generateResultsSummary() {
+            return {
+                college_cost: document.getElementById('totalCollegeCostSpan')?.textContent || 'Not calculated',
+                current_savings: document.getElementById('currentSavings')?.value || 0,
+                monthly_contribution: document.getElementById('monthlyContribution')?.value || 0,
+                years_to_college: document.getElementById('childAge') ? (18 - parseInt(document.getElementById('childAge').value)) : 'Not calculated'
+            };
+        }
+        
+        function generateLeadRecommendation() {
+            const monthlyNeeded = document.getElementById('monthlyNeeded')?.textContent || 'Not calculated';
+            const currentMonthly = document.getElementById('monthlyInvestment')?.value || 0;
+            
+            if (currentMonthly && monthlyNeeded) {
+                const needed = parseFloat(monthlyNeeded.replace(/[$,]/g, ''));
+                const current = parseFloat(currentMonthly);
+                
+                if (current >= needed) {
+                    return "You're on track! Consider increasing contributions when possible to provide a cushion for unexpected college costs or graduate school options.";
+                } else {
+                    return `Consider increasing your monthly contribution to $${needed.toLocaleString()} to reach your college savings goal. Explore NC 529 tax benefits for North Carolina residents or consider opening additional investment accounts for diversification.`;
+                }
+            }
+            
+            return "Chat with me to create a personalized college savings plan that works for your family budget and North Carolina tax situation.";
+        }
+        
+        function generateCollegeResults() {
+            return {
+                child_age: document.getElementById('childAge').value,
+                target_cost: document.getElementById('targetCost').textContent,
+                projected_savings: calculateProjectedSavings(),
+                monthly_contribution: document.getElementById('monthlyInvestment').value,
+                recommendation: generateCollegeRecommendation()
+            };
+        }
+        
+        function generateCollegeRecommendation() {
+            const recommendations = [
+                "Focus on starting early with monthly contributions to maximize compound growth.",
+                "Consider NC 529 plans for tax advantages on college savings.",
+                "Adjust your monthly contribution if college costs increase more than expected.",
+                "Explore Roth IRA rollover options for flexible savings strategy."
+            ];
+            return recommendations[Math.floor(Math.random() * recommendations.length)];
+        }
+        
+        function calculateProjectedSavings() {
+            return document.getElementById('hiddenProjectedSavings')?.value || 0;
+        }
+        
+        console.log('📧 College Savings Calculator: Formspree integration ready!');
+        
+        // Add event listener for email form submission
+        document.getElementById('emailForm').addEventListener('submit', handleEmailSubmit);
+    </script>
+</body>
+</html>
