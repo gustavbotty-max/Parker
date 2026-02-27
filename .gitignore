@@ -1,25 +1,19 @@
-github_deploy_key*
-client_secret.json
-oauth_token_exchange.py
-google_env.sh
-.openclaw/
-openclaw.json
-openclaw.json.backup
-backups/*/openclaw.json*
-*.backup
+# OS
+.DS_Store
+Thumbs.db
 
-# Agent/internal files - keep local only
-AGENTS.md
-BOOTSTRAP.md
-CALENDAR_EMAIL_SETUP.md
-FORMSPREE_SETUP.md
-HEARTBEAT.md
-IDENTITY.md
-SOUL.md
-TOOLS.md
-USER.md
+# Editor
+*.swp
+*.swo
+*~
+
+# Local dev
+node_modules/
+.env
+
+# Workspace files (not website content)
 memory/
-.local/
-clawhub/
-*.wav
-*.mp4
+*.log
+*.tar.gz
+*.deb
+*.b64
