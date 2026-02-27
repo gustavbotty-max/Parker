@@ -108,15 +108,15 @@
                     <a href="https://scheduler.zoom.us/jonathan-parker-i9rj3o/pfs-intro" target="_blank" rel="noopener" class="btn btn-primary">📅 Let's Build Your Plan Together</a>
                 </div>
 
-                <div style="background:linear-gradient(135deg,var(--primary),var(--primary-light));color:white;padding:2rem;border-radius:var(--radius-lg);text-align:center;margin-top:1.5rem;">
-                    <h4 style="margin-bottom:0.75rem;font-size:1.15rem;">📝 Get Your Full Retirement Report</h4>
-                    <p style="opacity:0.9;margin-bottom:1rem;font-size:0.92rem;">Receive a detailed breakdown with savings milestones and action steps.</p>
-                    <div id="retEmailStatus" style="display:none;background:var(--accent);color:white;padding:1rem;border-radius:var(--radius);margin-bottom:1rem;text-align:center;font-weight:700;">✅ Report sent! Check your email.</div>
-                    <form id="retEmailForm" style="display:flex;gap:0.75rem;max-width:450px;margin:0 auto;flex-wrap:wrap;">
-                        <input type="email" id="retEmail" placeholder="Your email address" required style="flex:1;min-width:200px;padding:0.75rem;border:none;border-radius:var(--radius);font-size:1rem;">
-                        <button type="submit" style="background:var(--accent);color:white;border:none;padding:0.75rem 1.5rem;border-radius:var(--radius);font-weight:700;cursor:pointer;white-space:nowrap;">Send My Report 📧</button>
+                <div class="email-capture-box">
+                    <h4>📝 Get Your Full Retirement Report</h4>
+                    <p>Receive a detailed breakdown with savings milestones and action steps.</p>
+                    <div id="retEmailStatus" style="display:none" class="email-success">✅ Report sent! Check your email.</div>
+                    <form id="retEmailForm" class="email-form">
+                        <input type="email" id="retEmail" placeholder="Your email address" required>
+                        <button type="submit">Send My Report 📧</button>
                     </form>
-                    <p style="font-size:0.78rem;margin-top:0.5rem;opacity:0.75;">Your info is secure and never shared.</p>
+                    <p class="email-fine">Your info is secure and never shared.</p>
                 </div>
             </div>
         </div>

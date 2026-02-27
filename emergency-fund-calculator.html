@@ -25,14 +25,7 @@
         .loading { display: none; text-align: center; padding: 1.5rem; }
         .spinner { width: 36px; height: 36px; border: 3px solid var(--border); border-top: 3px solid var(--primary); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 0.75rem; }
         @keyframes spin { to { transform: rotate(360deg); } }
-        .email-capture { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 2rem; border-radius: var(--radius-lg); text-align: center; margin-top: 1.5rem; }
-        .email-capture h4 { margin-bottom: 0.75rem; font-size: 1.15rem; }
-        .email-capture p { opacity: 0.9; margin-bottom: 1rem; font-size: 0.92rem; }
-        .email-row { display: flex; gap: 0.75rem; max-width: 450px; margin: 0 auto; flex-wrap: wrap; }
-        .email-row input { flex: 1; min-width: 200px; padding: 0.75rem; border: none; border-radius: var(--radius); font-size: 1rem; }
-        .email-row button { background: var(--accent); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: var(--radius); font-weight: 700; cursor: pointer; white-space: nowrap; transition: var(--transition); }
-        .email-row button:hover { background: var(--accent-hover); }
-        #formspreeStatus { display: none; background: var(--accent); color: white; padding: 1rem; border-radius: var(--radius); margin-bottom: 1rem; text-align: center; }
+        #formspreeStatus { display: none; }
     </style>
 </head>
 <body>
@@ -113,21 +106,19 @@
                 <div class="action-grid" id="actionPlanGrid"></div>
             </div>
 
-            <div id="emailSection" class="email-capture" style="display:none;">
+            <div id="emailSection" class="email-capture-box" style="display:none;">
                 <h4>📝 Want Your Detailed Plan?</h4>
                 <p>Get a personalized emergency fund savings plan with worksheets and progress trackers.</p>
-                <div id="formspreeStatus"><div style="font-size:1.5rem;">✅</div><p><strong>Plan Sent!</strong> Check your email.</p></div>
-                <form id="emailForm">
-                    <div class="email-row">
-                        <input type="email" id="userEmail" placeholder="Your email address" required>
-                        <input type="hidden" name="calculator_type" value="emergency-fund">
-                        <input type="hidden" id="hiddenMonthlyExpenses">
-                        <input type="hidden" id="hiddenRecommendedFund">
-                        <input type="hidden" id="hiddenCurrentGap">
-                        <button type="submit">Send My Plan 📧</button>
-                    </div>
-                    <p style="font-size:0.78rem; margin-top:0.5rem; opacity:0.75;">Your info is secure and never shared.</p>
+                <div id="formspreeStatus" style="display:none" class="email-success">✅ Plan Sent! Check your email.</div>
+                <form id="emailForm" class="email-form">
+                    <input type="email" id="userEmail" placeholder="Your email address" required>
+                    <input type="hidden" name="calculator_type" value="emergency-fund">
+                    <input type="hidden" id="hiddenMonthlyExpenses">
+                    <input type="hidden" id="hiddenRecommendedFund">
+                    <input type="hidden" id="hiddenCurrentGap">
+                    <button type="submit">Send My Plan 📧</button>
                 </form>
+                <p class="email-fine">Your info is secure and never shared.</p>
             </div>
         </div>
 
