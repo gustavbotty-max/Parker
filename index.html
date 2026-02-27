@@ -203,8 +203,18 @@
                     <p>What I've learned is that the industry is built to feel that way. The jargon and barriers make regular families feel like they don't belong in the conversation.</p>
                     <p>I built these tools to change that. Same data the pros use, minus the gatekeeping. You shouldn't need a finance degree to see if you're on track.</p>
                     <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-                        <a href="mailto:jlparker0106@gmail.com?subject=Financial Planning Inquiry" class="btn btn-primary">Get in Touch</a>
+                        <button class="btn btn-primary" onclick="document.getElementById('contactForm').style.display='block'; this.closest('.about-text').querySelector('#contactForm').scrollIntoView({behavior:'smooth'});">Get in Touch</button>
                         <a href="https://scheduler.zoom.us/jonathan-parker-i9rj3o/pfs-intro" target="_blank" rel="noopener" class="btn btn-secondary">Schedule a Call</a>
+                    </div>
+                    <div id="contactForm" style="display:none; margin-top:1.5rem; background:var(--bg); padding:1.5rem; border-radius:var(--radius); border:1px solid var(--border);">
+                        <h4 style="margin-bottom:0.75rem;">Send Me a Message</h4>
+                        <form id="homeContactForm">
+                            <div style="margin-bottom:1rem;"><label style="display:block;font-weight:600;margin-bottom:0.25rem;font-size:0.9rem;">Your Name</label><input type="text" id="contactName" required placeholder="First and last name" style="width:100%;padding:0.75rem;border:1px solid var(--border);border-radius:var(--radius);font-size:0.95rem;"></div>
+                            <div style="margin-bottom:1rem;"><label style="display:block;font-weight:600;margin-bottom:0.25rem;font-size:0.9rem;">Email Address</label><input type="email" id="contactEmail" required placeholder="you@email.com" style="width:100%;padding:0.75rem;border:1px solid var(--border);border-radius:var(--radius);font-size:0.95rem;"></div>
+                            <div style="margin-bottom:1rem;"><label style="display:block;font-weight:600;margin-bottom:0.25rem;font-size:0.9rem;">Phone (optional)</label><input type="tel" id="contactPhone" placeholder="(555) 123-4567" style="width:100%;padding:0.75rem;border:1px solid var(--border);border-radius:var(--radius);font-size:0.95rem;"></div>
+                            <div style="margin-bottom:1rem;"><label style="display:block;font-weight:600;margin-bottom:0.25rem;font-size:0.9rem;">How can I help?</label><textarea id="contactMessage" rows="3" placeholder="I'd like to learn more about..." style="width:100%;padding:0.75rem;border:1px solid var(--border);border-radius:var(--radius);font-family:inherit;font-size:0.95rem;resize:vertical;"></textarea></div>
+                            <button type="submit" class="btn btn-primary" style="width:100%;">Send Message</button>
+                        </form>
                     </div>
                 </div>
                 <div class="text-center order-mobile-first">
@@ -264,5 +274,28 @@
         📅 <span class="cta-text-full">Book a Free Call</span><span class="cta-text-short">Book Call</span>
     </a>
 
+    <script>
+        document.getElementById('homeContactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var name = document.getElementById('contactName').value;
+            var email = document.getElementById('contactEmail').value;
+            if (!name || !email) return;
+            var btn = this.querySelector('button');
+            btn.textContent = 'Sending...'; btn.disabled = true;
+            fetch('https://formspree.io/f/xkovojay', {
+                method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({
+                    name: name, email: email,
+                    phone: document.getElementById('contactPhone').value || '',
+                    message: document.getElementById('contactMessage').value || '',
+                    lead_source: 'homepage-contact',
+                    timestamp: new Date().toISOString()
+                })
+            }).then(function(r){return r.json()}).then(function(d){
+                if(d.ok){ document.getElementById('contactForm').innerHTML = '<div style="background:var(--accent);color:white;padding:1.25rem;border-radius:var(--radius);text-align:center;font-weight:600;">✅ Message sent! I\'ll get back to you within 24 hours.</div>'; }
+                else { alert('Error — try again.'); btn.textContent='Send Message'; btn.disabled=false; }
+            }).catch(function(){ alert('Connection error.'); btn.textContent='Send Message'; btn.disabled=false; });
+        });
+    </script>
 </body>
 </html>

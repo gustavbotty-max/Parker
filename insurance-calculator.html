@@ -115,7 +115,28 @@
 
                 <div style="text-align: center; margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
                     <button class="btn btn-primary" onclick="showEmailForm()">📧 Email My Results</button>
-                    <a href="mailto:jlparker0106@gmail.com?subject=Life Insurance Quote Request" class="btn btn-secondary">💬 Speak with an Agent</a>
+                    <button class="btn btn-secondary" onclick="showAgentForm()">💬 Speak with an Agent</button>
+                </div>
+
+                <div id="agentForm" style="display:none; margin-top: 1.5rem; background:var(--bg); padding:1.5rem; border-radius:var(--radius); border:1px solid var(--border);">
+                    <h4 style="margin-bottom:0.75rem;">Request a Callback</h4>
+                    <div class="form-group">
+                        <label for="agentName">Your Name</label>
+                        <input type="text" id="agentName" required placeholder="First and last name">
+                    </div>
+                    <div class="form-group">
+                        <label for="agentEmail">Email Address</label>
+                        <input type="email" id="agentEmail" required placeholder="you@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="agentPhone">Phone Number (optional)</label>
+                        <input type="tel" id="agentPhone" placeholder="(555) 123-4567">
+                    </div>
+                    <div class="form-group">
+                        <label for="agentMessage">How can I help? (optional)</label>
+                        <textarea id="agentMessage" rows="3" placeholder="I'd like to discuss my life insurance options..." style="width:100%;padding:0.75rem;border:1px solid var(--border);border-radius:var(--radius);font-family:inherit;font-size:0.95rem;resize:vertical;"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-block" onclick="submitAgentForm()">Send Request</button>
                 </div>
 
                 <div id="emailForm" style="display:none; margin-top: 1.5rem;">
@@ -266,6 +287,38 @@
 
         function showEmailForm() {
             document.getElementById('emailForm').style.display = 'block';
+            document.getElementById('agentForm').style.display = 'none';
+        }
+
+        function showAgentForm() {
+            document.getElementById('agentForm').style.display = 'block';
+            document.getElementById('emailForm').style.display = 'none';
+            document.getElementById('agentForm').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function submitAgentForm() {
+            var name = document.getElementById('agentName').value;
+            var email = document.getElementById('agentEmail').value;
+            if (!name || !email) { alert('Please enter your name and email.'); return; }
+            var btn = document.querySelector('#agentForm button');
+            btn.textContent = 'Sending...'; btn.disabled = true;
+            var formData = new FormData(document.getElementById('calculatorForm'));
+            fetch('https://formspree.io/f/xkovojay', {
+                method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({
+                    name: name, email: email,
+                    phone: document.getElementById('agentPhone').value || '',
+                    message: document.getElementById('agentMessage').value || '',
+                    calculator_type: 'life-insurance',
+                    lead_source: 'speak-with-agent',
+                    age: formData.get('age'), gender: formData.get('gender'),
+                    coverage_amount: formData.get('coverageAmount'),
+                    timestamp: new Date().toISOString()
+                })
+            }).then(function(r){return r.json()}).then(function(d){
+                if(d.ok){ document.getElementById('agentForm').innerHTML = '<div style="background:var(--accent);color:white;padding:1.25rem;border-radius:var(--radius);text-align:center;font-weight:600;">✅ Request sent! Jonathan will reach out within 24 hours.</div>'; }
+                else { alert('Error — try again.'); btn.textContent='Send Request'; btn.disabled=false; }
+            }).catch(function(){ alert('Connection error.'); btn.textContent='Send Request'; btn.disabled=false; });
         }
 
         function sendEmail() {
