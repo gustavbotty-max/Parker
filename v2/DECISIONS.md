@@ -4,7 +4,7 @@
 
 1. **Color scheme** — I went with deep navy (#1e3a5f) + blue + green accents. You might prefer something warmer, or want to match Primerica's brand colors. Easy to swap.
 
-2. **Headshot** — Using your existing `IMG_20260216_184332_190.jpg`. If you have a more professional/recent photo, we should swap it in before launch.
+2. **Headshot** — ✅ Your current photo (`IMG_20260216_184332_190.jpg`) looks professional and works great. No change needed.
 
 3. **Blog strategy** — I removed the inline overlay blog system (where posts opened as popups) and made them all separate pages. The Dow 50k post was extracted to its own file. If you preferred the popup style, we can bring it back.
 
@@ -14,7 +14,7 @@
 
 6. **Calculator math untouched** — All JavaScript calculation logic is preserved exactly. If any of the formulas need updating (e.g., Primerica rate changes), that's a separate task.
 
-7. **Email capture** — The insurance calculator's "Email My Results" still uses alert() as a placeholder. For real email delivery, we need to wire up Formspree or similar. Other calculators already have Formspree forms.
+7. **Email capture** — ✅ All 6 calculators and 21 Sources of Cash now have Formspree integration (endpoint: `xkovojay`). 21 Sources is fully email-gated (content hidden until email submitted). Calculators show results but offer email report capture.
 
 8. **Dashboard page** — Not included in v2. It was an internal content pipeline dashboard, not client-facing. If you want it, say the word.
 

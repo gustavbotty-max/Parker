@@ -275,7 +275,34 @@
                 alert('Please provide your email and consent to receive communications.');
                 return;
             }
-            alert('Thank you! Your results will be emailed to you shortly. A licensed insurance representative will follow up with you.');
+            const btn = document.querySelector('#emailForm button');
+            const orig = btn.textContent;
+            btn.textContent = 'Sending...';
+            btn.disabled = true;
+            const formData = new FormData(document.getElementById('calculatorForm'));
+            fetch('https://formspree.io/f/xkovojay', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({
+                    email: email,
+                    calculator_type: 'life-insurance',
+                    lead_source: 'calculator-results',
+                    age: formData.get('age'),
+                    gender: formData.get('gender'),
+                    income: formData.get('income'),
+                    coverage_amount: formData.get('coverageAmount'),
+                    tobacco: formData.get('tobacco'),
+                    timestamp: new Date().toISOString()
+                })
+            })
+            .then(r => r.json())
+            .then(data => {
+                if (data.ok) {
+                    document.getElementById('emailForm').innerHTML = '<div style="background:var(--accent);color:white;padding:1rem;border-radius:var(--radius);text-align:center;"><strong>✅ Results sent!</strong> Check your email. A licensed representative will follow up.</div>';
+                } else { alert('Error — please try again.'); }
+            })
+            .catch(() => alert('Connection error. Try again or email jlparker0106@gmail.com directly.'))
+            .finally(() => { btn.textContent = orig; btn.disabled = false; });
         }
     </script>
 </body>

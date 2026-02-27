@@ -253,6 +253,18 @@
     <!-- Content -->
     <div style="max-width:800px; margin:0 auto; padding:0 20px;">
 
+        <!-- Email Gate -->
+        <div id="emailGate" style="background:linear-gradient(135deg,var(--primary),var(--primary-light));color:white;padding:2.5rem;border-radius:var(--radius-lg);text-align:center;margin-top:2rem;">
+            <h2 style="font-size:1.5rem;margin-bottom:0.75rem;">🔓 Unlock the Full Workshop</h2>
+            <p style="opacity:0.9;margin-bottom:1.25rem;font-size:1rem;max-width:500px;margin-left:auto;margin-right:auto;">Enter your email to access all 21 sources of hidden cash in your budget. Free, no strings attached.</p>
+            <form id="gateForm" style="display:flex;gap:0.75rem;max-width:450px;margin:0 auto;flex-wrap:wrap;">
+                <input type="email" id="gateEmail" placeholder="Your email address" required style="flex:1;min-width:200px;padding:0.85rem;border:none;border-radius:var(--radius);font-size:1rem;">
+                <button type="submit" style="background:var(--accent);color:white;border:none;padding:0.85rem 1.75rem;border-radius:var(--radius);font-weight:700;cursor:pointer;white-space:nowrap;font-size:1rem;">Unlock Workshop 🔓</button>
+            </form>
+            <p style="font-size:0.78rem;margin-top:0.75rem;opacity:0.7;">Your info is secure and never shared.</p>
+        </div>
+
+        <div id="workshopContent" style="display:none;">
         <!-- Progress Bar -->
         <div class="progress-container" style="margin-top:1.5rem;">
             <div class="progress-info">
@@ -778,6 +790,7 @@
             <a href="https://scheduler.zoom.us/jonathan-parker-i9rj3o/pfs-intro" target="_blank" rel="noopener" class="sources-cta-btn">Schedule Your Review</a>
         </div>
 
+        </div><!-- end workshopContent -->
     </div>
 
     <!-- Footer -->
@@ -848,6 +861,25 @@
 
         window.addEventListener('scroll', updateProgress);
         window.addEventListener('load', updateProgress);
+
+        // Email gate
+        document.getElementById('gateForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var email = document.getElementById('gateEmail').value;
+            if (!email) return;
+            var btn = this.querySelector('button');
+            btn.textContent = 'Unlocking...'; btn.disabled = true;
+            fetch('https://formspree.io/f/xkovojay', {
+                method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({ email: email, calculator_type: '21-sources-of-cash', lead_source: 'workshop-gate', timestamp: new Date().toISOString() })
+            }).then(function(r){return r.json()}).then(function(d){
+                if(d.ok){
+                    document.getElementById('emailGate').style.display = 'none';
+                    document.getElementById('workshopContent').style.display = 'block';
+                    updateProgress();
+                } else { alert('Error — try again.'); btn.textContent='Unlock Workshop 🔓'; btn.disabled=false; }
+            }).catch(function(){ alert('Connection error.'); btn.textContent='Unlock Workshop 🔓'; btn.disabled=false; });
+        });
     </script>
 </body>
 </html>
