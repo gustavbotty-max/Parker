@@ -6,7 +6,7 @@ import re
 import subprocess
 import sys
 from datetime import datetime
-from html import escape
+from html import escape, unescape
 from pathlib import Path
 from typing import Dict, List, Tuple
 
@@ -239,7 +239,7 @@ def build_card_html(title: str, slug: str, date_label: str, read_time: str, exce
         "                    </div>\n"
         "                    <div class=\"blog-card-body\">\n"
         f"                        <div class=\"blog-meta\"><span>📅 {escape(date_label)}</span><span>⏱️ {escape(read_time)}</span></div>\n"
-        f"                        <p class=\"blog-excerpt\">{escape(excerpt)}</p>\n"
+        f"                        <p class=\"blog-excerpt\">{escape(excerpt, quote=False)}</p>\n"
         f"                        <div class=\"blog-tags\">{tags_html}</div>\n"
         "                        <span class=\"blog-read-more\">Read article</span>\n"
         "                    </div>\n"
@@ -284,6 +284,7 @@ def main(md_file: str):
     except ValueError:
         date_label = date_val
     excerpt = first_paragraph_text(body_html)
+    excerpt = unescape(excerpt)
     if len(excerpt) > 180:
         excerpt = excerpt[:177].rsplit(" ", 1)[0] + "…"
     topics_raw = front_matter.get("topics", "")
