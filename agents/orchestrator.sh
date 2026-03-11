@@ -15,8 +15,8 @@ TIMESTAMP=$(date +%Y-%m-%dT%H:%M:%S)
 MODEL_SCOUT="github-copilot/grok-3-fast"
 # Quill: Claude for natural, human writing style  
 MODEL_QUILL="github-copilot/claude-sonnet-4"
-# Echo: Fast model for quick, punchy social content
-MODEL_ECHO="github-copilot/gpt-4o-mini"
+# Echo: GPT-5.4 for quick, punchy social content
+MODEL_ECHO="github-copilot/gpt-5.4"
 # Frame: Claude for structured video scripts with AI generation prompts
 MODEL_FRAME="github-copilot/claude-sonnet-4"
 # ============================================
