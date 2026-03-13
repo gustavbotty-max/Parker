@@ -11,7 +11,7 @@ La Banderita Yellow Corn Tortilla 30 Count,Tortillas,30,oz,,,330.00,Pantry,Non-p
 "bubly Sparkling Water, The Super Mario Galaxy Movie Lime, Zero Sugar & Zero Calories, 12 fl oz Cans (8 pack)​",Sparkling Water,8,each,12,fl oz,288.00,Beverages,Non-perishable
 "Thomas' Light Multi-Grain English Muffins, 6 count, 100 Calories English Muffins, 12 oz Tray",English Muffins,6,each,12,oz,252.00,Bakery,Non-perishable
 "Goody Ouchless Mini Poly Band Hair Ties, No Metal Gentle Hair Elastics, Clear, 250 Ct",Goody Ouchless Mini Poly,250,each,,,250.00,Uncategorized,Non-perishable
-"Bagel Bites Three Cheese Mini Pizza Bagel Frozen Snacks, 40 ct Box",Bagels,40,each,,,200.00,Dairy,Perishable
+"Bagel Bites Three Cheese Mini Pizza Bagel Frozen Snacks, 40 ct Box",Frozen Pizza,40,each,,,200.00,Dairy,Perishable
 "Melitta 8-12 Cup White Basket Coffee Filters, 200 Ct",Coffee Filters,200,each,,,200.00,Uncategorized,Non-perishable
 "Oikos Pro Shots 10g Protein, Mixed Berry Cultured Dairy Drinks Bottles, 3.1 fl oz, 6 Count​",Protein Drinks,6,each,3.1,fl oz,192.00,Dairy,Perishable
 "Great Value Disposable Paper Plates, 10"", 150 Count",Paper Plates,150,each,,,150.00,Uncategorized,Non-perishable
@@ -86,7 +86,7 @@ Grade A Large Eggs - 18ct - Good & Gather™ (Packaging May Vary),Eggs,18,each,,
 "Pacific Foods Organic Creamy Tomato Soup, 32 oz Carton",Tomatoes,1,each,32,oz,18.00,Produce,Perishable
 "GoGo squeeZ No Sugar Added Apple Applesauce & Fruit Puree Pouches, 3.2 oz (16 Pack)",Applesauce,16,each,3.2,oz,16.00,Produce,Perishable
 ASP Cough & ST Adult FizzyChews 16CT,Asp Cough St Adult,16,each,,,16.00,Uncategorized,Non-perishable
-"Plum Organics® Tots Mighty Builder Fruit & Veggie Blend Pear, White Bean, Blueberry, Date + Chia & Banana, White Bean, Strawberry + Chia 4oz Pouch-8-pack",Bananas,1,each,4,oz,16.00,Produce,Perishable
+"Plum Organics® Tots Mighty Builder Fruit & Veggie Blend Pear, White Bean, Blueberry, Date + Chia & Banana, White Bean, Strawberry + Chia 4oz Pouch-8-pack",Kids Fruit Pouches,1,each,4,oz,16.00,Produce,Perishable
 "Planet Oat Oat Milk, Velvety & Smooth, Barista Lovers, 52 fl oz",Milk,1,fl oz,52,fl oz,16.00,Dairy,Perishable
 Pillsbury Grands! Southern Homestyle Buttermilk Biscuits - 16.3oz/8ct,Pillsbury Grands Southern Homestyle,8,fl oz,16.3,oz,16.00,Dairy,Perishable
 Tazo Organic Green Ginger Tea Bags - 16ct,Tazo Green Ginger Tea,16,each,,,16.00,Uncategorized,Non-perishable
@@ -102,8 +102,8 @@ Tazo Organic Green Ginger Tea Bags - 16ct,Tazo Green Ginger Tea,16,each,,,16.00,
 "Keebler Waffle Ice Cream Cones, 5 oz, 12 ct",Keebler Waffle Ice Cream,12,each,5,oz,12.00,Uncategorized,Non-perishable
 "Kraft String Cheese Mozzarella Cheese Snacks, 12 ct Sticks",Kraft String Cheese Mozzarella,12,oz,,,12.00,Dairy,Perishable
 "Great Value Low-Moisture Part-Skim Mozzarella String Cheese Snack, 12 oz, 12 Count",Low Moisture Part Skim,12,oz,12,oz,12.00,Dairy,Perishable
-"HERSHEY’S a2 Milk® Chocolate 2% Reduced Fat Milk Boxes, 8 oz, 12-Pack",Milk,1,fl oz,8,oz,12.00,Dairy,Perishable
-"Oikos Pro 20g Protein, Vanilla Yogurt-Cultured Ultra-Filtered Milk&nbsp;Product Cups, 5.3 oz, 4 Count",Milk,4,fl oz,5.3,oz,12.00,Dairy,Perishable
+"HERSHEY’S a2 Milk® Chocolate 2% Reduced Fat Milk Boxes, 8 oz, 12-Pack",Protein Milk,1,fl oz,8,oz,12.00,Dairy,Perishable
+"Oikos Pro 20g Protein, Vanilla Yogurt-Cultured Ultra-Filtered Milk&nbsp;Product Cups, 5.3 oz, 4 Count",Protein Milk,4,fl oz,5.3,oz,12.00,Dairy,Perishable
 "Pen+Gear Letter Size Hanging File Folders, 12 Count, Green",Pen Gear Letter Size,12,each,,,12.00,Uncategorized,Non-perishable
 "Fresh Romaine Lettuce Hearts 3 Count, Each",Romaine Lettuce Hearts Each,3,each,,,12.00,Uncategorized,Non-perishable
 "Great Value Waffles Cones, 7 oz, 12 Count",Waffles Cones,12,each,7,oz,12.00,Uncategorized,Non-perishable
@@ -147,8 +147,8 @@ Oikos Pro Strawberry Cultured Dairy Drink - 3.1 fl oz/6ct,Yogurt Drinks,6,each,3
 "Colgate 360 Whole Mouth Clean Adult Manual Toothbrush, Medium, 5 Pack",Toothbrushes,5,each,,,5.00,Uncategorized,Non-perishable
 "Kodiak Protein-Packed Power Cakes Buttermilk Pancake and Waffle Mix, 20 oz Box",Kodiak Protein Packed Power,1,fl oz,20,oz,5.00,Dairy,Perishable
 "(5 pack) Lunchables Ham and Cheddar Cracker Stackers Value Snack Kit, 1.9 oz Tray, Refrigerated, Pieces",Crackers,5,each,1.9,oz,5.00,Uncategorized,Non-perishable
-"Core Power Protein Shake with 26g Protein by fairlife Milk, Chocolate, 14 fl oz",Milk,1,fl oz,14,fl oz,5.00,Dairy,Perishable
-"Oikos Pro 23g Protein, Vanilla Yogurt-Cultured Ultra-Filtered Milk Product Tub, 32 oz​",Milk,1,fl oz,32,oz,5.00,Dairy,Perishable
+"Core Power Protein Shake with 26g Protein by fairlife Milk, Chocolate, 14 fl oz",Protein Milk,1,fl oz,14,fl oz,5.00,Dairy,Perishable
+"Oikos Pro 23g Protein, Vanilla Yogurt-Cultured Ultra-Filtered Milk Product Tub, 32 oz​",Protein Milk,1,fl oz,32,oz,5.00,Dairy,Perishable
 "Siete Mild Taco Seasoning, Mixed Spice, 1.31 oz. Packet",Siete Mild Taco Seasoning,1,each,1.31,oz,5.00,Uncategorized,Non-perishable
 So Good So You Energy Passionfruit Organic Probiotic Shot - 1.7 fl oz,So Good So You,1,each,1.7,fl oz,5.00,Uncategorized,Non-perishable
 "Swanson White Premium Chunk Chicken Breast with Rib Meat in Water, 12.5 oz. (Pack of 2)",Chicken Breast,1,fl oz,12.5,oz,5.00,Uncategorized,Perishable
@@ -163,7 +163,7 @@ Applegate Natural Uncured Genoa Salami - 4oz,Lunch Meat,1,each,4,oz,4.00,Produce
 "EZ Foil Disposable Casserole Pans, 11.75 x 9.25 in., 2 Count",Ez Foil Disposable Casserole,2,each,,,4.00,Uncategorized,Non-perishable
 Frozen Sunbutter No Crust Sandwich Strawberry - 4ct - Good & Gather™,Frozen Sunbutter No Crust,4,each,,,4.00,Uncategorized,Non-perishable
 Hass Avocados - 4ct - Good & Gather™,Avocados,4,each,,,4.00,Uncategorized,Non-perishable
-"Oikos Protein Shake, Shelf Stable, Chocolate, 30g Protein, 12 fl oz, 4 Count​ Bottles",Oikos Protein Shake Shelf,4,each,12,fl oz,4.00,Uncategorized,Non-perishable
+"Oikos Protein Shake, Shelf Stable, Chocolate, 30g Protein, 12 fl oz, 4 Count​ Bottles",Protein Milk,4,each,12,fl oz,4.00,Uncategorized,Non-perishable
 "Oikos Triple Zero 15g Protein, 0g Added Sugar, Fat Free Vanilla Greek Yogurt Cups, 5.3 oz, 4 Count",Oikos Triple Zero G,4,each,5.3,oz,4.00,Dairy,Perishable
 "Ophanie 22.5 inch 2 Pack Wood Floating Shelves, Hanging Float Shelf for Wall Mounted Decorative Shelves, 6.7 x 23 Inch, Set of 2, Rustic Brown-",Ophanie Inch Wood Floating,2,each,,,4.00,Uncategorized,Non-perishable
 Plum Organics® Jammy Sammy® Snack Size Sandwich Bar Blueberry + Oatmeal 5-Count Box/1.02oz Bars,Plum Organics Jammy Sammy,1,each,1.02,oz,4.00,Uncategorized,Non-perishable
@@ -227,7 +227,7 @@ Applegate Natural Prosciutto - 3oz,Lunch Meat,1,each,3,oz,1.00,Produce,Perishabl
 Fresh Honeycrisp Apples - 3lb Bag - Good & Gather™,Apples,1,each,3,lb,1.00,Produce,Perishable
 Fresh Organic Honeycrisp Apples - 2lbs Bag - Good & Gather™,Apples,1,each,2,lbs,1.00,Produce,Perishable
 "Great Value 100% Apple Juice, 96 fl oz",Juice,1,each,96,fl oz,1.00,Produce,Perishable
-"Stacy’s No Artificial Colors or Flavors Sea Salt Bagel Chips Bag, 7 oz​",Bagels,1,each,7,oz,1.00,Bakery,Non-perishable
+"Stacy’s No Artificial Colors or Flavors Sea Salt Bagel Chips Bag, 7 oz​",Crackers,1,each,7,oz,1.00,Bakery,Non-perishable
 "Blue Bunny Soft Cookies and Cream Premium Frozen Dessert, 46 fl oz",Blue Bunny Soft Cookies,1,each,46,fl oz,1.00,Uncategorized,Non-perishable
 "Arnold Country Style Sourdough Bread, 24 oz, Sourdough Bread, Bag",Bread,1,oz,24,oz,1.00,Bakery,Non-perishable
 "Dave's Killer Bread Raisin' The Roof! Organic Breakfast Bread, Cinnamon Raisin Loaf, 18 Oz",Bread,1,oz,18,oz,1.00,Bakery,Non-perishable
@@ -235,7 +235,7 @@ Fresh Organic Honeycrisp Apples - 2lbs Bag - Good & Gather™,Apples,1,each,2,lb
 Dave's Killer Bread® Thin Sliced 21 Whole Grains and Seeds Organic Bread 20.5 oz. Loaf,Bread,1,oz,20.5,oz,1.00,Bakery,Non-perishable
 Fleischmann's Classic Bread Machine Instant Yeast 4 oz Jar.,Bread,1,oz,4,oz,1.00,Bakery,Non-perishable
 "Great Value Garlic Bread Sticks, 10.5 oz (Frozen)",Bread,1,oz,10.5,oz,1.00,Bakery,Non-perishable
-"Great Value Pre-Sliced Cinnamon Raisin Bread, 16 oz",Bread,1,oz,16,oz,1.00,Bakery,Non-perishable
+"Great Value Pre-Sliced Cinnamon Raisin Bread, 16 oz",Cinnamon Raisin Bread,1,oz,16,oz,1.00,Bakery,Non-perishable
 "Pepperidge Farm Farmhouse Brioche Bread, 22 oz Loaf",Bread,1,oz,22,oz,1.00,Bakery,Non-perishable
 Sliced Sourdough Bread - 17oz - Favorite Day™,Bread,1,oz,17,oz,1.00,Bakery,Non-perishable
 Cabot Creamery Lowfat Plain Greek Yogurt 2 lb (Refrigerated Tub),Cabot Creamery Lowfat Greek,1,each,2,lb,1.00,Dairy,Perishable
@@ -249,7 +249,7 @@ Cascade Complete Dishwashing Liquid Gel Fresh Detergent - 120 fl oz,Cascade Comp
 "Great Value Chocolate Chip Cookie Dough Ice Cream, 48 fl oz",Ice Cream,1,each,48,fl oz,1.00,Uncategorized,Non-perishable
 "COLUMBUS, Peppered Salami, Sliced Charcuterie Meat, 10oz Pack",Columbus Peppered Salami Sliced,1,each,10,oz,1.00,Uncategorized,Perishable
 "Great Value Cookies & Cream Ice Cream, 48 fl oz",Ice Cream,1,each,48,fl oz,1.00,Uncategorized,Non-perishable
-Core Power Elite Vanilla 42G Protein Shake - 14 fl oz Bottle,Core Power Elite Vanilla,1,each,14,fl oz,1.00,Uncategorized,Non-perishable
+Core Power Elite Vanilla 42G Protein Shake - 14 fl oz Bottle,Protein Milk,1,each,14,fl oz,1.00,Uncategorized,Non-perishable
 "Dawn Powerwash Spray, Dish Soap, Dishwashing Liquid, Fresh, 1 Starter Kit, 16 Fl Oz",Dish Soap,1,each,16,fl oz,1.00,Uncategorized,Non-perishable
 "Del Monte Fresh Cut Green Beans, Canned Vegetables, 14.5 oz Can (Pack of 4)",Del Monte Cut Green,1,each,14.5,oz,1.00,Pantry,Non-perishable
 "Dr Teal's Kids 3-in-1 Bubble Bath, Body Wash & Shampoo with Melatonin & Essential Oil, 20 fl oz",Body Soap,1,each,20,fl oz,1.00,Uncategorized,Non-perishable
@@ -276,7 +276,7 @@ Little Debbie Big Pack Christmas Tree Cakes,Little Debbie Big Pack,1,each,,,1.00
 "Method Repairing Shampoo, Island Mist, 14 fl oz",Shampoo,1,each,14,fl oz,1.00,Uncategorized,Non-perishable
 "Great Value Evaporated Milk, 12 fl oz",Milk,1,fl oz,12,fl oz,1.00,Dairy,Perishable
 "Horizon Organic High Vitamin D Whole Milk, High Vitamin D Whole, 64 fl oz Carton",Milk,1,fl oz,64,fl oz,1.00,Dairy,Perishable
-"Oatly Original Oatmilk, Dairy-Free Milk, 64 fl oz Refrigerated Carton",Milk,1,fl oz,64,fl oz,1.00,Dairy,Perishable
+"Oatly Original Oatmilk, Dairy-Free Milk, 64 fl oz Refrigerated Carton",Oat Milk,1,fl oz,64,fl oz,1.00,Dairy,Perishable
 "Mucinex,Children's Night Time, Multi-Symptom Cold Relief, Mixed Berry Flavor, 4fl oz, Plastic Bottle",Mucinex Children S Night,1,each,4,fl oz,1.00,Uncategorized,Non-perishable
 "Mucinex Children's Stuffy Nose & Chest Congestion Relief, Kids Medicine, Very Berry Flavor, 4 fl oz",Mucinex Children S Stuffy,1,each,4,fl oz,1.00,Uncategorized,Non-perishable
 "Mucinex Fast-Max Cold, Flu, & Sore Throat Relief Medicine, OTC Cough Suppressant, Expectorant, 6 fl oz",Mucinex Fast Max Cold,1,each,6,fl oz,1.00,Uncategorized,Non-perishable
