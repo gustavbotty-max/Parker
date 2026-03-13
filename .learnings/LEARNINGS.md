@@ -40,3 +40,26 @@ Update grocery normalization logic so protein grams are excluded from size extra
 - Tags: grocery, normalization, units, correction
 
 ---
+
+## [LRN-20260313-001] best_practice
+
+**Logged**: 2026-03-13T00:05:03Z
+**Priority**: high
+**Status**: pending
+**Area**: infra
+
+### Summary
+For cron-driven Telegram digests, use `openclaw agent --local --deliver --channel telegram --to <id>` instead of relying on gateway session context.
+
+### Details
+A recurring email-digest cron stopped sending `All clear` messages. Manual testing showed gateway-mode `openclaw agent` could fail with `Context overflow: prompt too large for the model`, while embedded/local mode succeeded and delivered normally. Also, current CLI delivery requires an explicit destination such as `--to 6683507702` for Telegram.
+
+### Suggested Action
+Prefer embedded/local delivery for unattended cron jobs, and always specify the destination target explicitly. Keep stderr visible through logger so silent failures do not disappear into `/dev/null`.
+
+### Metadata
+- Source: error
+- Related Files: /usr/local/bin/check_agentmail.sh
+- Tags: cron, telegram, openclaw, context-overflow, delivery
+
+---
