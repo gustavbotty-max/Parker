@@ -1,0 +1,170 @@
+[
+  {
+    "path": "AGENTS.md",
+    "kind": "file"
+  },
+  {
+    "path": "SOUL.md",
+    "kind": "file"
+  },
+  {
+    "path": "USER.md",
+    "kind": "file"
+  },
+  {
+    "path": "MEMORY.md",
+    "kind": "file"
+  },
+  {
+    "path": "TOOLS.md",
+    "kind": "file"
+  },
+  {
+    "path": "IDENTITY.md",
+    "kind": "file"
+  },
+  {
+    "path": "HEARTBEAT.md",
+    "kind": "file"
+  },
+  {
+    "path": "burn_rate_canonical_weekly.csv",
+    "kind": "file"
+  },
+  {
+    "path": "burn_rate_canonical_weekly_top.csv",
+    "kind": "file"
+  },
+  {
+    "path": "burn_rate_items_weekly.csv",
+    "kind": "file"
+  },
+  {
+    "path": "review_raw_consolidated_3store_fixed2.csv",
+    "kind": "file"
+  },
+  {
+    "path": "walmart_orders_full.csv",
+    "kind": "file"
+  },
+  {
+    "path": "grocery_mapping_suggestions_refined.csv",
+    "kind": "file"
+  },
+  {
+    "path": "grocery_canonical_preview_refined.csv",
+    "kind": "file"
+  },
+  {
+    "path": "grocery_normalized_model_v2.csv",
+    "kind": "file"
+  },
+  {
+    "path": "grocery_normalized_canonical_preview_v2.csv",
+    "kind": "file"
+  },
+  {
+    "path": "shopping_strategy_costco_aldi.md",
+    "kind": "file"
+  },
+  {
+    "path": "consolidate_3store_corrected.py",
+    "kind": "file"
+  },
+  {
+    "path": "receipt_parser_corrected.py",
+    "kind": "file"
+  },
+  {
+    "path": "analyze_categories.py",
+    "kind": "file"
+  },
+  {
+    "path": "calculate_avg_monthly_spend.py",
+    "kind": "file"
+  },
+  {
+    "path": "costco_checklist.md",
+    "kind": "file"
+  },
+  {
+    "path": "WORKFLOW_AUTO.md",
+    "kind": "file"
+  },
+  {
+    "path": "README.md",
+    "kind": "file"
+  },
+  {
+    "path": "memory/2026-02-26-relay-server.md",
+    "kind": "file"
+  },
+  {
+    "path": "memory/2026-02-27-ssh-troubleshooting.md",
+    "kind": "file"
+  },
+  {
+    "path": "memory/2026-03-10.md",
+    "kind": "file"
+  },
+  {
+    "path": "memory/2026-03-11.md",
+    "kind": "file"
+  },
+  {
+    "path": "memory/2026-03-12.md",
+    "kind": "file"
+  },
+  {
+    "path": "memory/2026-03-13.md",
+    "kind": "file"
+  },
+  {
+    "path": "memory/2026-03-14.md",
+    "kind": "file"
+  },
+  {
+    "path": "agents/run-frame.sh",
+    "kind": "dirfile"
+  },
+  {
+    "path": "agents/SCOUT.md",
+    "kind": "dirfile"
+  },
+  {
+    "path": "agents/run-echo.sh",
+    "kind": "dirfile"
+  },
+  {
+    "path": "agents/run-scout.sh",
+    "kind": "dirfile"
+  },
+  {
+    "path": "agents/ECHO.md",
+    "kind": "dirfile"
+  },
+  {
+    "path": "agents/run-quill.sh",
+    "kind": "dirfile"
+  },
+  {
+    "path": "agents/FRAME.md",
+    "kind": "dirfile"
+  },
+  {
+    "path": "agents/orchestrator.sh",
+    "kind": "dirfile"
+  },
+  {
+    "path": "agents/QUILL.md",
+    "kind": "dirfile"
+  },
+  {
+    "path": "MAC_HOST_NOTES.md",
+    "kind": "generated"
+  },
+  {
+    "path": "README-SECOND-BODY.md",
+    "kind": "generated"
+  }
+]
