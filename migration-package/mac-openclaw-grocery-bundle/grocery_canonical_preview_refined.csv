@@ -1,0 +1,552 @@
+canonical_item,units_per_week_all,units_per_week_13w,total_qty,raw_item_count,category_guess,perishable_guess
+Bananas,6.0764,6.3846,375.00,3,Produce,Perishable
+Protein Yogurt Drinks,3.7106,4.3844,229.00,11,Dairy,Perishable
+Milk,2.4628,3.6152,152.00,23,Dairy,Perishable
+Tomatoes,2.3169,3.7691,143.00,16,Produce,Perishable
+Corn,2.1064,2.9231,130.00,12,Pantry,Non-perishable
+Bread,1.7824,2.3843,110.00,17,Bakery,Non-perishable
+Sparkling Water,1.6041,2.1538,99.00,4,Beverages,Non-perishable
+Bagels,1.1666,1.0000,72.00,4,Bakery,Non-perishable
+Black Beans,1.0370,1.6153,64.00,3,Pantry,Non-perishable
+Breakfast Sausage,1.0208,1.0000,63.00,3,Meat,Perishable
+Turkey Lunchmeat,1.0046,0.7692,62.00,4,Meat,Perishable
+Cream Cheese,0.9884,1.5384,61.00,7,Dairy,Perishable
+Chips,0.9074,1.4615,56.00,2,Snacks,Non-perishable
+Apples,0.9073,1.5383,56.00,12,Produce,Perishable
+Large White Eggs,0.8750,0.9231,54.00,2,Uncategorized,Non-perishable
+Goat Cheese,0.8426,1.3845,52.00,5,Dairy,Perishable
+Asiago Cheese,0.7292,0.3846,45.00,1,Dairy,Perishable
+English Muffins,0.6806,0.6154,42.00,1,Bakery,Non-perishable
+Lunchables Ham Cheddar Value,0.6481,0.0000,40.00,1,Uncategorized,Non-perishable
+Hot Dog Buns,0.6157,1.3077,38.00,2,Bakery,Non-perishable
+Hot Dogs,0.5671,1.0769,35.00,1,Meat,Non-perishable
+Snyder S Of Hanover,0.4537,0.5384,28.00,2,Uncategorized,Non-perishable
+King S Hawaiian Hawaiian,0.4375,0.0769,27.00,1,Uncategorized,Non-perishable
+Tazo Classic Chai Latte,0.4213,0.7692,26.00,2,Uncategorized,Non-perishable
+Bush S Chili Beans,0.4051,0.3846,25.00,2,Pantry,Non-perishable
+Oikos Triple Zero G,0.3889,1.0000,24.00,2,Dairy,Perishable
+Reduced Sodium Chicken Broth,0.3889,0.4615,24.00,2,Uncategorized,Perishable
+Jimmy Dean Premium Pork,0.3727,0.7692,23.00,1,Meat,Perishable
+Sweet Potatoes Whole Each,0.3727,0.0000,23.00,1,Uncategorized,Non-perishable
+Sharp Cheddar Finely Shredded,0.3727,0.8462,23.00,2,Dairy,Perishable
+Mccormick Chili Seasoning Mix,0.3565,0.3846,22.00,1,Uncategorized,Non-perishable
+Muenster Deli Style Sliced,0.3241,0.3077,20.00,1,Dairy,Perishable
+Perdue Harvestland Ground Chicken,0.3079,0.4615,19.00,1,Uncategorized,Perishable
+Colby Monterey Jack Cheese,0.2917,0.5385,18.00,1,Dairy,Perishable
+Cut Green Beans Can,0.2917,0.0000,18.00,1,Pantry,Non-perishable
+Whole Celery Stalk Each,0.2917,0.6154,18.00,1,Uncategorized,Non-perishable
+Whole Carrots Bag,0.2916,0.4615,18.00,3,Uncategorized,Non-perishable
+Blue Diamond Almonds Lightly,0.2754,0.3077,17.00,2,Uncategorized,Non-perishable
+Activia Probiotic Dailies Strawberry,0.2593,0.0000,16.00,2,Dairy,Perishable
+Honey Nut Cheerios Heart,0.2592,0.4615,16.00,2,Uncategorized,Non-perishable
+Sour Cream Tub,0.2431,0.3846,15.00,1,Uncategorized,Non-perishable
+Strawberries,0.2431,0.0769,15.00,1,Uncategorized,Non-perishable
+Turkey Pepperoni Slices,0.2431,0.6154,15.00,1,Meat,Non-perishable
+Tph By Taraji Hustle,0.2269,0.0769,14.00,1,Uncategorized,Non-perishable
+Pillsbury Grands Southern Homestyle,0.2268,0.0769,14.00,2,Dairy,Perishable
+Digiorno Classic Crust Cheese,0.2106,0.0000,13.00,1,Dairy,Perishable
+Lime Each,0.2106,0.9231,13.00,1,Uncategorized,Non-perishable
+Whole Brown Mushrooms,0.2106,0.3846,13.00,1,Uncategorized,Non-perishable
+Perdue Harvestland Free Range,0.2106,0.5385,13.00,2,Uncategorized,Perishable
+Kerrygold Grass Fed Pure,0.1944,0.3846,12.00,1,Uncategorized,Non-perishable
+Smithfield Hickory Smoked Bacon,0.1944,0.4615,12.00,1,Uncategorized,Non-perishable
+Tph By Taraji Make,0.1944,0.0769,12.00,1,Uncategorized,Non-perishable
+Old El Paso Mild,0.1944,0.3077,12.00,2,Uncategorized,Non-perishable
+Pace Chunky Medium Salsa,0.1944,0.2308,12.00,2,Uncategorized,Non-perishable
+Gordo S Queso Cheese,0.1782,0.3846,11.00,1,Dairy,Perishable
+Heinz Chili Sauce Bottle,0.1782,0.0000,11.00,1,Uncategorized,Non-perishable
+No Stir Creamy Natural,0.1782,0.3846,11.00,1,Uncategorized,Non-perishable
+Whole Russet Potatoes Bag,0.1782,0.3077,11.00,1,Uncategorized,Non-perishable
+Scott Toilet Paper Rolls,0.1782,0.2308,11.00,2,Uncategorized,Non-perishable
+Mixed Vegetables Steamable Bag,0.1620,0.1538,10.00,1,Uncategorized,Non-perishable
+Snack Factory Pretzel Crisps,0.1620,0.1538,10.00,2,Uncategorized,Non-perishable
+Fiesta Blend Finely Shredded,0.1620,0.0000,10.00,2,Dairy,Perishable
+Green Bell Pepper Each,0.1458,0.1538,9.00,1,Uncategorized,Non-perishable
+Hass Avocados Each,0.1458,0.3846,9.00,1,Uncategorized,Non-perishable
+Hellmann S Real Mayonnaise,0.1458,0.3077,9.00,1,Uncategorized,Non-perishable
+Mission Super Soft Flour,0.1458,0.0000,9.00,1,Uncategorized,Non-perishable
+Red Bell Pepper Each,0.1458,0.3077,9.00,1,Uncategorized,Non-perishable
+Sunbutter Sunflower Seed Butter,0.1458,0.0000,9.00,1,Uncategorized,Non-perishable
+Whole Yellow Onion Each,0.1458,0.3846,9.00,1,Uncategorized,Non-perishable
+Jet Puffed Mini Marshmallows,0.1296,0.4615,8.00,1,Uncategorized,Non-perishable
+Kraft Mexican Style Cheddar,0.1296,0.0000,8.00,1,Dairy,Perishable
+Little Debbie Vanilla Christmas,0.1296,0.1538,8.00,1,Uncategorized,Non-perishable
+Oreo Cakesters Soft Snack,0.1296,0.0000,8.00,1,Uncategorized,Non-perishable
+Progresso Rich And Hearty,0.1296,0.3077,8.00,1,Uncategorized,Perishable
+Stauffer S Animal Snack,0.1296,0.1538,8.00,1,Uncategorized,Non-perishable
+Wide Egg Noodles,0.1296,0.1538,8.00,1,Uncategorized,Non-perishable
+Italian Style Finely Shredded,0.1296,0.3077,8.00,2,Dairy,Perishable
+All Natural Ground Chicken,0.1134,0.2308,7.00,1,Uncategorized,Perishable
+Cholula Green Pepper Hot,0.1134,0.1538,7.00,1,Uncategorized,Non-perishable
+Concord Grape Jelly,0.1134,0.0000,7.00,1,Uncategorized,Non-perishable
+Crunchmaster Multi Grain Sea,0.1134,0.0000,7.00,1,Uncategorized,Non-perishable
+Crunchmaster Multi Seed Crisps,0.1134,0.0000,7.00,1,Uncategorized,Non-perishable
+Digiorno Stuffed Crust Cheese,0.1134,0.0000,7.00,1,Dairy,Perishable
+Frozen Broccoli Florets Steamable,0.1134,0.0000,7.00,1,Uncategorized,Non-perishable
+Mccormick Less Sodium Taco,0.1134,0.0000,7.00,1,Uncategorized,Non-perishable
+Mild Cheddar Finely Shredded,0.1134,0.0000,7.00,1,Dairy,Perishable
+Scott Paper Towels Choose,0.1134,0.3077,7.00,1,Uncategorized,Non-perishable
+Wholly Guacamole Classic Bowl,0.1134,0.1538,7.00,1,Uncategorized,Non-perishable
+Heinz Homestyle Beef Gravy,0.1134,0.0000,7.00,2,Uncategorized,Perishable
+Swanson White Premium Chunk,0.1134,0.5384,7.00,2,Uncategorized,Perishable
+Beef Broth Carton,0.0972,0.3846,6.00,1,Uncategorized,Perishable
+Campbell S Condensed Cream,0.0972,0.0000,6.00,1,Uncategorized,Non-perishable
+Fully Cooked Turkey Meatballs,0.0972,0.0769,6.00,1,Meat,Perishable
+Jasmine Rice,0.0972,0.0769,6.00,1,Uncategorized,Non-perishable
+Planters Deluxe Honey Roasted,0.0972,0.4615,6.00,1,Uncategorized,Non-perishable
+Plum Organics Teensy Snacks,0.0972,0.0000,6.00,1,Uncategorized,Non-perishable
+Premium Saltine Crackers Lunch,0.0972,0.1538,6.00,1,Uncategorized,Non-perishable
+Red Seedless Grapes Bag,0.0972,0.1538,6.00,1,Uncategorized,Non-perishable
+Sabra Classic Hummus Dip,0.0972,0.0000,6.00,1,Uncategorized,Non-perishable
+Siete Mild Taco Seasoning,0.0972,0.3846,6.00,2,Uncategorized,Non-perishable
+Kraft Mexican Style Four,0.0972,0.0769,6.00,2,Dairy,Perishable
+Mainstays X Picture Frame,0.0972,0.0000,6.00,3,Uncategorized,Non-perishable
+Ore Ida Extra Crispy,0.0972,0.0000,6.00,2,Uncategorized,Non-perishable
+Bowties,0.0810,0.0000,5.00,1,Uncategorized,Non-perishable
+Crystal Geyser Alpine Spring,0.0810,0.1538,5.00,1,Uncategorized,Non-perishable
+Jumbo Shell,0.0810,0.0000,5.00,1,Uncategorized,Non-perishable
+Kodiak Protein Packed Power,0.0810,0.1538,5.00,1,Dairy,Perishable
+Pillsbury Orange Rolls With,0.0810,0.1538,5.00,1,Uncategorized,Non-perishable
+Popcorners White Cheddar Sharing,0.0810,0.1538,5.00,1,Pantry,Non-perishable
+Smucker S Concord Grape,0.0810,0.0000,5.00,1,Uncategorized,Non-perishable
+So Good So You,0.0810,0.3077,5.00,1,Uncategorized,Non-perishable
+Soup Oyster Crackers,0.0810,0.0769,5.00,1,Uncategorized,Non-perishable
+Plum Organics Jammy Sammy,0.0810,0.0000,5.00,2,Uncategorized,Non-perishable
+Dr Teal S Epsom,0.0810,0.3076,5.00,4,Uncategorized,Non-perishable
+Alexia Sweet Potato Fries,0.0648,0.0000,4.00,1,Uncategorized,Non-perishable
+Applegate Natural Uncured Genoa,0.0648,0.0000,4.00,1,Produce,Perishable
+Belgioioso Freshly Shredded Parmesan,0.0648,0.2308,4.00,1,Dairy,Perishable
+Classic Alfredo Pasta Sauce,0.0648,0.0000,4.00,1,Uncategorized,Non-perishable
+Classico Four Cheese Alfredo,0.0648,0.0000,4.00,1,Dairy,Perishable
+Classico Signature Recipes Traditional,0.0648,0.2308,4.00,1,Uncategorized,Non-perishable
+Crest Toothpaste Dwhite Advanced,0.0648,0.0000,4.00,1,Uncategorized,Non-perishable
+Crispy And Salty Pretzel,0.0648,0.1538,4.00,1,Uncategorized,Non-perishable
+Dial Antibacterial Defense Lavender,0.0648,0.1538,4.00,1,Uncategorized,Non-perishable
+Eggland S Best Large,0.0648,0.3077,4.00,1,Uncategorized,Non-perishable
+General Mills Cheerios Honey,0.0648,0.1538,4.00,1,Uncategorized,Non-perishable
+Manwich Sloppy Joe Sauce,0.0648,0.0000,4.00,1,Uncategorized,Non-perishable
+Martin S Hoagie Rolls,0.0648,0.0000,4.00,1,Uncategorized,Non-perishable
+Nestle Toll House Semi,0.0648,0.3077,4.00,1,Snacks,Non-perishable
+Ol Mexican Foods Xtreme,0.0648,0.0000,4.00,1,Uncategorized,Non-perishable
+Old El Paso Hot,0.0648,0.0000,4.00,1,Uncategorized,Non-perishable
+Pillsbury Crescent Rolls Dough,0.0648,0.1538,4.00,1,Uncategorized,Non-perishable
+Pillsbury Grands Southern Style,0.0648,0.3077,4.00,1,Uncategorized,Non-perishable
+Queso Melt Restaurant Style,0.0648,0.0000,4.00,1,Dairy,Perishable
+Romaine Lettuce Hearts Each,0.0648,0.1538,4.00,1,Uncategorized,Non-perishable
+Sargento Sliced Muenster Natural,0.0648,0.2308,4.00,1,Dairy,Perishable
+Starry Lemon Lime Soda,0.0648,0.0000,4.00,1,Uncategorized,Non-perishable
+Sterilite File Crate Versatile,0.0648,0.0000,4.00,1,Uncategorized,Non-perishable
+Tropicana Pure Premium Orange,0.0648,0.3077,4.00,1,Uncategorized,Non-perishable
+Wonder Nation Boys Short,0.0648,0.0000,4.00,1,Uncategorized,Non-perishable
+Cantu Shea Butter For,0.0648,0.0000,4.00,2,Uncategorized,Non-perishable
+Digiorno Frozen Pizza Rising,0.0648,0.0000,4.00,2,Dairy,Perishable
+Applesauce Pouches,0.0648,0.0000,4.00,2,Produce,Perishable
+Low Moisture Part Skim,0.0648,0.0769,4.00,2,Dairy,Perishable
+Nutella Hazelnut Spread With,0.0648,0.0000,4.00,2,Uncategorized,Non-perishable
+Oreo Double Stuf Chocolate,0.0648,0.0000,4.00,2,Uncategorized,Non-perishable
+Canned Pineapple,0.0648,0.2307,4.00,3,Produce,Perishable
+Heinz Sweet Relish Bottle,0.0648,0.0000,4.00,2,Uncategorized,Non-perishable
+Smucker S Uncrustables Peanut,0.0648,0.0769,4.00,3,Uncategorized,Non-perishable
+Applegate Natural Uncured Peppered,0.0486,0.1538,3.00,1,Produce,Perishable
+Baby Arugula Salad Clam,0.0486,0.2308,3.00,1,Uncategorized,Non-perishable
+Barilla Classic Whole Grain,0.0486,0.0000,3.00,1,Uncategorized,Non-perishable
+Bella Rosa Shredded Parmesan,0.0486,0.0000,3.00,1,Dairy,Perishable
+Betty Crocker Bisquick Pancake,0.0486,0.1538,3.00,1,Uncategorized,Non-perishable
+Celery Hearts Each,0.0486,0.0000,3.00,1,Uncategorized,Non-perishable
+Classico Extra Creamy Alfredo,0.0486,0.0000,3.00,1,Uncategorized,Non-perishable
+Crunchmaster Multi Seed Crackers,0.0486,0.1538,3.00,1,Uncategorized,Non-perishable
+Dawn Powerwash Spray Refill,0.0486,0.0000,3.00,1,Uncategorized,Non-perishable
+Eggland S Best Extra,0.0486,0.2308,3.00,1,Uncategorized,Non-perishable
+Elbows,0.0486,0.0000,3.00,1,Uncategorized,Non-perishable
+Entertainment Collection Crackers Variety,0.0486,0.2308,3.00,1,Uncategorized,Non-perishable
+Fever Tree Ginger Beer,0.0486,0.2308,3.00,1,Uncategorized,Non-perishable
+Fiesta Cheese Finely Shredded,0.0486,0.0000,3.00,1,Dairy,Perishable
+Flonase Allergy Relief Fluticasone,0.0486,0.0000,3.00,1,Uncategorized,Non-perishable
+Gatorade Cool Blue Flavor,0.0486,0.0000,3.00,1,Uncategorized,Non-perishable
+Holiday Vanilla Flavored Stars,0.0486,0.0000,3.00,1,Uncategorized,Non-perishable
+Honey Stinger Energy Gel,0.0486,0.2308,3.00,1,Uncategorized,Non-perishable
+Kodiak Protein Packed Honey,0.0486,0.2308,3.00,1,Uncategorized,Non-perishable
+Lacroix Vty,0.0486,0.2308,3.00,1,Uncategorized,Non-perishable
+Little Debbie Christmas Tree,0.0486,0.0000,3.00,1,Uncategorized,Non-perishable
+Mild Cheddar Deli Style,0.0486,0.0000,3.00,1,Dairy,Perishable
+Mozzarella String Cheese Sticks,0.0486,0.0000,3.00,1,Dairy,Perishable
+Nature Valley Protein Oats,0.0486,0.2308,3.00,1,Uncategorized,Non-perishable
+Navel Orange Each,0.0486,0.0000,3.00,1,Uncategorized,Non-perishable
+Oats Honey Granola,0.0486,0.0000,3.00,1,Uncategorized,Non-perishable
+Safety St Parent Grip,0.0486,0.0000,3.00,1,Uncategorized,Non-perishable
+Sargento Balanced Breaks Monterey,0.0486,0.0000,3.00,1,Dairy,Perishable
+Seasoned Croutons Baked And,0.0486,0.0769,3.00,1,Uncategorized,Non-perishable
+Skinnypop Gluten Free Popcorn,0.0486,0.2308,3.00,1,Pantry,Non-perishable
+Small Shells,0.0486,0.2308,3.00,1,Uncategorized,Non-perishable
+Superpretzel Bavarian Soft Pretzel,0.0486,0.2308,3.00,1,Uncategorized,Non-perishable
+Swiffer Sweep Mop Heavy,0.0486,0.0769,3.00,1,Uncategorized,Non-perishable
+Torre Oria,0.0486,0.2308,3.00,1,Uncategorized,Non-perishable
+Utz Honey Barbeque Potato,0.0486,0.0000,3.00,1,Snacks,Non-perishable
+Utz Ripples Sour Cream,0.0486,0.0000,3.00,1,Snacks,Non-perishable
+Whole Brussels Sprouts Bag,0.0486,0.2308,3.00,1,Uncategorized,Non-perishable
+Wonderful Pistachios No Shells,0.0486,0.2308,3.00,1,Uncategorized,Non-perishable
+Deer Park Spring Water,0.0486,0.0000,3.00,2,Uncategorized,Non-perishable
+Reddi Wip Whipped Topping,0.0486,0.0769,3.00,2,Uncategorized,Non-perishable
+Wonder Nation Toddler Cotton,0.0486,0.0000,3.00,2,Uncategorized,Non-perishable
+Pillsbury Ready To Bake,0.0486,0.2307,3.00,3,Uncategorized,Non-perishable
+All Purpose Enriched Flour,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Barilla Classic Non Gmo,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Bay Leaves,0.0324,0.0769,2.00,1,Uncategorized,Non-perishable
+Belgioioso Mozzarella Log Pre,0.0324,0.1538,2.00,1,Dairy,Perishable
+Betty Crocker Snickerdoodle Cookies,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Bfgummybears,0.0324,0.1538,2.00,1,Uncategorized,Non-perishable
+Birds Eye Steamfresh Mixed,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Bluey Toddler Boys Holiday,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Cabot Creamery Colby Jack,0.0324,0.1538,2.00,1,Dairy,Perishable
+Cantu Avocado Sulfate Free,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Capri Sun Summer Blast,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Chopped Caesar Salad Kit,0.0324,0.1538,2.00,1,Uncategorized,Non-perishable
+Chuck Roast Choice Angus,0.0324,0.1538,2.00,1,Uncategorized,Perishable
+Classico Four Cheese Spaghetti,0.0324,0.0000,2.00,1,Dairy,Perishable
+Confectioners Powdered Sugar,0.0324,0.1538,2.00,1,Uncategorized,Non-perishable
+Cool Whip Whipped Topping,0.0324,0.1538,2.00,1,Uncategorized,Non-perishable
+Cranberry Jalapeno Dip Good,0.0324,0.1538,2.00,1,Uncategorized,Non-perishable
+Crest Pro Health Advanced,0.0324,0.1538,2.00,1,Uncategorized,Non-perishable
+Crosswind All Season Uhp,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Dawn Platinum Powerwash Dish,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Dr Teal S Pure,0.0324,0.1538,2.00,1,Uncategorized,Non-perishable
+Dried Philippine Mango,0.0324,0.1538,2.00,1,Uncategorized,Non-perishable
+Extra Virgin Olive Oil,0.0324,0.0769,2.00,1,Uncategorized,Non-perishable
+Ez Foil Disposable Casserole,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Fettuccine,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Fluffernutter Marshmallow Fluff,0.0324,0.0769,2.00,1,Uncategorized,Non-perishable
+Forceum Hena Uhp All,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Frank S Redhot Cayenne,0.0324,0.1538,2.00,1,Uncategorized,Non-perishable
+French S Non Gmo,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Garlic Bulb Whole Each,0.0324,0.0769,2.00,1,Uncategorized,Non-perishable
+Gatorade Sports Drink Fruit,0.0324,0.1538,2.00,1,Uncategorized,Non-perishable
+Gatorade Thirst Quencher Cool,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Genoa Salami Pepper Jack,0.0324,0.1538,2.00,1,Dairy,Perishable
+Goya Artichoke Hearts,0.0324,0.1538,2.00,1,Uncategorized,Non-perishable
+Heavy Whipping Cream Carton,0.0324,0.0769,2.00,1,Uncategorized,Non-perishable
+Hidden Valley Ranch Dipping,0.0324,0.1538,2.00,1,Uncategorized,Non-perishable
+Hillshire Snacking Protein Genoa,0.0324,0.0000,2.00,1,Dairy,Perishable
+Honest Kids Super Fruit,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Ivory Bar Soap Scent,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Ken S Steak House,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Kind Gluten Free Peanut,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Little Debbie Chocolate Christmas,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Magic Spoon S Mores,0.0324,0.1538,2.00,1,Uncategorized,Non-perishable
+Mandarin Oranges Bag,0.0324,0.0769,2.00,1,Uncategorized,Non-perishable
+Mccormick Pure Vanilla Extract,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Method All Purpose Cleaner,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Muenster Deli Sliced Cheese,0.0324,0.0769,2.00,1,Dairy,Perishable
+Native Facial Moisturizer For,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Native Sensitive Facial Cleanser,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Nature S Bakery Blueberry,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Ophanie Inch Wood Floating,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Ozark Trail Kids Air,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Pillsbury Cinnamon Rolls With,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Pillsbury Creamy Supreme Chocolate,0.0324,0.1538,2.00,1,Uncategorized,Non-perishable
+Pillsbury Grands Cinnamon Rolls,0.0324,0.1538,2.00,1,Uncategorized,Non-perishable
+Pillsbury Premade Pie Crust,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Quaker Quick Minute Grits,0.0324,0.1538,2.00,1,Uncategorized,Non-perishable
+Red Baby Potatoes Bag,0.0324,0.1538,2.00,1,Uncategorized,Non-perishable
+Redi Shade No Tools,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Reduced Calorie Sugar Free,0.0324,0.0769,2.00,1,Uncategorized,Non-perishable
+Ritz Whole Wheat Crackers,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Russell Athletic Boy S,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Sheamoisture Strengthening Scalp Oil,0.0324,0.0769,2.00,1,Uncategorized,Non-perishable
+Simply Potatoes Shredded Hash,0.0324,0.0769,2.00,1,Uncategorized,Non-perishable
+Sloppy Joe Sauce,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Smithfield Naturally Hickory Smoked,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Smucker S Natural Strawberry,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Smucker S Seedless Strawberry,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Sprite Lemon Lime Soda,0.0324,0.1538,2.00,1,Uncategorized,Non-perishable
+Stacy S No Artificial,0.0324,0.0769,2.00,1,Snacks,Non-perishable
+Stauffer S Animal Crackers,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Sterilite Small Storage Bin,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Strawberries Container,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Sweet Cream Unsalted Butter,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Sweet Loren S Gluten,0.0324,0.1538,2.00,1,Uncategorized,Non-perishable
+Tyson Oven Roasted Diced,0.0324,0.0000,2.00,1,Uncategorized,Perishable
+Utz Kettle Classics Salt,0.0324,0.0000,2.00,1,Snacks,Non-perishable
+Valvoline Maxlife High Mileage,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Velveeta Pasteurized Recipe Cheese,0.0324,0.1538,2.00,1,Dairy,Perishable
+Vita Coco The Coconut,0.0324,0.1538,2.00,1,Uncategorized,Non-perishable
+Waffle Cut French Fried,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Whole Green Broccoli Crowns,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Whole Wheat Penne,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Wholly Guacamole Minis Paste,0.0324,0.1538,2.00,1,Uncategorized,Non-perishable
+Yellow Mustard Squeeze Bottle,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Zunmos Drawer Fabric Dresser,0.0324,0.0000,2.00,1,Uncategorized,Non-perishable
+Disposable Paper Plates,0.0324,0.0769,2.00,2,Uncategorized,Non-perishable
+Finish Jet Dry Rinse,0.0324,0.1538,2.00,2,Uncategorized,Non-perishable
+Fram Extra Guard Oil,0.0324,0.0000,2.00,2,Uncategorized,Non-perishable
+King Arthur Baking Company,0.0324,0.0769,2.00,2,Uncategorized,Non-perishable
+Shredded Iceberg Lettuce Bag,0.0324,0.0000,2.00,2,Uncategorized,Non-perishable
+Ace Brand Adjustable Compression,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Airfire H Hepa Air,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Airtechnik Cf Cabin Air,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Allegra Adult Hour Allergy,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Allegra Children S Hour,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Allerease Ultimate Cotton Pillow,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Applegate Natural Prosciutto,0.0162,0.0000,1.00,1,Produce,Perishable
+Asp Cough St Adult,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Aspercreme Max Strength Topical,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Aveeno Therapeutic Shave Gel,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Baby Peeled Carrots Bag,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Ball Park White Burger,0.0162,0.0000,1.00,1,Bakery,Non-perishable
+Belgioioso Freshly Grated Parmesan,0.0162,0.0000,1.00,1,Dairy,Perishable
+Betty Crocker Delights Super,0.0162,0.0769,1.00,1,Uncategorized,Perishable
+Betty Crocker Favorites Super,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Blue Bunny Soft Cookies,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Cabot Creamery Lowfat Greek,0.0162,0.0000,1.00,1,Dairy,Perishable
+Cantu Care For Kids,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Cantu Sulfate Free Hydrating,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Cantu Weightless Smoothing Shampoo,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Capri Sun Fruit Punch,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Cascade Complete Dishwasher Detergent,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Cascade Complete Dishwashing Liquid,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Cascade Platinum Dishwasher Pods,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Celery Sticks Bag,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Character Toddler Boy Briefs,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Cheetos Crunchy Cheese Flavored,0.0162,0.0000,1.00,1,Dairy,Perishable
+Cheez It Grooves Sharp,0.0162,0.0000,1.00,1,Dairy,Perishable
+Chicalfredo,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Chick Enchil,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Children S Motrin Ibuprofen,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Chili Seasoning Mix,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Chinet Comfort Cup,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Choc Caramel,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Chocolate Chip Cookie Dough,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Cinnamon Sticks,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Cloudline Pn,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Coffee Mate Harry Potter,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Colgate Extra Clean Full,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Colgate Whole Mouth Clean,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Columbus Peppered Salami Sliced,0.0162,0.0000,1.00,1,Uncategorized,Perishable
+Combat Max Large Roach,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Concord Foods Lime Juice,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Convenience Kits International Women,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Cookies Cream Ice Cream,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Core Power Elite Vanilla,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Cranberries Bag,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Creamy Peanut Butter Good,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Crest Toothpaste D White,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Daisy Pure And Natural,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Dark Green Sanding Sugar,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Dawn Powerwash Spray Dish,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Del Monte Cut Green,0.0162,0.0000,1.00,1,Pantry,Non-perishable
+Disposable Plastic White Forks,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Dixie Disposable Paper Plates,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Dixie To Go Disposable,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Dove Advanced Care Antiperspirant,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Dr Scholl S Blister,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Dr Teal S Kids,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Drumstick Crushed It Cookies,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Dry Roasted Peanuts,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Duke S Mayonnaise Light,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Dum Dums Valentines Cards,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Earthbound Farm Vegetable Tray,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Easter Bunny Multi Color,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Emergen C Immune Gummies,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Equate Isopropyl Alcohol Antiseptic,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Extra Creamy Dairy Whipped,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Extra Sharp Cheddar Shredded,0.0162,0.0000,1.00,1,Dairy,Perishable
+Farberware Professional Old Fashion,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Farmhouse Eggs Cage Free,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Filtrete X X Hvac,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Fram Ultra Synthetic Oil,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Frozen Broccoli Cuts Steamable,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Frozen Broccoli Florets Bag,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Frozen Sunbutter No Crust,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Gatorade Gator Skin Bottle,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Gatorade Sports Drinks Grape,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Gillette Satin Care Ultra,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Glad Forceflex Maxstrength Tall,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Good Spirits A Novel,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Goodnites Boys Disposable Nighttime,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Goody Ouchless Hair Elastics,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Goody Ouchless Mini Poly,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Goody Sport Active Elastic,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Grade A Large Eggs,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Ground Ginger,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Halloween Color Your Own,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Hard Boiled Eggs,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Hardwood Smoked Classic Sliced,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Hardwood Smoked Thick Cut,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Hass Avocados Good Gather,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Heinz Homestyle Turkey Gravy,0.0162,0.0000,1.00,1,Meat,Non-perishable
+Hershey S Caramel Flavored,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Hershey S Chocolate Syrup,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Holiday Hot Cocoa Whipped,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Honest Kids Appley Ever,0.0162,0.0000,1.00,1,Produce,Perishable
+Honey Maid Graham Crackers,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Honey Plastic Bear,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Horizon Half And Half,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Horizon Real Dairy Homestyle,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Hot Honey Cashews Good,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Hyper Tough Amp In,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Ice Breakers Ice Cubes,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Individually Plastic Wrapped Singles,0.0162,0.0000,1.00,1,Dairy,Perishable
+Ink Cartridges Compatible For,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Jell O French Vanilla,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Jimmy Dean Regular Pork,0.0162,0.0000,1.00,1,Meat,Perishable
+Johnsonville Breakfast Sausage Links,0.0162,0.0000,1.00,1,Meat,Perishable
+Just Bare Lightly Breaded,0.0162,0.0769,1.00,1,Bakery,Perishable
+Keebler Ready Crust Inch,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Keebler Waffle Ice Cream,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Kellogg S Graham Cracker,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Kellogg S Rice Krispies,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Kettle Brand Party Size,0.0162,0.0769,1.00,1,Snacks,Non-perishable
+Kettle Brand Sea Salt,0.0162,0.0769,1.00,1,Snacks,Non-perishable
+Kinder S Buttery Steakhouse,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Kinder S Sunday Pot,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Kraft Parmesan Finely Shredded,0.0162,0.0769,1.00,1,Dairy,Perishable
+Kraft String Cheese Mozzarella,0.0162,0.0000,1.00,1,Dairy,Perishable
+Ks Bags,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Ktaxon Twin Size Bed,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+L A Looks Extreme,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+La Chona Cotija Mexican,0.0162,0.0769,1.00,1,Dairy,Perishable
+Land O Lakes Unsalted,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Lemon Each,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Light Brown Sugar,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Lipton Recipe Secrets Onion,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Little Debbie Big Pack,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Logitech Wireless Presenter R,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Lucas Oil Products Interior,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Lunchables Ham And Cheddar,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Lunchables Turkey Cheddar Value,0.0162,0.0000,1.00,1,Meat,Non-perishable
+Mainstays Ply Manual Can,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Maple Grove Farms Pure,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Marshmallow Whipped Dairy Topping,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Marshmallows Bag,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Mccormick Ground Cumin Bottle,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Medium Egg Noodles,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Melitta Cup White Basket,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Meow Mix Gravy Bursts,0.0162,0.0000,1.00,1,Uncategorized,Perishable
+Method Curl Defining Co,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Method Moisturizing Conditioner Simply,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Method Repairing Shampoo Island,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Midol Complete Menstrual Pain,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Mobil Advanced Full Synthetic,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Monster Microfiber Towel With,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Morton Iodized Salt,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Mr Clean Magic Eraser,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Mucinex Children S Night,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Mucinex Children S Stuffy,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Mucinex Fast Max Cold,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Mucinex Fast Max Kickstart,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Mucinex Fast Max Severe,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Mucinex Nightshift Sinus Medicine,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Mueller S Sodium Free,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Native Coconut Vanilla Body,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Native Limited Edition Vanilla,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Native Moisturizing Conditioner Coconut,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Nature S Miracle Dog,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Nestle Toll House Premier,0.0162,0.0769,1.00,1,Snacks,Non-perishable
+Ocean Spray Cranberry Juice,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Ocean Spray Whole Cranberry,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Oikos Protein Shake Shelf,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Olay Firming Body Lotion,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Olay Nourishing Body Wash,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Old El Paso Stand,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Ophanie Adhesive Shower Caddy,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Oral B Floss Glide,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Oregon Chai Chai Concentrate,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Ortho Groundclear Poison Ivy,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Parent S Choice Compartment,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Parmesan Baked Cheese Crisp,0.0162,0.0769,1.00,1,Dairy,Perishable
+Parmesan Cheese Crisps With,0.0162,0.0769,1.00,1,Dairy,Perishable
+Parmesan Finely Shredded Cheese,0.0162,0.0769,1.00,1,Dairy,Perishable
+Pen Gear Economy White,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Pen Gear Letter Size,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Pen Gear No Size,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Pen Gear Push Pins,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Pepperidge Farm Sesame Topped,0.0162,0.0000,1.00,1,Bakery,Non-perishable
+Peppermint Whipped Dairy Topping,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Planet Oat Oatmilk Dairy,0.0162,0.0769,1.00,1,Dairy,Perishable
+Pomegranate Juice,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Pompeian Red Wine Vinegar,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Popcorners Spicy Queso,0.0162,0.0769,1.00,1,Pantry,Non-perishable
+Popcorners White Cheddar,0.0162,0.0000,1.00,1,Pantry,Non-perishable
+Premium Soup Oyster Crackers,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Produce Whole Green Cilantro,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Pure Granulated Sugar,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Pure Pumpkin,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Purina One Plus Sensitive,0.0162,0.0000,1.00,1,Meat,Non-perishable
+Purina One True Instinct,0.0162,0.0000,1.00,1,Meat,Non-perishable
+Queso Mama White Queso,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Red Lobster Cheddar Bay,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Ricotta Cheese Tub,0.0162,0.0769,1.00,1,Dairy,Perishable
+Ritz Peanut Butter Sandwich,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Roasted Salted Pistachios Resealable,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Rolo Unwrapped Rich Chocolate,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Russell Athletic Boys Runner,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Safety St Custom Fit,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Salt Free Garlic Herb,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Sargento Balanced Breaks Cheese,0.0162,0.0000,1.00,1,Dairy,Perishable
+Schick Hydro Silk Ultra,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Scott Septic Safe Ply,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Seal Double Zipper Sandwich,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Secret Aluminum Free Women,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Semi Sweet Chocolate Baking,0.0162,0.0000,1.00,1,Snacks,Non-perishable
+Sheamoisture Antiperspirant Deodorant Stick,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Sheamoisture Even Tone Antiperspirant,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Sheamoisture Whole Body Deodorant,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Shredded Mexican Style Cheese,0.0162,0.0000,1.00,1,Dairy,Perishable
+Shredded Sharp Cheddar Cheese,0.0162,0.0000,1.00,1,Dairy,Perishable
+Sleek Scalp Massage Brush,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Small Hass Avocados Bag,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Smash Kitchen Classic Extra,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Smucker S Simply Fruit,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Snack Factory Garlic Parmesan,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Socozy Kid S Swim,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Soundcore Aeroclip Open Ear,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Spears Dill Pickle Pack,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Starbucks Peppermint Hot Cocoa,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Sterilite Large Latching Storage,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Sterilite Quart Clear Storage,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Stouffer S Classic Lasagna,0.0162,0.0769,1.00,1,Uncategorized,Perishable
+Stouffer S Macaroni Cheese,0.0162,0.0000,1.00,1,Dairy,Perishable
+Stove Top Stuffing Mix,0.0162,0.0000,1.00,1,Meat,Non-perishable
+Super Tech Cabin Air,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Sweet Peas Frozen Steamable,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Swiffer Dusters Multi Surface,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Swiffer Heavy Duty Mop,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Swiffer Sweep Mop Wet,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Tazo Chai Pumpkin Spice,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Tazo Green Ginger Tea,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Tazo Passion Herbal Tea,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Tazo Tea Latte Chai,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Tazo Wild Sweet Orange,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Tide Free Gentle Unscented,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Toddler Boys Fleece Zip,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Toddler Boys Long Sleeve,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Tph By Taraji Cooling,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Tph By Taraji Ride,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Traditional Medicinals Nighty Night,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Traditional Medicinals Turmeric With,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Trolli Sour Brite Crawlers,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Turkey Hill Choco Mint,0.0162,0.0000,1.00,1,Meat,Non-perishable
+Turkey Hill Chocolate Chip,0.0162,0.0000,1.00,1,Meat,Non-perishable
+Tylenol Cold Flu Severe,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Uncured Calabrese Salami Prosciutto,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Utz Braided Twists Honey,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Vanilla Bean Flavored Ice,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Vegetable Oil Heart Healthy,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Venus Extra Smooth Sensitive,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Vicks Dayquil Nyquil Severe,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Vicks Vapo Shower Tablets,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Vicks Warm Steam Vaporizer,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Waffles Cones,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Walmart New Tire Install,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Weiman Granite Cleaner Polish,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Welch S Natural Concord,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Welch S Natural Strawberry,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Welch S Non Alcoholic,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Wet Brush Go Green,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Wet Brush Mini Detangler,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Whole Red Onion Each,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Whole Sweet Onion Each,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Wilton Mini Daisy Royal,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable
+Yellow Baby Potatoes Bag,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Yellow Bell Pepper Each,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Yogi Tea Elderberry Lemon,0.0162,0.0769,1.00,1,Uncategorized,Non-perishable
+Ziploc Brand Sandwich Bags,0.0162,0.0000,1.00,1,Uncategorized,Non-perishable

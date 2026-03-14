@@ -1,0 +1,110 @@
+[
+  {
+    "path": "AGENTS.md",
+    "type": "file"
+  },
+  {
+    "path": "SOUL.md",
+    "type": "file"
+  },
+  {
+    "path": "USER.md",
+    "type": "file"
+  },
+  {
+    "path": "MEMORY.md",
+    "type": "file"
+  },
+  {
+    "path": "TOOLS.md",
+    "type": "file"
+  },
+  {
+    "path": "IDENTITY.md",
+    "type": "file"
+  },
+  {
+    "path": "burn_rate_canonical_weekly.csv",
+    "type": "file"
+  },
+  {
+    "path": "burn_rate_canonical_weekly_top.csv",
+    "type": "file"
+  },
+  {
+    "path": "burn_rate_items_weekly.csv",
+    "type": "file"
+  },
+  {
+    "path": "review_raw_consolidated_3store_fixed2.csv",
+    "type": "file"
+  },
+  {
+    "path": "walmart_orders_full.csv",
+    "type": "file"
+  },
+  {
+    "path": "grocery_mapping_suggestions_refined.csv",
+    "type": "file"
+  },
+  {
+    "path": "grocery_canonical_preview_refined.csv",
+    "type": "file"
+  },
+  {
+    "path": "grocery_normalized_model_v2.csv",
+    "type": "file"
+  },
+  {
+    "path": "grocery_normalized_canonical_preview_v2.csv",
+    "type": "file"
+  },
+  {
+    "path": "shopping_strategy_costco_aldi.md",
+    "type": "file"
+  },
+  {
+    "path": "consolidate_3store_corrected.py",
+    "type": "file"
+  },
+  {
+    "path": "receipt_parser_corrected.py",
+    "type": "file"
+  },
+  {
+    "path": "analyze_categories.py",
+    "type": "file"
+  },
+  {
+    "path": "calculate_avg_monthly_spend.py",
+    "type": "file"
+  },
+  {
+    "path": "memory/2026-03-10.md",
+    "type": "memory"
+  },
+  {
+    "path": "memory/2026-03-11.md",
+    "type": "memory"
+  },
+  {
+    "path": "memory/2026-03-12.md",
+    "type": "memory"
+  },
+  {
+    "path": "memory/2026-03-13.md",
+    "type": "memory"
+  },
+  {
+    "path": "memory/2026-03-14.md",
+    "type": "memory"
+  },
+  {
+    "path": "memory/2026-02-26-relay-server.md",
+    "type": "memory"
+  },
+  {
+    "path": "memory/2026-02-27-ssh-troubleshooting.md",
+    "type": "memory"
+  }
+]
