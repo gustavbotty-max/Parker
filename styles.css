@@ -228,6 +228,140 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* ============================================
+   START HERE QUIZ
+   ============================================ */
+
+.start-here-section {
+  margin-top: -1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.start-here-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 2rem;
+}
+
+.start-here-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 1.75rem;
+}
+
+.start-here-kicker,
+.quiz-results-label {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--primary-light);
+  margin-bottom: 0.6rem;
+}
+
+.start-here-header h2 {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+  color: var(--primary);
+}
+
+.start-here-header p {
+  color: var(--text-light);
+  font-size: 1rem;
+}
+
+.quiz-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.quiz-question label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.quiz-question select {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-white);
+  font: inherit;
+  color: var(--text);
+}
+
+.quiz-question select:focus {
+  outline: none;
+  border-color: var(--primary-lighter);
+  box-shadow: 0 0 0 3px rgba(59,130,196,0.12);
+}
+
+.quiz-actions {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.quiz-results {
+  margin-top: 1.75rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1.75rem;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 1.5rem;
+}
+
+.quiz-results-main,
+.quiz-secondary {
+  background: var(--bg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+
+.quiz-results-main h3 {
+  color: var(--primary);
+  margin-bottom: 0.75rem;
+  font-size: 1.5rem;
+}
+
+.quiz-results-main p,
+.quiz-secondary li {
+  color: var(--text-light);
+}
+
+.quiz-cta-row {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 1.25rem;
+}
+
+.quiz-secondary h4 {
+  margin-bottom: 0.75rem;
+  color: var(--text);
+}
+
+.quiz-secondary ul {
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+@media (max-width: 768px) {
+  .start-here-card { padding: 1.25rem; }
+  .start-here-header h2 { font-size: 1.55rem; }
+  .quiz-grid,
+  .quiz-results {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================
    BUTTONS
    ============================================ */
 
