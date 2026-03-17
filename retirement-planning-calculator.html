@@ -221,6 +221,39 @@
 
             let html = '';
 
+            // Guided summary
+            html += `<div class="result-card recommended" style="margin-bottom:1.5rem;">
+                <div class="recommended-badge">BEST FIRST STEP</div>
+                <h3 style="font-size:1.45rem; margin-bottom:0.5rem; color:var(--primary);">${onTrack ? 'You’re on track — now protect the momentum' : 'You have a retirement gap, but it is fixable'}</h3>
+                <p style="margin-bottom:0.9rem; color:var(--text-light);">${onTrack
+                    ? `At your current pace, you’re projected to have <strong>${fmt.format(totalAtRetirement)}</strong> by age ${retirementAge}. That means the next job is staying consistent and reviewing the plan before life drifts it off course.`
+                    : `Your current path projects <strong>${fmt.format(totalAtRetirement)}</strong> by age ${retirementAge}, versus roughly <strong>${fmt.format(totalNeeded)}</strong> needed. The most important takeaway is not panic — it’s that small monthly changes now are much easier than huge changes later.`}</p>
+                <div style="display:grid; grid-template-columns: repeat(auto-fit,minmax(170px,1fr)); gap:0.75rem; margin:1rem 0;">
+                    <div style="background:var(--bg-white); border:1px solid var(--border); border-radius:var(--radius); padding:0.9rem;">
+                        <div style="font-size:0.78rem; color:var(--text-light); font-weight:700; text-transform:uppercase; letter-spacing:0.05em;">Projected by retirement</div>
+                        <div style="font-size:1.3rem; font-weight:800; color:var(--primary);">${fmt.format(totalAtRetirement)}</div>
+                    </div>
+                    <div style="background:var(--bg-white); border:1px solid var(--border); border-radius:var(--radius); padding:0.9rem;">
+                        <div style="font-size:0.78rem; color:var(--text-light); font-weight:700; text-transform:uppercase; letter-spacing:0.05em;">${onTrack ? 'Target nest egg' : 'Extra monthly needed'}</div>
+                        <div style="font-size:1.3rem; font-weight:800; color:var(--accent);">${onTrack ? fmt.format(totalNeeded) : fmt.format(monthlyNeeded) + '/mo'}</div>
+                    </div>
+                </div>
+                <div style="display:grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap:1rem; margin-top:1rem;">
+                    <div>
+                        <h4 style="margin-bottom:0.5rem; color:var(--text);">What this means</h4>
+                        <p style="color:var(--text-light); margin-bottom:0;">Retirement planning is mostly about direction and consistency. The number matters, but the habit of reviewing and adjusting matters even more.</p>
+                    </div>
+                    <div>
+                        <h4 style="margin-bottom:0.5rem; color:var(--text);">Common mistakes people make</h4>
+                        <ul style="padding-left:1rem; color:var(--text-light); margin:0; display:grid; gap:0.35rem;">
+                            <li>Waiting for the “perfect” time to increase contributions</li>
+                            <li>Ignoring employer match and tax-advantaged accounts</li>
+                            <li>Assuming future income growth will magically fix the gap</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>`;
+
             // Main result
             if (onTrack) {
                 html += `<div class="result-highlight" style="color:var(--accent);">You're on track! 🎉</div>`;

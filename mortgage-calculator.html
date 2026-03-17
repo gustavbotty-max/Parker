@@ -250,7 +250,26 @@
                 bl.appendChild(li);
             });
 
-            document.getElementById('resultsSummary').textContent = `With a $${budget.toLocaleString()} budget, ${(downPct*100).toFixed(1)}% down, ${termYears}-yr fixed at ${(rate*100).toFixed(3)}%, you're looking at ~${currency.format(hp)}.`;
+            document.getElementById('resultsSummary').innerHTML = `
+                <div style="background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:1rem 1.1rem; margin-bottom:1rem;">
+                    <span style="display:inline-block;font-size:0.78rem;font-weight:800;letter-spacing:0.08em;color:var(--primary-light);margin-bottom:0.45rem;">BEST FIRST STEP</span>
+                    <h3 style="font-size:1.35rem; color:var(--primary); margin-bottom:0.45rem;">Use this number as a reality check, not permission to stretch</h3>
+                    <p style="color:var(--text-light); margin:0 0 0.9rem 0;">With a <strong>$${budget.toLocaleString()}</strong> monthly housing budget, <strong>${(downPct*100).toFixed(1)}%</strong> down, and a <strong>${termYears}-year fixed rate at ${(rate*100).toFixed(3)}%</strong>, you’re looking at roughly <strong>${currency.format(hp)}</strong> as a workable home price.</p>
+                    <div style="display:grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap:1rem; margin-top:0.75rem;">
+                        <div>
+                            <h4 style="margin-bottom:0.45rem; color:var(--text);">What this means</h4>
+                            <p style="color:var(--text-light); margin:0;">This is a budget-tested starting point. The safest move is usually buying below your maximum, not right at the ceiling.</p>
+                        </div>
+                        <div>
+                            <h4 style="margin-bottom:0.45rem; color:var(--text);">Common mistakes people make</h4>
+                            <ul style="padding-left:1rem; color:var(--text-light); margin:0; display:grid; gap:0.35rem;">
+                                <li>Ignoring cash-to-close and only focusing on monthly payment</li>
+                                <li>Leaving no room for maintenance, repairs, or utility surprises</li>
+                                <li>Using the max number as the target instead of the upper limit</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>`;
             document.getElementById('results').style.display = 'block';
             document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
         });
