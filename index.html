@@ -405,6 +405,53 @@
     </a>
 
     <script>
+        (function() {
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            function addRevealTargets() {
+                const groups = [
+                    { selector: '.hero .container > *', baseDelay: 0 },
+                    { selector: '.start-here-card', baseDelay: 0 },
+                    { selector: '#calculators .card', baseDelay: 0 },
+                    { selector: '.benefit-item', baseDelay: 0 },
+                    { selector: '#blog .blog-card', baseDelay: 0 },
+                    { selector: '.about-text > *', baseDelay: 0 },
+                    { selector: '.headshot', baseDelay: 1 }
+                ];
+
+                groups.forEach(function(group) {
+                    document.querySelectorAll(group.selector).forEach(function(el, index) {
+                        el.classList.add('reveal-on-scroll');
+                        el.classList.add('reveal-delay-' + Math.min((group.baseDelay + index) % 5, 4));
+                    });
+                });
+            }
+
+            function activateRevealTargets() {
+                const targets = document.querySelectorAll('.reveal-on-scroll');
+                if (!targets.length) return;
+
+                if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+                    targets.forEach(function(el) { el.classList.add('reveal-visible'); });
+                    return;
+                }
+
+                const observer = new IntersectionObserver(function(entries, obs) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('reveal-visible');
+                            obs.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.14, rootMargin: '0px 0px -40px 0px' });
+
+                targets.forEach(function(el) { observer.observe(el); });
+            }
+
+            addRevealTargets();
+            activateRevealTargets();
+        })();
+
         const quizRecommendations = {
             insurance: {
                 title: 'Start with the Life Insurance Calculator',
@@ -488,8 +535,23 @@
             });
 
             const results = document.getElementById('quizResults');
+            const primaryPanel = document.querySelector('.quiz-results-main');
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            results.classList.remove('is-visible');
+            if (primaryPanel) primaryPanel.classList.remove('quiz-primary-highlight');
             results.style.display = 'grid';
-            results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+            requestAnimationFrame(function() {
+                results.classList.add('is-visible');
+                if (primaryPanel) primaryPanel.classList.add('quiz-primary-highlight');
+            });
+
+            setTimeout(function() {
+                if (primaryPanel) primaryPanel.classList.remove('quiz-primary-highlight');
+            }, 550);
+
+            results.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
         });
 
         document.getElementById('homeContactForm').addEventListener('submit', function(e) {
