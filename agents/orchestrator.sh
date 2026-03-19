@@ -229,13 +229,15 @@ EOF
 
         # Auto-upload outputs to Google Drive (Parker Content folder)
         GOG_ACCOUNT="gustavbotty@gmail.com"
+        GOG_KEYRING_PASSWORD="MrGustavBotty2000"
+        GOG_KEYRING_BACKEND="file"
         DRIVE_FOLDER_ID="1VTDJOKEAMRnYuAwZuiHVPdAAQAP73GPp"  # Parker Content
         log "☁️ Uploading run outputs to Google Drive (Parker Content)..."
         if command -v gog >/dev/null 2>&1; then
-            export GOG_ACCOUNT
+            export GOG_ACCOUNT GOG_KEYRING_PASSWORD GOG_KEYRING_BACKEND
             for f in "$RESEARCH_FILE" "$BLOG_FILE" "$SOCIAL_FILE" "$SCRIPT_FILE"; do
                 if [ -f "$f" ]; then
-                    if gog drive upload "$f" --parent "$DRIVE_FOLDER_ID" >/dev/null 2>&1; then
+                    if gog drive upload "$f" --parent "$DRIVE_FOLDER_ID" --no-input >/dev/null 2>&1; then
                         log "   ↳ Uploaded $(basename "$f")"
                     else
                         log "   ⚠️ Failed to upload $(basename "$f")"
