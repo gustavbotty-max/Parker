@@ -8,8 +8,26 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         .input-prefix-wrap { position: relative; }
-        .input-prefix-wrap .prefix { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-light); font-weight: 500; }
-        .input-prefix-wrap input { padding-left: 2.5rem; }
+        .input-prefix-wrap .prefix {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+            font-weight: 500;
+            pointer-events: none;
+            z-index: 2;
+            line-height: 1;
+        }
+        .input-prefix-wrap input {
+            padding-left: 3rem !important;
+        }
+        @media (max-width: 768px) {
+            .input-prefix-wrap .prefix { left: 0.9rem; }
+            .input-prefix-wrap input {
+                padding-left: 3.1rem !important;
+            }
+        }
         .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.25rem 0; }
         .result-stat { background: var(--bg); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--border); text-align: center; }
         .result-stat h4 { font-size: 0.85rem; color: var(--text-light); margin-bottom: 0.25rem; }
