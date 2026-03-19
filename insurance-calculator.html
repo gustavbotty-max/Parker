@@ -318,31 +318,31 @@
                     <div class="recommended-badge">BEST FIRST STEP</div>
                     <h3 style="font-size:1.45rem; margin-bottom:0.5rem; color:var(--primary);">30-year term looks like your strongest starting point</h3>
                     <p style="margin-bottom:0.9rem; color:var(--text-light);">For someone age ${context.age} with ${dependentText}, looking at about <strong>${recommendedCoverage}</strong> of coverage, a level term policy is usually the cleanest way to protect income without overcomplicating the decision.</p>
-                    <div style="display:grid; grid-template-columns: repeat(auto-fit,minmax(170px,1fr)); gap:0.75rem; margin:1rem 0;">
-                        <div style="background:var(--bg-white); border:1px solid var(--border); border-radius:var(--radius); padding:0.9rem;">
-                            <div style="font-size:0.78rem; color:var(--text-light); font-weight:700; text-transform:uppercase; letter-spacing:0.05em;">Estimated monthly</div>
-                            <div style="font-size:1.35rem; font-weight:800; color:var(--accent);">$${context.recommendedMonthly.toFixed(2)}</div>
+                    <div class="summary-stat-grid">
+                        <div class="summary-stat-card">
+                            <div class="summary-stat-label">Estimated monthly</div>
+                            <div class="summary-stat-value summary-stat-value-accent">$${context.recommendedMonthly.toFixed(2)}</div>
                         </div>
-                        <div style="background:var(--bg-white); border:1px solid var(--border); border-radius:var(--radius); padding:0.9rem;">
-                            <div style="font-size:0.78rem; color:var(--text-light); font-weight:700; text-transform:uppercase; letter-spacing:0.05em;">Coverage reviewed</div>
-                            <div style="font-size:1.1rem; font-weight:800; color:var(--primary);">${recommendedCoverage}</div>
+                        <div class="summary-stat-card">
+                            <div class="summary-stat-label">Coverage reviewed</div>
+                            <div class="summary-stat-value summary-stat-value-primary">${recommendedCoverage}</div>
                         </div>
                     </div>
-                    <div style="display:grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap:1rem; margin-top:1rem;">
+                    <div class="summary-detail-grid">
                         <div>
-                            <h4 style="margin-bottom:0.5rem; color:var(--text);">What this means</h4>
-                            <p style="color:var(--text-light); margin-bottom:0;">This is a practical starting estimate, not a final quote. The main takeaway is that straightforward term coverage probably gives you the best protection-per-dollar right now.</p>
+                            <h4 class="summary-section-title">What this means</h4>
+                            <p class="summary-copy">This is a practical starting estimate, not a final quote. The main takeaway is that straightforward term coverage probably gives you the best protection-per-dollar right now.</p>
                         </div>
                         <div>
-                            <h4 style="margin-bottom:0.5rem; color:var(--text);">Why this is showing up</h4>
-                            <ul style="padding-left:1rem; color:var(--text-light); margin:0; display:grid; gap:0.35rem;">
+                            <h4 class="summary-section-title">Why this is showing up</h4>
+                            <ul class="summary-list">
                                 ${protectionNotes.slice(0,3).map(note => `<li>${note}</li>`).join('')}
                             </ul>
                         </div>
                     </div>
-                    <div style="margin-top:1rem; background:rgba(30,58,95,0.06); border-left:4px solid var(--primary-light); border-radius:8px; padding:1rem;">
-                        <h4 style="margin-bottom:0.45rem; color:var(--text);">Common mistakes people make</h4>
-                        <ul style="padding-left:1rem; color:var(--text-light); margin:0; display:grid; gap:0.35rem;">
+                    <div class="summary-callout">
+                        <h4 class="summary-section-title">Common mistakes people make</h4>
+                        <ul class="summary-list">
                             <li>Assuming work coverage is enough on its own</li>
                             <li>Waiting too long and letting age or health increase the cost</li>
                             <li>Jumping straight into permanent coverage before getting the core protection right</li>
