@@ -236,6 +236,7 @@
 
             const winner = avalanche.totalInterest <= snowball.totalInterest ? 'avalanche' : 'snowball';
             const savings = Math.abs(avalanche.totalInterest - snowball.totalInterest);
+            const best = winner === 'avalanche' ? avalanche : snowball;
 
             let html = '';
 
@@ -307,7 +308,6 @@
             }
 
             // Payoff order (using winner strategy)
-            const best = winner === 'avalanche' ? avalanche : snowball;
             if (best.order.length > 0) {
                 html += `<h3 style="font-size:1.1rem; margin:1.5rem 0 0.75rem;">📋 Payoff Order (${winner === 'avalanche' ? 'Avalanche' : 'Snowball'})</h3>`;
                 html += `<div class="debt-timeline">`;
