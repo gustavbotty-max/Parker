@@ -971,6 +971,35 @@ img { max-width: 100%; height: auto; display: block; }
   }
 }
 
+.quiz-shell {
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.quiz-launch-row,
+.tools-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.25rem;
+}
+
+.quiz-panel {
+  margin-top: 1.75rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1.75rem;
+}
+
+.quiz-panel[hidden],
+.all-calculators-grid[hidden] {
+  display: none !important;
+}
+
+.all-calculators-grid {
+  margin-top: 1.5rem;
+}
+
 /* ============================================
    CALCULATOR PAGE STYLES
    ============================================ */

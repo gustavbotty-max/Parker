@@ -57,8 +57,8 @@
             <h1>Not Sure Where to Start Financially?</h1>
             <p>Answer 4 simple questions and I’ll point you to the right tools for your family — whether that’s life insurance, debt payoff, retirement, or building your emergency fund.</p>
             <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <a href="#start-here" class="btn btn-primary btn-lg">Start the 4-Question Guide</a>
-                <a href="#calculators" class="btn btn-outline-white btn-lg">Browse All Calculators</a>
+                <button type="button" id="openQuizBtn" class="btn btn-primary btn-lg">Take the 4-Question Quiz</button>
+                <a href="#calculators" class="btn btn-outline-white btn-lg">Browse Featured Calculators</a>
             </div>
         </div>
     </section>
@@ -66,13 +66,18 @@
     <!-- Start Here Guide -->
     <section id="start-here" class="section start-here-section">
         <div class="container">
-            <div class="start-here-card">
+            <div class="start-here-card quiz-shell">
                 <div class="start-here-header">
                     <span class="start-here-kicker">START HERE</span>
-                    <h2>Let me help you decide where to begin</h2>
-                    <p>Pick the answers that sound most like your situation. I’ll point you to the best first step.</p>
+                    <h2>Want a quick recommendation instead of guessing?</h2>
+                    <p>Take a simple 4-question quiz and I’ll point you to the best first calculator for your situation.</p>
+                    <div class="quiz-launch-row">
+                        <button type="button" id="openQuizInlineBtn" class="btn btn-primary">Take the Quiz</button>
+                        <a href="#calculators" class="btn btn-secondary">Skip to Featured Calculators</a>
+                    </div>
                 </div>
 
+                <div id="quizPanel" class="quiz-panel" hidden>
                 <form id="startHereForm" class="quiz-form">
                     <div class="quiz-grid">
                         <div class="quiz-question">
@@ -136,6 +141,7 @@
                         <ul id="quizSecondaryList"></ul>
                     </div>
                 </div>
+                </div>
             </div>
         </div>
     </section>
@@ -143,8 +149,8 @@
     <!-- Calculators Section -->
     <section id="calculators" class="section">
         <div class="container">
-            <h2 class="section-title">Free Financial Planning Tools</h2>
-            <p class="section-subtitle">Use the same data the pros use — without the gatekeeping.</p>
+            <h2 class="section-title">Featured Financial Planning Tools</h2>
+            <p class="section-subtitle">Start with the calculators most likely to help right away, then open the full toolbox if you want to go deeper.</p>
             <div class="grid-3">
 
                 <a href="insurance-calculator.html" class="card" style="text-decoration:none;">
@@ -154,6 +160,25 @@
                     <span class="blog-read-more">Calculate Now</span>
                 </a>
 
+                <a href="debt-payoff-calculator.html" class="card" style="text-decoration:none;">
+                    <div class="card-icon">💳</div>
+                    <h3>Debt Payoff Calculator</h3>
+                    <p>See how fast you can pay off debt using snowball vs. avalanche strategies.</p>
+                    <span class="blog-read-more">Calculate Now</span>
+                </a>
+
+                <a href="emergency-fund-calculator.html" class="card" style="text-decoration:none;">
+                    <div class="card-icon">💰</div>
+                    <h3>Emergency Fund Calculator</h3>
+                    <p>Find out how much you should have saved for life's unexpected moments.</p>
+                    <span class="blog-read-more">Calculate Now</span>
+                </a>
+
+            </div>
+            <div class="tools-actions">
+                <button type="button" id="toggleAllCalculatorsBtn" class="btn btn-secondary btn-lg" aria-expanded="false" aria-controls="allCalculatorsGrid">See All Calculators</button>
+            </div>
+            <div id="allCalculatorsGrid" class="grid-3 all-calculators-grid" hidden>
                 <a href="retirement-planning-calculator.html" class="card" style="text-decoration:none;">
                     <div class="card-icon">🎯</div>
                     <h3>Retirement Planning</h3>
@@ -168,27 +193,12 @@
                     <span class="blog-read-more">Calculate Now</span>
                 </a>
 
-                <a href="debt-payoff-calculator.html" class="card" style="text-decoration:none;">
-                    <div class="card-icon">💳</div>
-                    <h3>Debt Payoff Calculator</h3>
-                    <p>See how fast you can pay off debt using snowball vs. avalanche strategies.</p>
-                    <span class="blog-read-more">Calculate Now</span>
-                </a>
-
                 <a href="mortgage-calculator.html" class="card" style="text-decoration:none;">
                     <div class="card-icon">🏠</div>
                     <h3>Mortgage Affordability</h3>
                     <p>Start with your budget and back into a Wake County home price with live rates.</p>
                     <span class="blog-read-more">Calculate Now</span>
                 </a>
-
-                <a href="emergency-fund-calculator.html" class="card" style="text-decoration:none;">
-                    <div class="card-icon">💰</div>
-                    <h3>Emergency Fund Calculator</h3>
-                    <p>Find out how much you should have saved for life's unexpected moments.</p>
-                    <span class="blog-read-more">Calculate Now</span>
-                </a>
-
             </div>
         </div>
     </section>
@@ -451,6 +461,41 @@
             addRevealTargets();
             activateRevealTargets();
         })();
+
+        const quizPanel = document.getElementById('quizPanel');
+        const openQuizBtn = document.getElementById('openQuizBtn');
+        const openQuizInlineBtn = document.getElementById('openQuizInlineBtn');
+        const toggleAllCalculatorsBtn = document.getElementById('toggleAllCalculatorsBtn');
+        const allCalculatorsGrid = document.getElementById('allCalculatorsGrid');
+
+        function revealQuiz() {
+            if (!quizPanel) return;
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            quizPanel.hidden = false;
+            requestAnimationFrame(function() {
+                quizPanel.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+                const firstField = document.getElementById('quizDebt');
+                if (firstField) firstField.focus({ preventScroll: true });
+            });
+        }
+
+        if (openQuizBtn) openQuizBtn.addEventListener('click', revealQuiz);
+        if (openQuizInlineBtn) openQuizInlineBtn.addEventListener('click', revealQuiz);
+
+        if (toggleAllCalculatorsBtn && allCalculatorsGrid) {
+            toggleAllCalculatorsBtn.addEventListener('click', function() {
+                const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                const isHidden = allCalculatorsGrid.hidden;
+                allCalculatorsGrid.hidden = !isHidden;
+                this.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+                this.textContent = isHidden ? 'Show Fewer Calculators' : 'See All Calculators';
+                if (isHidden) {
+                    requestAnimationFrame(function() {
+                        allCalculatorsGrid.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+                    });
+                }
+            });
+        }
 
         const quizRecommendations = {
             insurance: {
