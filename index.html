@@ -77,7 +77,7 @@
                     </div>
                 </div>
 
-                <div id="quizPanel" class="quiz-panel" hidden>
+                <div id="quizPanel" class="quiz-panel" hidden style="display:none;">
                 <form id="startHereForm" class="quiz-form">
                     <div class="quiz-grid">
                         <div class="quiz-question">
@@ -178,7 +178,7 @@
             <div class="tools-actions">
                 <button type="button" id="toggleAllCalculatorsBtn" class="btn btn-secondary btn-lg" aria-expanded="false" aria-controls="allCalculatorsGrid">See All Calculators</button>
             </div>
-            <div id="allCalculatorsGrid" class="grid-3 all-calculators-grid" hidden>
+            <div id="allCalculatorsGrid" class="grid-3 all-calculators-grid" hidden style="display:none;">
                 <a href="retirement-planning-calculator.html" class="card" style="text-decoration:none;">
                     <div class="card-icon">🎯</div>
                     <h3>Retirement Planning</h3>
@@ -472,6 +472,7 @@
             if (!quizPanel) return;
             const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             quizPanel.hidden = false;
+            quizPanel.style.display = 'block';
             requestAnimationFrame(function() {
                 quizPanel.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
                 const firstField = document.getElementById('quizDebt');
@@ -487,6 +488,7 @@
                 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
                 const isHidden = allCalculatorsGrid.hidden;
                 allCalculatorsGrid.hidden = !isHidden;
+                allCalculatorsGrid.style.display = isHidden ? 'grid' : 'none';
                 this.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
                 this.textContent = isHidden ? 'Show Fewer Calculators' : 'See All Calculators';
                 if (isHidden) {
