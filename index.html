@@ -552,12 +552,10 @@
                 primary = 'debt';
             } else if (kids === 'yes' && insuranceNeedsReview) {
                 primary = 'insurance';
-            } else if (kids === 'yes') {
-                primary = 'emergency';
             } else if (home === 'buying') {
                 primary = 'mortgage';
-            } else if (insuranceNeedsReview) {
-                primary = 'insurance';
+            } else if (kids === 'yes') {
+                primary = 'emergency';
             } else if (home === 'own') {
                 primary = 'emergency';
             } else {
