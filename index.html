@@ -57,87 +57,8 @@
             <h1>Not Sure Where to Start Financially?</h1>
             <p>Answer 4 simple questions and I’ll point you to the right tools for your family — whether that’s life insurance, debt payoff, retirement, or building your emergency fund.</p>
             <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <button type="button" id="openQuizBtn" class="btn btn-primary btn-lg">Take the 4-Question Quiz</button>
-                <a href="#calculators" class="btn btn-outline-white btn-lg">Browse Featured Calculators</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Start Here Guide -->
-    <section id="start-here" class="section start-here-section">
-        <div class="container">
-            <div class="start-here-card quiz-shell">
-                <div class="start-here-header">
-                    <span class="start-here-kicker">START HERE</span>
-                    <h2>Want a quick recommendation instead of guessing?</h2>
-                    <p>Take a simple 4-question quiz and I’ll point you to the best first calculator for your situation.</p>
-                </div>
-
-                <div id="quizPanel" class="quiz-panel" hidden style="display:none;">
-                <form id="startHereForm" class="quiz-form">
-                    <div class="quiz-grid">
-                        <div class="quiz-question">
-                            <label for="quizDebt">1. Do you have debt you’d like to pay off faster?</label>
-                            <select id="quizDebt" required>
-                                <option value="">Choose one</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
-                            </select>
-                        </div>
-
-                        <div class="quiz-question">
-                            <label for="quizHome">2. Do you own a home or plan to buy one soon?</label>
-                            <select id="quizHome" required>
-                                <option value="">Choose one</option>
-                                <option value="own">I own a home</option>
-                                <option value="buying">Planning to buy soon</option>
-                                <option value="no">No</option>
-                            </select>
-                        </div>
-
-                        <div class="quiz-question">
-                            <label for="quizKids">3. Do you have kids or people who depend on your income?</label>
-                            <select id="quizKids" required>
-                                <option value="">Choose one</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
-                            </select>
-                        </div>
-
-                        <div class="quiz-question">
-                            <label for="quizInsurance">4. How much life insurance do you own today?</label>
-                            <select id="quizInsurance" required>
-                                <option value="">Choose one</option>
-                                <option value="none">None</option>
-                                <option value="work">Only through work</option>
-                                <option value="some">Some personal coverage</option>
-                                <option value="enough">I think I’m in good shape</option>
-                                <option value="unsure">I’m not sure</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="quiz-actions">
-                        <button type="submit" class="btn btn-primary btn-lg">See My Best Starting Point</button>
-                    </div>
-                </form>
-
-                <div id="quizResults" class="quiz-results" style="display:none;">
-                    <div class="quiz-results-main">
-                        <span class="quiz-results-label">BEST PLACE TO START</span>
-                        <h3 id="quizPrimaryTitle"></h3>
-                        <p id="quizPrimaryText"></p>
-                        <div class="quiz-cta-row">
-                            <a id="quizPrimaryLink" href="#calculators" class="btn btn-primary">Open Recommended Tool</a>
-                            <a href="https://scheduler.zoom.us/jonathan-parker-i9rj3o/pfs-intro" target="_blank" rel="noopener" class="btn btn-secondary">Book a Free Review</a>
-                        </div>
-                    </div>
-                    <div class="quiz-secondary">
-                        <h4>Your next best tools</h4>
-                        <ul id="quizSecondaryList"></ul>
-                    </div>
-                </div>
-                </div>
+                <a href="#calculators" class="btn btn-primary btn-lg">Browse Featured Calculators</a>
+                <a href="https://scheduler.zoom.us/jonathan-parker-i9rj3o/pfs-intro" target="_blank" rel="noopener" class="btn btn-outline-white btn-lg">Book a Free Review</a>
             </div>
         </div>
     </section>
@@ -458,24 +379,8 @@
             activateRevealTargets();
         })();
 
-        const quizPanel = document.getElementById('quizPanel');
-        const openQuizBtn = document.getElementById('openQuizBtn');
         const toggleAllCalculatorsBtn = document.getElementById('toggleAllCalculatorsBtn');
         const allCalculatorsGrid = document.getElementById('allCalculatorsGrid');
-
-        function revealQuiz() {
-            if (!quizPanel) return;
-            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            quizPanel.hidden = false;
-            quizPanel.style.display = 'block';
-            requestAnimationFrame(function() {
-                quizPanel.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
-                const firstField = document.getElementById('quizDebt');
-                if (firstField) firstField.focus({ preventScroll: true });
-            });
-        }
-
-        if (openQuizBtn) openQuizBtn.addEventListener('click', revealQuiz);
 
         if (toggleAllCalculatorsBtn && allCalculatorsGrid) {
             toggleAllCalculatorsBtn.addEventListener('click', function() {
@@ -492,111 +397,6 @@
                 }
             });
         }
-
-        const quizRecommendations = {
-            insurance: {
-                title: 'Start with the Life Insurance Calculator',
-                text: 'Based on your answers, protecting income and making sure your family has enough coverage looks like the most important first move.',
-                href: 'insurance-calculator.html'
-            },
-            debt: {
-                title: 'Start with the Debt Payoff Calculator',
-                text: 'If debt is one of the main things weighing on your budget, this is the fastest way to see what payoff plan could make the biggest difference.',
-                href: 'debt-payoff-calculator.html'
-            },
-            emergency: {
-                title: 'Start with the Emergency Fund Calculator',
-                text: 'A solid cash buffer often needs to come before everything else. This will help you see what a safer emergency fund target looks like.',
-                href: 'emergency-fund-calculator.html'
-            },
-            mortgage: {
-                title: 'Start with the Mortgage Affordability Calculator',
-                text: 'If buying a home is one of your next big moves, this is the best place to pressure-test the payment before you get emotionally attached to a price range.',
-                href: 'mortgage-calculator.html'
-            },
-            retirement: {
-                title: 'Start with the Retirement Planning Calculator',
-                text: 'If the basics are fairly stable, retirement planning is the next smartest place to get clear on what future-you is going to need.',
-                href: 'retirement-planning-calculator.html'
-            }
-        };
-
-        const quizSecondaryMap = {
-            insurance: ['Emergency Fund Calculator', 'Debt Payoff Calculator'],
-            debt: ['Emergency Fund Calculator', 'Life Insurance Calculator'],
-            emergency: ['Debt Payoff Calculator', 'Life Insurance Calculator'],
-            mortgage: ['Emergency Fund Calculator', 'Retirement Planning Calculator'],
-            retirement: ['Life Insurance Calculator', 'Emergency Fund Calculator']
-        };
-
-        const calculatorLinks = {
-            'Life Insurance Calculator': 'insurance-calculator.html',
-            'Debt Payoff Calculator': 'debt-payoff-calculator.html',
-            'Emergency Fund Calculator': 'emergency-fund-calculator.html',
-            'Mortgage Affordability Calculator': 'mortgage-calculator.html',
-            'Retirement Planning Calculator': 'retirement-planning-calculator.html'
-        };
-
-        document.getElementById('startHereForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const debt = document.getElementById('quizDebt').value;
-            const home = document.getElementById('quizHome').value;
-            const kids = document.getElementById('quizKids').value;
-            const insurance = document.getElementById('quizInsurance').value;
-
-            const insuranceNeedsReview = insurance === 'none' || insurance === 'work' || insurance === 'unsure';
-            let primary = 'retirement';
-
-            if (debt === 'yes') {
-                primary = 'debt';
-            } else if (kids === 'yes' && insuranceNeedsReview) {
-                primary = 'insurance';
-            } else if (home === 'buying') {
-                primary = 'mortgage';
-            } else if (kids === 'yes') {
-                primary = 'emergency';
-            } else if (home === 'own') {
-                primary = 'emergency';
-            } else {
-                primary = 'retirement';
-            }
-
-            const result = quizRecommendations[primary];
-            document.getElementById('quizPrimaryTitle').textContent = result.title;
-            document.getElementById('quizPrimaryText').textContent = result.text;
-            document.getElementById('quizPrimaryLink').href = result.href;
-
-            const secondaryList = document.getElementById('quizSecondaryList');
-            secondaryList.innerHTML = '';
-            quizSecondaryMap[primary].forEach(function(name) {
-                const li = document.createElement('li');
-                const a = document.createElement('a');
-                a.href = calculatorLinks[name];
-                a.textContent = name;
-                li.appendChild(a);
-                secondaryList.appendChild(li);
-            });
-
-            const results = document.getElementById('quizResults');
-            const primaryPanel = document.querySelector('.quiz-results-main');
-            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-            results.classList.remove('is-visible');
-            if (primaryPanel) primaryPanel.classList.remove('quiz-primary-highlight');
-            results.style.display = 'grid';
-
-            requestAnimationFrame(function() {
-                results.classList.add('is-visible');
-                if (primaryPanel) primaryPanel.classList.add('quiz-primary-highlight');
-            });
-
-            setTimeout(function() {
-                if (primaryPanel) primaryPanel.classList.remove('quiz-primary-highlight');
-            }, 550);
-
-            results.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
-        });
 
         document.getElementById('homeContactForm').addEventListener('submit', function(e) {
             e.preventDefault();
