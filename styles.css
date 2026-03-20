@@ -274,8 +274,10 @@ img { max-width: 100%; height: auto; display: block; }
 
 .quiz-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 1.25rem;
+  max-width: 720px;
+  margin: 0 auto;
 }
 
 .quiz-question label {

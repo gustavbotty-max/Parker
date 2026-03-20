@@ -71,10 +71,6 @@
                     <span class="start-here-kicker">START HERE</span>
                     <h2>Want a quick recommendation instead of guessing?</h2>
                     <p>Take a simple 4-question quiz and I’ll point you to the best first calculator for your situation.</p>
-                    <div class="quiz-launch-row">
-                        <button type="button" id="openQuizInlineBtn" class="btn btn-primary">Take the Quiz</button>
-                        <a href="#calculators" class="btn btn-secondary">Skip to Featured Calculators</a>
-                    </div>
                 </div>
 
                 <div id="quizPanel" class="quiz-panel" hidden style="display:none;">
@@ -464,7 +460,6 @@
 
         const quizPanel = document.getElementById('quizPanel');
         const openQuizBtn = document.getElementById('openQuizBtn');
-        const openQuizInlineBtn = document.getElementById('openQuizInlineBtn');
         const toggleAllCalculatorsBtn = document.getElementById('toggleAllCalculatorsBtn');
         const allCalculatorsGrid = document.getElementById('allCalculatorsGrid');
 
@@ -481,7 +476,6 @@
         }
 
         if (openQuizBtn) openQuizBtn.addEventListener('click', revealQuiz);
-        if (openQuizInlineBtn) openQuizInlineBtn.addEventListener('click', revealQuiz);
 
         if (toggleAllCalculatorsBtn && allCalculatorsGrid) {
             toggleAllCalculatorsBtn.addEventListener('click', function() {
@@ -517,7 +511,7 @@
             },
             mortgage: {
                 title: 'Start with the Mortgage Affordability Calculator',
-                text: 'Since housing is part of the picture, this is the best place to pressure-test the numbers before making a bigger move.',
+                text: 'If buying a home is one of your next big moves, this is the best place to pressure-test the payment before you get emotionally attached to a price range.',
                 href: 'mortgage-calculator.html'
             },
             retirement: {
@@ -551,16 +545,21 @@
             const kids = document.getElementById('quizKids').value;
             const insurance = document.getElementById('quizInsurance').value;
 
+            const insuranceNeedsReview = insurance === 'none' || insurance === 'work' || insurance === 'unsure';
             let primary = 'retirement';
 
-            if (kids === 'yes' && (insurance === 'none' || insurance === 'work' || insurance === 'unsure')) {
-                primary = 'insurance';
-            } else if (debt === 'yes') {
+            if (debt === 'yes') {
                 primary = 'debt';
-            } else if (home === 'own' || home === 'buying') {
-                primary = 'mortgage';
-            } else if (insurance === 'none' || insurance === 'work' || insurance === 'unsure') {
+            } else if (kids === 'yes' && insuranceNeedsReview) {
                 primary = 'insurance';
+            } else if (kids === 'yes') {
+                primary = 'emergency';
+            } else if (home === 'buying') {
+                primary = 'mortgage';
+            } else if (insuranceNeedsReview) {
+                primary = 'insurance';
+            } else if (home === 'own') {
+                primary = 'emergency';
             } else {
                 primary = 'retirement';
             }
