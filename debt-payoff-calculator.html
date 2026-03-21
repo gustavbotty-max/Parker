@@ -87,6 +87,35 @@
                 <small style="color:var(--text-light);">Amount above minimum payments you can throw at debt</small>
             </div>
 
+            <div class="debt-entry" style="margin-top:1.5rem;">
+                <h4 style="margin-bottom:0.4rem; color:var(--primary);">Explore other payoff options</h4>
+                <p style="color:var(--text-light); font-size:0.88rem; margin-bottom:1rem;">Optional: add home and credit details so I can flag whether a HELOC, refinance, or personal loan might be worth exploring before you commit to a payoff strategy.</p>
+                <div class="debt-entry-grid">
+                    <div class="form-group">
+                        <label for="homeValue">Estimated Home Value ($)</label>
+                        <input type="number" id="homeValue" min="0" step="1000" placeholder="350000">
+                    </div>
+                    <div class="form-group">
+                        <label for="mortgageBalance">Current Mortgage Balance ($)</label>
+                        <input type="number" id="mortgageBalance" min="0" step="1000" placeholder="250000">
+                    </div>
+                    <div class="form-group">
+                        <label for="mortgageRate">Current Mortgage Rate (%)</label>
+                        <input type="number" id="mortgageRate" min="0" max="15" step="0.1" placeholder="3.25">
+                    </div>
+                    <div class="form-group">
+                        <label for="creditScoreRange">Approx. Credit Score</label>
+                        <select id="creditScoreRange">
+                            <option value="">Choose one</option>
+                            <option value="excellent">760+</option>
+                            <option value="good">700-759</option>
+                            <option value="fair">640-699</option>
+                            <option value="challenged">Below 640</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
             <button type="button" class="btn btn-primary btn-block btn-lg" onclick="calculateDebt()">Calculate Payoff Strategies</button>
 
             <div id="results" class="calc-results" style="display:none;">
@@ -276,6 +305,10 @@
             const extraPayment = parseFloat(document.getElementById('extraPayment').value) || 0;
             const totalDebt = debts.reduce((sum, d) => sum + d.balance, 0);
             const totalMinPayments = debts.reduce((sum, d) => sum + d.minPayment, 0);
+            const homeValue = parseFloat(document.getElementById('homeValue').value) || 0;
+            const mortgageBalance = parseFloat(document.getElementById('mortgageBalance').value) || 0;
+            const mortgageRate = parseFloat(document.getElementById('mortgageRate').value) || 0;
+            const creditScoreRange = document.getElementById('creditScoreRange').value;
 
             const avalanche = simulatePayoff(debts, extraPayment, 'avalanche');
             const snowball = simulatePayoff(debts, extraPayment, 'snowball');
@@ -387,7 +420,38 @@
                 }
             }
 
-            document.getElementById('resultContent').innerHTML = html;
+            const totalNonMortgageDebt = debts
+                .filter(d => !d.name.toLowerCase().includes('mortgage'))
+                .reduce((sum, d) => sum + d.balance, 0);
+            const homeEquity = Math.max(homeValue - mortgageBalance, 0);
+            const equityPct = homeValue > 0 ? (homeEquity / homeValue) * 100 : 0;
+            const monthlyDebtLoad = totalMinPayments + extraPayment;
+            const personalLoanCandidate = creditScoreRange === 'excellent' || creditScoreRange === 'good';
+            const helocCandidate = homeValue > 0 && mortgageBalance > 0 && equityPct >= 20;
+            const refiCandidate = homeValue > 0 && mortgageBalance > 0 && mortgageRate >= 5.5 && (creditScoreRange === 'excellent' || creditScoreRange === 'good');
+
+            let optionsHtml = '';
+            if (helocCandidate || refiCandidate || personalLoanCandidate) {
+                optionsHtml += `<h3 style="font-size:1.1rem; margin:1.75rem 0 0.75rem;">🏡 Other options worth exploring</h3>`;
+                optionsHtml += `<div class="summary-detail-grid">`;
+
+                if (helocCandidate) {
+                    optionsHtml += `<div class="summary-callout"><h4 class="summary-section-title">HELOC may be worth reviewing</h4><p class="summary-copy">Based on an estimated home value of <strong>${fmt.format(homeValue)}</strong> and mortgage balance of <strong>${fmt.format(mortgageBalance)}</strong>, you may have roughly <strong>${fmt.format(homeEquity)}</strong> in equity. That could make a HELOC conversation worth exploring — especially if you’re trying to simplify higher-interest debt. Just remember: unsecured debt becoming debt tied to the house raises the stakes.</p></div>`;
+                }
+
+                if (refiCandidate) {
+                    optionsHtml += `<div class="summary-callout"><h4 class="summary-section-title">Refinance could be worth pressure-testing</h4><p class="summary-copy">With a current mortgage rate around <strong>${mortgageRate.toFixed(2)}%</strong> and a stronger credit profile, a refinance or cash-out refi may be worth reviewing. This is especially true if the new payment improves cash flow enough to attack other debt faster. Closing costs and the risk of resetting the loan term still matter, so this should be reviewed carefully rather than assumed to be a win.</p></div>`;
+                }
+
+                if (personalLoanCandidate && totalNonMortgageDebt > 0) {
+                    optionsHtml += `<div class="summary-callout"><h4 class="summary-section-title">Personal loan may be another path</h4><p class="summary-copy">If your credit score is roughly in the <strong>${creditScoreRange}</strong> range, a personal loan might be worth comparing against your current non-mortgage debt rates. This can make sense when it lowers interest and gives you a cleaner payoff structure — but only if the monthly payment stays realistic and you avoid running balances back up.</p></div>`;
+                }
+
+                optionsHtml += `</div>`;
+                optionsHtml += `<div class="debt-explainer">These are options to explore — not automatic recommendations. Compare the math carefully before moving unsecured debt onto your home or locking into a new loan.</div>`;
+            }
+
+            document.getElementById('resultContent').innerHTML = html + optionsHtml;
             document.getElementById('results').style.display = 'block';
             document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
         }
