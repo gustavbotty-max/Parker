@@ -299,6 +299,7 @@
         }
 
         function calculateDebt() {
+            try {
             const debts = getDebts();
             if (debts.length === 0) { alert('Please add at least one debt.'); return; }
 
@@ -454,6 +455,10 @@
             document.getElementById('resultContent').innerHTML = html + optionsHtml;
             document.getElementById('results').style.display = 'block';
             document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+            } catch (error) {
+                console.error('Debt calculator error:', error);
+                alert('Something went wrong generating the payoff plan. I just patched in a safer fallback — please try again after refreshing.');
+            }
         }
 
         document.getElementById('debtEmailForm').addEventListener('submit', function(e) {
