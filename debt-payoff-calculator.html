@@ -10,6 +10,8 @@
         .debt-entry { background: var(--bg); padding: 1.25rem; border-radius: var(--radius); margin-bottom: 1rem; border: 1px solid var(--border); position: relative; }
         .debt-entry-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 1rem; }
         @media (max-width: 700px) { .debt-entry-grid { grid-template-columns: 1fr 1fr; } }
+        .debt-help-text { color: var(--text-light); font-size: 0.82rem; margin-top: 0.35rem; }
+        .debt-explainer { text-align:center; color:var(--text-light); font-size:0.9rem; margin-bottom:1rem; }
         .remove-debt { position: absolute; top: 8px; right: 12px; background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-lighter); }
         .remove-debt:hover { color: #dc2626; }
         .strategy-comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0; }
@@ -73,7 +75,7 @@
                         <div class="form-group"><label>Debt Name</label><input type="text" class="debt-name" placeholder="Credit Card #1" required></div>
                         <div class="form-group"><label>Balance ($)</label><input type="number" class="debt-balance" min="0" step="1" required placeholder="5000"></div>
                         <div class="form-group"><label>APR (%)</label><input type="number" class="debt-rate" min="0" max="40" step="0.1" required placeholder="22.9"></div>
-                        <div class="form-group"><label>Min Payment ($)</label><input type="number" class="debt-min" min="0" step="1" required placeholder="150"></div>
+                        <div class="form-group"><label>Min Payment ($)</label><input type="number" class="debt-min" min="0" step="1" required placeholder="150"><div class="debt-help-text">Auto-suggested from balance + APR. You can override it.</div></div>
                     </div>
                 </div>
             </div>
@@ -145,6 +147,50 @@
         let debtCount = 1;
         const fmt = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
 
+        function estimateMinimumPayment(balance, rate, debtName = '') {
+            const cleanName = (debtName || '').toLowerCase();
+            let years = 5;
+            if (cleanName.includes('mortgage') || cleanName.includes('home')) years = 30;
+            else if (cleanName.includes('student') || cleanName.includes('auto') || cleanName.includes('car') || balance >= 10000) years = 10;
+            else years = 3;
+
+            const monthlyRate = (rate || 0) / 100 / 12;
+            const months = years * 12;
+            if (!balance || balance <= 0) return '';
+            if (monthlyRate === 0) return Math.max(Math.ceil(balance / months), 25);
+
+            const payment = balance * monthlyRate / (1 - Math.pow(1 + monthlyRate, -months));
+            return Math.max(Math.ceil(payment), 25);
+        }
+
+        function attachDebtAutoSuggest(entry) {
+            const nameInput = entry.querySelector('.debt-name');
+            const balanceInput = entry.querySelector('.debt-balance');
+            const rateInput = entry.querySelector('.debt-rate');
+            const minInput = entry.querySelector('.debt-min');
+            if (!nameInput || !balanceInput || !rateInput || !minInput) return;
+
+            function maybeSuggestMin() {
+                const balance = parseFloat(balanceInput.value);
+                const rate = parseFloat(rateInput.value);
+                const currentMin = parseFloat(minInput.value);
+                const shouldFill = !minInput.value || minInput.dataset.autoSuggested === 'true';
+                if (!balance || rate < 0 || !shouldFill) return;
+                const suggested = estimateMinimumPayment(balance, rate, nameInput.value);
+                if (suggested) {
+                    minInput.value = suggested;
+                    minInput.dataset.autoSuggested = 'true';
+                }
+            }
+
+            nameInput.addEventListener('input', maybeSuggestMin);
+            balanceInput.addEventListener('input', maybeSuggestMin);
+            rateInput.addEventListener('input', maybeSuggestMin);
+            minInput.addEventListener('input', function() {
+                minInput.dataset.autoSuggested = 'false';
+            });
+        }
+
         function addDebt() {
             debtCount++;
             const container = document.getElementById('debtContainer');
@@ -156,10 +202,13 @@
                     <div class="form-group"><label>Debt Name</label><input type="text" class="debt-name" placeholder="Debt ${debtCount}" required></div>
                     <div class="form-group"><label>Balance ($)</label><input type="number" class="debt-balance" min="0" step="1" required placeholder="5000"></div>
                     <div class="form-group"><label>APR (%)</label><input type="number" class="debt-rate" min="0" max="40" step="0.1" required placeholder="22.9"></div>
-                    <div class="form-group"><label>Min Payment ($)</label><input type="number" class="debt-min" min="0" step="1" required placeholder="150"></div>
+                    <div class="form-group"><label>Min Payment ($)</label><input type="number" class="debt-min" min="0" step="1" required placeholder="150"><div class="debt-help-text">Auto-suggested from balance + APR. You can override it.</div></div>
                 </div>`;
             container.appendChild(entry);
+            attachDebtAutoSuggest(entry);
         }
+
+        document.querySelectorAll('.debt-entry').forEach(attachDebtAutoSuggest);
 
         function getDebts() {
             const entries = document.querySelectorAll('.debt-entry');
@@ -249,24 +298,24 @@
                 <div class="recommended-badge">BEST FIRST STEP</div>
                 <h3 style="font-size:1.45rem; margin-bottom:0.5rem; color:var(--primary);">You can get out of debt with a clear plan</h3>
                 <p style="margin-bottom:0.9rem; color:var(--text-light);">Right now you’re carrying <strong>${fmt.format(totalDebt)}</strong> across ${debts.length} account${debts.length > 1 ? 's' : ''}. Based on the numbers you entered, <strong>${winner === 'avalanche' ? 'the avalanche method' : 'the snowball method'}</strong> is your best place to start.</p>
-                <div style="display:grid; grid-template-columns: repeat(auto-fit,minmax(170px,1fr)); gap:0.75rem; margin:1rem 0;">
-                    <div style="background:var(--bg-white); border:1px solid var(--border); border-radius:var(--radius); padding:0.9rem;">
-                        <div style="font-size:0.78rem; color:var(--text-light); font-weight:700; text-transform:uppercase; letter-spacing:0.05em;">Estimated payoff time</div>
-                        <div style="font-size:1.3rem; font-weight:800; color:var(--primary);">${Math.ceil(best.months / 12)}y ${best.months % 12}mo</div>
+                <div class="summary-stat-grid">
+                    <div class="summary-stat-card">
+                        <div class="summary-stat-label">Estimated payoff time</div>
+                        <div class="summary-stat-value summary-stat-value-primary">${Math.ceil(best.months / 12)}y ${best.months % 12}mo</div>
                     </div>
-                    <div style="background:var(--bg-white); border:1px solid var(--border); border-radius:var(--radius); padding:0.9rem;">
-                        <div style="font-size:0.78rem; color:var(--text-light); font-weight:700; text-transform:uppercase; letter-spacing:0.05em;">Monthly extra payment</div>
-                        <div style="font-size:1.3rem; font-weight:800; color:var(--accent);">${fmt.format(extraPayment)}</div>
+                    <div class="summary-stat-card">
+                        <div class="summary-stat-label">Monthly extra payment</div>
+                        <div class="summary-stat-value summary-stat-value-accent">${fmt.format(extraPayment)}</div>
                     </div>
                 </div>
-                <div style="display:grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap:1rem; margin-top:1rem;">
+                <div class="summary-detail-grid">
                     <div>
-                        <h4 style="margin-bottom:0.5rem; color:var(--text);">What this means</h4>
-                        <p style="color:var(--text-light); margin-bottom:0;">${motivationalWinner} The main goal is to make your payment plan realistic enough that you actually stick with it.</p>
+                        <h4 class="summary-section-title">What this means</h4>
+                        <p class="summary-copy">${motivationalWinner} The main goal is to make your payment plan realistic enough that you actually stick with it.</p>
                     </div>
                     <div>
-                        <h4 style="margin-bottom:0.5rem; color:var(--text);">Common mistakes people make</h4>
-                        <ul style="padding-left:1rem; color:var(--text-light); margin:0; display:grid; gap:0.35rem;">
+                        <h4 class="summary-section-title">Common mistakes people make</h4>
+                        <ul class="summary-list">
                             <li>Trying to be too aggressive and then quitting after a bad month</li>
                             <li>Ignoring interest rates when balances are large</li>
                             <li>Leaving no room for emergencies and ending up back in debt</li>
@@ -301,9 +350,13 @@
             </div>`;
 
             if (savings > 50) {
-                html += `<div style="text-align:center; color:var(--text-light); font-size:0.9rem; margin-bottom:1rem;">
+                html += `<div class="debt-explainer">
                     ${winner === 'avalanche' ? 'Avalanche' : 'Snowball'} saves you <strong style="color:var(--accent);">${fmt.format(savings)}</strong> in interest.
                     ${winner === 'snowball' ? 'But avalanche is mathematically optimal — snowball wins on motivation.' : 'Snowball gives quicker wins for motivation though.'}
+                </div>`;
+            } else {
+                html += `<div class="debt-explainer">
+                    In this debt mix, both strategies land in almost the same place. That usually happens when one large low-interest debt dominates the timeline, so changing payoff order only nudges the result a little.
                 </div>`;
             }
 
