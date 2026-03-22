@@ -11,6 +11,26 @@ Make the grocery system reliable enough that Jonathan can say:
 
 ## Core source of truth
 
+### 0. SSH / second-body browser access matters for this project
+For this grocery project, browser work may need to run on Jonathan's MacBook rather than the Ubuntu host.
+
+Current known access path:
+- Mac user: `jonathanparker`
+- Mac Tailscale IP: `100.94.134.110`
+- Ubuntu private key: `~/oracle_key`
+- Direct SSH test from Ubuntu:
+  ```bash
+  ssh -i ~/oracle_key jonathanparker@100.94.134.110
+  ```
+
+Important:
+- The Mac may not always be on Tailscale.
+- `Remote Login` must be enabled on macOS for SSH to work.
+- If SSH breaks, verify:
+  - Tailscale connected on the Mac
+  - Remote Login enabled
+  - `~/.ssh/authorized_keys` on the Mac still trusts the Ubuntu public key
+
 ### 1. Google Drive / Google Sheets = canonical planning source
 For active grocery planning, always check the live Google Sheet(s) in Drive first.
 
@@ -52,6 +72,10 @@ Before building a grocery plan:
 - review the latest tabs / edits
 - check for manual overrides, current needs, or marked weekly items
 
+Known live sheet references from project memory/docs:
+- Master Needs Google Sheet: `https://docs.google.com/spreadsheets/d/1HjRnkbNLbG6E5RyaHu78px3AK44MzRPyPUiRfwhEf7c/edit`
+- Weekly grocery savings sheet: `https://docs.google.com/spreadsheets/d/1Y_dZkIc3IuXkeiewwQJdXXbQI5xhF73nEb_vOMiFLJU/edit`
+
 Do not start from local files alone if the live sheet exists.
 
 ### Step 2 — Use local analysis files to support planning
@@ -88,15 +112,39 @@ If browser control works:
 - compare package sizes and unit prices
 - optimize based on real current prices, not only historical averages
 
+Preferred browser workflow:
+1. Use the MacBook as the grocery-shopping second body.
+2. Prefer the OpenClaw-managed browser on the Mac node for store-site work.
+3. If needed, SSH into the Mac and verify node/browser state.
+4. Use live store sites for Costco / Walmart / Aldi price confirmation.
+
+Known browser/tooling notes:
+- The repaired second-body path uses the Mac as a connected node.
+- Browser tasks should prefer the Mac node when store sites or Drive/Sheets access matter.
+- If the browser path seems broken, verify:
+  - Mac node is connected from Ubuntu: `openclaw nodes status`
+  - Mac SSH still works: `ssh -i ~/oracle_key jonathanparker@100.94.134.110`
+  - Mac Tailscale is connected
+  - Mac browser is running if user-browser work is needed
+
 If browser control is unavailable:
 - use receipt history and historical logic
 - explicitly mark where live pricing was not confirmed
+- do not pretend a stale price is a live price
 
 ### Step 5 — After shopping, log receipts
 For each receipt:
 - extract store, date, item, quantity, total
 - append to the raw purchase history / spreadsheet workflow
 - update store assumptions and price truth
+
+Receipt-handling rules:
+- A shaky phone photo is useful for rough price sanity checks.
+- A clean scan or straightened full-photo receipt is preferred for logging line-item data.
+- If the receipt is only partially legible, do **not** append guessed line items to the raw data sheet.
+- If necessary, extract only the clearly readable subset and mark the rest as needing confirmation.
+- Receipt truth should override prior plan assumptions.
+- Use the receipt to update where the item was *actually* bought, not where it was originally recommended.
 
 If a receipt scan is too low quality:
 - ask for a better scan/photo before logging line-item data
@@ -127,6 +175,25 @@ Also consider:
 - whether a cheaper buy is actually realistic this week
 
 ---
+
+## Operational checklist when Jonathan says "we need to grocery shop"
+1. Check the live Google Sheet(s) first.
+2. Review local grocery docs / burn-rate files second.
+3. Build a likely weekly draft with store assignments.
+4. Ask only the minimum confirmation questions needed.
+5. Use the MacBook browser path for live price checks when available.
+6. Separate the final plan into Aldi / Costco / Walmart.
+7. After shopping, process receipts and update the raw data workflow.
+
+## Operational checklist when Jonathan sends a receipt
+1. Identify the store and date.
+2. Judge receipt quality:
+   - rough photo = sanity-check only
+   - clean scan = logging candidate
+3. Extract only clearly readable line items.
+4. Append to the raw data spreadsheet/workflow if quality is good enough.
+5. If quality is not good enough, ask for a better scan before logging.
+6. Update assumptions about real purchase behavior, prices, and preferred stores.
 
 ## Future-state goal
 The grocery project should become a repeatable loop:
