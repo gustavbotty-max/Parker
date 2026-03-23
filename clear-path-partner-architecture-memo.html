@@ -344,54 +344,138 @@
 
     <section>
       <h2>Pricing / Fee Model by Phase</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Phase 1 — Trust + Savings</h3>
-          <ul>
-            <li><strong>No platform setup fee</strong></li>
-            <li><strong>No monthly platform fee</strong> for basic adoption</li>
-            <li><strong>Cards / digital wallets:</strong> target ~2.2%–2.9% + $0.30</li>
-            <li><strong>ACH / bank transfer:</strong> target ~0.0% + $0.30 on the best end, more realistically 0.5%–1.0% + small fixed fee</li>
-            <li><strong>Wire:</strong> usually pass-through or admin-fee based for larger transfers</li>
-            <li><strong>Advanced traceability / board-grade reporting:</strong> $49–$149/month</li>
-            <li><strong>Optional concierge migration:</strong> $250–$1,500 one-time</li>
-            <li><strong>ACH migration incentive:</strong> treated as CAC / margin investment</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Phase 2 — Treasury + Yield</h3>
-          <ul>
-            <li><strong>Yield share:</strong> 10%–20% of net yield produced</li>
-            <li><strong>Optional premium treasury package:</strong> $99–$299/month</li>
-            <li><strong>Advanced treasury reporting:</strong> $99–$249/month</li>
-            <li><strong>Advanced governance / approvals:</strong> $49–$199/month</li>
-            <li><strong>Accelerated payout:</strong> 0.25%–1.00% of accelerated amount</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Phase 3 — Cards + Controlled Spend</h3>
-          <ul>
-            <li><strong>Advanced spend controls:</strong> $99–$499/month</li>
-            <li><strong>Physical cards:</strong> pass-through or $5–$25/card</li>
-            <li><strong>MCC / policy controls:</strong> $49–$249/month</li>
-            <li><strong>Receipt / audit workflow:</strong> $49–$149/month</li>
-            <li><strong>Program administration / budgeting:</strong> $99–$499/month</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Phase 4 — Mission Operating System</h3>
-          <ul>
-            <li><strong>Program administration fee:</strong> $99–$999/month</li>
-            <li><strong>Beneficiary / program reporting:</strong> $99–$299/month</li>
-            <li><strong>Advanced donor transparency:</strong> $49–$199/month</li>
-            <li><strong>Case-management / support workflow layer:</strong> $149–$999/month</li>
-            <li><strong>Interchange + treasury economics:</strong> still retained behind the scenes</li>
-          </ul>
-        </div>
+      <div class="callout">
+        <strong>Pricing philosophy:</strong> keep adoption friction low, avoid SaaS tollbooths, monetize primarily through money in, money held, money spent, and money moved faster. The one major premium feature should be <strong>granular transparency</strong> because deeper trust should help organizations attract and retain more giving.
       </div>
-      <div class="callout" style="margin-top:18px;">
-        <strong>Cross-phase pricing principle:</strong> keep adoption friction low, avoid ugly upfront fees, make standard functionality feel generous, and charge for premium transparency, governance, acceleration, and mission/program complexity.
-      </div>
+
+      <section class="phase">
+        <div class="phase-head">
+          <div>
+            <h2>Phase 1 Pricing</h2>
+            <p class="muted">Trust + Savings wedge</p>
+          </div>
+          <div class="badge">Pricing</div>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <h3>Customer-facing fees</h3>
+            <ul>
+              <li>No platform setup fee</li>
+              <li>No monthly platform fee for basic adoption</li>
+              <li>Cards / digital wallets: ~2.2%–2.9% + $0.30</li>
+              <li>ACH / bank transfer: ideally 0.0% + $0.30 on the best end, more realistically 0.5%–1.0% + small fixed fee</li>
+              <li>Wire: pass-through or simple admin fee</li>
+              <li>Granular transparency: $49–$149/month</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Estimated revenue by fee type</h3>
+            <ul>
+              <li>Intake economics: <strong>60%–85%</strong></li>
+              <li>Granular transparency: <strong>10%–25%</strong></li>
+              <li>Other / misc service economics: <strong>0%–15%</strong></li>
+            </ul>
+            <p class="muted">Example at $50K annualized revenue: intake $30K–$42K, transparency $5K–$12K, misc $0–$8K.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="phase">
+        <div class="phase-head">
+          <div>
+            <h2>Phase 2 Pricing</h2>
+            <p class="muted">Treasury + Yield participation</p>
+          </div>
+          <div class="badge">Pricing</div>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <h3>Customer-facing fees</h3>
+            <ul>
+              <li>No mandatory platform fee</li>
+              <li>Yield share: 10%–20% of net yield produced</li>
+              <li>Cards / ACH stay in line with Phase 1</li>
+              <li>Granular transparency: $99–$249/month</li>
+              <li>Accelerated payout / treasury action fee: 0.25%–1.00%</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Estimated revenue by fee type</h3>
+            <ul>
+              <li>Yield share: <strong>35%–55%</strong></li>
+              <li>Intake economics: <strong>20%–35%</strong></li>
+              <li>Granular transparency: <strong>10%–20%</strong></li>
+              <li>Accelerated payout / treasury actions: <strong>5%–15%</strong></li>
+            </ul>
+            <p class="muted">Example at $300K annualized revenue: yield $105K–$165K, intake $60K–$105K, transparency $30K–$60K, acceleration $15K–$45K.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="phase">
+        <div class="phase-head">
+          <div>
+            <h2>Phase 3 Pricing</h2>
+            <p class="muted">Cards + Controlled spend</p>
+          </div>
+          <div class="badge">Pricing</div>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <h3>Customer-facing fees</h3>
+            <ul>
+              <li>No per-card junk fees if avoidable</li>
+              <li>No mandatory per-beneficiary or case-management fees as the core strategy</li>
+              <li>Interchange retained behind the scenes</li>
+              <li>Granular transparency: $149–$399/month</li>
+              <li>Accelerated payout / treasury action fee still available</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Estimated revenue by fee type</h3>
+            <ul>
+              <li>Interchange: <strong>35%–55%</strong></li>
+              <li>Yield share: <strong>20%–35%</strong></li>
+              <li>Intake economics: <strong>10%–20%</strong></li>
+              <li>Granular transparency: <strong>10%–20%</strong></li>
+              <li>Accelerated payout / treasury actions: <strong>5%–10%</strong></li>
+            </ul>
+            <p class="muted">Example at $1M annualized revenue: interchange $350K–$550K, yield $200K–$350K, intake $100K–$200K, transparency $100K–$200K, acceleration $50K–$100K.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="phase">
+        <div class="phase-head">
+          <div>
+            <h2>Phase 4 Pricing</h2>
+            <p class="muted">Mission Operating System</p>
+          </div>
+          <div class="badge">Pricing</div>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <h3>Customer-facing fees</h3>
+            <ul>
+              <li>Keep core platform low-friction</li>
+              <li>Continue monetizing from interchange, yield share, and intake economics</li>
+              <li>Granular transparency: $149–$499/month</li>
+              <li>Only charge program admin / bespoke workflow fees in unusual enterprise or highly customized situations</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Estimated revenue by fee type</h3>
+            <ul>
+              <li>Interchange: <strong>30%–45%</strong></li>
+              <li>Yield share: <strong>20%–30%</strong></li>
+              <li>Granular transparency: <strong>15%–25%</strong></li>
+              <li>Intake economics: <strong>10%–20%</strong></li>
+              <li>Special service/admin fees: <strong>0%–10%</strong></li>
+            </ul>
+            <p class="muted">Example at $1.5M annualized revenue: interchange $450K–$675K, yield $300K–$450K, transparency $225K–$375K, intake $150K–$300K, special fees $0–$150K.</p>
+          </div>
+        </div>
+      </section>
     </section>
 
 <section>

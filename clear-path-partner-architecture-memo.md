@@ -571,82 +571,158 @@ The original mission concept becomes stronger once the company can credibly say:
 
 # 4A. Pricing / Fee Model by Phase
 
+## Pricing philosophy
+Clear Path should avoid looking like a traditional SaaS platform that charges for every knob and drawer.
+
+The preferred model is:
+- **low friction to adopt**
+- **standard functionality feels generous**
+- **core monetization comes from financial activity and balances**
+- **the only major premium feature is granular transparency**
+
+That means most revenue should come from:
+1. **money in** (transaction economics)
+2. **money held** (yield share)
+3. **money spent** (interchange)
+4. **money moved faster** (accelerated payout / treasury action fees, where appropriate)
+
+The one premium feature worth charging for is:
+- **granular transparency**
+  - donation-to-fund traceability
+  - fund-to-expense traceability
+  - donor-facing trust layers
+  - board / audit-grade reporting
+
 ## Phase 1 — Trust + Savings Wedge
 ### Suggested customer-facing fee model
 - **No platform setup fee**
 - **No monthly platform fee** for basic adoption
-- **Donation processing / intake pricing:** priced in line with major church/nonprofit platforms, with ACH positioned as the clear cost-saving rail
-- **Illustrative intake pricing target:**
-  - **Cards / digital wallets:** ~**2.2%–2.9% + $0.30** per transaction depending on volume/partner economics
-  - **ACH / bank transfer:** ~**0.0% + $0.30** on the most aggressive end, or more realistically **0.5%–1.0% + small fixed fee** depending on partner stack
-  - **Wire:** typically pass-through or admin fee based, positioned for larger transfers rather than donor-facing primary use
-- **ACH migration incentive:** one-time incentive cost treated as customer acquisition / margin investment
+- **Cards / digital wallets:** ~**2.2%–2.9% + $0.30**
+- **ACH / bank transfer:** ideally ~**0.0% + $0.30** on the strongest end; more realistically **0.5%–1.0% + small fixed fee** depending on partner stack
+- **Wire:** pass-through or simple admin fee for larger transfers, not a donor-facing hero rail
+- **Granular transparency (premium):** **$49–$149/month**
 
-### Suggested feature pricing
-- **Standard donor reporting:** included
-- **Standard restricted-fund reporting:** included
-- **Advanced traceability / board-grade reporting:** $49–$149/month per organization
-- **Custom implementation / concierge migration (optional):** $250–$1,500 one-time, only if needed for higher-touch customers
+### Estimated revenue contribution by fee type
+Assuming a mid-sized early customer:
+- annual giving volume: **$1M–$5M**
+- moderate ACH adoption improvements
+- 0–1 premium transparency upgrade
 
-### Economics notes
-- This phase should lean on transaction economics and ACH-margin improvement more than explicit software fees.
-- If ACH / wire economics are materially better than cards, Clear Path can save the customer money while keeping or improving its own margin profile.
+#### Revenue sources
+- **Transaction economics / intake fees:** ~**60%–85%** of Phase 1 revenue
+- **Granular transparency premium:** ~**10%–25%** of Phase 1 revenue
+- **Other / misc service economics:** ~**0%–15%**
+
+#### Revenue target reminder
+- **$25K–$75K annualized run-rate** by end of phase
+
+#### Example phase economics
+If total annualized revenue is **$50K**:
+- intake economics: **$30K–$42K**
+- transparency premium: **$5K–$12K**
+- misc / one-off support / implementation: **$0–$8K**
 
 ## Phase 2 — Treasury Layer + Yield Participation
 ### Suggested customer-facing fee model
-- **Yield share:** 10%–20% of net yield produced for the customer, with 20% as the aggressive upside-aligned target and 10%–15% as a softer launch target if needed
-- **No mandatory treasury platform fee** for entry tier if possible
-- **Optional premium treasury package:** $99–$299/month
+- **No mandatory platform fee**
+- **Yield share:** **10%–20%** of net yield produced
+- **Cards / ACH pricing remains in line with Phase 1**
+- **Granular transparency (premium):** **$99–$249/month**
+- **Accelerated payout / treasury action fee:** **0.25%–1.00%** of accelerated amount when used
 
-### Suggested feature pricing
-- **Governed treasury account:** included in treasury relationship
-- **Advanced treasury reporting / board exports:** $99–$249/month
-- **Multi-admin approvals / advanced governance:** $49–$199/month depending on organization complexity
-- **Accelerated payout / treasury action fee:** 0.25%–1.00% of accelerated amount, or fixed minimum fee if partner economics require it
+### Estimated revenue contribution by fee type
+Assuming organizations begin to keep meaningful designated balances in-system:
 
-### Economics notes
-- This phase is where Clear Path begins to earn from balances rather than only from intake events.
-- A good operating principle is: no ugly monthly software tax unless tied to clearly premium treasury/governance features.
+#### Revenue sources
+- **Yield share:** ~**35%–55%** of Phase 2 revenue
+- **Transaction economics / intake fees:** ~**20%–35%**
+- **Granular transparency premium:** ~**10%–20%**
+- **Accelerated payout / treasury actions:** ~**5%–15%**
+
+#### Revenue target reminder
+- **$150K–$500K annualized run-rate** by end of phase
+
+#### Example phase economics
+If total annualized revenue is **$300K**:
+- yield share: **$105K–$165K**
+- intake economics: **$60K–$105K**
+- transparency premium: **$30K–$60K**
+- accelerated payout / treasury actions: **$15K–$45K**
 
 ## Phase 3 — Controlled Spend + Card Programs
 ### Suggested customer-facing fee model
-- **Core card/spend program:** included for anchor customers or offered as premium program add-on
-- **Interchange share:** revenue primarily retained behind the scenes, not usually sold as a direct customer fee
-- **Advanced spend controls / governance package:** $99–$499/month depending on scale
+- **No per-card junk fees if avoidable**
+- **No mandatory per-beneficiary or case-management fees as core strategy**
+- **Interchange retained behind the scenes** as the major deployment-economics layer
+- **Granular transparency (premium):** **$149–$399/month** depending on organization complexity and reporting depth
+- **Accelerated payout / treasury action fee:** still available where useful
 
-### Suggested feature pricing
-- **Virtual cards:** included or low-cost in premium tier
-- **Physical cards:** pass-through cost or small per-card fee ($5–$25 per card depending on issuance economics)
-- **Advanced MCC / policy controls:** $49–$249/month
-- **Receipt enforcement / audit workflow:** $49–$149/month
-- **Program administration / multi-team budgeting:** $99–$499/month
+### Estimated revenue contribution by fee type
+Assuming real card / spend adoption:
 
-### Economics notes
-- In this phase, interchange and premium governance features should both matter.
-- Early interchange assumptions should stay conservative, but mature negotiated economics may improve materially with volume and strong partner relationships.
+#### Revenue sources
+- **Interchange:** ~**35%–55%** of Phase 3 revenue
+- **Yield share:** ~**20%–35%**
+- **Transaction economics / intake fees:** ~**10%–20%**
+- **Granular transparency premium:** ~**10%–20%**
+- **Accelerated payout / treasury actions:** ~**5%–10%**
+
+#### Revenue target reminder
+- **$500K–$1.5M+ annualized run-rate** by end of phase
+
+#### Example phase economics
+If total annualized revenue is **$1M**:
+- interchange: **$350K–$550K**
+- yield share: **$200K–$350K**
+- intake economics: **$100K–$200K**
+- transparency premium: **$100K–$200K**
+- accelerated payout / treasury actions: **$50K–$100K**
 
 ## Phase 4 — Mission Operating System
 ### Suggested customer-facing fee model
-- **Program administration fee:** $99–$999/month depending on program complexity and beneficiary count
-- **Interchange:** retained behind the scenes as part of spend program economics
-- **Mission-grade compliance / transparency reporting:** premium feature layer
+- keep core platform low-friction
+- keep standard reporting and usability included
+- continue monetizing primarily from:
+  - interchange
+  - yield share
+  - intake economics where applicable
+- **Granular transparency (premium):** **$149–$499/month** depending on reporting depth and donor/program transparency expectations
+- only charge program admin / bespoke workflow fees in unusual enterprise or highly customized situations
 
-### Suggested feature pricing
-- **Beneficiary / program reporting:** $99–$299/month
-- **Advanced donor transparency / traceability views:** $49–$199/month
-- **Case-management / support workflow layer:** $149–$999/month depending on integration depth and org size
+### Estimated revenue contribution by fee type
+In the mature mission/program phase:
 
-### Economics notes
-- This phase likely combines interchange, program admin revenue, premium reporting, and treasury economics.
-- It should not depend entirely on one source of revenue.
+#### Revenue sources
+- **Interchange:** ~**30%–45%**
+- **Yield share:** ~**20%–30%**
+- **Granular transparency premium:** ~**15%–25%**
+- **Transaction economics / intake fees:** ~**10%–20%**
+- **Program admin / special service fees:** ~**0%–10%**
+
+#### Revenue target reminder
+- **$1M+ annualized run-rate**
+
+#### Example phase economics
+If total annualized revenue is **$1.5M**:
+- interchange: **$450K–$675K**
+- yield share: **$300K–$450K**
+- transparency premium: **$225K–$375K**
+- intake economics: **$150K–$300K**
+- special service/admin fees: **$0–$150K**
 
 ## Cross-phase pricing principle
-The preferred pricing posture is:
-- keep adoption friction low
-- avoid ugly upfront fees where possible
-- make standard functionality feel generous
-- charge for premium transparency, governance, acceleration, and mission/program complexity
-- participate in value created through yield and usage where partner economics allow
+The pricing model should feel like this:
+- **use the platform freely enough that adoption grows**
+- **pay competitive intake pricing**
+- **let ACH become the obvious better rail**
+- **let balances and spend generate most of the company’s economics over time**
+- **pay extra only for trust amplification via granular transparency**
+
+That is the cleanest expression of the Clear Path model:
+- low-friction adoption
+- aligned upside on balances
+- strong monetization from spend volume
+- one meaningful premium feature that helps customers raise and retain more money
 
 # 5. Build-vs-Buy Summary by Layer
 
