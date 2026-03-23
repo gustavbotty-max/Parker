@@ -155,6 +155,26 @@ Option C is the middle path:
 ### Product framing
 Externally, this should be framed as a **Clear Path Treasury Account** or governed treasury system, not as a raw Solana wallet. The wallet is infrastructure; the user-facing product is secure business account access with policy and recovery.
 
+
+## Roadmap Item: ACH / Wire Migration Incentives
+A high-priority early roadmap item is to create a simple donor or customer migration incentive that encourages switching from card-based giving to ACH / bank transfer / wire where appropriate.
+
+### Why this matters
+- lowers processing costs for churches and nonprofits quickly
+- creates immediate visible ROI that Clear Path can point to early in a relationship
+- improves unit economics for both the customer and Clear Path
+- gives sales a simple practical proof point: "we helped you save ~2% and we're just getting started"
+- aligns with the goal of delivering obvious value right up front rather than waiting for more advanced treasury features
+
+### Product direction
+- make ACH/bank setup extremely easy (for example via Plaid-like bank linking)
+- focus first on recurring donors and higher-value repeat donors, where fee savings compound over time
+- possible one-time switch incentive or reward for moving recurring giving from card to ACH
+- likely better to frame around helping the mission keep more money than around warning donors about card fees
+
+### Why it fits the broader model
+This feature does not depend on the full long-term treasury or card vision to create value. It can act as a practical beachhead feature that produces measurable savings and trust early while larger treasury, reporting, and controlled-spend systems are still being built.
+
 ## Funding / Timeline
 ### NC IDEA
 - Spring 2026 applications closed: Feb 23, 2026
