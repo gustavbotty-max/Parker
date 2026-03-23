@@ -569,6 +569,81 @@ The original mission concept becomes stronger once the company can credibly say:
 
 ---
 
+# 4A. Pricing / Fee Model by Phase
+
+## Phase 1 — Trust + Savings Wedge
+### Suggested customer-facing fee model
+- **No platform setup fee**
+- **No monthly platform fee** for basic adoption
+- **Donation processing / intake pricing:** priced to be competitive with incumbents and especially strong on ACH
+- **ACH migration incentive:** one-time incentive cost treated as customer acquisition / margin investment
+
+### Suggested feature pricing
+- **Standard donor reporting:** included
+- **Standard restricted-fund reporting:** included
+- **Advanced traceability / board-grade reporting:** $49–$149/month per organization
+- **Custom implementation / concierge migration (optional):** $250–$1,500 one-time, only if needed for higher-touch customers
+
+### Economics notes
+- This phase should lean on transaction economics and ACH-margin improvement more than explicit software fees.
+- If ACH / wire economics are materially better than cards, Clear Path can save the customer money while keeping or improving its own margin profile.
+
+## Phase 2 — Treasury Layer + Yield Participation
+### Suggested customer-facing fee model
+- **Yield share:** 10%–20% of net yield produced for the customer, with 20% as the aggressive upside-aligned target and 10%–15% as a softer launch target if needed
+- **No mandatory treasury platform fee** for entry tier if possible
+- **Optional premium treasury package:** $99–$299/month
+
+### Suggested feature pricing
+- **Governed treasury account:** included in treasury relationship
+- **Advanced treasury reporting / board exports:** $99–$249/month
+- **Multi-admin approvals / advanced governance:** $49–$199/month depending on organization complexity
+- **Accelerated payout / treasury action fee:** 0.25%–1.00% of accelerated amount, or fixed minimum fee if partner economics require it
+
+### Economics notes
+- This phase is where Clear Path begins to earn from balances rather than only from intake events.
+- A good operating principle is: no ugly monthly software tax unless tied to clearly premium treasury/governance features.
+
+## Phase 3 — Controlled Spend + Card Programs
+### Suggested customer-facing fee model
+- **Core card/spend program:** included for anchor customers or offered as premium program add-on
+- **Interchange share:** revenue primarily retained behind the scenes, not usually sold as a direct customer fee
+- **Advanced spend controls / governance package:** $99–$499/month depending on scale
+
+### Suggested feature pricing
+- **Virtual cards:** included or low-cost in premium tier
+- **Physical cards:** pass-through cost or small per-card fee ($5–$25 per card depending on issuance economics)
+- **Advanced MCC / policy controls:** $49–$249/month
+- **Receipt enforcement / audit workflow:** $49–$149/month
+- **Program administration / multi-team budgeting:** $99–$499/month
+
+### Economics notes
+- In this phase, interchange and premium governance features should both matter.
+- Early interchange assumptions should stay conservative, but mature negotiated economics may improve materially with volume and strong partner relationships.
+
+## Phase 4 — Mission Operating System
+### Suggested customer-facing fee model
+- **Program administration fee:** $99–$999/month depending on program complexity and beneficiary count
+- **Interchange:** retained behind the scenes as part of spend program economics
+- **Mission-grade compliance / transparency reporting:** premium feature layer
+
+### Suggested feature pricing
+- **Beneficiary / program reporting:** $99–$299/month
+- **Advanced donor transparency / traceability views:** $49–$199/month
+- **Case-management / support workflow layer:** $149–$999/month depending on integration depth and org size
+
+### Economics notes
+- This phase likely combines interchange, program admin revenue, premium reporting, and treasury economics.
+- It should not depend entirely on one source of revenue.
+
+## Cross-phase pricing principle
+The preferred pricing posture is:
+- keep adoption friction low
+- avoid ugly upfront fees where possible
+- make standard functionality feel generous
+- charge for premium transparency, governance, acceleration, and mission/program complexity
+- participate in value created through yield and usage where partner economics allow
+
 # 5. Build-vs-Buy Summary by Layer
 
 ## Layer: Donations / money in
