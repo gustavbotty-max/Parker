@@ -63,3 +63,49 @@ Prefer embedded/local delivery for unattended cron jobs, and always specify the 
 - Tags: cron, telegram, openclaw, context-overflow, delivery
 
 ---
+
+## [LRN-20260314-001] correction
+
+**Logged**: 2026-03-14T20:48:00Z
+**Priority**: high
+**Status**: pending
+**Area**: docs
+
+### Summary
+For grocery planning, broadening from weekly items to monthly household needs requires expanding the distinct item set, not just increasing quantities on the same shortlist.
+
+### Details
+Jonathan pointed out that the broadened Google Sheet still felt wrong because it mostly reused the same core weekly items with larger volume assumptions. The correct interpretation of "all items we buy at least once per month" is to include more distinct recurring categories/items from purchase history, not just monthlyized weekly staples.
+
+### Suggested Action
+When building household-needs sheets, start from the recurring-item universe (e.g. bought at least once in the last 4 months or satisfying the 4-month block rule), then assign store recommendations. Keep separate outputs for master needs, Costco trip list, Aldi pickup, and Walmart pickup.
+
+### Metadata
+- Source: user_feedback
+- Related Files: weekly_mock_order_3store_2026-03-14.md, master_household_needs_list.csv
+- Tags: grocery, planning, sheet-design, correction
+
+---
+
+## [LRN-20260323-001] best_practice
+
+**Logged**: 2026-03-23T21:40:00Z
+**Priority**: high
+**Status**: pending
+**Area**: docs
+
+### Summary
+When publishing Parker blog posts, update both the main blog index and the homepage recent-articles grid (including duplicated `Parker/` site copies), not just `blog.html`.
+
+### Details
+A recurring publishing issue caused new posts to appear only after clicking "View All Articles" because `scripts/publish_blog_post.py` updated the blog index but did not update the homepage article cards. The repo also contains duplicate site copies under both the root and `Parker/`, so a publish helper that only touches one surface silently leaves the live site out of sync.
+
+### Suggested Action
+Keep the publish helper responsible for syncing all blog surfaces in one run: generated post HTML, `blog.html`, homepage recent-articles section, and the mirrored `Parker/` copies. After publishing, verify the new slug appears in both `index.html` and `blog.html` before pushing.
+
+### Metadata
+- Source: user_feedback
+- Related Files: scripts/publish_blog_post.py, index.html, blog.html, Parker/index.html, Parker/blog.html
+- Tags: parker, blog, publishing, homepage, sync, self-improvement
+
+---

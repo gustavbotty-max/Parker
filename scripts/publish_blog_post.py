@@ -11,8 +11,9 @@ from pathlib import Path
 from typing import Dict, List, Tuple
 
 ROOT = Path(__file__).resolve().parent.parent
-BLOG_INDEX_PATH = ROOT / "blog.html"
-BLOG_POSTS_DIR = ROOT / "blog-posts"
+BLOG_INDEX_PATHS = [ROOT / "blog.html", ROOT / "Parker" / "blog.html"]
+HOME_INDEX_PATHS = [ROOT / "index.html", ROOT / "Parker" / "index.html"]
+BLOG_POSTS_DIRS = [ROOT / "blog-posts", ROOT / "Parker" / "blog-posts"]
 CANONICAL_BASE = "https://gustavbotty-max.github.io/Parker"
 
 CATEGORY_MAP = {
@@ -247,25 +248,39 @@ def build_card_html(title: str, slug: str, date_label: str, read_time: str, exce
     )
 
 
-def update_blog_index(slug: str, title: str, date_label: str, read_time: str, excerpt: str, topics: List[str]):
-    if not BLOG_INDEX_PATH.exists():
-        raise FileNotFoundError("blog.html not found")
+def _update_card_grid(path: Path, card_html: str, slug: str, limit: int | None = None):
+    if not path.exists():
+        return
+    content = path.read_text()
+    link_token = f"blog-posts/{slug}.html"
+    existing_pattern = re.compile(rf"\n\s*<a href=\"{re.escape(link_token)}\"[\s\S]*?</a>\n", re.MULTILINE)
+    content = re.sub(existing_pattern, "\n", content, count=1)
+    marker = "<div style=\"display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:1.5rem;\">"
+    start_idx = content.find(marker)
+    if start_idx == -1:
+        raise RuntimeError(f"Blog grid marker not found in {path}")
+    grid_start = content.find("\n", start_idx + len(marker)) + 1
+    grid_end = content.find("</div>", grid_start)
+    grid = content[grid_start:grid_end]
+    card_pattern = re.compile(r"\n\s*<a href=\"blog-posts/[^\"]+\.html\" class=\"blog-card\"[\s\S]*?</a>\n", re.MULTILINE)
+    cards = card_pattern.findall(grid)
+    cards.insert(0, card_html + "\n")
+    if limit is not None:
+        cards = cards[:limit]
+    new_grid = ''.join(cards)
+    updated = content[:grid_start] + new_grid + content[grid_end:]
+    path.write_text(updated)
+
+
+def update_blog_indexes(slug: str, title: str, date_label: str, read_time: str, excerpt: str, topics: List[str]):
     category_key = topics[0].lower() if topics else "financial planning"
     category_label = CATEGORY_MAP.get(category_key, "📘 Financial Insights")
     tags = topics if topics else ["Money"]
     card_html = build_card_html(title, slug, date_label, read_time, excerpt, tags, category_label)
-    content = BLOG_INDEX_PATH.read_text()
-    link_token = f"blog-posts/{slug}.html"
-    pattern = re.compile(rf"\n\s*<a href=\"{re.escape(link_token)}\"[\s\S]*?</a>\n", re.MULTILINE)
-    content = re.sub(pattern, "\n", content, count=1)
-    marker = "<div style=\"display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:1.5rem;\">"
-    idx = content.find(marker)
-    if idx == -1:
-        raise RuntimeError("Blog grid marker not found in blog.html")
-    insert_pos = content.find("\n", idx + len(marker)) + 1
-    updated = content[:insert_pos] + card_html + "\n" + content[insert_pos:]
-    BLOG_INDEX_PATH.write_text(updated)
-
+    for path in BLOG_INDEX_PATHS:
+        _update_card_grid(path, card_html, slug, limit=None)
+    for path in HOME_INDEX_PATHS:
+        _update_card_grid(path, card_html, slug, limit=4)
 
 def main(md_file: str):
     md_path = Path(md_file)
@@ -275,9 +290,12 @@ def main(md_file: str):
     body_html = md_to_html(body)
     slug = md_path.stem
     html = build_post_html(front_matter, body_html, slug)
-    BLOG_POSTS_DIR.mkdir(exist_ok=True)
-    out_path = BLOG_POSTS_DIR / f"{slug}.html"
-    out_path.write_text(html)
+    out_paths = []
+    for blog_posts_dir in BLOG_POSTS_DIRS:
+        blog_posts_dir.mkdir(exist_ok=True)
+        out_path = blog_posts_dir / f"{slug}.html"
+        out_path.write_text(html)
+        out_paths.append(out_path)
     date_val = front_matter.get("date", datetime.now().strftime("%Y-%m-%d"))
     try:
         date_label = datetime.fromisoformat(date_val).strftime("%b %e, %Y").replace(" 0", " ")
@@ -294,8 +312,8 @@ def main(md_file: str):
         topics = list(topics_raw)
     if not topics:
         topics = ["Financial Planning"]
-    update_blog_index(slug, front_matter.get("title", slug), date_label, front_matter.get("read_time", "5 min"), excerpt, topics)
-    print(f"Published blog HTML to {out_path} and updated blog index")
+    update_blog_indexes(slug, front_matter.get("title", slug), date_label, front_matter.get("read_time", "5 min"), excerpt, topics)
+    print("Published blog HTML to " + ", ".join(str(p) for p in out_paths) + " and updated homepage/blog indexes")
 
 
 if __name__ == "__main__":
