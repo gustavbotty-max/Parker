@@ -575,7 +575,11 @@ The original mission concept becomes stronger once the company can credibly say:
 ### Suggested customer-facing fee model
 - **No platform setup fee**
 - **No monthly platform fee** for basic adoption
-- **Donation processing / intake pricing:** priced to be competitive with incumbents and especially strong on ACH
+- **Donation processing / intake pricing:** priced in line with major church/nonprofit platforms, with ACH positioned as the clear cost-saving rail
+- **Illustrative intake pricing target:**
+  - **Cards / digital wallets:** ~**2.2%–2.9% + $0.30** per transaction depending on volume/partner economics
+  - **ACH / bank transfer:** ~**0.0% + $0.30** on the most aggressive end, or more realistically **0.5%–1.0% + small fixed fee** depending on partner stack
+  - **Wire:** typically pass-through or admin fee based, positioned for larger transfers rather than donor-facing primary use
 - **ACH migration incentive:** one-time incentive cost treated as customer acquisition / margin investment
 
 ### Suggested feature pricing
