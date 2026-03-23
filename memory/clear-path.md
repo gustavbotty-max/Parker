@@ -105,6 +105,56 @@ Observed pattern:
 - many churches appear to be paying meaningful card/ACH processing costs plus platform overhead
 - incumbents often win on bundling, inertia, and admin familiarity rather than true fee / treasury optimization
 
+
+## Wallet Access / Governance Direction
+The preferred architecture direction is **Option C: governed wallet access**.
+
+### Why Option C
+Clear Path likely cannot avoid wallet-backed infrastructure if Solana / USDC is truly part of the treasury layer, but raw self-custody would create major UX and operational problems, while fully Clear Path-managed custody increases regulatory and trust burden.
+
+Option C is the middle path:
+- wallet-backed accounts exist under the hood
+- customer experience feels like a governed business treasury account, not a crypto-native wallet app
+- organizations have role-based access rather than universal raw key control
+- recovery, multi-device access, and approval workflows are built in from day one
+
+### Architecture principles
+- **Wallet-backed, not wallet-first**
+- **Org-controlled, not founder-controlled**
+- **Recoverable, not seed-phrase-dependent**
+- **Role-based, not all-or-nothing**
+- **Approval-driven for sensitive treasury actions**
+- **Auditable at every important action**
+
+### Example permission model
+- **Treasurer / Finance Admin**
+  - view balances
+  - initiate transfers
+  - manage fund permissions
+  - approve settlements
+- **Executive / Senior Admin**
+  - approve major actions
+  - manage admins / policy rules
+  - read treasury and fund reporting
+- **Program / Operations Admin**
+  - manage budgets and card controls
+  - approve program disbursements
+  - view restricted funds and spend
+- **Cardholder / Staff User**
+  - spend within assigned rules only
+  - no direct treasury control
+
+### Required day-one capabilities
+- multi-device login / verification
+- recoverable account access
+- multiple org admins
+- role-based permissions
+- approval rules for sensitive treasury actions
+- audit trail of logins, approvals, recoveries, and money movement
+
+### Product framing
+Externally, this should be framed as a **Clear Path Treasury Account** or governed treasury system, not as a raw Solana wallet. The wallet is infrastructure; the user-facing product is secure business account access with policy and recovery.
+
 ## Funding / Timeline
 ### NC IDEA
 - Spring 2026 applications closed: Feb 23, 2026
