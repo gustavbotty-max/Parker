@@ -163,3 +163,30 @@ For email triage prompts and logic, classify replies/confirmations in active sch
 - Last-Seen: 2026-03-24
 
 ---
+
+## [LRN-20260324-003] best_practice
+
+**Logged**: 2026-03-24T20:35:00Z
+**Priority**: high
+**Status**: pending
+**Area**: tooling
+
+### Summary
+When prompting an agent to use `gog calendar`, include the exact create command syntax. Otherwise the model may hallucinate `gog calendar events create`, which fails even though calendar access is working.
+
+### Details
+The email cron agent correctly identified sports scheduling emails and attempted calendar creation, but used the invalid command `gog calendar events create ...` instead of the real syntax `gog calendar create <calendarId> --summary ... --from ... --to ...`. This produced misleading “technical issue” messages that looked like calendar access failures when the real problem was bad CLI syntax selection by the model.
+
+### Suggested Action
+When an agent must use `gog calendar`, provide the exact create command shape in the prompt and prefer one canonical calendar ID (`gustavbotty@gmail.com`) for creation. Avoid vague instructions like `gog calendar events/create` that invite hallucinated subcommands.
+
+### Metadata
+- Source: recurring_tool_failure
+- Related Files: /usr/local/bin/check_agentmail.sh
+- Tags: gog, calendar, cli, prompting, cron, reliability
+- Pattern-Key: harden.gog_calendar_exact_command
+- Recurrence-Count: 1
+- First-Seen: 2026-03-24
+- Last-Seen: 2026-03-24
+
+---
