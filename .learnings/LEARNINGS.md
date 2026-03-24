@@ -190,3 +190,30 @@ When an agent must use `gog calendar`, provide the exact create command shape in
 - Last-Seen: 2026-03-24
 
 ---
+
+## [LRN-20260324-004] preference
+
+**Logged**: 2026-03-24T20:36:00Z
+**Priority**: medium
+**Status**: pending
+**Area**: user_preference
+
+### Summary
+For auto-created calendar events from email triage, add attendees only for direct human meeting threads. Sports, school/team events, reminders, and informational schedule items should be created on Jonathan's calendar only with no attendees.
+
+### Details
+Jonathan explicitly prefers that passive or informational scheduling items (such as kids sports events) not invite anyone else. Invites should be reserved for genuine person-to-person scheduling threads where the attendee is clearly part of the meeting.
+
+### Suggested Action
+In email-driven calendar automation, default to no attendees unless the event comes from a direct human scheduling exchange and the attendee is clearly appropriate.
+
+### Metadata
+- Source: user_feedback
+- Related Files: /usr/local/bin/check_agentmail.sh
+- Tags: calendar, attendees, preference, cron, scheduling
+- Pattern-Key: pref.calendar_attendees_only_for_direct_meetings
+- Recurrence-Count: 1
+- First-Seen: 2026-03-24
+- Last-Seen: 2026-03-24
+
+---
