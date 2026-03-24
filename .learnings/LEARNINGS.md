@@ -109,3 +109,30 @@ Keep the publish helper responsible for syncing all blog surfaces in one run: ge
 - Tags: parker, blog, publishing, homepage, sync, self-improvement
 
 ---
+
+## [LRN-20260324-001] best_practice
+
+**Logged**: 2026-03-24T12:20:00Z
+**Priority**: high
+**Status**: pending
+**Area**: infra
+
+### Summary
+For unattended OpenClaw cron-style agent runs, avoid the main session lane and pin the current OpenClaw binary explicitly.
+
+### Details
+The `check_agentmail.sh` cron job was intermittently failing not because email parsing was broken, but because its `openclaw agent --local` handoff was colliding with the main session JSONL lock. Cron also resolved `openclaw` to `/usr/bin/openclaw` (2026.3.8) while the active installed version was `/home/ubuntu/.nvm/versions/node/v22.22.0/bin/openclaw` (2026.3.13), causing config-version mismatch warnings. The more reliable pattern is to (1) use the current binary explicitly, (2) route through a dedicated non-main agent session, and (3) add a shell lock to prevent overlapping cron runs.
+
+### Suggested Action
+Use a dedicated agent (not the main session), pin the current OpenClaw binary path inside the script, and protect the cron script with `flock` so overlapping runs skip instead of stacking. For email triage specifically, allow proactive calendar checks/creation only when the scheduling signal is obvious.
+
+### Metadata
+- Source: simplify-and-harden
+- Related Files: /usr/local/bin/check_agentmail.sh
+- Tags: cron, openclaw, locking, agentmail, reliability
+- Pattern-Key: harden.cron_agent_session_locking
+- Recurrence-Count: 1
+- First-Seen: 2026-03-24
+- Last-Seen: 2026-03-24
+
+---
