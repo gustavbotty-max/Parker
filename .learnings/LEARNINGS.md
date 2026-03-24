@@ -136,3 +136,30 @@ Use a dedicated agent (not the main session), pin the current OpenClaw binary pa
 - Last-Seen: 2026-03-24
 
 ---
+
+## [LRN-20260324-002] correction
+
+**Logged**: 2026-03-24T15:20:00Z
+**Priority**: high
+**Status**: pending
+**Area**: infra
+
+### Summary
+Scheduling triage must treat reply confirmations without explicit times as scheduling events when the subject/thread clearly refers to an already-arranged meeting.
+
+### Details
+The email triage flow missed a Ben Talton scheduling confirmation because the latest email body only said things like "sounds great" / "look forward to meeting you then" without restating the exact date/time. The message still belonged to a scheduling thread and should have triggered a calendar lookup by subject/participants before replying `All clear`.
+
+### Suggested Action
+For email triage prompts and logic, classify replies/confirmations in active scheduling threads as scheduling items even when the newest message lacks explicit time text. Use subject names, participant names, and nearby dates to verify whether a calendar event already exists, and create one only if the meeting can be inferred confidently and no matching event is found.
+
+### Metadata
+- Source: user_feedback
+- Related Files: /usr/local/bin/check_agentmail.sh
+- Tags: email, scheduling, calendar, triage, prompt-design
+- Pattern-Key: harden.email_thread_scheduling_detection
+- Recurrence-Count: 1
+- First-Seen: 2026-03-24
+- Last-Seen: 2026-03-24
+
+---
