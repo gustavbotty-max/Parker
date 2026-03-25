@@ -175,6 +175,40 @@ A high-priority early roadmap item is to create a simple donor or customer migra
 ### Why it fits the broader model
 This feature does not depend on the full long-term treasury or card vision to create value. It can act as a practical beachhead feature that produces measurable savings and trust early while larger treasury, reporting, and controlled-spend systems are still being built.
 
+
+### Additional competitor cluster: tap / connect / church communication layer
+These are not all direct giving competitors, but they matter because they compete for the front-end church relationship around communication, engagement, QR/NFC interactions, and digital next steps.
+
+- **Clearstream** — church texting/email platform with tap tags, workflows, custom microsites, QR codes, and church communication tooling. Tap Tags are advertised at roughly **$2 each** with free shipping. Strong competitor on the church engagement / “tap to connect” wedge.
+- **Text In Church** — church texting and guest follow-up platform focused on digital connect cards, workflows, follow-up automation, and retention.
+- **Overflow Tap** — part of Overflow’s generosity/giving product family; likely strong specifically around tap-enabled generosity experiences.
+- **Twilio** — not a direct church product, but the raw communications infrastructure layer that can power texting, automation, and verification for other products.
+- **Gloo** — faith ecosystem technology platform focused on connection and engagement at a broader ecosystem level.
+- **Flocknote** — church communication, household database, online giving, donor management, and registrations in one church-specific platform.
+- **EZ Texting** — general SMS marketing platform with text-to-pay and text-to-give style features, but not church-native in the same way as the church-specific products.
+
+### Strategic read on this competitor cluster
+- **Clearstream** is the most relevant near-term comparison for the emerging “Tap to Connect” concept because it already frames NFC/tap products as connection tools for giving, volunteering, and more, not just money asks.
+- **Text In Church** competes more on communication, guest follow-up, and retention than on treasury or money infrastructure.
+- **Overflow Tap** appears relevant on generosity UX specifically, but less obviously on treasury, transparency, or controlled spend.
+- **Twilio** is mostly infrastructure, not a true church product competitor.
+- **Gloo** competes for the broader faith-tech relationship layer, not the financial operating layer directly.
+- **Flocknote** is a serious church software competitor because it combines communication + giving + database features in one place.
+- **EZ Texting** is more of a horizontal SMS platform than a direct church-fintech product.
+
+### How Clear Path can stack up against this cluster
+The strongest angle is not to out-Clearstream Clearstream on messaging or out-Twilio Twilio on raw communications. Clear Path should differentiate by combining:
+- modern church-facing connection tools (e.g. Tap to Connect)
+- giving and ACH migration
+- restricted-fund / granular transparency
+- treasury direction over time
+- eventually controlled spend / deployment logic
+
+In other words:
+- **Clearstream / Text In Church / Flocknote** win on communication and engagement
+- **Clear Path** can become stronger if it turns connection into the top of a deeper financial operating system
+
+
 ## Funding / Timeline
 ### NC IDEA
 - Spring 2026 applications closed: Feb 23, 2026
