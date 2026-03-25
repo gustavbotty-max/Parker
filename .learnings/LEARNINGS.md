@@ -246,3 +246,30 @@ For future pitch decks and presentation work, separate the tasks into:
 - Last-Seen: 2026-03-25
 
 ---
+
+## [LRN-20260325-002] preference
+
+**Logged**: 2026-03-25T18:05:00Z
+**Priority**: medium
+**Status**: pending
+**Area**: user_preference
+
+### Summary
+The email-scan cron should not auto-add routine Counter Culture workshops or training emails to Jonathan's calendar.
+
+### Details
+Jonathan explicitly said there is no need for the cron-driven email scan to create calendar events for Counter Culture workshops. These are different from direct person-to-person scheduling threads and should be treated as informational unless Jonathan explicitly asks otherwise.
+
+### Suggested Action
+Exclude routine Counter Culture workshops/trainings from auto-calendar creation. They can still surface as Need to Know if relevant, but should not create events by default.
+
+### Metadata
+- Source: user_feedback
+- Related Files: /usr/local/bin/check_agentmail.sh
+- Tags: calendar, cron, preference, counter-culture, workshops
+- Pattern-Key: pref.no_auto_calendar_for_counter_culture_workshops
+- Recurrence-Count: 1
+- First-Seen: 2026-03-25
+- Last-Seen: 2026-03-25
+
+---
