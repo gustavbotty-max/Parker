@@ -215,6 +215,23 @@
         </div>
     </section>
 
+    <section class="section" style="padding-top:0;">
+        <div class="container">
+            <div style="background:var(--bg); padding:1.75rem; border-radius:var(--radius); border:1px solid var(--border); max-width:760px; margin:0 auto;">
+                <h2 style="margin-bottom:0.5rem;">Subscribe for More Articles</h2>
+                <p style="color:var(--text-light); margin-bottom:1rem;">Get new articles and simple money insights in your inbox.</p>
+                <form id="blogSubscribeForm" style="display:flex; gap:0.75rem; flex-wrap:wrap; align-items:end;">
+                    <div style="flex:1 1 240px;">
+                        <label for="subscribeEmail" style="display:block;font-weight:600;margin-bottom:0.25rem;font-size:0.9rem;">Email Address</label>
+                        <input type="email" id="subscribeEmail" required placeholder="you@email.com" style="width:100%;padding:0.75rem;border:1px solid var(--border);border-radius:var(--radius);font-size:0.95rem;">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Subscribe for More Articles</button>
+                </form>
+                <div id="blogSubscribeStatus" style="display:none; margin-top:0.75rem; font-weight:600;"></div>
+            </div>
+        </div>
+    </section>
+
     <footer class="site-footer"><div class="container"><div class="footer-grid">
         <div class="footer-section"><h4>Calculators</h4><ul>
             <li><a href="insurance-calculator.html">Life Insurance</a></li><li><a href="retirement-planning-calculator.html">Retirement Planning</a></li>
@@ -242,5 +259,43 @@
     <a href="https://scheduler.zoom.us/jonathan-parker-i9rj3o/pfs-intro" target="_blank" rel="noopener" class="floating-cta">
         📅 <span class="cta-text-full">Book a Free Call</span><span class="cta-text-short">Book Call</span>
     </a>
+
+    <script>
+        document.getElementById('blogSubscribeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var email = document.getElementById('subscribeEmail').value;
+            if (!email) return;
+            var btn = this.querySelector('button');
+            var status = document.getElementById('blogSubscribeStatus');
+            btn.textContent = 'Subscribing...'; btn.disabled = true;
+            status.style.display = 'none';
+            fetch('https://formspree.io/f/xkovojay', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({
+                    email: email,
+                    message: 'Blog subscribe request',
+                    lead_source: 'blog-subscribe',
+                    timestamp: new Date().toISOString()
+                })
+            }).then(function(r){ return r.json(); }).then(function(d){
+                status.style.display = 'block';
+                if (d.ok) {
+                    status.style.color = '#1a7f37';
+                    status.textContent = '✅ You\'re on the list. I\'ll send new articles here.';
+                    document.getElementById('blogSubscribeForm').reset();
+                } else {
+                    status.style.color = '#c62828';
+                    status.textContent = 'Something went wrong. Please try again.';
+                }
+                btn.textContent = 'Subscribe for More Articles'; btn.disabled = false;
+            }).catch(function(){
+                status.style.display = 'block';
+                status.style.color = '#c62828';
+                status.textContent = 'Connection error. Please try again.';
+                btn.textContent = 'Subscribe for More Articles'; btn.disabled = false;
+            });
+        });
+    </script>
 </body>
 </html>
