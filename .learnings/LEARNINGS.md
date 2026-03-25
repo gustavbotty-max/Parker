@@ -217,3 +217,32 @@ In email-driven calendar automation, default to no attendees unless the event co
 - Last-Seen: 2026-03-24
 
 ---
+
+## [LRN-20260325-001] correction
+
+**Logged**: 2026-03-25T13:20:00Z
+**Priority**: high
+**Status**: pending
+**Area**: docs
+
+### Summary
+For visual decks and image-heavy presentation work, pure hand-coded HTML/CSS mockups are acceptable for structure testing but are not sufficient for polished creative quality.
+
+### Details
+Jonathan explicitly said the image and graphic generation quality was poor. The current approach is useful for testing layout, narrative, and packaging, but not for high-quality visual design, realistic product mockups, or presentation-grade graphics. This kind of work likely needs either a stronger visual generation tool/service or a design workflow using external image/mockup assets.
+
+### Suggested Action
+For future pitch decks and presentation work, separate the tasks into:
+1. narrative/structure (can be done locally in HTML/CSS)
+2. polished visuals/mockups (should use a stronger external design or image-generation tool/service)
+
+### Metadata
+- Source: user_feedback
+- Related Files: clearpath-mission-deck.html, clearpath-phase1-onepager.html
+- Tags: design, visuals, deck, html, limitations
+- Pattern-Key: improve.visual_work_use_better_design_tools
+- Recurrence-Count: 1
+- First-Seen: 2026-03-25
+- Last-Seen: 2026-03-25
+
+---
