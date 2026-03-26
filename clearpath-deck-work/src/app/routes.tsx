@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import { createHashRouter } from "react-router";
 import { DeckLayout } from "./components/DeckLayout";
 import { CoverSlide } from "./components/slides/CoverSlide";
 import { MissionSlide } from "./components/slides/MissionSlide";
@@ -11,7 +11,7 @@ import { WhyDifferentSlide } from "./components/slides/WhyDifferentSlide";
 import { LocalFirstSlide } from "./components/slides/LocalFirstSlide";
 import { NextStepSlide } from "./components/slides/NextStepSlide";
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
   {
     path: "/",
     Component: DeckLayout,
