@@ -1,20 +1,24 @@
 import { motion } from "motion/react";
+import { Smartphone, HeartHandshake, Landmark } from "lucide-react";
 
-const rows = [
+const pillars = [
   {
-    category: "Tap / connect layer",
-    others: "Often focused on communication or generic QR/NFC actions",
-    clearpath: "Built to lead into trust, giving, and a stronger financial layer",
+    icon: Smartphone,
+    title: "Connect",
+    description:
+      "Tap to Connect gives churches a warmer digital front door for notes, announcements, next steps, and giving.",
   },
   {
-    category: "Giving layer",
-    others: "Often looks generic, fee-focused, or disconnected from the church brand",
-    clearpath: "Cleaner giving experience with ACH migration and trust-first design",
+    icon: HeartHandshake,
+    title: "Give",
+    description:
+      "We improve the giving experience with better design, easier ACH adoption, and less friction for generous people.",
   },
   {
-    category: "Future treasury layer",
-    others: "Usually absent",
-    clearpath: "Balances, transparency, yield participation, and later controlled spend",
+    icon: Landmark,
+    title: "Grow",
+    description:
+      "Clear Path can grow into a deeper trust layer with fund transparency, treasury features, and money deployment over time.",
   },
 ];
 
@@ -32,34 +36,29 @@ export function WhyDifferentSlide() {
             <span className="text-[#8ed0ff] tracking-wider uppercase text-xs">08 — Why Clear Path</span>
           </div>
           <h2 className="font-['Manrope'] text-4xl md:text-6xl lg:text-7xl mb-5 leading-tight">
-            We are not just another
+            More than connection.
             <br />
-            <span className="text-[#7dd3fc]">church tech tool.</span>
+            <span className="text-[#7dd3fc]">More than giving.</span>
           </h2>
-          <p className="text-xl text-white/70 max-w-3xl leading-relaxed">
-            Some tools help churches message. Some help them collect. Clear Path is built to connect,
-            trust, give, and eventually manage how money moves after the gift.
+          <p className="text-lg md:text-2xl text-white/70 max-w-3xl leading-relaxed">
+            Clear Path starts with connection, but it is built to become a deeper trust and money movement layer over time.
           </p>
         </motion.div>
 
-        <div className="rounded-3xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm">
-          <div className="grid grid-cols-[1.1fr_1fr_1fr] bg-white/5 border-b border-white/10">
-            <div className="p-5 text-white/50 uppercase tracking-[0.18em] text-xs">Category</div>
-            <div className="p-5 text-white/50 uppercase tracking-[0.18em] text-xs">Typical tools</div>
-            <div className="p-5 text-[#8ed0ff] uppercase tracking-[0.18em] text-xs">Clear Path</div>
-          </div>
-
-          {rows.map((row, index) => (
+        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+          {pillars.map((pillar, index) => (
             <motion.div
-              key={row.category}
-              initial={{ opacity: 0, y: 18 }}
+              key={pillar.title}
+              initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.25 + index * 0.12, duration: 0.7 }}
-              className="grid grid-cols-[1.1fr_1fr_1fr] border-b border-white/10 last:border-b-0"
+              transition={{ delay: 0.2 + index * 0.12, duration: 0.7 }}
+              className="rounded-3xl bg-white/6 border border-white/10 p-7 backdrop-blur-sm"
             >
-              <div className="p-6 text-xl font-semibold text-white">{row.category}</div>
-              <div className="p-6 text-white/60 leading-relaxed">{row.others}</div>
-              <div className="p-6 text-white/85 leading-relaxed bg-[#63b3ff]/[0.05]">{row.clearpath}</div>
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#63b3ff]/25 to-[#78f0c5]/18 flex items-center justify-center mb-5">
+                <pillar.icon className="w-7 h-7 text-[#8ed0ff]" />
+              </div>
+              <h3 className="font-['Manrope'] text-3xl mb-3 text-white">{pillar.title}</h3>
+              <p className="text-white/62 leading-relaxed text-lg">{pillar.description}</p>
             </motion.div>
           ))}
         </div>
