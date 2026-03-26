@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 
 export function CoverSlide() {
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-[#091426]">
+    <div className="relative w-full min-h-screen md:h-screen overflow-hidden bg-[#091426]">
       <motion.div
         initial={{ scale: 1.06 }}
         animate={{ scale: 1 }}
@@ -28,13 +28,13 @@ export function CoverSlide() {
             <span className="text-[#8ed0ff] tracking-[0.24em] uppercase text-sm">Clear Path</span>
           </div>
 
-          <h1 className="font-['Manrope'] text-6xl md:text-7xl lg:text-8xl tracking-tight leading-[0.96] max-w-5xl">
+          <h1 className="font-['Manrope'] text-5xl md:text-7xl lg:text-8xl tracking-tight leading-[0.96] max-w-5xl">
             Build trust first.
             <br />
             <span className="text-[#7dd3fc]">Move money better.</span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-white/72 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-2xl text-white/72 max-w-3xl mx-auto leading-relaxed">
             A better way for churches to connect, give, and serve — starting local,
             and building toward something much bigger.
           </p>

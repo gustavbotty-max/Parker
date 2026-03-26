@@ -30,8 +30,8 @@ const features = [
 
 export function ProductSlide() {
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-gradient-to-br from-[#091426] via-[#13264a] to-[#10203d]">
-      <div className="relative z-10 h-full flex flex-col justify-center px-8 md:px-16 lg:px-24 max-w-7xl mx-auto py-20">
+    <div className="relative w-full min-h-screen md:h-screen overflow-hidden bg-gradient-to-br from-[#091426] via-[#13264a] to-[#10203d]">
+      <div className="relative z-10 h-full flex flex-col justify-center px-6 md:px-12 lg:px-20 max-w-7xl mx-auto py-16 md:py-20">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -42,7 +42,7 @@ export function ProductSlide() {
             <span className="text-[#8ed0ff] tracking-wider uppercase text-xs">05 — Phase 1 Offer</span>
           </div>
 
-          <h2 className="font-['Manrope'] text-5xl md:text-6xl lg:text-7xl mb-5 leading-tight">
+          <h2 className="font-['Manrope'] text-4xl md:text-6xl lg:text-7xl mb-5 leading-tight">
             What churches get
             <br />
             <span className="text-[#7dd3fc]">right away.</span>

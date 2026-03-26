@@ -10,8 +10,8 @@ const bullets = [
 
 export function GivingPageSlide() {
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-gradient-to-br from-[#0d1830] via-[#15254a] to-[#0e1b35]">
-      <div className="relative z-10 h-full flex flex-col justify-center px-8 md:px-16 lg:px-24 max-w-7xl mx-auto py-20">
+    <div className="relative w-full min-h-screen md:h-screen overflow-hidden bg-gradient-to-br from-[#0d1830] via-[#15254a] to-[#0e1b35]">
+      <div className="relative z-10 h-full flex flex-col justify-center px-6 md:px-12 lg:px-20 max-w-7xl mx-auto py-16 md:py-20">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -21,7 +21,7 @@ export function GivingPageSlide() {
           <div className="inline-block px-4 py-1 rounded-full bg-[#63b3ff]/15 border border-[#63b3ff]/30 mb-6">
             <span className="text-[#8ed0ff] tracking-wider uppercase text-xs">07 — Giving Experience</span>
           </div>
-          <h2 className="font-['Manrope'] text-5xl md:text-6xl lg:text-7xl mb-5 leading-tight">
+          <h2 className="font-['Manrope'] text-4xl md:text-6xl lg:text-7xl mb-5 leading-tight">
             Giving pages should feel
             <br />
             <span className="text-[#7dd3fc]">clear, warm, and modern.</span>

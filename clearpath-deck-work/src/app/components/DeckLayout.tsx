@@ -8,6 +8,11 @@ const slides = [
   { path: "/problem", label: "Problem" },
   { path: "/why-churches", label: "Why Churches First" },
   { path: "/product", label: "Product" },
+  { path: "/tap-connect", label: "Tap to Connect" },
+  { path: "/giving-page", label: "Giving Experience" },
+  { path: "/why-different", label: "Why Clear Path" },
+  { path: "/local-first", label: "Local First" },
+  { path: "/next-step", label: "Next Step" },
 ];
 
 export function DeckLayout() {
@@ -46,11 +51,11 @@ export function DeckLayout() {
       <Outlet />
 
       {/* Navigation Controls */}
-      <div className="fixed bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-4 z-50">
+      <div className="fixed bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 md:gap-4 z-50 px-3 py-2 rounded-full bg-[#091426]/50 backdrop-blur-md border border-white/10 max-w-[92vw]">
         <button
           onClick={goToPrevious}
           disabled={currentIndex === 0}
-          className="p-3 rounded-full bg-white/10 hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed transition-all backdrop-blur-sm"
+          className="p-2.5 md:p-3 rounded-full bg-white/10 hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed transition-all backdrop-blur-sm"
           aria-label="Previous slide"
         >
           <ChevronLeft className="w-6 h-6" />
@@ -63,7 +68,7 @@ export function DeckLayout() {
               onClick={() => navigate(slide.path)}
               className={`h-2 rounded-full transition-all ${
                 index === currentIndex
-                  ? "w-8 bg-[#d4a574]"
+                  ? "w-6 md:w-8 bg-[#7dd3fc]"
                   : "w-2 bg-white/30 hover:bg-white/50"
               }`}
               aria-label={`Go to ${slide.label}`}
@@ -74,7 +79,7 @@ export function DeckLayout() {
         <button
           onClick={goToNext}
           disabled={currentIndex === slides.length - 1}
-          className="p-3 rounded-full bg-white/10 hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed transition-all backdrop-blur-sm"
+          className="p-2.5 md:p-3 rounded-full bg-white/10 hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed transition-all backdrop-blur-sm"
           aria-label="Next slide"
         >
           <ChevronRight className="w-6 h-6" />
@@ -82,7 +87,7 @@ export function DeckLayout() {
       </div>
 
       {/* Slide Counter */}
-      <div className="fixed top-8 right-8 text-sm text-white/60 font-mono z-50">
+      <div className="fixed top-4 right-4 md:top-8 md:right-8 text-xs md:text-sm text-white/60 font-mono z-50 px-3 py-1.5 rounded-full bg-[#091426]/45 border border-white/10 backdrop-blur-md">
         {String(currentIndex + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
       </div>
     </div>

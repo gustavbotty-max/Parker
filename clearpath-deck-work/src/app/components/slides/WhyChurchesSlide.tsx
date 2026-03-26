@@ -26,8 +26,8 @@ const reasons = [
 
 export function WhyChurchesSlide() {
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-gradient-to-br from-[#0b1730] via-[#122448] to-[#10203d]">
-      <div className="relative z-20 h-full flex flex-col justify-center px-8 md:px-16 lg:px-24 max-w-7xl mx-auto py-20">
+    <div className="relative w-full min-h-screen md:h-screen overflow-hidden bg-gradient-to-br from-[#0b1730] via-[#122448] to-[#10203d]">
+      <div className="relative z-20 h-full flex flex-col justify-center px-6 md:px-12 lg:px-20 max-w-7xl mx-auto py-16 md:py-20">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -37,7 +37,7 @@ export function WhyChurchesSlide() {
           <div className="inline-block px-4 py-1 rounded-full bg-[#63b3ff]/15 border border-[#63b3ff]/30 mb-6">
             <span className="text-[#8ed0ff] tracking-wider uppercase text-xs">04 — Why Churches First</span>
           </div>
-          <h2 className="font-['Manrope'] text-5xl md:text-6xl lg:text-7xl mb-6 leading-tight">
+          <h2 className="font-['Manrope'] text-4xl md:text-6xl lg:text-7xl mb-6 leading-tight">
             Start with the people who
             <br />
             <span className="text-[#7dd3fc]">already know how to give.</span>

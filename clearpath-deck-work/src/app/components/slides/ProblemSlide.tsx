@@ -26,13 +26,13 @@ const problems = [
 
 export function ProblemSlide() {
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-gradient-to-br from-[#091426] to-[#142a4f]">
+    <div className="relative w-full min-h-screen md:h-screen overflow-hidden bg-gradient-to-br from-[#091426] to-[#142a4f]">
       <div className="absolute inset-0">
         <img src="/assets/raleigh-skyline.jpg" alt="Raleigh skyline" className="w-full h-full object-cover opacity-20" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#091426]/96 via-[#091426]/93 to-[#10203d]/78" />
       </div>
 
-      <div className="relative z-10 h-full flex items-center px-8 md:px-16 lg:px-24">
+      <div className="relative z-10 h-full flex items-center px-6 md:px-12 lg:px-20">
         <div className="grid md:grid-cols-2 gap-12 lg:gap-20 w-full max-w-7xl mx-auto">
           <div className="flex flex-col justify-center">
             <div className="inline-block px-4 py-1 rounded-full bg-[#63b3ff]/15 border border-[#63b3ff]/30 mb-6 w-fit">

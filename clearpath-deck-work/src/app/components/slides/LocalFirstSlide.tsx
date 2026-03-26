@@ -2,13 +2,13 @@ import { motion } from "motion/react";
 
 export function LocalFirstSlide() {
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-[#091426]">
+    <div className="relative w-full min-h-screen md:h-screen overflow-hidden bg-[#091426]">
       <div className="absolute inset-0">
         <img src="/assets/durham-train.jpg" alt="Durham train" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#091426]/95 via-[#091426]/82 to-[#091426]/55" />
       </div>
 
-      <div className="relative z-10 h-full flex items-center px-8 md:px-16 lg:px-24 max-w-7xl mx-auto py-20">
+      <div className="relative z-10 h-full flex items-center px-6 md:px-12 lg:px-20 max-w-7xl mx-auto py-16 md:py-20">
         <div className="max-w-3xl">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -23,7 +23,7 @@ export function LocalFirstSlide() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15, duration: 0.8 }}
-            className="font-['Manrope'] text-5xl md:text-6xl lg:text-7xl mb-6 leading-tight"
+            className="font-['Manrope'] text-4xl md:text-6xl lg:text-7xl mb-6 leading-tight"
           >
             We are building this
             <br />
@@ -34,7 +34,7 @@ export function LocalFirstSlide() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.35, duration: 0.8 }}
-            className="text-xl md:text-2xl text-white/75 leading-relaxed mb-8"
+            className="text-lg md:text-2xl text-white/75 leading-relaxed mb-8"
           >
             Raleigh and Durham are not just a launch market. They are where we build trust,
             prove the product, and earn the right to grow.

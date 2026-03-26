@@ -2,10 +2,10 @@ import { motion } from "motion/react";
 
 export function MissionSlide() {
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-gradient-to-br from-[#0b1730] via-[#13284d] to-[#10203d]">
+    <div className="relative w-full min-h-screen md:h-screen overflow-hidden bg-gradient-to-br from-[#0b1730] via-[#13284d] to-[#10203d]">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(125,211,252,0.16),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(120,240,197,0.12),transparent_30%)]" />
 
-      <div className="relative z-10 h-full flex flex-col justify-center px-8 md:px-16 lg:px-24 max-w-6xl mx-auto py-20">
+      <div className="relative z-10 h-full flex flex-col justify-center px-6 md:px-12 lg:px-20 max-w-6xl mx-auto py-16 md:py-20">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -19,7 +19,7 @@ export function MissionSlide() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15, duration: 0.8 }}
-          className="font-['Manrope'] text-5xl md:text-6xl lg:text-7xl mb-8 leading-[1.02] max-w-5xl"
+          className="font-['Manrope'] text-4xl md:text-6xl lg:text-7xl mb-8 leading-[1.02] max-w-5xl"
         >
           Churches can help us build the
           <br />
