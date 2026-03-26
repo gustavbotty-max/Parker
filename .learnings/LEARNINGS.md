@@ -273,3 +273,30 @@ Exclude routine Counter Culture workshops/trainings from auto-calendar creation.
 - Last-Seen: 2026-03-25
 
 ---
+
+## [LRN-20260326-001] preference
+
+**Logged**: 2026-03-26T11:35:00Z
+**Priority**: medium
+**Status**: pending
+**Area**: user_preference
+
+### Summary
+The email-scan cron should not auto-add cold outreach, vendor intro, or sales-resource calls to Jonathan's calendar.
+
+### Details
+Jonathan explicitly said calls like "Call with Claudia Gonzalez (SAP Resource)" do not need to be auto-added. These should be treated as informational or manual-review items rather than automatic scheduling actions.
+
+### Suggested Action
+Exclude cold outreach / vendor-intro / sales-resource / SDR-style meetings from auto-calendar creation unless Jonathan explicitly asks for them to be added.
+
+### Metadata
+- Source: user_feedback
+- Related Files: /usr/local/bin/check_agentmail.sh
+- Tags: calendar, cron, preference, sales, outreach, vendor
+- Pattern-Key: pref.no_auto_calendar_for_cold_outreach_calls
+- Recurrence-Count: 1
+- First-Seen: 2026-03-26
+- Last-Seen: 2026-03-26
+
+---
