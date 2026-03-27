@@ -17,7 +17,7 @@ async function main() {
       recordSession: true,
       logSession: true,
       solveCaptchas: true,
-      advancedStealth: true,
+      advancedStealth: false,
       blockAds: false,
     },
     keepAlive: true,
