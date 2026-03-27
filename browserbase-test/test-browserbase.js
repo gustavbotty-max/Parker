@@ -20,7 +20,7 @@ async function main() {
       advancedStealth: false,
       blockAds: false,
     },
-    keepAlive: true,
+    keepAlive: false,
   });
 
   console.log('Session ID:', session.id);
