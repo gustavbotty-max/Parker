@@ -780,6 +780,10 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 @media (max-width: 768px) {
+  body {
+    padding-bottom: 96px;
+  }
+
   .floating-cta {
     bottom: 16px;
     right: 16px;
