@@ -17,3 +17,13 @@ memory/
 *.tar.gz
 *.deb
 *.b64
+
+# Clear Path split repo
+clearpath-deck-publish/
+clearpath-deck-static-site/
+clearpath-deck-standalone.html
+clearpath-deck-site/
+clearpath-deck-work/
+clearpath-mission-deck.html
+clearpath-phase1-onepager.html
+assets/clearpath/
