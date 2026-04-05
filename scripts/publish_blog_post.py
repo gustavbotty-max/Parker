@@ -11,9 +11,11 @@ from pathlib import Path
 from typing import Dict, List, Tuple
 
 ROOT = Path(__file__).resolve().parent.parent
-BLOG_INDEX_PATHS = [ROOT / "blog.html", ROOT / "Parker" / "blog.html"]
-HOME_INDEX_PATHS = [ROOT / "index.html", ROOT / "Parker" / "index.html"]
-BLOG_POSTS_DIRS = [ROOT / "blog-posts", ROOT / "Parker" / "blog-posts"]
+BLOG_INDEX_PATHS = [p for p in [ROOT / "blog.html", ROOT / "Parker" / "blog.html"] if p.exists()]
+HOME_INDEX_PATHS = [p for p in [ROOT / "index.html", ROOT / "Parker" / "index.html"] if p.exists()]
+BLOG_POSTS_DIRS = [ROOT / "blog-posts"]
+if (ROOT / "Parker").exists():
+    BLOG_POSTS_DIRS.append(ROOT / "Parker" / "blog-posts")
 CANONICAL_BASE = "https://gustavbotty-max.github.io/Parker"
 
 CATEGORY_MAP = {
