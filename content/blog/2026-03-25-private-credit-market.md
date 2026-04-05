@@ -166,4 +166,4 @@ If you are just trying to make sense of the economy, keep this in mind: some of 
 ---
 *This content is for educational purposes only and does not constitute financial advice. Every financial situation is unique. Consult with a qualified financial professional before making decisions about your specific circumstances.*
 
-*Written by Jonathan Parker | [Schedule a free consultation](https://calendly.com/jonathanparker)*
+*Written by Jonathan Parker | [Schedule a free consultation](https://scheduler.zoom.us/jonathan-parker-i9rj3o/pfs-intro)*
