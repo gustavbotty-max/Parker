@@ -234,6 +234,24 @@
 
             const fmt = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
 
+            window.latestRetirementReport = {
+                current_age: currentAge,
+                retirement_age: retirementAge,
+                current_income: currentIncome,
+                income_replacement_rate_percent: replacementRate * 100,
+                current_savings: currentSavings,
+                monthly_contribution: monthlyContribution,
+                expected_return_percent: expectedReturn * 100,
+                inflation_rate_percent: inflationRate * 100,
+                years_to_retirement: yearsToRetirement,
+                annual_income_needed: annualNeedAtRetirement,
+                projected_savings: totalAtRetirement,
+                savings_gap: gap,
+                extra_monthly_needed: monthlyNeeded,
+                on_track: onTrack,
+                progress_percent: progressPct
+            };
+
             let html = '';
 
             // Guided summary
@@ -320,6 +338,7 @@
             var btn = this.querySelector('button');
             btn.textContent = 'Sending...'; btn.disabled = true;
 
+            var report = window.latestRetirementReport || null;
             var payload = {
                 email: email,
                 calculator_type: 'retirement-planning',
@@ -333,11 +352,15 @@
                 monthly_contribution: document.getElementById('monthlyContribution').value,
                 expected_return_percent: document.getElementById('expectedReturn').value,
                 inflation_rate_percent: document.getElementById('inflationRate').value,
-                years_to_retirement_display: document.getElementById('retYears').textContent.trim(),
-                annual_income_needed_display: document.getElementById('retNeeded').textContent.trim(),
-                projected_savings_display: document.getElementById('retProjected').textContent.trim(),
-                savings_gap_display: document.getElementById('retGap').textContent.trim(),
-                extra_monthly_needed_display: document.getElementById('retMonthly').textContent.trim()
+                report_summary: report ? (
+                    'Years to retirement: ' + report.years_to_retirement + '\n' +
+                    'Annual income needed: $' + Math.round(report.annual_income_needed).toLocaleString() + '\n' +
+                    'Projected savings: $' + Math.round(report.projected_savings).toLocaleString() + '\n' +
+                    'Savings gap: $' + Math.round(report.savings_gap).toLocaleString() + '\n' +
+                    'Extra monthly needed: $' + Math.round(report.extra_monthly_needed).toLocaleString() + '\n' +
+                    'On track: ' + (report.on_track ? 'Yes' : 'No') + '\n' +
+                    'Progress: ' + Math.round(report.progress_percent) + '%'
+                ) : 'No computed report available'
             };
 
             fetch('https://formspree.io/f/xkovojay', {
