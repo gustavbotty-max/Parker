@@ -319,9 +319,30 @@
             if (!email) return;
             var btn = this.querySelector('button');
             btn.textContent = 'Sending...'; btn.disabled = true;
+
+            var payload = {
+                email: email,
+                calculator_type: 'retirement-planning',
+                lead_source: 'calculator-results',
+                timestamp: new Date().toISOString(),
+                current_age: document.getElementById('currentAge').value,
+                retirement_age: document.getElementById('retirementAge').value,
+                current_income: document.getElementById('currentIncome').value,
+                income_replacement_rate_percent: document.getElementById('incomeReplacementRate').value,
+                current_savings: document.getElementById('currentSavings').value,
+                monthly_contribution: document.getElementById('monthlyContribution').value,
+                expected_return_percent: document.getElementById('expectedReturn').value,
+                inflation_rate_percent: document.getElementById('inflationRate').value,
+                years_to_retirement_display: document.getElementById('retYears').textContent.trim(),
+                annual_income_needed_display: document.getElementById('retNeeded').textContent.trim(),
+                projected_savings_display: document.getElementById('retProjected').textContent.trim(),
+                savings_gap_display: document.getElementById('retGap').textContent.trim(),
+                extra_monthly_needed_display: document.getElementById('retMonthly').textContent.trim()
+            };
+
             fetch('https://formspree.io/f/xkovojay', {
                 method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                body: JSON.stringify({ email: email, calculator_type: 'retirement-planning', lead_source: 'calculator-results', timestamp: new Date().toISOString() })
+                body: JSON.stringify(payload)
             }).then(function(r){return r.json()}).then(function(d){ if(d.ok){ document.getElementById('retEmailStatus').style.display='block'; btn.textContent='✅ Sent!'; } else { alert('Error — try again.'); btn.textContent='Send My Report 📧'; btn.disabled=false; }}).catch(function(){ alert('Connection error.'); btn.textContent='Send My Report 📧'; btn.disabled=false; });
         });
     </script>
