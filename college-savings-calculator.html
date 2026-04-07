@@ -121,12 +121,12 @@
                 </div>
 
                 <div class="email-capture-box">
-                    <h4>📝 Get Your College Savings Report</h4>
-                    <p>Receive a personalized savings plan with account recommendations.</p>
-                    <div id="colEmailStatus" style="display:none" class="email-success">✅ Report sent! Check your email.</div>
+                    <h4>💬 Want to talk through your college plan?</h4>
+                    <p>Leave your email and Jonathan will follow up with personalized next steps.</p>
+                    <div id="colEmailStatus" style="display:none" class="email-success">✅ Sent! Jonathan will be in touch soon.</div>
                     <form id="colEmailForm" class="email-form">
                         <input type="email" id="colEmail" placeholder="Your email address" required>
-                        <button type="submit">Send My Report 📧</button>
+                        <button type="submit">Get in Touch 📩</button>
                     </form>
                     <p class="email-fine">Your info is secure and never shared.</p>
                 </div>
@@ -298,7 +298,7 @@
             fetch('https://formspree.io/f/xkovojay', {
                 method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
                 body: JSON.stringify({ email: email, calculator_type: 'college-savings', lead_source: 'calculator-results', timestamp: new Date().toISOString() })
-            }).then(function(r){return r.json()}).then(function(d){ if(d.ok){ document.getElementById('colEmailStatus').style.display='block'; btn.textContent='✅ Sent!'; } else { alert('Error — try again.'); btn.textContent='Send My Report 📧'; btn.disabled=false; }}).catch(function(){ alert('Connection error.'); btn.textContent='Send My Report 📧'; btn.disabled=false; });
+            }).then(function(r){return r.json()}).then(function(d){ if(d.ok){ document.getElementById('colEmailStatus').style.display='block'; btn.textContent='✅ Sent!'; btn.disabled=true; } else { alert('Error — try again.'); btn.textContent='Get in Touch 📩'; btn.disabled=false; }}).catch(function(){ alert('Connection error.'); btn.textContent='Get in Touch 📩'; btn.disabled=false; });
         });
     </script>
 </body>
