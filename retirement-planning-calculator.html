@@ -339,33 +339,35 @@
             btn.textContent = 'Sending...'; btn.disabled = true;
 
             var report = window.latestRetirementReport || null;
-            var payload = {
-                email: email,
-                calculator_type: 'retirement-planning',
-                lead_source: 'calculator-results',
-                timestamp: new Date().toISOString(),
-                current_age: document.getElementById('currentAge').value,
-                retirement_age: document.getElementById('retirementAge').value,
-                current_income: document.getElementById('currentIncome').value,
-                income_replacement_rate_percent: document.getElementById('incomeReplacementRate').value,
-                current_savings: document.getElementById('currentSavings').value,
-                monthly_contribution: document.getElementById('monthlyContribution').value,
-                expected_return_percent: document.getElementById('expectedReturn').value,
-                inflation_rate_percent: document.getElementById('inflationRate').value,
-                report_summary: report ? (
-                    'Years to retirement: ' + report.years_to_retirement + '\n' +
-                    'Annual income needed: $' + Math.round(report.annual_income_needed).toLocaleString() + '\n' +
-                    'Projected savings: $' + Math.round(report.projected_savings).toLocaleString() + '\n' +
-                    'Savings gap: $' + Math.round(report.savings_gap).toLocaleString() + '\n' +
-                    'Extra monthly needed: $' + Math.round(report.extra_monthly_needed).toLocaleString() + '\n' +
-                    'On track: ' + (report.on_track ? 'Yes' : 'No') + '\n' +
-                    'Progress: ' + Math.round(report.progress_percent) + '%'
-                ) : 'No computed report available'
-            };
+            var formData = new FormData();
+            formData.append('email', email);
+            formData.append('_replyto', email);
+            formData.append('_subject', 'Retirement Planning Calculator Lead');
+            formData.append('calculator_type', 'retirement-planning');
+            formData.append('lead_source', 'calculator-results');
+            formData.append('timestamp', new Date().toISOString());
+            formData.append('current_age', document.getElementById('currentAge').value);
+            formData.append('retirement_age', document.getElementById('retirementAge').value);
+            formData.append('current_income', document.getElementById('currentIncome').value);
+            formData.append('income_replacement_rate_percent', document.getElementById('incomeReplacementRate').value);
+            formData.append('current_savings', document.getElementById('currentSavings').value);
+            formData.append('monthly_contribution', document.getElementById('monthlyContribution').value);
+            formData.append('expected_return_percent', document.getElementById('expectedReturn').value);
+            formData.append('inflation_rate_percent', document.getElementById('inflationRate').value);
+            formData.append('report_summary', report ? (
+                'Years to retirement: ' + report.years_to_retirement + '\n' +
+                'Annual income needed: $' + Math.round(report.annual_income_needed).toLocaleString() + '\n' +
+                'Projected savings: $' + Math.round(report.projected_savings).toLocaleString() + '\n' +
+                'Savings gap: $' + Math.round(report.savings_gap).toLocaleString() + '\n' +
+                'Extra monthly needed: $' + Math.round(report.extra_monthly_needed).toLocaleString() + '\n' +
+                'On track: ' + (report.on_track ? 'Yes' : 'No') + '\n' +
+                'Progress: ' + Math.round(report.progress_percent) + '%'
+            ) : 'No computed report available');
 
             fetch('https://formspree.io/f/xkovojay', {
-                method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                body: JSON.stringify(payload)
+                method: 'POST',
+                headers: { 'Accept': 'application/json' },
+                body: formData
             }).then(function(r){return r.json()}).then(function(d){ if(d.ok){ document.getElementById('retEmailStatus').style.display='block'; btn.textContent='✅ Sent!'; } else { alert('Error — try again.'); btn.textContent='Send My Report 📧'; btn.disabled=false; }}).catch(function(){ alert('Connection error.'); btn.textContent='Send My Report 📧'; btn.disabled=false; });
         });
     </script>
