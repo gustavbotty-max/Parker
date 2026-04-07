@@ -124,9 +124,9 @@
                 </div>
 
                 <div class="email-capture-box">
-                    <h4>📝 Get Your Full Retirement Report</h4>
-                    <p>Receive a detailed breakdown with savings milestones and action steps.</p>
-                    <div id="retEmailStatus" style="display:none" class="email-success">✅ Report sent! Check your email.</div>
+                    <h4>💬 Want to talk through your numbers?</h4>
+                    <p>Leave your email and Jonathan will follow up with personalized next steps.</p>
+                    <div id="retEmailStatus" style="display:none" class="email-success">✅ Sent! Jonathan will be in touch soon.</div>
                     <div id="retEmailError" style="display:none;color:#dc2626;font-weight:600;margin-bottom:0.5rem;"></div>
                     <form id="retEmailForm" class="email-form" action="https://formspree.io/f/xkovojay" method="POST" novalidate>
                         <input type="email" id="retEmail" name="email" placeholder="Your email address" required>
@@ -147,7 +147,7 @@
                         <input type="hidden" name="inflation_rate_percent" id="retHiddenInflationRate">
                         <input type="hidden" name="report_summary" id="retHiddenReportSummary">
 
-                        <button type="submit">Send My Report 📧</button>
+                        <button type="submit">Get in Touch 📩</button>
                     </form>
                     <p class="email-fine">Your info is secure and never shared.</p>
                 </div>
@@ -403,7 +403,7 @@
 
                 if (response.ok && data && data.ok) {
                     status.style.display = 'block';
-                    btn.textContent = '✅ Sent!';
+                    btn.textContent = '✅ Sent!';  btn.disabled = true;
                     return;
                 }
 
