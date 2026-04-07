@@ -127,8 +127,26 @@
                     <h4>📝 Get Your Full Retirement Report</h4>
                     <p>Receive a detailed breakdown with savings milestones and action steps.</p>
                     <div id="retEmailStatus" style="display:none" class="email-success">✅ Report sent! Check your email.</div>
-                    <form id="retEmailForm" class="email-form">
-                        <input type="email" id="retEmail" placeholder="Your email address" required>
+                    <div id="retEmailError" style="display:none;color:#dc2626;font-weight:600;margin-bottom:0.5rem;"></div>
+                    <form id="retEmailForm" class="email-form" action="https://formspree.io/f/xkovojay" method="POST" novalidate>
+                        <input type="email" id="retEmail" name="email" placeholder="Your email address" required>
+
+                        <input type="hidden" name="_replyto" id="retHiddenReplyTo">
+                        <input type="hidden" name="_subject" value="Retirement Planning Calculator Lead">
+                        <input type="hidden" name="calculator_type" value="retirement-planning">
+                        <input type="hidden" name="lead_source" value="calculator-results">
+                        <input type="hidden" name="timestamp" id="retHiddenTimestamp">
+
+                        <input type="hidden" name="current_age" id="retHiddenCurrentAge">
+                        <input type="hidden" name="retirement_age" id="retHiddenRetirementAge">
+                        <input type="hidden" name="current_income" id="retHiddenCurrentIncome">
+                        <input type="hidden" name="income_replacement_rate_percent" id="retHiddenIncomeReplacementRate">
+                        <input type="hidden" name="current_savings" id="retHiddenCurrentSavings">
+                        <input type="hidden" name="monthly_contribution" id="retHiddenMonthlyContribution">
+                        <input type="hidden" name="expected_return_percent" id="retHiddenExpectedReturn">
+                        <input type="hidden" name="inflation_rate_percent" id="retHiddenInflationRate">
+                        <input type="hidden" name="report_summary" id="retHiddenReportSummary">
+
                         <button type="submit">Send My Report 📧</button>
                     </form>
                     <p class="email-fine">Your info is secure and never shared.</p>
@@ -331,30 +349,39 @@
             document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
         }
 
-        document.getElementById('retEmailForm').addEventListener('submit', function(e) {
+        document.getElementById('retEmailForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            var email = document.getElementById('retEmail').value;
+
+            var form = this;
+            var emailInput = document.getElementById('retEmail');
+            var email = (emailInput.value || '').trim();
             if (!email) return;
-            var btn = this.querySelector('button');
-            btn.textContent = 'Sending...'; btn.disabled = true;
+
+            var btn = form.querySelector('button');
+            var status = document.getElementById('retEmailStatus');
+            var errorEl = document.getElementById('retEmailError');
+
+            status.style.display = 'none';
+            errorEl.style.display = 'none';
+            errorEl.textContent = '';
+
+            btn.textContent = 'Sending...';
+            btn.disabled = true;
 
             var report = window.latestRetirementReport || null;
-            var formData = new FormData();
-            formData.append('email', email);
-            formData.append('_replyto', email);
-            formData.append('_subject', 'Retirement Planning Calculator Lead');
-            formData.append('calculator_type', 'retirement-planning');
-            formData.append('lead_source', 'calculator-results');
-            formData.append('timestamp', new Date().toISOString());
-            formData.append('current_age', document.getElementById('currentAge').value);
-            formData.append('retirement_age', document.getElementById('retirementAge').value);
-            formData.append('current_income', document.getElementById('currentIncome').value);
-            formData.append('income_replacement_rate_percent', document.getElementById('incomeReplacementRate').value);
-            formData.append('current_savings', document.getElementById('currentSavings').value);
-            formData.append('monthly_contribution', document.getElementById('monthlyContribution').value);
-            formData.append('expected_return_percent', document.getElementById('expectedReturn').value);
-            formData.append('inflation_rate_percent', document.getElementById('inflationRate').value);
-            formData.append('report_summary', report ? (
+
+            // Keep payload in real form fields (native-compatible), then send FormData.
+            document.getElementById('retHiddenReplyTo').value = email;
+            document.getElementById('retHiddenTimestamp').value = new Date().toISOString();
+            document.getElementById('retHiddenCurrentAge').value = document.getElementById('currentAge').value || '';
+            document.getElementById('retHiddenRetirementAge').value = document.getElementById('retirementAge').value || '';
+            document.getElementById('retHiddenCurrentIncome').value = document.getElementById('currentIncome').value || '';
+            document.getElementById('retHiddenIncomeReplacementRate').value = document.getElementById('incomeReplacementRate').value || '';
+            document.getElementById('retHiddenCurrentSavings').value = document.getElementById('currentSavings').value || '';
+            document.getElementById('retHiddenMonthlyContribution').value = document.getElementById('monthlyContribution').value || '';
+            document.getElementById('retHiddenExpectedReturn').value = document.getElementById('expectedReturn').value || '';
+            document.getElementById('retHiddenInflationRate').value = document.getElementById('inflationRate').value || '';
+            document.getElementById('retHiddenReportSummary').value = report ? (
                 'Years to retirement: ' + report.years_to_retirement + '\n' +
                 'Annual income needed: $' + Math.round(report.annual_income_needed).toLocaleString() + '\n' +
                 'Projected savings: $' + Math.round(report.projected_savings).toLocaleString() + '\n' +
@@ -362,13 +389,37 @@
                 'Extra monthly needed: $' + Math.round(report.extra_monthly_needed).toLocaleString() + '\n' +
                 'On track: ' + (report.on_track ? 'Yes' : 'No') + '\n' +
                 'Progress: ' + Math.round(report.progress_percent) + '%'
-            ) : 'No computed report available');
+            ) : 'No computed report available';
 
-            fetch('https://formspree.io/f/xkovojay', {
-                method: 'POST',
-                headers: { 'Accept': 'application/json' },
-                body: formData
-            }).then(function(r){return r.json()}).then(function(d){ if(d.ok){ document.getElementById('retEmailStatus').style.display='block'; btn.textContent='✅ Sent!'; } else { alert('Error — try again.'); btn.textContent='Send My Report 📧'; btn.disabled=false; }}).catch(function(){ alert('Connection error.'); btn.textContent='Send My Report 📧'; btn.disabled=false; });
+            try {
+                var response = await fetch(form.action, {
+                    method: 'POST',
+                    headers: { 'Accept': 'application/json' },
+                    body: new FormData(form)
+                });
+
+                var data = null;
+                try { data = await response.json(); } catch (_) {}
+
+                if (response.ok && data && data.ok) {
+                    status.style.display = 'block';
+                    btn.textContent = '✅ Sent!';
+                    return;
+                }
+
+                var msg = (data && data.errors && data.errors[0] && data.errors[0].message)
+                    ? data.errors[0].message
+                    : 'Error — please try again.';
+                errorEl.textContent = msg;
+                errorEl.style.display = 'block';
+                btn.textContent = 'Send My Report 📧';
+                btn.disabled = false;
+            } catch (err) {
+                errorEl.textContent = 'Connection error — please try again.';
+                errorEl.style.display = 'block';
+                btn.textContent = 'Send My Report 📧';
+                btn.disabled = false;
+            }
         });
     </script>
 </body>
