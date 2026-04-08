@@ -67,7 +67,27 @@ def parse_markdown(md_text: str) -> Tuple[Dict[str, str], str]:
     return front_matter, body.lstrip("\n")
 
 
+def strip_leading_h1(body: str) -> str:
+    lines = body.splitlines()
+    started = False
+    out: List[str] = []
+    removed = False
+    for line in lines:
+        stripped = line.strip()
+        if not started and not stripped:
+            continue
+        if not started:
+            started = True
+            if stripped.startswith('# '):
+                removed = True
+                continue
+        out.append(line)
+    cleaned = '\n'.join(out).lstrip('\n')
+    return cleaned if removed else body
+
+
 def md_to_html(body: str) -> str:
+    body = strip_leading_h1(body)
     markdown_module = load_markdown_module()
     if markdown_module:
         return markdown_module.markdown(body, extensions=["extra", "smarty"])
