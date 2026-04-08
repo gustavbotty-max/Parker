@@ -262,7 +262,27 @@ def _update_card_grid(path: Path, card_html: str, slug: str, limit: int | None =
     if start_idx == -1:
         raise RuntimeError(f"Blog grid marker not found in {path}")
     grid_start = content.find("\n", start_idx + len(marker)) + 1
-    grid_end = content.find("</div>", grid_start)
+
+    # Find the closing div that matches the grid container, not the first nested card div.
+    pos = start_idx
+    depth = 0
+    grid_end = -1
+    while True:
+        next_open = content.find("<div", pos)
+        next_close = content.find("</div>", pos)
+        if next_close == -1:
+            break
+        if next_open != -1 and next_open < next_close:
+            depth += 1
+            pos = next_open + 4
+        else:
+            depth -= 1
+            pos = next_close + 6
+            if depth == 0:
+                grid_end = next_close
+                break
+    if grid_end == -1:
+        raise RuntimeError(f"Could not locate blog grid end in {path}")
     grid = content[grid_start:grid_end]
     card_pattern = re.compile(r"\n\s*<a href=\"blog-posts/[^\"]+\.html\" class=\"blog-card\"[\s\S]*?</a>\n", re.MULTILINE)
     cards = card_pattern.findall(grid)
