@@ -42,7 +42,7 @@
 <body>
     <nav class="site-nav"><div class="nav-inner">
         <a href="index.html" class="nav-brand"><span class="nav-brand-name">Triangle Money Guide</span><span class="nav-brand-tag">By Jonathan Parker · Triangle NC</span></a>
-        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden><label for="nav-toggle" class="nav-toggle-label"><span></span></label>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation menu"><label for="nav-toggle" class="nav-toggle-label"><span></span></label>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="index.html#calculators" class="active">Calculators</a></li>
@@ -225,7 +225,11 @@
             const shortestYears = Math.min(...children.map(c => c.yearsUntilCollege));
             const totalMonths = shortestYears * 12;
             const fvSavings = currentSavings * Math.pow(1 + annualReturn, shortestYears);
-            const fvContribs = monthlyContrib > 0 ? monthlyContrib * ((Math.pow(1 + monthlyReturn, totalMonths) - 1) / monthlyReturn) : 0;
+            const fvContribs = monthlyContrib <= 0
+                ? 0
+                : monthlyReturn === 0
+                    ? monthlyContrib * totalMonths
+                    : monthlyContrib * ((Math.pow(1 + monthlyReturn, totalMonths) - 1) / monthlyReturn);
             const projectedTotal = fvSavings + fvContribs;
 
             const gap = totalNeeded - projectedTotal;
@@ -234,7 +238,9 @@
             // Monthly needed to close gap
             let monthlyNeeded = 0;
             if (gap > 0 && totalMonths > 0) {
-                monthlyNeeded = gap / ((Math.pow(1 + monthlyReturn, totalMonths) - 1) / monthlyReturn);
+                monthlyNeeded = monthlyReturn === 0
+                    ? gap / totalMonths
+                    : gap / ((Math.pow(1 + monthlyReturn, totalMonths) - 1) / monthlyReturn);
             }
 
             let html = '';

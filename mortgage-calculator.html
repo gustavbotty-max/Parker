@@ -37,7 +37,7 @@
 <body>
     <nav class="site-nav"><div class="nav-inner">
         <a href="index.html" class="nav-brand"><span class="nav-brand-name">Triangle Money Guide</span><span class="nav-brand-tag">By Jonathan Parker · Triangle NC</span></a>
-        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden><label for="nav-toggle" class="nav-toggle-label"><span></span></label>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation menu"><label for="nav-toggle" class="nav-toggle-label"><span></span></label>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li><li><a href="index.html#calculators" class="active">Calculators</a></li>
             <li><a href="index.html#blog">Blog</a></li><li><a href="index.html#about">About</a></li>
@@ -79,12 +79,12 @@
                         <div class="form-group">
                             <label for="interestRate">Mortgage Rate (%)</label>
                             <input type="text" id="interestRate" inputmode="decimal" value="6.50">
-                            <small style="color:var(--text-light);">Auto-filled with latest average; editable</small>
+                            <small style="color:var(--text-light);">Pre-filled from the latest published survey figure; editable</small>
                         </div>
                         <div class="form-group">
-                            <label for="taxRate">Wake County Property Tax (%)</label>
-                            <input type="text" id="taxRate" inputmode="decimal" value="0.87">
-                            <small style="color:var(--text-light);">County + Raleigh rate FY2024-25</small>
+                            <label for="taxRate">Wake County + Raleigh Property Tax (%)</label>
+                            <input type="text" id="taxRate" inputmode="decimal" value="0.9091">
+                            <small style="color:var(--text-light);">Combined county + City of Raleigh rate, FY2026-27</small>
                         </div>
                         <div class="form-group">
                             <label for="insuranceMonthly">Homeowner's Insurance (monthly)</label>
@@ -109,7 +109,7 @@
                     <div class="disclaimer-box" style="margin-top:1.5rem;">
                         <strong>💡 Tip:</strong> Keep total housing at 30-33% of take-home pay. Use alongside your emergency fund and other debts to decide if the payment feels safe.
                     </div>
-                    <p style="font-size:0.82rem; color:var(--text-lighter); margin-top:1rem;">Property tax: Wake County FY2024-25 (0.5171 county + 0.3550 Raleigh). Insurance: ~$1,620/year average.</p>
+                    <p style="font-size:0.82rem; color:var(--text-lighter); margin-top:1rem;">Property tax: combined Wake County + Raleigh FY2026-27 rate (0.5371 county + 0.3720 Raleigh). Insurance is an editable planning assumption.</p>
                 </div>
             </div>
 
@@ -176,7 +176,7 @@
     </a>
 
     <script>
-        const RATE_ENDPOINT = 'https://raw.githubusercontent.com/gustavbotty-max/Parker/main/data/mortgage-rate.json';
+        const RATE_ENDPOINT = 'data/mortgage-rate.json';
         const FALLBACK_RATE = 6.50;
         const currency = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
         const preciseCurrency = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -192,9 +192,10 @@
                 const data = await response.json();
                 if (data?.thirty_year_fixed) {
                     interestRateEl.value = Number(data.thirty_year_fixed).toFixed(3);
-                    rateStatusEl.textContent = `Auto rate: ${Number(data.thirty_year_fixed).toFixed(3)}% (source: ${data.source || 'external'})`;
+                    const asOf = data.as_of ? ` as of ${data.as_of}` : '';
+                    rateStatusEl.textContent = `30-year average: ${Number(data.thirty_year_fixed).toFixed(3)}%${asOf}${data.source ? ` (${data.source})` : ''}`;
                 } else { rateStatusEl.textContent = 'Using fallback rate'; }
-            } catch { rateStatusEl.textContent = 'Rate feed unavailable — using fallback'; }
+            } catch { rateStatusEl.textContent = 'Rate data unavailable — using 6.50% fallback'; }
         }
 
         function toNumber(v) { return parseFloat(String(v || '').replace(/[$,%\s,]/g, '')) || 0; }
